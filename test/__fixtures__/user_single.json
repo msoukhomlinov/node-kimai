@@ -1,0 +1,14 @@
+{
+  "id": 1,
+  "alias": "Admin User",
+  "title": "Mr.",
+  "firstname": "John",
+  "lastname": "Admin",
+  "username": "admin",
+  "email": "admin@example.com",
+  "teams": [
+    { "id": 1, "name": "Admins" }
+  ],
+  "locale": "en",
+  "timezone": "UTC"
+}

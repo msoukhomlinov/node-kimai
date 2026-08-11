@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "user": { "id": 1, "username": "admin" },
+    "rate": 100.0,
+    "internalRate": 50.0,
+    "isFixed": false
+  }
+]

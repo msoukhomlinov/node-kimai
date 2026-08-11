@@ -1,0 +1,6 @@
+{
+  "title": "Forbidden",
+  "status": 403,
+  "detail": "Access denied",
+  "message": "You do not have permission to access this resource."
+}

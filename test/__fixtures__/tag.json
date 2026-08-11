@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "urgent",
+    "visible": true,
+    "color": "#f44336",
+    "color-safe": "light"
+  },
+  {
+    "id": 2,
+    "name": "bugfix",
+    "visible": true,
+    "color": "#ff5722",
+    "color-safe": "light"
+  }
+]

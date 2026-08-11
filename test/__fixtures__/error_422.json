@@ -1,0 +1,9 @@
+{
+  "title": "Unprocessable Entity",
+  "status": 422,
+  "detail": "Validation failed",
+  "message": "The request could not be processed due to validation errors.",
+  "violations": [
+    { "propertyPath": "name", "message": "This value should not be blank." }
+  ]
+}

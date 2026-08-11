@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Kimai\\Plugin\\ApprovalBundle",
+    "version": "2.3.0"
+  },
+  {
+    "name": "Kimai\\Plugin\\InvoicePlugin",
+    "version": "2.3.0"
+  }
+]

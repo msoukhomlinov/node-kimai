@@ -1,0 +1,16 @@
+{
+  "id": 1,
+  "user": { "id": 1, "username": "admin" },
+  "activity": {
+    "id": 1,
+    "name": "Development",
+    "project": { "id": 1, "name": "Website Redesign" }
+  },
+  "project": { "id": 1, "name": "Website Redesign" },
+  "begin": "2024-01-15T09:00:00+00:00",
+  "end": "2024-01-15T17:00:00+00:00",
+  "duration": 28800,
+  "description": "Frontend development",
+  "exportable": true,
+  "metaFields": []
+}

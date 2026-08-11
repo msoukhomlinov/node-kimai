@@ -1,0 +1,7 @@
+{
+  "id": 3,
+  "user": { "id": 1, "username": "admin" },
+  "date": "2024-01-17T09:00:00+00:00",
+  "body": "New comment created",
+  "pinned": false
+}

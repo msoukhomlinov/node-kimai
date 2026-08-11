@@ -1,0 +1,6 @@
+{
+  "title": "Internal Server Error",
+  "status": 500,
+  "detail": "An unexpected error occurred",
+  "message": "The server encountered an unexpected condition."
+}

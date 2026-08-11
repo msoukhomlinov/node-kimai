@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "customer": {
+      "id": 1,
+      "name": "Acme Corp",
+      "number": "CUST-001"
+    },
+    "user": { "id": 1, "username": "admin" },
+    "number": "INV-2024-001",
+    "year": 2024,
+    "month": 1,
+    "begin": "2024-01-01T00:00:00+00:00",
+    "end": "2024-01-31T23:59:59+00:00",
+    "currency": "USD",
+    "sum": 5000.0,
+    "sumWithTax": 6000.0,
+    "tax": 1000.0,
+    "template": "default",
+    "customFields": []
+  },
+  {
+    "id": 2,
+    "customer": {
+      "id": 2,
+      "name": "Globex Inc",
+      "number": "CUST-002"
+    },
+    "user": { "id": 2, "username": "dev" },
+    "number": "INV-2024-002",
+    "year": 2024,
+    "month": 2,
+    "begin": "2024-02-01T00:00:00+00:00",
+    "end": "2024-02-29T23:59:59+00:00",
+    "currency": "EUR",
+    "sum": 3000.0,
+    "sumWithTax": 3600.0,
+    "tax": 600.0,
+    "template": "default",
+    "customFields": [
+      { "name": "po_number", "value": "PO-123" }
+    ]
+  }
+]

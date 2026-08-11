@@ -1,0 +1,26 @@
+[
+  {
+    "id": "edit",
+    "title": "Edit",
+    "url": "/edit/1",
+    "class": "btn btn-primary",
+    "attr": { "data-id": "1" },
+    "divider": false
+  },
+  {
+    "id": "divider-1",
+    "title": null,
+    "url": null,
+    "class": null,
+    "attr": {},
+    "divider": true
+  },
+  {
+    "id": "delete",
+    "title": "Delete",
+    "url": "/delete/1",
+    "class": "btn btn-danger",
+    "attr": { "data-confirm": "Are you sure?" },
+    "divider": false
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "Development",
+    "comment": "Software development work",
+    "visible": true,
+    "billable": true,
+    "color": "#1976d2",
+    "color-safe": "dark",
+    "number": "ACT-001",
+    "project": 1,
+    "metaFields": [
+      { "name": "department", "value": "engineering" }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Design",
+    "comment": "UI/UX design work",
+    "visible": true,
+    "billable": true,
+    "color": "#9c27b0",
+    "color-safe": "light",
+    "number": "ACT-002",
+    "project": null,
+    "metaFields": []
+  }
+]

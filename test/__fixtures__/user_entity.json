@@ -1,0 +1,15 @@
+{
+  "id": 3,
+  "alias": "New User",
+  "title": null,
+  "firstname": "Bob",
+  "lastname": "Builder",
+  "username": "builder",
+  "email": "builder@example.com",
+  "teams": [],
+  "teamMemberships": [
+    { "team": { "id": 3, "name": "Construction" } }
+  ],
+  "locale": "en",
+  "timezone": "Europe/London"
+}

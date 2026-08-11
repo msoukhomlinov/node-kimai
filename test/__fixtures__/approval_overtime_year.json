@@ -1,0 +1,9 @@
+{
+  "user": 1,
+  "year": 2024,
+  "totalOvertime": 7200,
+  "weeks": [
+    { "date": "2024-01-08", "overtime": 3600 },
+    { "date": "2024-01-15", "overtime": 3600 }
+  ]
+}

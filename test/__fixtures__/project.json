@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "Website Redesign",
+    "comment": "Complete site overhaul",
+    "visible": true,
+    "billable": true,
+    "color": "#e91e63",
+    "color-safe": "light",
+    "number": "PROJ-001",
+    "customer": 1,
+    "metaFields": []
+  },
+  {
+    "id": 2,
+    "name": "Mobile App",
+    "comment": null,
+    "visible": true,
+    "billable": true,
+    "color": "#00bcd4",
+    "color-safe": "dark",
+    "number": "PROJ-002",
+    "customer": 1,
+    "metaFields": [
+      { "name": "platform", "value": "iOS" }
+    ]
+  }
+]

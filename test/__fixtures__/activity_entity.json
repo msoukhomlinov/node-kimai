@@ -1,0 +1,19 @@
+{
+  "id": 3,
+  "name": "Testing",
+  "comment": "QA and testing work",
+  "visible": true,
+  "billable": true,
+  "color": "#4caf50",
+  "color-safe": "dark",
+  "number": "ACT-003",
+  "project": 1,
+  "metaFields": [],
+  "teams": [
+    { "id": 1, "name": "Engineering" }
+  ],
+  "budget": null,
+  "timeBudget": null,
+  "budgetType": null,
+  "parentTitle": "Main Project"
+}

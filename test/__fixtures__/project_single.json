@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "name": "Website Redesign",
+  "comment": "Complete site overhaul",
+  "visible": true,
+  "billable": true,
+  "color": "#e91e63",
+  "color-safe": "light",
+  "number": "PROJ-001",
+  "customer": 1,
+  "metaFields": []
+}

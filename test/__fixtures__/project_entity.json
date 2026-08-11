@@ -1,0 +1,18 @@
+{
+  "id": 3,
+  "name": "API Integration",
+  "comment": "Third-party API work",
+  "visible": true,
+  "billable": true,
+  "color": "#ff5722",
+  "color-safe": "light",
+  "number": "PROJ-003",
+  "customer": 2,
+  "metaFields": [],
+  "teams": [
+    { "id": 1, "name": "Engineering" }
+  ],
+  "budget": 50000.0,
+  "timeBudget": null,
+  "budgetType": null
+}

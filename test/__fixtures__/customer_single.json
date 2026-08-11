@@ -1,0 +1,22 @@
+{
+  "id": 1,
+  "name": "Acme Corp",
+  "number": "CUST-001",
+  "comment": "Main customer",
+  "visible": true,
+  "billable": true,
+  "company": "Acme Corporation",
+  "country": "US",
+  "language": "en",
+  "currency": "USD",
+  "phone": "+1-555-0100",
+  "fax": null,
+  "mobile": null,
+  "homepage": "https://acme.example.com",
+  "timezone": "America/New_York",
+  "metaFields": [
+    { "name": "account_manager", "value": "John Smith" }
+  ],
+  "color": "#2196f3",
+  "color-safe": "dark"
+}

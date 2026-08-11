@@ -1,0 +1,6 @@
+{
+  "title": "Bad Request",
+  "status": 400,
+  "detail": "Invalid input data",
+  "message": "The request body contains invalid data."
+}

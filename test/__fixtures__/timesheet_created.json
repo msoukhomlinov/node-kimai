@@ -1,0 +1,16 @@
+{
+  "id": 3,
+  "user": { "id": 1, "username": "admin" },
+  "activity": {
+    "id": 1,
+    "name": "Development",
+    "project": { "id": 1, "name": "Website Redesign" }
+  },
+  "project": { "id": 1, "name": "Website Redesign" },
+  "begin": "2024-01-16T09:00:00+00:00",
+  "end": null,
+  "duration": null,
+  "description": "New timesheet entry",
+  "exportable": false,
+  "metaFields": []
+}

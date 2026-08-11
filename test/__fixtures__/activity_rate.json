@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "user": { "id": 1, "username": "admin" },
+    "rate": 50.0,
+    "internalRate": 30.0,
+    "isFixed": false
+  },
+  {
+    "id": 2,
+    "user": null,
+    "rate": 45.0,
+    "internalRate": null,
+    "isFixed": false
+  }
+]

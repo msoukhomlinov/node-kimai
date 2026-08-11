@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.env
+.env.local
+
+# Squad process artifacts
+SCOPING.md
+REVIEW_FINDINGS.md
+SQUAD_QA_REPORT.md

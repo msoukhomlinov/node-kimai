@@ -1,0 +1,14 @@
+{
+  "id": 1,
+  "name": "Development",
+  "comment": "Software development work",
+  "visible": true,
+  "billable": true,
+  "color": "#1976d2",
+  "color-safe": "dark",
+  "number": "ACT-001",
+  "project": 1,
+  "metaFields": [
+    { "name": "department", "value": "engineering" }
+  ]
+}

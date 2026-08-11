@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "alias": "Admin User",
+    "title": "Mr.",
+    "firstname": "John",
+    "lastname": "Admin",
+    "username": "admin",
+    "email": "admin@example.com",
+    "teams": [
+      { "id": 1, "name": "Admins" }
+    ],
+    "locale": "en",
+    "timezone": "UTC"
+  },
+  {
+    "id": 2,
+    "alias": "Dev User",
+    "title": null,
+    "firstname": "Jane",
+    "lastname": "Developer",
+    "username": "dev",
+    "email": "dev@example.com",
+    "teams": [
+      { "id": 2, "name": "Developers" }
+    ],
+    "locale": "en",
+    "timezone": "America/New_York"
+  }
+]
