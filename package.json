@@ -1,6 +1,6 @@
 {
   "name": "node-kimai",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "TypeScript API client SDK for Kimai time-tracking software",
   "license": "MIT",
   "author": "Max Soukhomlinov",
