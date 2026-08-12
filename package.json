@@ -59,7 +59,6 @@
     "README.md",
     "CHANGELOG.md",
     "ARCHITECTURE.md",
-    "USAGE.md",
     "LICENSE"
   ],
   "scripts": {

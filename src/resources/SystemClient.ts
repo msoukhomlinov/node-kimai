@@ -13,6 +13,10 @@ export class SystemClient {
     return result !== null && result !== undefined;
   }
 
+  async pingRaw(): Promise<unknown[]> {
+    return this.client.get<unknown[]>('/api/ping');
+  }
+
   async getVersion(): Promise<Version> {
     return this.client.get<Version>('/api/version');
   }

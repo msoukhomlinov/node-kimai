@@ -85,15 +85,15 @@ export class TimesheetClient {
     return this.client.get<Timesheet[]>('/api/timesheets/active');
   }
 
-  async getRecent(): Promise<Timesheet[]> {
-    return this.client.get<Timesheet[]>('/api/timesheets/recent');
+  async getRecent(params?: { begin?: string, size?: number }): Promise<Timesheet[]> {
+    return this.client.get<Timesheet[]>('/api/timesheets/recent', { query: params });
   }
 
   async stop(id: number): Promise<Timesheet> {
     return this.client.patch<Timesheet>(`/api/timesheets/${id}/stop`);
   }
 
-  async restart(id: number, input?: { begin?: string }): Promise<Timesheet> {
+  async restart(id: number, input?: { copy?: string, begin?: string }): Promise<Timesheet> {
     return this.client.patch<Timesheet>(`/api/timesheets/${id}/restart`, { body: input });
   }
 

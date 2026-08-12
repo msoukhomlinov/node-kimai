@@ -9,7 +9,7 @@ export class TagClient {
   constructor(private client: ApiClient) {}
 
   async list(): Promise<Tag[]> {
-    return this.client.get<Tag[]>('/api/tags');
+    return this.client.get<Tag[]>('/api/tags/find');
   }
 
   async getAll(): Promise<Tag[]> {

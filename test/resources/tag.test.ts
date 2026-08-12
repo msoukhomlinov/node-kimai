@@ -24,7 +24,7 @@ describe('TagClient', () => {
   });
 
   describe('list', () => {
-    it('should call GET /api/tags without params', async () => {
+    it('should call GET /api/tags/find without params', async () => {
       const fixture = loadFixture('tag');
       transport.request.mockResolvedValueOnce(fixture);
 
@@ -32,7 +32,7 @@ describe('TagClient', () => {
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
-        path: '/api/tags',
+        path: '/api/tags/find',
         query: undefined,
       });
     });

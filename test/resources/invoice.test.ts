@@ -150,9 +150,19 @@ describe('InvoiceClient', () => {
     });
   });
 
-  describe('no download method', () => {
-    it('should NOT have a download method (binary response)', () => {
-      expect((client.invoices as any).download).toBeUndefined();
+  describe('download', () => {
+    it('should call GET /api/invoices/{id}/download with responseType=arraybuffer', async () => {
+      const buffer = new ArrayBuffer(10);
+      transport.request.mockResolvedValueOnce(buffer);
+
+      const result = await client.invoices.download(1);
+
+      expect(transport.request).toHaveBeenCalledWith({
+        method: 'GET',
+        path: '/api/invoices/1/download',
+        responseType: 'arraybuffer',
+      });
+      expect(result).toBe(buffer);
     });
   });
 

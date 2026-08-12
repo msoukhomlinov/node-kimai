@@ -21,4 +21,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Notes
 
-- Binary download endpoint (`/api/invoices/{id}/download`) excluded — not suitable for SDK
+- Binary download endpoint (`/api/invoices/{id}/download`) supported via `InvoiceClient.download()` returning `ArrayBuffer`

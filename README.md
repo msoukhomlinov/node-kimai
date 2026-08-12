@@ -328,8 +328,8 @@ await client.invoices.updateCustomFields(1, [
   { name: 'reference', value: 'INV-2026-001' },
 ]);
 
-// NOTE: Invoice download is NOT implemented in the SDK (binary response).
-// Use n8n's HTTP request helpers or a direct fetch call for downloads.
+// Download invoice PDF
+const pdfBuffer = await client.invoices.download(1); // ArrayBuffer
 ```
 
 ### Approval Bundle

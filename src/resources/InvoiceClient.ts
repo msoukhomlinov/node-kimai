@@ -53,4 +53,8 @@ export class InvoiceClient {
   async updateCustomFields(id: number, fields: InvoiceMeta[]): Promise<Invoice> {
     return this.client.patch<Invoice>(`/api/invoices/${id}/custom-fields`, { body: fields });
   }
+
+  async download(id: number): Promise<ArrayBuffer> {
+    return this.client.get<ArrayBuffer>(`/api/invoices/${id}/download`, { responseType: 'arraybuffer' });
+  }
 }

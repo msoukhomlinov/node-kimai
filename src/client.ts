@@ -177,8 +177,8 @@ export class ApiClient {
     this.actions = new ActionsClient(this);
   }
 
-  async get<T>(path: string, options?: { query?: Record<string, string | number | boolean | string[] | number[] | undefined> }): Promise<T> {
-    return this.transport.request<T>({ method: 'GET', path, query: options?.query });
+  async get<T>(path: string, options?: { query?: Record<string, string | number | boolean | string[] | number[] | undefined>; responseType?: 'json' | 'arraybuffer' | 'text' }): Promise<T> {
+    return this.transport.request<T>({ method: 'GET', path, query: options?.query, responseType: options?.responseType });
   }
 
   async post<T>(path: string, options?: { query?: Record<string, string | number | boolean | string[] | number[] | undefined>; body?: unknown }): Promise<T> {
