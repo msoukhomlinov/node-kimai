@@ -173,7 +173,7 @@ z.object({
 
 ### 8. kimai_list_timesheets
 
-**Description:** List timesheet entries with date/user filters. Paginated — use `page`/`size` or call multiple times. Returns Timesheet[] with `id` for `kimai_get_timesheet`.
+**Description:** List timesheet entries with date/user filters. Returns Timesheet[] with `id` for `kimai_get_timesheet`.
 
 **Backing method:** `TimesheetClient.getAll()` (fetches all pages automatically)
 
@@ -191,9 +191,7 @@ z.object({
   customer: z.number().optional().describe("Filter by customer ID. Find via kimai_list_customers."),
   tag: z.string().optional().describe("Filter by tag name (exact match)."),
   exported: z.boolean().optional().describe("Filter by export status. true = already exported, false = not exported."),
-  page: z.number().optional().describe("Page number for paginated results (1-based). Default: 1."),
-  size: z.number().optional().describe("Results per page. Default: 100. Raise to 250-500 for large result sets."),
-}).describe("List timesheet entries with optional filters. Paginated endpoint — returns all pages when using getAll.")
+}).describe("List timesheet entries with optional filters. Non-paginated — getAll() returns all pages automatically.")
 ```
 
 ---
@@ -297,7 +295,7 @@ z.object({}).describe("No parameters required. Returns the user associated with 
 
 ### 15. kimai_list_tags
 
-**Description:** List all tags. Returns Tag[] with numeric `id` you can pass to `kimai_delete_tag`. Use `kimai_find_tag` to search by name.
+**Description:** List all tags. Returns Tag[] with numeric `id`. Use `kimai_find_tag` to search by name.
 
 **Backing method:** `TagClient.getAll()`
 
@@ -363,7 +361,7 @@ z.object({
 
 ### 19. kimai_list_invoices
 
-**Description:** List invoices. Paginated — use `page`/`size` for large result sets. Returns Invoice[] with `id` for `kimai_get_invoice`.
+**Description:** List invoices. Returns Invoice[] with `id` for `kimai_get_invoice`.
 
 **Backing method:** `InvoiceClient.getAll()` (fetches all pages automatically)
 
@@ -373,9 +371,7 @@ z.object({
 ```typescript
 z.object({
   customer: z.number().optional().describe("Filter by customer ID. Find via kimai_list_customers."),
-  page: z.number().optional().describe("Page number for paginated results (1-based). Default: 1."),
-  size: z.number().optional().describe("Results per page. Default: 100. Raise to 250 for large result sets."),
-}).describe("List invoices with optional filters. Paginated endpoint — returns all pages when using getAll.")
+}).describe("List invoices with optional filters. Non-paginated — getAll() returns all pages automatically.")
 ```
 
 ---
@@ -657,7 +653,7 @@ z.object({
   postCode: z.string().optional().describe("Postal code."),
   city: z.string().optional().describe("City."),
   country: z.string().describe("Country code (required, e.g., 'DE', 'US', 'GB')."),
-  language: z.enum(["en", "de", "fr", "es", "it", "nl", "pt", "pt_BR", "pl", "ru", "cs", "sk", "hu", "ro", "bg", "el", "da", "fi", "sv", "no"]).describe("Language code (required)."),
+  language: z.enum(["ar", "bg", "ca", "cs", "da", "de", "de_CH", "el", "en", "eo", "es", "eu", "fa", "fi", "fo", "fr", "he", "hr", "hu", "id", "it", "ja", "ko", "nb_NO", "nl", "pa", "pl", "pt", "pt_BR", "ro", "ru", "sk", "sl", "sv", "ta", "tr", "uk", "vi", "zh_CN", "zh_Hant", "zh_Hant_TW"]).describe("Language code (required)."),
   currency: z.string().describe("Currency code (required, e.g., 'EUR', 'USD', 'GBP')."),
   phone: z.string().optional().describe("Phone number."),
   email: z.string().optional().describe("Email address."),
