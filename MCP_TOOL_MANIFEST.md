@@ -696,7 +696,7 @@ z.object({
   postCode: z.string().optional().describe("New postal code."),
   city: z.string().optional().describe("New city."),
   country: z.string().optional().describe("New country code."),
-  language: z.enum(["en", "de", "fr", "es", "it", "nl", "pt", "pt_BR", "pl", "ru", "cs", "sk", "hu", "ro", "bg", "el", "da", "fi", "sv", "no"]).optional().describe("New language code."),
+  language: z.enum(["ar", "bg", "ca", "cs", "da", "de", "de_CH", "el", "en", "eo", "es", "eu", "fa", "fi", "fo", "fr", "he", "hr", "hu", "id", "it", "ja", "ko", "nb_NO", "nl", "pa", "pl", "pt", "pt_BR", "ro", "ru", "sk", "sl", "sv", "ta", "tr", "uk", "vi", "zh_CN", "zh_Hant", "zh_Hant_TW"]).optional().describe("New language code."),
   currency: z.string().optional().describe("New currency code."),
   phone: z.string().optional().describe("New phone number."),
   email: z.string().optional().describe("New email."),
