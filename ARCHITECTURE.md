@@ -9,9 +9,9 @@ Generated: 2026-08-10
 - **Package name:** `node-kimai`
 - **Display name:** Kimai API Client SDK
 - **API:** Kimai Pro API v1.1 (66 paths, 52 schemas, 13 resources)
-- **Target Node:** >=20 (native fetch only)
+- **Target Node:** >=24 (native fetch only)
 - **Runtime deps:** Zero (native fetch)
-- **Module format:** Dual ESM+CJS via tsup
+- **Module format:** Dual ESM+CJS via tsup — **ESM-first**: the ESM artifacts use the plain `.js` / `.d.ts` extensions and the CJS artifacts use `.cjs` / `.d.cts`
 - **License:** MIT
 
 ### Design Goals
@@ -85,11 +85,11 @@ scripts/
   project-mcp-tools.mjs       # project the registry into MCP_TOOL_MANIFEST.md (npm run mcp:project)
   public-surface.mjs          # guard the published surface (exports x dist x runtime deps)
 dist/                         # build output — one entry per package.json subpath
-  index.{mjs,cjs,d.mts,d.ts}
-  resources/index.{mjs,cjs,d.mts,d.ts}
-  types/index.{mjs,cjs,d.mts,d.ts}
-  errors.{mjs,cjs,d.mts,d.ts}
-  capabilities.{mjs,cjs,d.mts,d.ts}
+  index.{js,d.ts,cjs,d.cts}
+  resources/index.{js,d.ts,cjs,d.cts}
+  types/index.{js,d.ts,cjs,d.cts}
+  errors.{js,d.ts,cjs,d.cts}
+  capabilities.{js,d.ts,cjs,d.cts}
 ```
 
 ---
@@ -604,7 +604,15 @@ These handle system-level operations and special workflows.
   - `errors` → `src/errors.ts`
   - `capabilities` → `src/capabilities.ts` (zero-import generated registry)
 - Dual ESM+CJS + dts + sourcemaps
-- Target: node20
+- Target: node24
+- Artifact layout is **ESM-first** (`outExtension`: esm → `.js`/`.d.ts`, cjs → `.cjs`/`.d.cts`),
+  matching the node-hudu / node-autotask line. `package.json` sets `"type": "module"`, so the
+  bare `.js` files are ESM; CJS consumers are routed to the explicit `.cjs` targets by the
+  `exports` conditions.
+- **Deliberate deviation from the line:** `tsconfig.json` keeps `module: ESNext` +
+  `moduleResolution: bundler` and is NOT switched to `NodeNext`. This package is `tsup`-bundled
+  from extensionless relative imports and has no per-file emit, so `NodeNext` would only demand
+  `.js` specifiers in the source without changing the published surface.
 
 ### Type Checking
 

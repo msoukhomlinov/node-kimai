@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/node-kimai.svg)](https://www.npmjs.com/package/node-kimai)
 [![TypeScript](https://img.shields.io/badge/TypeScript-ready-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node >= 20](https://img.shields.io/badge/node->=20-green.svg)](https://nodejs.org/)
+[![Node >= 24](https://img.shields.io/badge/node->=24-green.svg)](https://nodejs.org/)
 
 TypeScript API client SDK for [Kimai](https://www.kimai.org/) time-tracking software.
 
@@ -14,7 +14,7 @@ Full coverage of the Kimai Pro API v1.1 (66 paths, 52 schemas, 13 resources) wit
 - **Full API coverage** — All 66 API paths / 90 endpoint operations across 13 resources
 - **Type-safe** — Complete TypeScript types for every request and response
 - **Zero runtime deps** — Uses native `fetch`; no extra packages
-- **Dual ESM + CJS** — Works in any Node.js environment (>= 20)
+- **Dual ESM + CJS** — ESM-first artifacts (`.js` + `.d.ts`) with CJS companions (`.cjs` + `.d.cts`); works in any Node.js environment (>= 24)
 - **MCP-first design** — Plain `T` / `T[]` returns, no wrapper envelopes
 - **Agent execution layer** — `resolve` / `search` / `getContext` helpers, dry-run on every mutation, structured errors, a generated capability registry
 - **Transport-injectable** — Drop-in compatibility with n8n and other runtimes
@@ -30,7 +30,7 @@ pnpm add node-kimai
 yarn add node-kimai
 ```
 
-Requires Node.js >= 20 (for native fetch).
+Requires Node.js >= 24 (for native fetch).
 
 ## Quickstart
 

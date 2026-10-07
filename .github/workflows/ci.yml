@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [20, 24] # engines.node: ">=20.0.0"; 24 matches the line's engines
+        node: [24] # engines.node: ">=24.0.0"; matches the line's engines
     steps:
       - name: Checkout
         uses: actions/checkout@v4

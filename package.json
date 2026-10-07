@@ -2,6 +2,7 @@
   "name": "node-kimai",
   "version": "1.0.1",
   "description": "TypeScript API client SDK for Kimai time-tracking software",
+  "type": "module",
   "sideEffects": false,
   "license": "MIT",
   "author": "Max Soukhomlinov",
@@ -10,56 +11,56 @@
     "url": "https://github.com/msoukhomlinov/node-kimai.git"
   },
   "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.mts",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
       },
       "require": {
-        "types": "./dist/index.d.ts",
+        "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
     },
     "./resources": {
       "import": {
-        "types": "./dist/resources/index.d.mts",
-        "default": "./dist/resources/index.mjs"
+        "types": "./dist/resources/index.d.ts",
+        "default": "./dist/resources/index.js"
       },
       "require": {
-        "types": "./dist/resources/index.d.ts",
+        "types": "./dist/resources/index.d.cts",
         "default": "./dist/resources/index.cjs"
       }
     },
     "./types": {
       "import": {
-        "types": "./dist/types/index.d.mts",
-        "default": "./dist/types/index.mjs"
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/types/index.js"
       },
       "require": {
-        "types": "./dist/types/index.d.ts",
+        "types": "./dist/types/index.d.cts",
         "default": "./dist/types/index.cjs"
       }
     },
     "./errors": {
       "import": {
-        "types": "./dist/errors.d.mts",
-        "default": "./dist/errors.mjs"
+        "types": "./dist/errors.d.ts",
+        "default": "./dist/errors.js"
       },
       "require": {
-        "types": "./dist/errors.d.ts",
+        "types": "./dist/errors.d.cts",
         "default": "./dist/errors.cjs"
       }
     },
     "./capabilities": {
       "import": {
-        "types": "./dist/capabilities.d.mts",
-        "default": "./dist/capabilities.mjs"
+        "types": "./dist/capabilities.d.ts",
+        "default": "./dist/capabilities.js"
       },
       "require": {
-        "types": "./dist/capabilities.d.ts",
+        "types": "./dist/capabilities.d.cts",
         "default": "./dist/capabilities.cjs"
       }
     },
@@ -100,7 +101,7 @@
     "mcp:project:check": "node scripts/project-mcp-tools.mjs --check"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=24.0.0"
   },
   "keywords": [
     "kimai",

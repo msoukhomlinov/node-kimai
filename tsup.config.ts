@@ -12,13 +12,13 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   clean: true,
-  target: "node20",
+  target: "node24",
   minify: false,
   splitting: false,
   bundle: true,
   outExtension({ format }) {
     return format === "esm"
-      ? { js: ".mjs", dts: ".d.mts" }
+      ? { js: ".js", dts: ".d.ts" }
       : { js: ".cjs", dts: ".d.cts" };
   },
 });
