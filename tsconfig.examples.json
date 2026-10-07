@@ -31,6 +31,18 @@
       ],
       "node-kimai/errors": [
         "src/errors.ts"
+      ],
+      "node-kimai/capabilities": [
+        "src/capabilities.ts"
+      ],
+      "node-kimai/mcp": [
+        "src/mcp/index.ts"
+      ],
+      "node-kimai/operations": [
+        "src/operations/index.ts"
+      ],
+      "node-kimai/untrusted": [
+        "src/untrusted.ts"
       ]
     }
   },

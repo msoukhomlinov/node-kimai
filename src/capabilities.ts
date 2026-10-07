@@ -9080,4 +9080,26 @@ export function getCapability(operation: string): CapabilityRecord | undefined {
   for (const record of CAPABILITIES) if (record.id === operation) return record;
   return undefined;
 }
+
+/**
+ * Every registered operation key (each record's `id`), in registry order. A consuming server
+ * iterates this instead of re-deriving the operation list from the plan; `getCapability(name)`
+ * resolves one entry. Derived from CAPABILITIES, never hand-maintained.
+ */
+export const CAPABILITY_NAMES: readonly string[] = Object.freeze(CAPABILITIES.map((record) => record.id));
+
+/** Operation keys whose registry effect is `read`, in registry order. */
+export const READ_OPERATIONS: readonly string[] = Object.freeze(
+  CAPABILITIES.filter((record) => record.effect === 'read').map((record) => record.id),
+);
+
+/** Operation keys whose registry effect is `write`, in registry order. */
+export const WRITE_OPERATIONS: readonly string[] = Object.freeze(
+  CAPABILITIES.filter((record) => record.effect === 'write').map((record) => record.id),
+);
+
+/** Operation keys whose registry effect is `destructive`, in registry order - the set that requires the confirmation flag. */
+export const DESTRUCTIVE_OPERATIONS: readonly string[] = Object.freeze(
+  CAPABILITIES.filter((record) => record.effect === 'destructive').map((record) => record.id),
+);
 // [GENERATED:CAPABILITIES:END]
