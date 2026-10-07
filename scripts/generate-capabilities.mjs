@@ -130,6 +130,17 @@ export const CAPABILITIES: CapabilityRecord[] = Object.values(CAPABILITY_GROUPS)
 export const CAPABILITY_PLAN_HASHES: Record<string, string> = Object.fromEntries(
   Object.entries(CAPABILITY_GROUPS).map(([group, g]) => [group, g.planHash]),
 );
+
+/**
+ * Look up one registry record by its canonical operation key (e.g. \`timesheets.search\`), or
+ * \`undefined\` when the key is not a registered operation. The MCP layer uses it as the single
+ * source of truth for an operation's effect: \`dispatchOperation\` refuses a call whose dispatcher
+ * effect differs from the record's, so a host never needs its own copy of the table.
+ */
+export function getCapability(operation: string): CapabilityRecord | undefined {
+  for (const record of CAPABILITIES) if (record.id === operation) return record;
+  return undefined;
+}
 // [GENERATED:CAPABILITIES:END]
 `;
   return ts;

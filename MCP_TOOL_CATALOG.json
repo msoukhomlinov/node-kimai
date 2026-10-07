@@ -1,0 +1,1712 @@
+{
+  "sdk": "node-kimai",
+  "generatedBy": "scripts/build-tool-catalog.mjs",
+  "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+  "counts": {
+    "registryOperations": 108,
+    "exposedTools": 90,
+    "coreTools": 10,
+    "metaTools": 5,
+    "catalogRows": 108,
+    "reachableOnlyThroughDispatch": 17,
+    "refused": 1
+  },
+  "coreRule": {
+    "threshold": 10,
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "the five META tools (catalog / describe / read / write / delete) - the mechanism."
+      },
+      {
+        "id": "R2",
+        "text": "identify the API-key owner (users.getMe)."
+      },
+      {
+        "id": "R3",
+        "text": "discovery is R1: the generated catalog (kimai_catalog) + kimai_describe; the Kimai registry has no cross-resource resolve operation."
+      },
+      {
+        "id": "R4",
+        "text": "one bounded helper-tier read per workflowResource: true resource; where a resource has no search helper, its bounded week/status read stands in."
+      },
+      {
+        "id": "R5",
+        "text": "writes are NOT in the core: they are reachable through kimai_write / kimai_delete, dry-run first, destructive calls confirmation-gated."
+      }
+    ],
+    "implementedBy": [
+      "R1",
+      "R2",
+      "R4"
+    ]
+  },
+  "coreTools": [
+    "kimai_catalog",
+    "kimai_describe",
+    "kimai_read",
+    "kimai_write",
+    "kimai_delete",
+    "kimai_get_current_user",
+    "kimai_search_timesheets",
+    "kimai_search_customers",
+    "kimai_search_projects",
+    "kimai_get_week_status"
+  ],
+  "metaTools": [
+    {
+      "name": "kimai_catalog",
+      "title": "Discover Operations (Catalog)",
+      "description": "List the capabilities the node-kimai registry implements with the tool that exposes each one (when it has one), its effect, whether it needs a dry run or a confirmation flag, and the arguments it requires. The tool list on this server is a SUBSET: this is a curated core profile, and the catalog is how you discover a capability that has no tool of its own — find the row, call kimai_describe for the exact schema, then kimai_read/kimai_write/kimai_delete. Bounded: limit defaults to 40 and is hard-capped at 100; prefer a filter over dumping the catalog."
+    },
+    {
+      "name": "kimai_describe",
+      "title": "Describe One Operation",
+      "description": "Return the full input schema, effect, flags, dry-run support, error vocabulary, related operations and preferredWhen guidance for ONE registry operation, so a capability can be called correctly without carrying every schema in context. Use it after kimai_catalog named the operation and before kimai_read/kimai_write/kimai_delete. Takes the canonical operation key exactly as the catalog prints it (for example \"timesheets.search\") — never a tool name, and there is no fuzzy matching: an unknown key is a CONFIG_ERROR naming the nearest catalog keys."
+    },
+    {
+      "name": "kimai_read",
+      "title": "Read One Registry Operation",
+      "description": "Execute only effect \"read\" operations by canonical registry key. Prefer the dedicated bounded search/resolve tools where they exist; use this dispatch for a read with no dedicated tool. `input` is a CLOSED per-operation contract: exactly the operation's declared fields — an unknown field is refused with a typed CONFIG_ERROR before any request. Reads have no dry run and never mutate."
+    },
+    {
+      "name": "kimai_write",
+      "title": "Write One Registry Operation",
+      "description": "Execute only effect \"write\" operations by canonical registry key. Mutations default to a dry-run preview (dry_run: true returns the plan; the request is never issued); dry_run: false executes. `input` is a CLOSED per-operation contract — an unknown field is refused before any request. A destructive operation is REFUSED here; use kimai_delete."
+    },
+    {
+      "name": "kimai_delete",
+      "title": "Delete One Registry Operation",
+      "description": "Execute only effect \"destructive\" operations by canonical registry key. Destructive calls are irreversible and REFUSED without `confirm` equal to the operation key. `input` is a CLOSED per-operation contract. Neither the preview nor the confirmation string is human consent: the host must enforce its own approval policy."
+    }
+  ],
+  "dispatchOperations": {
+    "read": [
+      "actions.getActions",
+      "activities.get",
+      "activities.getRates",
+      "activities.list",
+      "activities.resolve",
+      "activities.search",
+      "approvalBundle.nextWeek",
+      "approvalBundle.overtimeYear",
+      "approvalBundle.weekStatus",
+      "approvalBundle.weeklyOvertime",
+      "config.getColors",
+      "config.getTimesheetConfig",
+      "customers.get",
+      "customers.getContext",
+      "customers.getRates",
+      "customers.list",
+      "customers.listComments",
+      "customers.resolve",
+      "customers.search",
+      "invoices.get",
+      "invoices.list",
+      "invoices.resolve",
+      "invoices.search",
+      "projects.get",
+      "projects.getContext",
+      "projects.getRates",
+      "projects.list",
+      "projects.listComments",
+      "projects.resolve",
+      "projects.search",
+      "system.getPlugins",
+      "system.getVersion",
+      "system.ping",
+      "tags.find",
+      "tags.list",
+      "tags.resolve",
+      "tags.search",
+      "teams.get",
+      "teams.list",
+      "teams.resolve",
+      "timesheets.get",
+      "timesheets.getActive",
+      "timesheets.getContext",
+      "timesheets.getRecent",
+      "timesheets.list",
+      "timesheets.resolve",
+      "timesheets.search",
+      "users.get",
+      "users.getMe",
+      "users.list",
+      "users.resolve",
+      "users.search"
+    ],
+    "write": [
+      "activities.addToTeam",
+      "activities.create",
+      "activities.createRate",
+      "activities.update",
+      "activities.updateMeta",
+      "approvalBundle.addToApprove",
+      "customers.addToTeam",
+      "customers.create",
+      "customers.createComment",
+      "customers.createRate",
+      "customers.pinComment",
+      "customers.update",
+      "customers.updateMeta",
+      "invoices.updateCustomFields",
+      "projects.addToTeam",
+      "projects.create",
+      "projects.createComment",
+      "projects.createRate",
+      "projects.pinComment",
+      "projects.update",
+      "projects.updateMeta",
+      "tags.create",
+      "teams.addMember",
+      "teams.create",
+      "teams.grantActivityAccess",
+      "teams.grantCustomerAccess",
+      "teams.grantProjectAccess",
+      "teams.update",
+      "timesheets.create",
+      "timesheets.duplicate",
+      "timesheets.restart",
+      "timesheets.stop",
+      "timesheets.toggleExport",
+      "timesheets.update",
+      "timesheets.updateMeta",
+      "users.create",
+      "users.update",
+      "users.updatePreferences"
+    ],
+    "destructive": [
+      "activities.delete",
+      "activities.deleteRate",
+      "customers.delete",
+      "customers.deleteComment",
+      "customers.deleteRate",
+      "export.deleteTemplate",
+      "projects.delete",
+      "projects.deleteComment",
+      "projects.deleteRate",
+      "tags.delete",
+      "teams.delete",
+      "teams.removeMember",
+      "teams.revokeActivityAccess",
+      "teams.revokeCustomerAccess",
+      "teams.revokeProjectAccess",
+      "timesheets.delete",
+      "users.deleteApiToken"
+    ]
+  },
+  "exposed": {
+    "activities.addToTeam": "kimai_add_activity_to_team",
+    "activities.create": "kimai_create_activity",
+    "activities.createRate": "kimai_create_activity_rate",
+    "activities.delete": "kimai_delete_activity",
+    "activities.deleteRate": "kimai_delete_activity_rate",
+    "activities.getRates": "kimai_get_activity_rates",
+    "activities.resolve": "kimai_resolve_activity",
+    "activities.search": "kimai_search_activities",
+    "activities.update": "kimai_update_activity",
+    "activities.updateMeta": "kimai_update_activity_meta",
+    "approvalBundle.addToApprove": "kimai_submit_for_approval",
+    "approvalBundle.nextWeek": "kimai_get_next_approval_week",
+    "approvalBundle.overtimeYear": "kimai_get_overtime_year",
+    "approvalBundle.weekStatus": "kimai_get_week_status",
+    "approvalBundle.weeklyOvertime": "kimai_get_weekly_overtime",
+    "config.getColors": "kimai_get_colors",
+    "config.getTimesheetConfig": "kimai_get_timesheet_config",
+    "customers.addToTeam": "kimai_add_customer_to_team",
+    "customers.create": "kimai_create_customer",
+    "customers.createComment": "kimai_create_customer_comment",
+    "customers.createRate": "kimai_create_customer_rate",
+    "customers.delete": "kimai_delete_customer",
+    "customers.deleteComment": "kimai_delete_customer_comment",
+    "customers.deleteRate": "kimai_delete_customer_rate",
+    "customers.getContext": "kimai_get_customer_context",
+    "customers.getRates": "kimai_get_customer_rates",
+    "customers.listComments": "kimai_list_customer_comments",
+    "customers.pinComment": "kimai_pin_customer_comment",
+    "customers.resolve": "kimai_resolve_customer",
+    "customers.search": "kimai_search_customers",
+    "customers.update": "kimai_update_customer",
+    "customers.updateMeta": "kimai_update_customer_meta",
+    "export.deleteTemplate": "kimai_delete_export_template",
+    "invoices.resolve": "kimai_resolve_invoice",
+    "invoices.search": "kimai_search_invoices",
+    "invoices.updateCustomFields": "kimai_update_invoice_custom_fields",
+    "projects.addToTeam": "kimai_add_project_to_team",
+    "projects.create": "kimai_create_project",
+    "projects.createComment": "kimai_create_project_comment",
+    "projects.createRate": "kimai_create_project_rate",
+    "projects.delete": "kimai_delete_project",
+    "projects.deleteComment": "kimai_delete_project_comment",
+    "projects.deleteRate": "kimai_delete_project_rate",
+    "projects.getContext": "kimai_get_project_context",
+    "projects.getRates": "kimai_get_project_rates",
+    "projects.listComments": "kimai_list_project_comments",
+    "projects.pinComment": "kimai_pin_project_comment",
+    "projects.resolve": "kimai_resolve_project",
+    "projects.search": "kimai_search_projects",
+    "projects.update": "kimai_update_project",
+    "projects.updateMeta": "kimai_update_project_meta",
+    "system.getPlugins": "kimai_list_plugins",
+    "system.getVersion": "kimai_get_version",
+    "system.ping": "kimai_ping",
+    "tags.create": "kimai_create_tag",
+    "tags.delete": "kimai_delete_tag",
+    "tags.resolve": "kimai_resolve_tag",
+    "tags.search": "kimai_search_tags",
+    "teams.addMember": "kimai_add_team_member",
+    "teams.create": "kimai_create_team",
+    "teams.delete": "kimai_delete_team",
+    "teams.grantActivityAccess": "kimai_grant_team_activity_access",
+    "teams.grantCustomerAccess": "kimai_grant_team_customer_access",
+    "teams.grantProjectAccess": "kimai_grant_team_project_access",
+    "teams.list": "kimai_list_teams",
+    "teams.removeMember": "kimai_remove_team_member",
+    "teams.resolve": "kimai_resolve_team",
+    "teams.revokeActivityAccess": "kimai_revoke_team_activity_access",
+    "teams.revokeCustomerAccess": "kimai_revoke_team_customer_access",
+    "teams.revokeProjectAccess": "kimai_revoke_team_project_access",
+    "teams.update": "kimai_update_team",
+    "timesheets.create": "kimai_create_timesheet",
+    "timesheets.delete": "kimai_delete_timesheet",
+    "timesheets.duplicate": "kimai_duplicate_timesheet",
+    "timesheets.getActive": "kimai_get_active_timesheets",
+    "timesheets.getContext": "kimai_get_timesheet_context",
+    "timesheets.getRecent": "kimai_get_recent_timesheets",
+    "timesheets.resolve": "kimai_resolve_timesheet",
+    "timesheets.restart": "kimai_restart_timesheet",
+    "timesheets.search": "kimai_search_timesheets",
+    "timesheets.stop": "kimai_stop_timesheet",
+    "timesheets.toggleExport": "kimai_toggle_timesheet_export",
+    "timesheets.update": "kimai_update_timesheet",
+    "timesheets.updateMeta": "kimai_update_timesheet_meta",
+    "users.create": "kimai_create_user",
+    "users.getMe": "kimai_get_current_user",
+    "users.resolve": "kimai_resolve_user",
+    "users.search": "kimai_search_users",
+    "users.update": "kimai_update_user",
+    "users.updatePreferences": "kimai_update_user_preferences"
+  },
+  "refusals": [
+    {
+      "op": "invoices.download",
+      "reachable": false,
+      "reason": "binary/download surface - the SDK returns bytes, which is not an MCP tool result, and the dispatch tools refuse it so the projection rule cannot be bypassed",
+      "why": "binary/download output (ArrayBuffer) — cannot map to MCP text content"
+    }
+  ],
+  "catalog": [
+    {
+      "op": "actions.getActions",
+      "tool": null,
+      "summary": "Fetch item actions for Timesheet.",
+      "when": null,
+      "effect": "read",
+      "requires": [
+        "resource",
+        "id",
+        "view",
+        "locale"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out: UI-only view rendering (GET /api/actions/{resource}/{id}/{view}/{locale}): the payload is pre-rendered HTML fragments for the Kimai web UI, not agent-usable data. Still reachable through kimai_read when a host deliberately needs it.) - reachable through kimai_read"
+    },
+    {
+      "op": "activities.addToTeam",
+      "tool": "kimai_add_activity_to_team",
+      "summary": "Create team for activity.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "activities.create",
+      "tool": "kimai_create_activity",
+      "summary": "Create activity.",
+      "when": "Preferred over activities.update for a new activity.",
+      "effect": "write",
+      "requires": [
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "activities.createRate",
+      "tool": "kimai_create_activity_rate",
+      "summary": "Add rate for activity.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "activities.delete",
+      "tool": "kimai_delete_activity",
+      "summary": "Delete activity.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "id"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "activities.deleteRate",
+      "tool": "kimai_delete_activity_rate",
+      "summary": "Delete rate for activity.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "id",
+        "rateId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "activities.get",
+      "tool": null,
+      "summary": "Fetch activity.",
+      "when": "Preferred over activities.list + a client-side find when the id is known.",
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "activities.getRates",
+      "tool": "kimai_get_activity_rates",
+      "summary": "Fetch rates for activity.",
+      "when": null,
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "activities.list",
+      "tool": null,
+      "summary": "Fetch activities.",
+      "when": "Preferred over activities.search only when the agent must walk pages; activities.search is the bounded default read.",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "activities.resolve",
+      "tool": "kimai_resolve_activity",
+      "summary": "Resolve one activity from an identifier.",
+      "when": "Preferred over activities.list + a client-side find for any single-activity lookup.",
+      "effect": "read",
+      "requires": [
+        "identifier"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "activities.search",
+      "tool": "kimai_search_activities",
+      "summary": "Search activities with the spec filters, bounded by an explicit limit.",
+      "when": "Preferred over activities.list for any bounded filtered read (at most 100 rows).",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "activities.update",
+      "tool": "kimai_update_activity",
+      "summary": "Update activity.",
+      "when": "Preferred over activities.create for any change to an existing activity.",
+      "effect": "write",
+      "requires": [
+        "id",
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "activities.updateMeta",
+      "tool": "kimai_update_activity_meta",
+      "summary": "Update activity custom-field.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "meta"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "approvalBundle.addToApprove",
+      "tool": "kimai_submit_for_approval",
+      "summary": "POST /api/approval-bundle/add_to_approve.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "params"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "approvalBundle.nextWeek",
+      "tool": "kimai_get_next_approval_week",
+      "summary": "GET /api/approval-bundle/next-week.",
+      "when": null,
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "approvalBundle.overtimeYear",
+      "tool": "kimai_get_overtime_year",
+      "summary": "GET /api/approval-bundle/overtime_year.",
+      "when": null,
+      "effect": "read",
+      "requires": [
+        "params"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "approvalBundle.weekStatus",
+      "tool": "kimai_get_week_status",
+      "summary": "GET /api/approval-bundle/week-status.",
+      "when": null,
+      "effect": "read",
+      "requires": [
+        "params"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "approvalBundle.weeklyOvertime",
+      "tool": "kimai_get_weekly_overtime",
+      "summary": "GET /api/approval-bundle/weekly_overtime.",
+      "when": null,
+      "effect": "read",
+      "requires": [
+        "params"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "config.getColors",
+      "tool": "kimai_get_colors",
+      "summary": "Fetch configured color codes.",
+      "when": null,
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "config.getTimesheetConfig",
+      "tool": "kimai_get_timesheet_config",
+      "summary": "Fetch timesheet configuration.",
+      "when": null,
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "customers.addToTeam",
+      "tool": "kimai_add_customer_to_team",
+      "summary": "Create team for customer.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "customers.create",
+      "tool": "kimai_create_customer",
+      "summary": "Create customer.",
+      "when": "Preferred over customers.update for a new customer.",
+      "effect": "write",
+      "requires": [
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "customers.createComment",
+      "tool": "kimai_create_customer_comment",
+      "summary": "Add comment for customer.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "customers.createRate",
+      "tool": "kimai_create_customer_rate",
+      "summary": "Add rate for customer.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "customers.delete",
+      "tool": "kimai_delete_customer",
+      "summary": "Delete customer.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "id"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "customers.deleteComment",
+      "tool": "kimai_delete_customer_comment",
+      "summary": "Delete customer comment.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "id",
+        "commentId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "customers.deleteRate",
+      "tool": "kimai_delete_customer_rate",
+      "summary": "Delete rate for customer.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "id",
+        "rateId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "customers.get",
+      "tool": null,
+      "summary": "Fetch customer.",
+      "when": "Preferred over customers.list + a client-side find when the id is known.",
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "customers.getContext",
+      "tool": "kimai_get_customer_context",
+      "summary": "Fetch the working context of one customer.",
+      "when": "Preferred over separate customers.get + getRates + listComments calls when the agent needs the customer's working context.",
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "customers.getRates",
+      "tool": "kimai_get_customer_rates",
+      "summary": "Fetch rates for customer.",
+      "when": null,
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "customers.list",
+      "tool": null,
+      "summary": "Fetch customers.",
+      "when": "Preferred over customers.search only when the agent must walk pages; customers.search is the bounded default read.",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "customers.listComments",
+      "tool": "kimai_list_customer_comments",
+      "summary": "Fetch comments for customer.",
+      "when": null,
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "customers.pinComment",
+      "tool": "kimai_pin_customer_comment",
+      "summary": "Pin customer comment.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "commentId"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "customers.resolve",
+      "tool": "kimai_resolve_customer",
+      "summary": "Resolve one customer from an identifier.",
+      "when": "Preferred over customers.list + a client-side find for any single-customer lookup.",
+      "effect": "read",
+      "requires": [
+        "identifier"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "customers.search",
+      "tool": "kimai_search_customers",
+      "summary": "Search customers with the spec filters, bounded by an explicit limit.",
+      "when": "Preferred over customers.list for any bounded filtered read (at most 100 rows).",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "customers.update",
+      "tool": "kimai_update_customer",
+      "summary": "Update customer.",
+      "when": "Preferred over customers.create for any change to an existing customer.",
+      "effect": "write",
+      "requires": [
+        "id",
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "customers.updateMeta",
+      "tool": "kimai_update_customer_meta",
+      "summary": "Update customer custom-field.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "meta"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "export.deleteTemplate",
+      "tool": "kimai_delete_export_template",
+      "summary": "Delete export template.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "templateId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "invoices.download",
+      "tool": null,
+      "summary": "Download invoice.",
+      "when": null,
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": false,
+      "reason": "binary/download surface - the SDK returns bytes, which is not an MCP tool result, and the dispatch tools refuse it so the projection rule cannot be bypassed"
+    },
+    {
+      "op": "invoices.get",
+      "tool": null,
+      "summary": "Fetch invoice.",
+      "when": "Preferred over invoices.list + a client-side find when the id is known.",
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "invoices.list",
+      "tool": null,
+      "summary": "Fetch invoices.",
+      "when": "Preferred over invoices.search only when the agent must walk pages; invoices.search is the bounded default read.",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "invoices.resolve",
+      "tool": "kimai_resolve_invoice",
+      "summary": "Resolve one invoice from an identifier.",
+      "when": "Preferred over invoices.list when the id is already known.",
+      "effect": "read",
+      "requires": [
+        "identifier"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "invoices.search",
+      "tool": "kimai_search_invoices",
+      "summary": "Search invoices with the spec filters, bounded by an explicit limit.",
+      "when": "Preferred over invoices.list for any bounded filtered read (at most 100 rows).",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "invoices.updateCustomFields",
+      "tool": "kimai_update_invoice_custom_fields",
+      "summary": "Update invoice custom-fields.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "fields"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "projects.addToTeam",
+      "tool": "kimai_add_project_to_team",
+      "summary": "Create team for project.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "projects.create",
+      "tool": "kimai_create_project",
+      "summary": "Create project.",
+      "when": "Preferred over projects.update for a new project.",
+      "effect": "write",
+      "requires": [
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "projects.createComment",
+      "tool": "kimai_create_project_comment",
+      "summary": "Add comment for project.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "projects.createRate",
+      "tool": "kimai_create_project_rate",
+      "summary": "Add rate for project.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "projects.delete",
+      "tool": "kimai_delete_project",
+      "summary": "Delete project.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "id"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "projects.deleteComment",
+      "tool": "kimai_delete_project_comment",
+      "summary": "Delete project comment.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "id",
+        "commentId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "projects.deleteRate",
+      "tool": "kimai_delete_project_rate",
+      "summary": "Delete rate for project.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "id",
+        "rateId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "projects.get",
+      "tool": null,
+      "summary": "Fetch project.",
+      "when": "Preferred over projects.list + a client-side find when the id is known.",
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "projects.getContext",
+      "tool": "kimai_get_project_context",
+      "summary": "Fetch the working context of one project.",
+      "when": "Preferred over separate projects.get + getRates calls when the agent needs the project's working context.",
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "projects.getRates",
+      "tool": "kimai_get_project_rates",
+      "summary": "Fetch rates for project.",
+      "when": null,
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "projects.list",
+      "tool": null,
+      "summary": "Fetch projects.",
+      "when": "Preferred over projects.search only when the agent must walk pages; projects.search is the bounded default read.",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "projects.listComments",
+      "tool": "kimai_list_project_comments",
+      "summary": "Fetch comments for project.",
+      "when": null,
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "projects.pinComment",
+      "tool": "kimai_pin_project_comment",
+      "summary": "Pin project comment.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "commentId"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "projects.resolve",
+      "tool": "kimai_resolve_project",
+      "summary": "Resolve one project from an identifier.",
+      "when": "Preferred over projects.list + a client-side find for any single-project lookup.",
+      "effect": "read",
+      "requires": [
+        "identifier"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "projects.search",
+      "tool": "kimai_search_projects",
+      "summary": "Search projects with the spec filters, bounded by an explicit limit.",
+      "when": "Preferred over projects.list for any bounded filtered read (at most 100 rows).",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "projects.update",
+      "tool": "kimai_update_project",
+      "summary": "Update project.",
+      "when": "Preferred over projects.create for any change to an existing project.",
+      "effect": "write",
+      "requires": [
+        "id",
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "projects.updateMeta",
+      "tool": "kimai_update_project_meta",
+      "summary": "Update project custom-field.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "meta"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "system.getPlugins",
+      "tool": "kimai_list_plugins",
+      "summary": "Fetch installed Plugins.",
+      "when": null,
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "system.getVersion",
+      "tool": "kimai_get_version",
+      "summary": "Fetch Kimai release.",
+      "when": null,
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "system.ping",
+      "tool": "kimai_ping",
+      "summary": "Testing route for the API.",
+      "when": null,
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "tags.create",
+      "tool": "kimai_create_tag",
+      "summary": "Create tag.",
+      "when": "Preferred for creating a new tag; the vendor exposes no tag update, so a rename is a create + delete pair.",
+      "effect": "write",
+      "requires": [
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "tags.delete",
+      "tool": "kimai_delete_tag",
+      "summary": "Delete tag.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "id"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "tags.find",
+      "tool": null,
+      "summary": "Fetch tags.",
+      "when": null,
+      "effect": "read",
+      "requires": [
+        "name"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "tags.list",
+      "tool": null,
+      "summary": "Fetch tags.",
+      "when": "Preferred over tags.search only when the agent must walk pages; tags.search is the bounded default read.",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "tags.resolve",
+      "tool": "kimai_resolve_tag",
+      "summary": "Resolve one tag from an identifier.",
+      "when": "Preferred over tags.list + a client-side find for any single-tag lookup.",
+      "effect": "read",
+      "requires": [
+        "identifier"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "tags.search",
+      "tool": "kimai_search_tags",
+      "summary": "Search tags with the spec filters, bounded by an explicit limit.",
+      "when": "Preferred over tags.list for any bounded filtered read (at most 100 rows).",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "teams.addMember",
+      "tool": "kimai_add_team_member",
+      "summary": "Add team member.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "teamId",
+        "userId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "teams.create",
+      "tool": "kimai_create_team",
+      "summary": "Create team.",
+      "when": "Preferred over teams.update for a new team.",
+      "effect": "write",
+      "requires": [
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "teams.delete",
+      "tool": "kimai_delete_team",
+      "summary": "Delete team.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "id"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "teams.get",
+      "tool": null,
+      "summary": "Fetch team.",
+      "when": "Preferred over teams.list + a client-side find when the id is known.",
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "teams.grantActivityAccess",
+      "tool": "kimai_grant_team_activity_access",
+      "summary": "Grant activity access.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "teamId",
+        "activityId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "teams.grantCustomerAccess",
+      "tool": "kimai_grant_team_customer_access",
+      "summary": "Grant customer access.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "teamId",
+        "customerId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "teams.grantProjectAccess",
+      "tool": "kimai_grant_team_project_access",
+      "summary": "Grant project access.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "teamId",
+        "projectId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "teams.list",
+      "tool": "kimai_list_teams",
+      "summary": "Fetch teams.",
+      "when": "Preferred when the caller must walk pages; otherwise a bounded read is enough.",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "teams.removeMember",
+      "tool": "kimai_remove_team_member",
+      "summary": "Remove team member.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "teamId",
+        "userId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "teams.resolve",
+      "tool": "kimai_resolve_team",
+      "summary": "Resolve one team from an identifier.",
+      "when": "Preferred over teams.list + a client-side find for any single-team lookup.",
+      "effect": "read",
+      "requires": [
+        "identifier"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "teams.revokeActivityAccess",
+      "tool": "kimai_revoke_team_activity_access",
+      "summary": "Revoke activity access.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "teamId",
+        "activityId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "teams.revokeCustomerAccess",
+      "tool": "kimai_revoke_team_customer_access",
+      "summary": "Revoke customer access.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "teamId",
+        "customerId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "teams.revokeProjectAccess",
+      "tool": "kimai_revoke_team_project_access",
+      "summary": "Revoke project access.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "teamId",
+        "projectId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "teams.update",
+      "tool": "kimai_update_team",
+      "summary": "Update team.",
+      "when": "Preferred over teams.create for any change to an existing team.",
+      "effect": "write",
+      "requires": [
+        "id",
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "timesheets.create",
+      "tool": "kimai_create_timesheet",
+      "summary": "Create a timesheet.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "timesheets.delete",
+      "tool": "kimai_delete_timesheet",
+      "summary": "Delete a timesheet.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "id"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true
+    },
+    {
+      "op": "timesheets.duplicate",
+      "tool": "kimai_duplicate_timesheet",
+      "summary": "Duplicate a timesheet (resetting its export state).",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "timesheets.get",
+      "tool": null,
+      "summary": "Fetch one timesheet by its id.",
+      "when": "Preferred over timesheets.list + client-side find when the id is known.",
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "timesheets.getActive",
+      "tool": "kimai_get_active_timesheets",
+      "summary": "Fetch the active (running) timesheets.",
+      "when": "Preferred over timesheets.list({ active: true }) for the plain active set: the dedicated endpoint, no list envelope.",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "timesheets.getContext",
+      "tool": "kimai_get_timesheet_context",
+      "summary": "Fetch a timesheet with its referenced user, activity, project and customer.",
+      "when": "Preferred over get + individual user/activity/project/customer reads: one call instead of four or five.",
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "timesheets.getRecent",
+      "tool": "kimai_get_recent_timesheets",
+      "summary": "Fetch the most recent timesheets.",
+      "when": null,
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "timesheets.list",
+      "tool": null,
+      "summary": "Fetch timesheets.",
+      "when": "Preferred over timesheets.search only when the agent must walk pages; search is the bounded default read.",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "timesheets.resolve",
+      "tool": "kimai_resolve_timesheet",
+      "summary": "Resolve one timesheet from an id or a begin timestamp.",
+      "when": "Preferred over timesheets.list for any identifier lookup — it removes the paging and the hand-matching.",
+      "effect": "read",
+      "requires": [
+        "identifier"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "timesheets.restart",
+      "tool": "kimai_restart_timesheet",
+      "summary": "Restart a timesheet for the same customer, project and activity.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "timesheets.search",
+      "tool": "kimai_search_timesheets",
+      "summary": "Search timesheets with the spec filters, bounded by an explicit limit.",
+      "when": "Preferred over timesheets.list for any bounded filtered read (at most 100 rows).",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "timesheets.stop",
+      "tool": "kimai_stop_timesheet",
+      "summary": "Stop an active timesheet.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "timesheets.toggleExport",
+      "tool": "kimai_toggle_timesheet_export",
+      "summary": "Toggle the exported state of a timesheet (the record is locked while exported).",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "timesheets.update",
+      "tool": "kimai_update_timesheet",
+      "summary": "Update a timesheet.",
+      "when": "Preferred over timesheets.create for any change to an existing timesheet.",
+      "effect": "write",
+      "requires": [
+        "id",
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "timesheets.updateMeta",
+      "tool": "kimai_update_timesheet_meta",
+      "summary": "Update the custom meta fields of a timesheet.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "meta"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "users.create",
+      "tool": "kimai_create_user",
+      "summary": "Create user.",
+      "when": "Preferred over users.update for a new user.",
+      "effect": "write",
+      "requires": [
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "users.deleteApiToken",
+      "tool": null,
+      "summary": "Delete API token.",
+      "when": null,
+      "effect": "destructive",
+      "requires": [
+        "tokenId"
+      ],
+      "dry_run": true,
+      "confirm_required": true,
+      "reachable": true,
+      "reason": "no tool of its own (curated out: Credential-lifecycle operation: a model must not be handed the API-key deletion path as a first-class tool. Registry flags: destructive + requiresApproval. Still reachable, confirmation-gated, through kimai_delete for a host that deliberately enables it.) - reachable through kimai_delete"
+    },
+    {
+      "op": "users.get",
+      "tool": null,
+      "summary": "Fetch user.",
+      "when": "Preferred over users.list + a client-side find when the id is known.",
+      "effect": "read",
+      "requires": [
+        "id"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "users.getMe",
+      "tool": "kimai_get_current_user",
+      "summary": "Fetch current user.",
+      "when": null,
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "users.list",
+      "tool": null,
+      "summary": "Fetch users.",
+      "when": "Preferred over users.search only when the agent must walk pages; users.search is the bounded default read.",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true,
+      "reason": "no tool of its own (curated out as a duplicate outcome) - reachable through kimai_read"
+    },
+    {
+      "op": "users.resolve",
+      "tool": "kimai_resolve_user",
+      "summary": "Resolve one user from an identifier.",
+      "when": "Preferred over users.list + a client-side find for any single-user lookup.",
+      "effect": "read",
+      "requires": [
+        "identifier"
+      ],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "users.search",
+      "tool": "kimai_search_users",
+      "summary": "Search users with the spec filters, bounded by an explicit limit.",
+      "when": "Preferred over users.list for any bounded filtered read (at most 100 rows).",
+      "effect": "read",
+      "requires": [],
+      "dry_run": false,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "users.update",
+      "tool": "kimai_update_user",
+      "summary": "Update an existing user.",
+      "when": "Preferred over users.create for any change to an existing user.",
+      "effect": "write",
+      "requires": [
+        "id",
+        "input"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    },
+    {
+      "op": "users.updatePreferences",
+      "tool": "kimai_update_user_preferences",
+      "summary": "Update user preferences.",
+      "when": null,
+      "effect": "write",
+      "requires": [
+        "id",
+        "prefs"
+      ],
+      "dry_run": true,
+      "confirm_required": false,
+      "reachable": true
+    }
+  ]
+}

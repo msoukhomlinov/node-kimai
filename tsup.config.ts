@@ -7,6 +7,8 @@ export default defineConfig({
     "types/index": "src/types/index.ts",
     errors: "src/errors.ts",
     capabilities: "src/capabilities.ts",
+    untrusted: "src/untrusted.ts",
+    "mcp/index": "src/mcp/index.ts",
   },
   format: ["esm", "cjs"],
   dts: true,

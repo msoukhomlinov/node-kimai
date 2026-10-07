@@ -37,5 +37,15 @@ export {
   type ActionResource,
 } from './resources';
 
+// Guards (root): the typed-error predicate and the credential-shape check
+export {
+  isKimaiError,
+  credentialShapeProblem,
+  credentialValueShapeProblem,
+  hasSurroundingQuotes,
+  CREDENTIAL_ENV_LOAD_ACTION,
+} from './guards';
+export type { CredentialShapeInput, CredentialShapeOptions, CredentialShapeProblem } from './guards';
+
 // Types
 export type * from './types';

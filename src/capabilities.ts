@@ -70,7 +70,7 @@ export interface CapabilityRecord {
 export const CAPABILITY_GROUPS = {
   "actions": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T12:34:18.461Z",
+    "builtAt": "2026-10-07T12:38:36.135Z",
     "records": [
       {
         "id": "actions.getActions",
@@ -158,7 +158,7 @@ export const CAPABILITY_GROUPS = {
   },
   "activities": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T12:34:18.462Z",
+    "builtAt": "2026-10-07T12:38:36.136Z",
     "records": [
       {
         "id": "activities.addToTeam",
@@ -1182,7 +1182,7 @@ export const CAPABILITY_GROUPS = {
   },
   "approvalBundle": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T12:34:18.462Z",
+    "builtAt": "2026-10-07T12:38:36.136Z",
     "records": [
       {
         "id": "approvalBundle.addToApprove",
@@ -1542,7 +1542,7 @@ export const CAPABILITY_GROUPS = {
   },
   "config": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T12:34:18.462Z",
+    "builtAt": "2026-10-07T12:38:36.136Z",
     "records": [
       {
         "id": "config.getColors",
@@ -1674,7 +1674,7 @@ export const CAPABILITY_GROUPS = {
   },
   "customers": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T12:34:18.462Z",
+    "builtAt": "2026-10-07T12:38:36.136Z",
     "records": [
       {
         "id": "customers.addToTeam",
@@ -3096,7 +3096,7 @@ export const CAPABILITY_GROUPS = {
   },
   "export": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T12:34:18.462Z",
+    "builtAt": "2026-10-07T12:38:36.136Z",
     "records": [
       {
         "id": "export.deleteTemplate",
@@ -3179,7 +3179,7 @@ export const CAPABILITY_GROUPS = {
   },
   "invoices": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T12:34:18.462Z",
+    "builtAt": "2026-10-07T12:38:36.136Z",
     "records": [
       {
         "id": "invoices.download",
@@ -3683,7 +3683,7 @@ export const CAPABILITY_GROUPS = {
   },
   "projects": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T12:34:18.462Z",
+    "builtAt": "2026-10-07T12:38:36.136Z",
     "records": [
       {
         "id": "projects.addToTeam",
@@ -5104,7 +5104,7 @@ export const CAPABILITY_GROUPS = {
   },
   "system": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T12:34:18.462Z",
+    "builtAt": "2026-10-07T12:38:36.136Z",
     "records": [
       {
         "id": "system.getPlugins",
@@ -5299,7 +5299,7 @@ export const CAPABILITY_GROUPS = {
   },
   "tags": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T12:34:18.462Z",
+    "builtAt": "2026-10-07T12:38:36.136Z",
     "records": [
       {
         "id": "tags.create",
@@ -5792,7 +5792,7 @@ export const CAPABILITY_GROUPS = {
   },
   "teams": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T12:34:18.462Z",
+    "builtAt": "2026-10-07T12:38:36.136Z",
     "records": [
       {
         "id": "teams.addMember",
@@ -6988,7 +6988,7 @@ export const CAPABILITY_GROUPS = {
   },
   "timesheets": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T12:34:18.462Z",
+    "builtAt": "2026-10-07T12:38:36.136Z",
     "records": [
       {
         "id": "timesheets.create",
@@ -8296,7 +8296,7 @@ export const CAPABILITY_GROUPS = {
   },
   "users": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T12:34:18.462Z",
+    "builtAt": "2026-10-07T12:38:36.136Z",
     "records": [
       {
         "id": "users.create",
@@ -9069,4 +9069,15 @@ export const CAPABILITIES: CapabilityRecord[] = Object.values(CAPABILITY_GROUPS)
 export const CAPABILITY_PLAN_HASHES: Record<string, string> = Object.fromEntries(
   Object.entries(CAPABILITY_GROUPS).map(([group, g]) => [group, g.planHash]),
 );
+
+/**
+ * Look up one registry record by its canonical operation key (e.g. `timesheets.search`), or
+ * `undefined` when the key is not a registered operation. The MCP layer uses it as the single
+ * source of truth for an operation's effect: `dispatchOperation` refuses a call whose dispatcher
+ * effect differs from the record's, so a host never needs its own copy of the table.
+ */
+export function getCapability(operation: string): CapabilityRecord | undefined {
+  for (const record of CAPABILITIES) if (record.id === operation) return record;
+  return undefined;
+}
 // [GENERATED:CAPABILITIES:END]
