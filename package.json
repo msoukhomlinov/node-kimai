@@ -131,7 +131,7 @@
     "capabilities:check:ship": "node scripts/check-capabilities.mjs --ship",
     "public-surface": "node scripts/public-surface.mjs",
     "mcp:project": "node scripts/project-mcp-tools.mjs",
-    "mcp:project:check": "node scripts/project-mcp-tools.mjs --check",
+    "mcp:project:check": "node scripts/project-mcp-tools.mjs --check --check-example",
     "catalog:build": "node scripts/build-tool-catalog.mjs",
     "catalog:check": "node scripts/build-tool-catalog.mjs --check",
     "mcp:check-surface": "node scripts/check-mcp-surface.mjs"

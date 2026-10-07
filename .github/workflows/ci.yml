@@ -28,3 +28,7 @@ jobs:
       # Ship gate: no capability row may remain planned/implemented.
       - name: Ship gate
         run: npm run capabilities:check:ship
+      # Pack gate: install the built tarball and import every declared subpath (ESM+CJS).
+      # The only check that proves a consumer can import what shipped.
+      - name: Pack gate
+        run: npm run verify:pack

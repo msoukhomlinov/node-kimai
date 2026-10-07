@@ -12,7 +12,8 @@
  *   effect-grouped `READ_OPERATIONS` / `WRITE_OPERATIONS` / `DESTRUCTIVE_OPERATIONS` constants.
  * - T2: the generated `node-kimai/mcp` catalog in its compiled shape, with EFFECT-SPLIT dispatch
  *   (`kimai_read` / `kimai_write` / `kimai_delete`) - never one effect-mixing god-tool.
- * - T3: ONE governance path - the dispatchers DELEGATE to `node-kimai/operations`; `planInvoke`
+ * - T3: ONE governance path - the dispatchers delegate through `node-kimai/mcp`'s
+ *   `dispatchOperation`, which delegates to `node-kimai/operations` (`invokeOperation`/`planInvoke`);
  *   is the dry-run/plan half. This file adds no second validator and no second write governor.
  * - T4: `node-kimai/untrusted` is USED on the result path, so vendor free text is marked before a
  *   model sees it. Root guards (`isKimaiError`, `credentialShapeProblem`) classify errors and
@@ -42,7 +43,7 @@ import {
   requireCatalogRow,
 } from 'node-kimai/mcp';
 import { dispatchOperation, type DispatchEffect } from 'node-kimai/mcp';
-import { planInvoke, type InvokeOptions } from 'node-kimai/operations';
+import type { InvokeOptions } from 'node-kimai/operations';
 import { wrapUntrusted } from 'node-kimai/untrusted';
 
 // --- the minimal tool contract a host framework consumes --------------------------------
@@ -198,22 +199,10 @@ export function createToolSurface(client: ApiClient): ToolDefinition[] {
         }
       },
     },
-    // The dry-run/plan half of the governance path, exposed as its own read-only tool: no wire
-    // call is ever made, so a host can preview a mutation or validate input first.
-    {
-      name: 'kimai_plan',
-      description: 'Plan (do not execute) one registry operation: validates the input and reports the resolved target, effect and dry-run disposition without issuing any request. The plan half of node-kimai/operations.',
-      annotations: { readOnlyHint: true, destructiveHint: false },
-      handler: async (args) => {
-        try {
-          const operation = String(args.operation ?? '');
-          const plan = planInvoke(client, operation, asRecord(args.input), {});
-          return ok(`Planned ${operation}.`, { ...plan });
-        } catch (err) {
-          return errorContent(err);
-        }
-      },
-    },
+    // NOTE: there is deliberately NO separate "plan" tool. Planning is the `dry_run` affordance of
+    // the mutating tool itself (the manifest: "mutations default to a dry-run preview"), and
+    // `planInvoke` is what the dispatcher calls underneath it. A tool the projection does not
+    // declare would make the served tool list disagree with MCP_TOOL_MANIFEST.md.
     dispatcher('read'),
     dispatcher('write'),
     dispatcher('destructive', 'delete'),

@@ -40,6 +40,7 @@
  */
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -51,6 +52,7 @@ const REGISTRY = path.resolve(ROOT, argValue('--registry', 'capabilities.json'))
 const OUT = path.resolve(ROOT, argValue('--out', 'MCP_TOOL_MANIFEST.md'));
 const OVERRIDES_PATH = path.resolve(ROOT, 'MCP_TOOL_OVERRIDES.json');
 const CHECK = argv.includes('--check');
+const CHECK_EXAMPLE = argv.includes('--check-example');
 const TOOL_PREFIX = 'kimai_';
 
 // ---------------------------------------------------------------------------- naming
@@ -652,6 +654,60 @@ const META_DESCRIPTION = {
 
 // ---------------------------------------------------------------------------- main
 
+
+/**
+ * `--check-example` — the reference MCP server under `examples/` must consume the surface we
+ * actually ship (skill gates: `mcp-tool-manifest.md` -> the projection script owns the example
+ * check; `mcp-server-surface.md` §9): (a) it type-checks under its own tsconfig, and (b) every
+ * `kimai_*` tool name it references exists in the projection — no invented tool. Either failure
+ * exits non-zero: a gate that has never failed is untested.
+ */
+function checkExample(data) {
+  const examplePath = path.resolve(ROOT, 'examples', 'mcp-server.ts');
+  if (!existsSync(examplePath)) {
+    console.error(`mcp:project --check-example: FAIL — ${examplePath} not found`);
+    return 1;
+  }
+  const tsc = path.resolve(ROOT, 'node_modules', 'typescript', 'bin', 'tsc');
+  if (!existsSync(tsc)) {
+    console.error('mcp:project --check-example: FAIL — typescript is not installed (node_modules/typescript)');
+    return 1;
+  }
+  try {
+    execFileSync(process.execPath, [tsc, '--noEmit', '-p', 'tsconfig.examples.json'], { cwd: ROOT, stdio: 'pipe' });
+  } catch (err) {
+    const out = [err.stdout?.toString(), err.stderr?.toString()].filter(Boolean).join('\n').trim();
+    console.error('mcp:project --check-example: FAIL — examples/mcp-server.ts does not type-check under tsconfig.examples.json');
+    if (out) console.error(out.split('\n').slice(0, 20).map((l) => `  ${l}`).join('\n'));
+    return 1;
+  }
+  let manifestTools = [];
+  const catalogPath = path.resolve(ROOT, 'MCP_TOOL_CATALOG.json');
+  if (existsSync(catalogPath)) {
+    try {
+      manifestTools = (JSON.parse(readFileSync(catalogPath, 'utf8')).metaTools ?? []).map((t) => t.name);
+    } catch {
+      /* the projected sets below still apply; an unreadable artifact is reported by catalog:check */
+    }
+  }
+  const known = new Set([
+    ...(data.tools ?? []).map((t) => t.name),
+    ...(data.core ?? []).map((t) => t.name),
+    ...(data.catalog ?? []).map((r) => r.tool).filter(Boolean),
+    ...manifestTools,
+  ]);
+  const src = readFileSync(examplePath, 'utf8');
+  const used = [...new Set([...src.matchAll(/\bkimai_[a-z0-9_]+/g)].map((m) => m[0]))];
+  const invented = used.filter((n) => !known.has(n));
+  if (invented.length > 0) {
+    console.error(`mcp:project --check-example: FAIL — examples/mcp-server.ts references ${invented.length} tool name(s) absent from the projection:`);
+    for (const n of invented) console.error(`  - ${n}`);
+    return 1;
+  }
+  console.log(`mcp:project --check-example: OK (type-checks under tsconfig.examples.json; ${used.length} tool name(s) all projected)`);
+  return 0;
+}
+
 function main() {
   if (!existsSync(REGISTRY)) { console.error(`mcp:project: registry not found at ${REGISTRY} — run \`npm run capabilities:build\` first.`); return 1; }
   let registry;
@@ -668,6 +724,10 @@ function main() {
     console.error(`mcp:project: ${data.unresolved.length} unresolved record(s):`);
     for (const u of data.unresolved.slice(0, 10)) console.error(`  - ${u.why}`);
     return 1;
+  }
+  if (CHECK_EXAMPLE) {
+    const exampleStatus = checkExample(data);
+    if (exampleStatus !== 0) return exampleStatus;
   }
   const md = render(data);
   if (CHECK) {
