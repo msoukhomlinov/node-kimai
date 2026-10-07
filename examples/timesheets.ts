@@ -10,8 +10,8 @@ async function main() {
   });
 
   // Get a project and activity to use
-  const projects = await client.projects.getAll();
-  const activities = await client.activities.getAll();
+  const projects = await client.projects.listAll();
+  const activities = await client.activities.listAll();
 
   if (projects.length === 0 || activities.length === 0) {
     console.log('No projects or activities found. Create some first.');
@@ -64,7 +64,7 @@ async function main() {
   startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
   const weekStart = startOfWeek.toISOString().split('T')[0];
 
-  const weekTimesheets = await client.timesheets.getAll({
+  const weekTimesheets = await client.timesheets.listAll({
     begin: weekStart,
   });
   console.log(`Timesheets this week: ${weekTimesheets.length}`);
@@ -72,7 +72,7 @@ async function main() {
   // --- Iterate over pages (for large datasets) ---
   let count = 0;
   for await (const page of client.timesheets.listPages({ size: 50 })) {
-    count += page.length;
+    count += page.items.length;
   }
   console.log(`Total timesheets (all pages): ${count}`);
 

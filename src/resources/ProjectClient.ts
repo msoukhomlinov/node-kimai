@@ -40,6 +40,7 @@ import type {
 import { KimaiConfigError, ResolutionError } from '../errors';
 
 import type { ApiClient } from '../client';
+import { streamOnce } from './paging';
 
 /** Helper `limit` bounds (policy §9): default 25, hard maximum 100. */
 const DEFAULT_HELPER_LIMIT = 25;
@@ -211,15 +212,18 @@ const DRY_RUN_WARNING_NO_DIFF = 'the current record is not fetched by dry-run (z
 export class ProjectClient {
   constructor(private client: ApiClient) {}
 
-  async list(params?: ProjectSearchParams): Promise<Project[]> {
+  /** Stream every Project record from the single non-paginated batch. */
+  list(params?: ProjectSearchParams): AsyncIterable<Project> {
+    return streamOnce(() => this.listAll(params));
+  }
+
+  /** Collect the single non-paginated batch of Project records (MCP-preferred read). */
+  async listAll(params?: ProjectSearchParams): Promise<Project[]> {
     return this.client.get<Project[]>('/api/projects', { query: params });
   }
 
-  async getAll(params?: ProjectSearchParams): Promise<Project[]> {
-    return this.list(params);
-  }
-
-  async getById(id: number): Promise<Project> {
+  /** Get one Project record by id; a 404 normalises to NOT_FOUND. */
+  async get(id: number): Promise<Project> {
     return this.client.get<Project>(`/api/projects/${id}`);
   }
 
@@ -600,10 +604,10 @@ export class ProjectClient {
   async getContext(id: number, opts: { expand: true }): Promise<ProjectContextExpanded>;
   async getContext(id: number, opts?: { expand?: boolean }): Promise<ProjectContext | ProjectContextExpanded>;
   async getContext(id: number, opts?: { expand?: boolean }): Promise<ProjectContext | ProjectContextExpanded> {
-    const project = await this.getById(id);
+    const project = await this.get(id);
     const customerId = typeof project.customer === 'number' ? project.customer : null;
     const [customer, rates] = (await pooledAll<Customer | ProjectRate[] | null>([
-      () => (customerId === null ? Promise.resolve(null) : this.client.customers.getById(customerId)),
+      () => (customerId === null ? Promise.resolve(null) : this.client.customers.get(customerId)),
       () => this.getRates(id),
     ])) as [Customer | null, ProjectRate[]];
     const meta = project.metaFields ?? [];
@@ -639,7 +643,7 @@ export class ProjectClient {
 
   /** Direct fetch by id: a miss throws NOT_FOUND (never `null`). */
   private async resolveById(id: number): Promise<Resolution<Project>> {
-    const project = await this.getById(id);
+    const project = await this.get(id);
     const candidate: ResolutionCandidate = { id: project.id ?? id, label: projectLabel(project) };
     return {
       value: project,

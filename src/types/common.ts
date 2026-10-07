@@ -6,6 +6,22 @@ export type ListParams = {
   size?: number;
 };
 
+/**
+ * One page of a PAGINATED Kimai list (node-hudu line). The vendor returns a
+ * bare array with no totals, so `hasMore` is derived honestly from the
+ * requested size: `hasMore = items.length === size`. No `total`/`totalPages`
+ * is invented — Kimai does not provide one.
+ */
+export interface Page<T> {
+  items: T[];
+  /** 1-based page number this batch was requested as. */
+  page: number;
+  /** Page size requested for this batch. */
+  size: number;
+  /** True when the page was full (the only continuation signal the vendor gives). */
+  hasMore: boolean;
+}
+
 export type ActivityListParams = {
   name?: string;
   visible?: boolean;

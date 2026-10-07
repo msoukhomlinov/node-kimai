@@ -11,6 +11,13 @@ function loadFixture(name: string): unknown {
   return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
+/** Collect an AsyncIterable into an array (the D2 `list` stream). */
+async function collect<T>(iter: AsyncIterable<T>): Promise<T[]> {
+  const out: T[] = [];
+  for await (const item of iter) out.push(item);
+  return out;
+}
+
 describe('TagClient', () => {
   let client: ApiClient;
   let transport: { request: ReturnType<typeof vi.fn> };
@@ -29,7 +36,7 @@ describe('TagClient', () => {
       const fixture = loadFixture('tag');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.tags.list();
+      await collect(client.tags.list());
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -39,12 +46,12 @@ describe('TagClient', () => {
     });
   });
 
-  describe('getAll', () => {
+  describe('listAll', () => {
     it('should delegate to list', async () => {
       const fixture = loadFixture('tag');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.tags.getAll();
+      await client.tags.listAll();
 
       expect(transport.request).toHaveBeenCalledTimes(1);
     });
@@ -124,10 +131,10 @@ describe('TagClient — Phase F agent execution layer', () => {
   });
 
   describe('tags.list (pinned rows)', () => {
-    it('returns the unwrapped tags list', async () => {
+    it('streams the unwrapped tags records', async () => {
       transport.request.mockResolvedValueOnce(PHASE_F_TAGS);
 
-      const rows = await client.tags.list();
+      const rows = await collect(client.tags.list());
 
       expect(rows).toEqual(PHASE_F_TAGS);
       expect(transport.request).toHaveBeenCalledWith({
@@ -137,12 +144,21 @@ describe('TagClient — Phase F agent execution layer', () => {
       });
     });
 
+    it('listAll collects the single non-paginated batch', async () => {
+      const fixture = loadFixture('tag');
+      transport.request.mockResolvedValueOnce(fixture);
+
+      const rows = await client.tags.listAll();
+
+      expect(rows).toEqual(fixture);
+    });
+
     it('does not send page/size params for this non-paginated endpoint', async () => {
       // Non-paginated endpoint: GET declares no page/size, so the whole
       // collection is one page and no page params may be sent.
       transport.request.mockResolvedValueOnce(PHASE_F_TAGS);
 
-      const rows = await client.tags.list();
+      const rows = await collect(client.tags.list());
 
       expect(rows).toEqual(PHASE_F_TAGS);
       expect(transport.request).toHaveBeenCalledTimes(1);

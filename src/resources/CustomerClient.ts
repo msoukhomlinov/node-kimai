@@ -38,6 +38,7 @@ import type {
 import { KimaiConfigError, ResolutionError } from '../errors';
 
 import type { ApiClient } from '../client';
+import { streamOnce } from './paging';
 
 /** Helper `limit` bounds (policy §9): default 25, hard maximum 100. */
 const DEFAULT_HELPER_LIMIT = 25;
@@ -191,15 +192,18 @@ const DRY_RUN_WARNING_NO_DIFF = 'the current record is not fetched by dry-run (z
 export class CustomerClient {
   constructor(private client: ApiClient) {}
 
-  async list(params?: CustomerSearchParams): Promise<Customer[]> {
+  /** Stream every Customer record from the single non-paginated batch. */
+  list(params?: CustomerSearchParams): AsyncIterable<Customer> {
+    return streamOnce(() => this.listAll(params));
+  }
+
+  /** Collect the single non-paginated batch of Customer records (MCP-preferred read). */
+  async listAll(params?: CustomerSearchParams): Promise<Customer[]> {
     return this.client.get<Customer[]>('/api/customers', { query: params });
   }
 
-  async getAll(params?: CustomerSearchParams): Promise<Customer[]> {
-    return this.list(params);
-  }
-
-  async getById(id: number): Promise<Customer> {
+  /** Get one Customer record by id; a 404 normalises to NOT_FOUND. */
+  async get(id: number): Promise<Customer> {
     return this.client.get<Customer>(`/api/customers/${id}`);
   }
 
@@ -580,7 +584,7 @@ export class CustomerClient {
   async getContext(id: number, opts?: { expand?: boolean }): Promise<CustomerContext | CustomerContextExpanded>;
   async getContext(id: number, opts?: { expand?: boolean }): Promise<CustomerContext | CustomerContextExpanded> {
     const [customer, rates, comments] = (await pooledAll<Customer | CustomerRate[] | Comment[]>([
-      () => this.getById(id),
+      () => this.get(id),
       () => this.getRates(id),
       () => this.listComments(id),
     ])) as [Customer, CustomerRate[], Comment[]];
@@ -617,7 +621,7 @@ export class CustomerClient {
 
   /** Direct fetch by id: a miss throws NOT_FOUND (never `null`). */
   private async resolveById(id: number): Promise<Resolution<Customer>> {
-    const customer = await this.getById(id);
+    const customer = await this.get(id);
     const candidate: ResolutionCandidate = { id: customer.id ?? id, label: customerLabel(customer) };
     return {
       value: customer,

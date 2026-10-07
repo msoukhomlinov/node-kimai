@@ -17,6 +17,7 @@ import type { DryRunResult, HelperOptions, MutationOptions, Resolution, Resoluti
 import { KimaiConfigError, ResolutionError } from '../errors';
 
 import type { ApiClient } from '../client';
+import { streamOnce } from './paging';
 
 /** Helper `limit` bounds (policy §9): default 25, hard maximum 100. */
 const DEFAULT_HELPER_LIMIT = 25;
@@ -115,12 +116,14 @@ function mutationDryRun<T>(
 export class TagClient {
   constructor(private client: ApiClient) {}
 
-  async list(): Promise<Tag[]> {
-    return this.client.get<Tag[]>('/api/tags/find');
+  /** Stream every Tag record from the single non-paginated batch. */
+  list(): AsyncIterable<Tag> {
+    return streamOnce(() => this.listAll());
   }
 
-  async getAll(): Promise<Tag[]> {
-    return this.list();
+  /** Collect the single non-paginated batch of Tag records (MCP-preferred read). */
+  async listAll(): Promise<Tag[]> {
+    return this.client.get<Tag[]>('/api/tags/find');
   }
 
   async create(input: TagEditForm): Promise<Tag>;

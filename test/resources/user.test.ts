@@ -12,6 +12,13 @@ function loadFixture(name: string): unknown {
   return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
+/** Collect an AsyncIterable into an array (the D2 `list` stream). */
+async function collect<T>(iter: AsyncIterable<T>): Promise<T[]> {
+  const out: T[] = [];
+  for await (const item of iter) out.push(item);
+  return out;
+}
+
 describe('UserClient', () => {
   let client: ApiClient;
   let transport: { request: ReturnType<typeof vi.fn> };
@@ -30,7 +37,7 @@ describe('UserClient', () => {
       const fixture = loadFixture('user');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.users.list();
+      await collect(client.users.list());
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -43,7 +50,7 @@ describe('UserClient', () => {
       const fixture = loadFixture('user');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.users.list({ role: 'admin', team: 1 });
+      await collect(client.users.list({ role: 'admin', team: 1 }));
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -53,23 +60,23 @@ describe('UserClient', () => {
     });
   });
 
-  describe('getAll', () => {
+  describe('listAll', () => {
     it('should delegate to list for non-paginated resource', async () => {
       const fixture = loadFixture('user');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.users.getAll();
+      await client.users.listAll();
 
       expect(transport.request).toHaveBeenCalledTimes(1);
     });
   });
 
-  describe('getById', () => {
+  describe('get', () => {
     it('should call GET /api/users/{id}', async () => {
       const fixture = loadFixture('user_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.users.getById(1);
+      await client.users.get(1);
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -233,10 +240,10 @@ describe('UserClient — Phase F agent execution layer', () => {
   });
 
   describe('users.list (pinned rows)', () => {
-    it('returns the unwrapped users list', async () => {
+    it('streams the unwrapped users records', async () => {
       transport.request.mockResolvedValueOnce(PHASE_F_USERS);
 
-      const rows = await client.users.list();
+      const rows = await collect(client.users.list());
 
       expect(rows).toEqual(PHASE_F_USERS);
       expect(transport.request).toHaveBeenCalledWith({
@@ -246,12 +253,21 @@ describe('UserClient — Phase F agent execution layer', () => {
       });
     });
 
+    it('listAll collects the single non-paginated batch', async () => {
+      const fixture = loadFixture('user');
+      transport.request.mockResolvedValueOnce(fixture);
+
+      const rows = await client.users.listAll();
+
+      expect(rows).toEqual(fixture);
+    });
+
     it('does not send page/size params for this non-paginated endpoint', async () => {
       // Non-paginated endpoint: GET declares no page/size, so the whole
       // collection is one page and no page params may be sent.
       transport.request.mockResolvedValueOnce(PHASE_F_USERS);
 
-      const rows = await client.users.list();
+      const rows = await collect(client.users.list());
 
       expect(rows).toEqual(PHASE_F_USERS);
       expect(transport.request).toHaveBeenCalledTimes(1);
@@ -260,12 +276,12 @@ describe('UserClient — Phase F agent execution layer', () => {
     });
   });
 
-  describe('users.getById (pinned rows)', () => {
+  describe('users.get (pinned rows)', () => {
     it('returns the unwrapped users record', async () => {
       const fixture = loadFixture('user_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const user = await client.users.getById(1);
+      const user = await client.users.get(1);
 
       expect(user).toEqual(fixture);
       expect(transport.request).toHaveBeenCalledWith({
@@ -279,7 +295,7 @@ describe('UserClient — Phase F agent execution layer', () => {
         createApiError({ status: 404, message: 'Not Found', data: { title: 'Not Found' } }),
       );
 
-      const err = await client.users.getById(404).catch((e: unknown) => e);
+      const err = await client.users.get(404).catch((e: unknown) => e);
 
       expect(err).toBeInstanceOf(NotFoundError);
       expect((err as NotFoundError).code).toBe('NOT_FOUND');

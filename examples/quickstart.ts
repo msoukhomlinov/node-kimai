@@ -22,7 +22,7 @@ async function main() {
   console.log('Connected to Kimai', version.version);
 
   // List activities
-  const activities = await client.activities.getAll();
+  const activities = await client.activities.listAll();
   console.log(`Found ${activities.length} activities`);
 
   // Create a new activity
@@ -34,7 +34,7 @@ async function main() {
 
   // List timesheets for today
   const today = new Date().toISOString().split('T')[0];
-  const timesheets = await client.timesheets.list({
+  const timesheets = await client.timesheets.listAll({
     begin: today,
   });
   console.log(`Found ${timesheets.length} timesheets for ${today}`);
@@ -45,7 +45,7 @@ async function main() {
 
   // Error handling example
   try {
-    await client.activities.getById(999999);
+    await client.activities.get(999999);
   } catch (err) {
     if (err instanceof NotFoundError) {
       console.log('Activity not found (expected)');

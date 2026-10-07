@@ -13,6 +13,13 @@ function loadFixture(name: string): unknown {
   return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
+/** Collect an AsyncIterable into an array (the D2 `list` stream). */
+async function collect<T>(iter: AsyncIterable<T>): Promise<T[]> {
+  const out: T[] = [];
+  for await (const item of iter) out.push(item);
+  return out;
+}
+
 describe('ActivityClient', () => {
   let client: ApiClient;
   let activityClient: ActivityClient;
@@ -33,7 +40,7 @@ describe('ActivityClient', () => {
       const fixture = loadFixture('activity');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const result = await activityClient.list();
+      const result = await collect(activityClient.list());
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -47,7 +54,7 @@ describe('ActivityClient', () => {
       const fixture = loadFixture('activity');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await activityClient.list({ name: 'test', visible: true });
+      await collect(activityClient.list({ name: 'test', visible: true }));
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -60,7 +67,7 @@ describe('ActivityClient', () => {
       const fixture = loadFixture('activity');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await activityClient.list({ name: 'test' });
+      await collect(activityClient.list({ name: 'test' }));
 
       const call = transport.request.mock.calls[0]![0];
       expect(call.query).not.toHaveProperty('page');
@@ -68,24 +75,24 @@ describe('ActivityClient', () => {
     });
   });
 
-  describe('getAll', () => {
+  describe('listAll', () => {
     it('should delegate to list for non-paginated resource', async () => {
       const fixture = loadFixture('activity');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const result = await activityClient.getAll();
+      const result = await activityClient.listAll();
 
       expect(transport.request).toHaveBeenCalledTimes(1);
       expect(result).toEqual(fixture);
     });
   });
 
-  describe('getById', () => {
+  describe('get', () => {
     it('should call GET /api/activities/{id}', async () => {
       const fixture = loadFixture('activity_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const result = await activityClient.getById(1);
+      const result = await activityClient.get(1);
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -239,11 +246,11 @@ describe('ActivityClient', () => {
 // ---------------------------------------------------------------------------
 
 describe('activities.list (pinned rows)', () => {
-  it('returns the unwrapped activities list', async () => {
+  it('streams the unwrapped activities records', async () => {
     const fixture = loadFixture('activity');
     transport.request.mockResolvedValueOnce(fixture);
 
-    const rows = await client.activities.list({ name: 'Development', visible: true });
+    const rows = await collect(client.activities.list({ name: 'Development', visible: true }));
 
     expect(rows).toEqual(fixture);
     expect(transport.request).toHaveBeenCalledWith({
@@ -253,14 +260,23 @@ describe('activities.list (pinned rows)', () => {
     });
   });
 
+  it('listAll collects the single non-paginated batch', async () => {
+    const fixture = loadFixture('activity');
+    transport.request.mockResolvedValueOnce(fixture);
+
+    const rows = await client.activities.listAll();
+
+    expect(rows).toEqual(fixture);
+  });
+
   it('does not send page/size params for this non-paginated endpoint', async () => {
-    // This endpoint is not paged by the SDK: `getAll` delegates to a single
+    // This endpoint is not paged by the SDK: `listAll` delegates to a single
     // `list` and never injects paging params, so the whole collection arrives
     // in one request.
     const fixture = loadFixture('activity');
     transport.request.mockResolvedValueOnce(fixture);
 
-    const result = await client.activities.getAll();
+    const result = await client.activities.listAll();
 
     expect(transport.request).toHaveBeenCalledTimes(1);
     const call = transport.request.mock.calls[0]![0];
@@ -270,12 +286,12 @@ describe('activities.list (pinned rows)', () => {
   });
 });
 
-describe('activities.getById (pinned rows)', () => {
+describe('activities.get (pinned rows)', () => {
   it('returns the unwrapped activities record', async () => {
     const fixture = loadFixture('activity_single');
     transport.request.mockResolvedValueOnce(fixture);
 
-    const activity = await client.activities.getById(1);
+    const activity = await client.activities.get(1);
 
     expect(activity).toEqual(fixture);
     expect(transport.request).toHaveBeenCalledWith({
@@ -290,7 +306,7 @@ describe('activities.getById (pinned rows)', () => {
       createApiError({ status: 404, message: 'Not Found', data: { title: 'Not Found' } }),
     );
 
-    const err = await client.activities.getById(404).catch((e: unknown) => e);
+    const err = await client.activities.get(404).catch((e: unknown) => e);
 
     expect(err).toBeInstanceOf(NotFoundError);
     expect((err as NotFoundError).code).toBe('NOT_FOUND');

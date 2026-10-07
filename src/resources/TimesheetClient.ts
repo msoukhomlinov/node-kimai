@@ -28,6 +28,8 @@ import type { DryRunResult, HelperOptions, MutationOptions, Resolution, Resoluti
 import { KimaiConfigError, ResolutionError } from '../errors';
 
 import type { ApiClient } from '../client';
+import { collectPages, pageParams, streamItems, streamPages, type PageFetcher } from './paging';
+import type { Page } from '../types/common';
 
 /** Helper `limit` bounds (policy §9): default 25, hard maximum 100. */
 const DEFAULT_HELPER_LIMIT = 25;
@@ -137,65 +139,43 @@ const DRY_RUN_WARNING_NO_DIFF = 'the current record is not fetched by dry-run (z
 export class TimesheetClient {
   constructor(private client: ApiClient) {}
 
-  async list(params?: TimesheetListParams): Promise<Timesheet[]> {
-    const query = { ...params };
-    // User-filter override: if no user filter given, fetch ALL users
-    if (!query.user && !query.users) {
-      query.user = 'all';
-    }
-    return this.client.get<Timesheet[]>('/api/timesheets', { query });
+  /** Stream every Timesheet record across pages until a short/empty page. */
+  list(params?: TimesheetListParams): AsyncIterable<Timesheet> {
+    const plan = this.pagePlan(params);
+    return streamItems(plan.fetch, plan.page, plan.size);
   }
 
-  async getAll(params?: TimesheetListParams): Promise<Timesheet[]> {
-    const query = { ...params };
-    if (!query.user && !query.users) {
-      query.user = 'all';
-    }
-    const pages: Timesheet[] = [];
-    let page = query.page || 1;
-    const size = query.size || 100;
-
-    while (true) {
-      const results = await this.client.get<Timesheet[]>('/api/timesheets', {
-        query: { ...query, page, size },
-      });
-      if (!results || results.length === 0) break;
-      pages.push(...results);
-      if (results.length < size) break;
-      page++;
-    }
-    return pages;
+  /** Collect every page of Timesheet records (MCP-preferred read). */
+  async listAll(params?: TimesheetListParams): Promise<Timesheet[]> {
+    const plan = this.pagePlan(params);
+    return collectPages(plan.fetch, plan.page, plan.size);
   }
 
   /**
    * Page stream for `for await (const page of client.timesheets.listPages())`.
-   * Declared non-async so the public type is `AsyncIterable<Timesheet[]>`, not
-   * `AsyncGenerator` (line convention shared with node-hudu/node-autotask).
+   * Public and non-async: the return type is `AsyncIterable<Page<Timesheet>>`. Kimai
+   * returns bare arrays with no totals, so `hasMore` is derived honestly:
+   * `hasMore = items.length === size`.
    */
-  listPages(params?: TimesheetListParams): AsyncIterable<Timesheet[]> {
-    return this.collectPages(params);
+  listPages(params?: TimesheetListParams): AsyncIterable<Page<Timesheet>> {
+    const plan = this.pagePlan(params);
+    return streamPages(plan.fetch, plan.page, plan.size);
   }
 
-  private async *collectPages(params?: TimesheetListParams): AsyncGenerator<Timesheet[]> {
+  /** Resolve the paging params (default page 1 / size 100) and the per-page fetcher. */
+  private pagePlan(params?: TimesheetListParams): { fetch: PageFetcher<Timesheet>; page: number; size: number } {
     const query = { ...params };
-    if (!query.user && !query.users) {
-      query.user = 'all';
-    }
-    const size = query.size || 100;
-    let page = query.page || 1;
-
-    while (true) {
-      const results = await this.client.get<Timesheet[]>('/api/timesheets', {
-        query: { ...query, page, size },
-      });
-      if (!results || results.length === 0) break;
-      yield results;
-      if (results.length < size) break;
-      page++;
-    }
+    if (!query.user && !query.users) query.user = 'all';
+    const { page, size } = pageParams(params);
+    return {
+      page,
+      size,
+      fetch: (p, s) => this.client.get<Timesheet[]>('/api/timesheets', { query: { ...query, page: p, size: s } }),
+    };
   }
 
-  async getById(id: number): Promise<Timesheet> {
+  /** Get one Timesheet record by id; a 404 normalises to NOT_FOUND. */
+  async get(id: number): Promise<Timesheet> {
     return this.client.get<Timesheet>(`/api/timesheets/${id}`);
   }
 
@@ -507,10 +487,10 @@ export class TimesheetClient {
   async getContext(id: number, opts: { expand: true }): Promise<TimesheetContextExpanded>;
   async getContext(id: number, opts?: { expand?: boolean }): Promise<TimesheetContext | TimesheetContextExpanded>;
   async getContext(id: number, opts?: { expand?: boolean }): Promise<TimesheetContext | TimesheetContextExpanded> {
-    const ts = await this.getById(id);
-    const user = typeof ts.user === 'number' ? this.client.users.getById(ts.user) : Promise.resolve(null);
-    const activity = typeof ts.activity === 'number' ? this.client.activities.getById(ts.activity) : Promise.resolve(null);
-    const project = typeof ts.project === 'number' ? this.client.projects.getById(ts.project) : Promise.resolve(null);
+    const ts = await this.get(id);
+    const user = typeof ts.user === 'number' ? this.client.users.get(ts.user) : Promise.resolve(null);
+    const activity = typeof ts.activity === 'number' ? this.client.activities.get(ts.activity) : Promise.resolve(null);
+    const project = typeof ts.project === 'number' ? this.client.projects.get(ts.project) : Promise.resolve(null);
     const [userRec, activityRec, projectRec] = (await Promise.all([user, activity, project])) as [
       User | null,
       Activity | null,
@@ -518,7 +498,7 @@ export class TimesheetClient {
     ];
     const customer =
       projectRec !== null && typeof projectRec.customer === 'number'
-        ? await this.client.customers.getById(projectRec.customer)
+        ? await this.client.customers.get(projectRec.customer)
         : null;
     const related = { user: userRec, activity: activityRec, project: projectRec, customer };
     return opts?.expand === true ? { timesheet: ts, ...related } : { timesheet: toTimesheetSummary(ts), ...related };
@@ -545,7 +525,7 @@ export class TimesheetClient {
 
   /** Direct fetch by id: a miss throws NOT_FOUND (never `null`). */
   private async resolveByIdentifier(id: number): Promise<Resolution<Timesheet>> {
-    const ts = await this.getById(id);
+    const ts = await this.get(id);
     const candidate: ResolutionCandidate = { id: ts.id ?? id, label: timesheetLabel(ts) };
     return {
       value: ts,

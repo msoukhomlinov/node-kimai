@@ -7,7 +7,7 @@
 //
 // Key MCP-friendly characteristics of node-kimai:
 // - Plain T / T[] returns (no envelope wrappers)
-// - getAll() for one-shot complete reads
+// - listAll() for one-shot complete reads
 // - Typed, catchable errors with status codes
 // - Zero runtime deps (lightweight for server processes)
 
@@ -27,7 +27,7 @@ const kimai = new ApiClient({
 // --- Tool: list_activities ---
 // Returns all activities as a flat array — ideal for LLM tool input
 async function listActivities(): Promise<unknown> {
-  const activities = await kimai.activities.getAll();
+  const activities = await kimai.activities.listAll();
   return activities.map((a) => ({
     id: a.id,
     name: a.name,
@@ -37,13 +37,13 @@ async function listActivities(): Promise<unknown> {
 }
 
 // --- Tool: list_timesheets ---
-// Uses getAll() to fetch all matching timesheets in one call
+// Uses listAll() to fetch all matching timesheets in one call
 async function listTimesheets(params?: {
   user?: string | number;
   begin?: string;
   end?: string;
 }): Promise<unknown> {
-  const timesheets = await kimai.timesheets.getAll(params);
+  const timesheets = await kimai.timesheets.listAll(params);
   // TimesheetEntity carries numeric activity/project ids (the Expanded variant
   // from the vendor API embeds the objects).
   return timesheets.map((t) => ({
@@ -137,9 +137,9 @@ export const tools = {
 //    matching the TypeScript types above.
 //
 // 2. Caching: Consider caching reference data (activities, projects,
-//    customers) between tool calls. Use getAll() once and cache results.
+//    customers) between tool calls. Use listAll() once and cache results.
 //
-// 3. Pagination: Prefer getAll() for tools that need complete data.
+// 3. Pagination: Prefer listAll() for tools that need complete data.
 //    Use list() with filters for targeted queries.
 //
 // 4. Error reporting: Map ApiError subclasses to clear MCP error messages.

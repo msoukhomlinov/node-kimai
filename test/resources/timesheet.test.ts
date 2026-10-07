@@ -21,6 +21,13 @@ function loadFixture(name: string): unknown {
   return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
+/** Collect an AsyncIterable into an array (the D2 `list` stream). */
+async function collect<T>(iter: AsyncIterable<T>): Promise<T[]> {
+  const out: T[] = [];
+  for await (const item of iter) out.push(item);
+  return out;
+}
+
 describe('TimesheetClient', () => {
   let client: ApiClient;
   let transport: { request: ReturnType<typeof vi.fn> };
@@ -39,12 +46,12 @@ describe('TimesheetClient', () => {
       const fixture = loadFixture('timesheet');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.timesheets.list();
+      await collect(client.timesheets.list());
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
         path: '/api/timesheets',
-        query: { user: 'all' },
+        query: { user: 'all', page: 1, size: 100 },
       });
     });
 
@@ -52,7 +59,7 @@ describe('TimesheetClient', () => {
       const fixture = loadFixture('timesheet');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.timesheets.list({ user: 5 });
+      await collect(client.timesheets.list({ user: 5 }));
 
       const call = transport.request.mock.calls[0]![0];
       expect(call.query.user).toBe(5);
@@ -62,7 +69,7 @@ describe('TimesheetClient', () => {
       const fixture = loadFixture('timesheet');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.timesheets.list({ users: [1, 2] });
+      await collect(client.timesheets.list({ users: [1, 2] }));
 
       const call = transport.request.mock.calls[0]![0];
       expect(call.query.users).toEqual([1, 2]);
@@ -73,7 +80,7 @@ describe('TimesheetClient', () => {
       const fixture = loadFixture('timesheet');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.timesheets.list({ begin: '2024-01-01', end: '2024-01-31' });
+      await collect(client.timesheets.list({ begin: '2024-01-01', end: '2024-01-31' }));
 
       const call = transport.request.mock.calls[0]![0];
       expect(call.query.user).toBe('all');
@@ -82,7 +89,7 @@ describe('TimesheetClient', () => {
     });
   });
 
-  describe('getAll', () => {
+  describe('listAll', () => {
     it('should pass user=all and paginate until empty', async () => {
       const page1 = loadFixture('timesheet');
       const emptyPage: unknown[] = [];
@@ -92,7 +99,7 @@ describe('TimesheetClient', () => {
         .mockResolvedValueOnce(emptyPage);
 
       // Use size=1 so 2 items triggers pagination
-      const result = await client.timesheets.getAll({ size: 1 });
+      const result = await client.timesheets.listAll({ size: 1 });
 
       // First call with page=1, size=1, user=all
       expect(transport.request).toHaveBeenNthCalledWith(1, {
@@ -118,7 +125,7 @@ describe('TimesheetClient', () => {
         .mockResolvedValueOnce(page1)
         .mockResolvedValueOnce(page2);
 
-      const result = await client.timesheets.getAll({ size: 2 });
+      const result = await client.timesheets.listAll({ size: 2 });
 
       expect(transport.request).toHaveBeenCalledTimes(2);
       expect(result).toEqual([...page1, ...page2]);
@@ -128,7 +135,7 @@ describe('TimesheetClient', () => {
       const fixture = loadFixture('timesheet');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.timesheets.getAll({ page: 5, size: 200 });
+      await client.timesheets.listAll({ page: 5, size: 200 });
 
       const call = transport.request.mock.calls[0]![0];
       expect(call.query.page).toBe(5);
@@ -139,7 +146,7 @@ describe('TimesheetClient', () => {
       const fixture = loadFixture('timesheet');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.timesheets.getAll({ user: 3 });
+      await client.timesheets.listAll({ user: 3 });
 
       const call = transport.request.mock.calls[0]![0];
       expect(call.query.user).toBe(3);
@@ -156,14 +163,14 @@ describe('TimesheetClient', () => {
         .mockResolvedValueOnce(page1)
         .mockResolvedValueOnce(page2);
 
-      const pages: unknown[][] = [];
+      const pages: Array<{ items: unknown[]; page: number; size: number; hasMore: boolean }> = [];
       for await (const page of client.timesheets.listPages({ size: 2 })) {
-        pages.push(page as unknown[]);
+        pages.push(page);
       }
 
       expect(pages).toHaveLength(2);
-      expect(pages[0]).toEqual(page1);
-      expect(pages[1]).toEqual(page2);
+      expect(pages[0]!.items).toEqual(page1);
+      expect(pages[1]!.items).toEqual(page2);
     });
 
     it('should pass user=all by default', async () => {
@@ -191,19 +198,19 @@ describe('TimesheetClient', () => {
 
       const pages: unknown[][] = [];
       for await (const page of client.timesheets.listPages()) {
-        pages.push(page as unknown[]);
+        pages.push(page.items);
       }
 
       expect(pages).toHaveLength(1);
     });
   });
 
-  describe('getById', () => {
+  describe('get', () => {
     it('should call GET /api/timesheets/{id}', async () => {
       const fixture = loadFixture('timesheet_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.timesheets.getById(1);
+      await client.timesheets.get(1);
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -428,11 +435,11 @@ describe('TimesheetClient — Phase F agent execution layer', () => {
   });
 
   describe('timesheets.list (pinned rows)', () => {
-    it('returns the unwrapped timesheets list', async () => {
+    it('streams the unwrapped timesheets records', async () => {
       const fixture = loadFixture('timesheet');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const rows = await client.timesheets.list({ page: 1, size: 2 });
+      const rows = await collect(client.timesheets.list({ page: 1, size: 2 }));
 
       expect(rows).toEqual(fixture);
       expect(transport.request).toHaveBeenCalledWith({
@@ -442,13 +449,13 @@ describe('TimesheetClient — Phase F agent execution layer', () => {
       });
     });
 
-    it('sends page/size and stops on a short page', async () => {
+    it('listAll collects every page', async () => {
       const page1 = loadFixture('timesheet');
       transport.request
         .mockResolvedValueOnce(page1)
         .mockResolvedValueOnce([]);
 
-      const result = await client.timesheets.getAll({ size: 1 });
+      const result = await client.timesheets.listAll({ size: 1 });
 
       expect(transport.request).toHaveBeenNthCalledWith(1, {
         method: 'GET',
@@ -465,12 +472,29 @@ describe('TimesheetClient — Phase F agent execution layer', () => {
     });
   });
 
-  describe('timesheets.getById (pinned rows)', () => {
+    it('listPages yields pages with hasMore from a full page', async () => {
+      const page1 = loadFixture('timesheet') as unknown[];
+      transport.request
+        .mockResolvedValueOnce(page1)
+        .mockResolvedValueOnce([]);
+
+      const pages: Array<{ items: unknown[]; page: number; size: number; hasMore: boolean }> = [];
+      for await (const page of client.timesheets.listPages({ size: page1.length })) {
+        pages.push(page);
+      }
+
+      expect(pages).toHaveLength(2);
+      expect(pages[0]).toMatchObject({ page: 1, size: page1.length, hasMore: true });
+      expect(pages[0]!.items).toEqual(page1);
+      expect(pages[1]).toMatchObject({ page: 2, size: page1.length, hasMore: false });
+    });
+
+  describe('timesheets.get (pinned rows)', () => {
     it('returns the unwrapped timesheet record', async () => {
       const fixture = loadFixture('timesheet_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const ts = await client.timesheets.getById(1);
+      const ts = await client.timesheets.get(1);
 
       expect(ts).toEqual(fixture);
       expect(transport.request).toHaveBeenCalledWith({
@@ -484,7 +508,7 @@ describe('TimesheetClient — Phase F agent execution layer', () => {
         createApiError({ status: 404, message: 'Not Found', data: { title: 'Not Found' } }),
       );
 
-      const err = await client.timesheets.getById(404).catch((e: unknown) => e);
+      const err = await client.timesheets.get(404).catch((e: unknown) => e);
 
       expect(err).toBeInstanceOf(NotFoundError);
       expect((err as NotFoundError).code).toBe('NOT_FOUND');
@@ -1052,7 +1076,7 @@ describe('Phase F — FetchTransport error contract (timesheets)', () => {
     const fixture = loadFixture('error_429');
     mockFetch.mockResolvedValueOnce(failResponse(429, 'Too Many Requests', fixture, '30'));
 
-    const err = await liveClient.timesheets.list().catch((e: unknown) => e);
+    const err = await collect(liveClient.timesheets.list()).catch((e: unknown) => e);
 
     expect(err).toBeInstanceOf(RateLimitError);
     const e = err as RateLimitError;
@@ -1071,7 +1095,7 @@ describe('Phase F — FetchTransport error contract (timesheets)', () => {
     const fixture = loadFixture('error_500');
     mockFetch.mockResolvedValueOnce(failResponse(500, 'Internal Server Error', fixture));
 
-    await expect(liveClient.timesheets.getById(404)).rejects.toMatchObject({
+    await expect(liveClient.timesheets.get(404)).rejects.toMatchObject({
       name: 'ServerError',
       code: 'SERVER_ERROR',
       category: 'server',
@@ -1082,7 +1106,7 @@ describe('Phase F — FetchTransport error contract (timesheets)', () => {
 
     // the same contract on a 404: not_found category, non-retryable
     mockFetch.mockResolvedValueOnce(failResponse(404, 'Not Found', loadFixture('error_404')));
-    const err = await liveClient.timesheets.getById(1).catch((e: unknown) => e);
+    const err = await liveClient.timesheets.get(1).catch((e: unknown) => e);
 
     expect(err).toBeInstanceOf(NotFoundError);
     expect((err as NotFoundError).category).toBe('not_found');

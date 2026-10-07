@@ -16,6 +16,7 @@ import type { DryRunResult, HelperOptions, MutationOptions, Resolution, Resoluti
 import { KimaiConfigError, ResolutionError } from '../errors';
 
 import type { ApiClient } from '../client';
+import { streamOnce } from './paging';
 
 /** The identifier kinds `teams.resolve` documents (policy §6). */
 const TEAM_IDENTIFIER_KINDS =
@@ -100,15 +101,18 @@ const DRY_RUN_WARNING_NO_DIFF = 'the current record is not fetched by dry-run (z
 export class TeamClient {
   constructor(private client: ApiClient) {}
 
-  async list(params?: TeamListParams): Promise<Team[]> {
+  /** Stream every Team record from the single non-paginated batch. */
+  list(params?: TeamListParams): AsyncIterable<Team> {
+    return streamOnce(() => this.listAll(params));
+  }
+
+  /** Collect the single non-paginated batch of Team records (MCP-preferred read). */
+  async listAll(params?: TeamListParams): Promise<Team[]> {
     return this.client.get<Team[]>('/api/teams', { query: params });
   }
 
-  async getAll(params?: TeamListParams): Promise<Team[]> {
-    return this.list(params);
-  }
-
-  async getById(id: number): Promise<Team> {
+  /** Get one Team record by id; a 404 normalises to NOT_FOUND. */
+  async get(id: number): Promise<Team> {
     return this.client.get<Team>(`/api/teams/${id}`);
   }
 
@@ -446,7 +450,7 @@ export class TeamClient {
 
   /** Direct fetch by id: a miss throws NOT_FOUND (never `null`). */
   private async resolveByIdentifier(id: number): Promise<Resolution<Team>> {
-    const team = await this.getById(id);
+    const team = await this.get(id);
     const candidate: ResolutionCandidate = { id: team.id ?? id, label: teamLabel(team) };
     return {
       value: team,

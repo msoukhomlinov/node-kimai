@@ -12,6 +12,13 @@ function loadFixture(name: string): unknown {
   return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
+/** Collect an AsyncIterable into an array (the D2 `list` stream). */
+async function collect<T>(iter: AsyncIterable<T>): Promise<T[]> {
+  const out: T[] = [];
+  for await (const item of iter) out.push(item);
+  return out;
+}
+
 describe('TeamClient', () => {
   let client: ApiClient;
   let transport: { request: ReturnType<typeof vi.fn> };
@@ -30,7 +37,7 @@ describe('TeamClient', () => {
       const fixture = loadFixture('team');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.teams.list();
+      await collect(client.teams.list());
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -40,23 +47,23 @@ describe('TeamClient', () => {
     });
   });
 
-  describe('getAll', () => {
+  describe('listAll', () => {
     it('should delegate to list', async () => {
       const fixture = loadFixture('team');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.teams.getAll();
+      await client.teams.listAll();
 
       expect(transport.request).toHaveBeenCalledTimes(1);
     });
   });
 
-  describe('getById', () => {
+  describe('get', () => {
     it('should call GET /api/teams/{id}', async () => {
       const fixture = loadFixture('team_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.teams.getById(1);
+      await client.teams.get(1);
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -267,10 +274,10 @@ describe('TeamClient — Phase F agent execution layer', () => {
   });
 
   describe('teams.list (pinned rows)', () => {
-    it('returns the unwrapped teams list', async () => {
+    it('streams the unwrapped teams records', async () => {
       transport.request.mockResolvedValueOnce(PHASE_F_TEAMS);
 
-      const rows = await client.teams.list();
+      const rows = await collect(client.teams.list());
 
       expect(rows).toEqual(PHASE_F_TEAMS);
       expect(transport.request).toHaveBeenCalledWith({
@@ -280,12 +287,21 @@ describe('TeamClient — Phase F agent execution layer', () => {
       });
     });
 
+    it('listAll collects the single non-paginated batch', async () => {
+      const fixture = loadFixture('team');
+      transport.request.mockResolvedValueOnce(fixture);
+
+      const rows = await client.teams.listAll();
+
+      expect(rows).toEqual(fixture);
+    });
+
     it('does not send page/size params for this non-paginated endpoint', async () => {
       // Non-paginated endpoint: GET declares no page/size, so the whole
       // collection is one page and no page params may be sent.
       transport.request.mockResolvedValueOnce(PHASE_F_TEAMS);
 
-      const rows = await client.teams.list();
+      const rows = await collect(client.teams.list());
 
       expect(rows).toEqual(PHASE_F_TEAMS);
       expect(transport.request).toHaveBeenCalledTimes(1);
@@ -294,12 +310,12 @@ describe('TeamClient — Phase F agent execution layer', () => {
     });
   });
 
-  describe('teams.getById (pinned rows)', () => {
+  describe('teams.get (pinned rows)', () => {
     it('returns the unwrapped teams record', async () => {
       const fixture = loadFixture('team_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const team = await client.teams.getById(1);
+      const team = await client.teams.get(1);
 
       expect(team).toEqual(fixture);
       expect(transport.request).toHaveBeenCalledWith({
@@ -313,7 +329,7 @@ describe('TeamClient — Phase F agent execution layer', () => {
         createApiError({ status: 404, message: 'Not Found', data: { title: 'Not Found' } }),
       );
 
-      const err = await client.teams.getById(404).catch((e: unknown) => e);
+      const err = await client.teams.get(404).catch((e: unknown) => e);
 
       expect(err).toBeInstanceOf(NotFoundError);
       expect((err as NotFoundError).code).toBe('NOT_FOUND');

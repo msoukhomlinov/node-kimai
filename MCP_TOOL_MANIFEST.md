@@ -1,7 +1,7 @@
 # MCP Tool Manifest — node-kimai
 
 > **Machine-generated** by `scripts/project-mcp-tools.mjs` (`npm run mcp:project`) from
-> `capabilities.json` (planHash `72f432d3b5a4da7c…`). Do not hand-edit.
+> `capabilities.json` (planHash `c7a8a71fbd684b17…`). Do not hand-edit.
 > Curation is recorded in `MCP_TOOL_OVERRIDES.json` and re-applied by the script.
 
 ## Projection summary
@@ -14,7 +14,7 @@
 - subsumed read primitives: 15 (covered by a helper — see below)
 - excluded by curation: 2
 - overrides applied: 16
-- projected at: 2026-10-07T12:26:31.005Z
+- projected at: 2026-10-07T12:34:31.108Z
 
 ## Progressive disclosure — the decision
 
@@ -296,7 +296,7 @@ exists; otherwise the operation is reachable through the dispatch tool named in
 | `activities.createRate` | `kimai_create_activity_rate` | write | Add rate for activity. | — | `kimai_create_activity_rate` |
 | `activities.delete` | `kimai_delete_activity` | destructive | Delete activity. | — | `kimai_delete_activity` |
 | `activities.deleteRate` | `kimai_delete_activity_rate` | destructive | Delete rate for activity. | — | `kimai_delete_activity_rate` |
-| `activities.getById` | — | read | Fetch activity. | Preferred over activities.list + a client-side find when the id is known. | `kimai_read` |
+| `activities.get` | — | read | Fetch activity. | Preferred over activities.list + a client-side find when the id is known. | `kimai_read` |
 | `activities.getRates` | `kimai_get_activity_rates` | read | Fetch rates for activity. | — | `kimai_get_activity_rates` |
 | `activities.list` | — | read | Fetch activities. | Preferred over activities.search only when the agent must walk pages; activities.search is the bounded default read. | `kimai_read` |
 | `activities.resolve` | `kimai_resolve_activity` | read | Resolve one activity from an identifier. | Preferred over activities.list + a client-side find for any single-activity lookup. | `kimai_resolve_activity` |
@@ -316,8 +316,8 @@ exists; otherwise the operation is reachable through the dispatch tool named in
 | `customers.delete` | `kimai_delete_customer` | destructive | Delete customer. | — | `kimai_delete_customer` |
 | `customers.deleteComment` | `kimai_delete_customer_comment` | destructive | Delete customer comment. | — | `kimai_delete_customer_comment` |
 | `customers.deleteRate` | `kimai_delete_customer_rate` | destructive | Delete rate for customer. | — | `kimai_delete_customer_rate` |
-| `customers.getById` | — | read | Fetch customer. | Preferred over customers.list + a client-side find when the id is known. | `kimai_read` |
-| `customers.getContext` | `kimai_get_customer_context` | read | Fetch the working context of one customer. | Preferred over separate customers.getById + getRates + listComments calls when the agent needs the customer's working context. | `kimai_get_customer_context` |
+| `customers.get` | — | read | Fetch customer. | Preferred over customers.list + a client-side find when the id is known. | `kimai_read` |
+| `customers.getContext` | `kimai_get_customer_context` | read | Fetch the working context of one customer. | Preferred over separate customers.get + getRates + listComments calls when the agent needs the customer's working context. | `kimai_get_customer_context` |
 | `customers.getRates` | `kimai_get_customer_rates` | read | Fetch rates for customer. | — | `kimai_get_customer_rates` |
 | `customers.list` | — | read | Fetch customers. | Preferred over customers.search only when the agent must walk pages; customers.search is the bounded default read. | `kimai_read` |
 | `customers.listComments` | `kimai_list_customer_comments` | read | Fetch comments for customer. | — | `kimai_list_customer_comments` |
@@ -327,7 +327,7 @@ exists; otherwise the operation is reachable through the dispatch tool named in
 | `customers.updateMeta` | `kimai_update_customer_meta` | write | Update customer custom-field. | — | `kimai_update_customer_meta` |
 | `export.deleteTemplate` | `kimai_delete_export_template` | destructive | Delete export template. | — | `kimai_delete_export_template` |
 | `invoices.download` | — | read | Download invoice. | — | `kimai_read` |
-| `invoices.getById` | — | read | Fetch invoice. | Preferred over invoices.list + a client-side find when the id is known. | `kimai_read` |
+| `invoices.get` | — | read | Fetch invoice. | Preferred over invoices.list + a client-side find when the id is known. | `kimai_read` |
 | `invoices.list` | — | read | Fetch invoices. | Preferred over invoices.search only when the agent must walk pages; invoices.search is the bounded default read. | `kimai_read` |
 | `invoices.resolve` | `kimai_resolve_invoice` | read | Resolve one invoice from an identifier. | Preferred over invoices.list when the id is already known. | `kimai_resolve_invoice` |
 | `invoices.search` | `kimai_search_invoices` | read | Search invoices with the spec filters, bounded by an explicit limit. | Preferred over invoices.list for any bounded filtered read (at most 100 rows). | `kimai_search_invoices` |
@@ -339,8 +339,8 @@ exists; otherwise the operation is reachable through the dispatch tool named in
 | `projects.delete` | `kimai_delete_project` | destructive | Delete project. | — | `kimai_delete_project` |
 | `projects.deleteComment` | `kimai_delete_project_comment` | destructive | Delete project comment. | — | `kimai_delete_project_comment` |
 | `projects.deleteRate` | `kimai_delete_project_rate` | destructive | Delete rate for project. | — | `kimai_delete_project_rate` |
-| `projects.getById` | — | read | Fetch project. | Preferred over projects.list + a client-side find when the id is known. | `kimai_read` |
-| `projects.getContext` | `kimai_get_project_context` | read | Fetch the working context of one project. | Preferred over separate projects.getById + getRates calls when the agent needs the project's working context. | `kimai_get_project_context` |
+| `projects.get` | — | read | Fetch project. | Preferred over projects.list + a client-side find when the id is known. | `kimai_read` |
+| `projects.getContext` | `kimai_get_project_context` | read | Fetch the working context of one project. | Preferred over separate projects.get + getRates calls when the agent needs the project's working context. | `kimai_get_project_context` |
 | `projects.getRates` | `kimai_get_project_rates` | read | Fetch rates for project. | — | `kimai_get_project_rates` |
 | `projects.list` | — | read | Fetch projects. | Preferred over projects.search only when the agent must walk pages; projects.search is the bounded default read. | `kimai_read` |
 | `projects.listComments` | `kimai_list_project_comments` | read | Fetch comments for project. | — | `kimai_list_project_comments` |
@@ -351,7 +351,7 @@ exists; otherwise the operation is reachable through the dispatch tool named in
 | `system.getPlugins` | `kimai_list_plugins` | read | Fetch installed Plugins. | — | `kimai_list_plugins` |
 | `system.getVersion` | `kimai_get_version` | read | Fetch Kimai release. | — | `kimai_get_version` |
 | `system.ping` | `kimai_ping` | read | Testing route for the API. | — | `kimai_ping` |
-| `tags.create` | `kimai_create_tag` | write | Create tag. | Preferred over tags.update for a new tag. | `kimai_create_tag` |
+| `tags.create` | `kimai_create_tag` | write | Create tag. | Preferred for creating a new tag; the vendor exposes no tag update, so a rename is a create + delete pair. | `kimai_create_tag` |
 | `tags.delete` | `kimai_delete_tag` | destructive | Delete tag. | — | `kimai_delete_tag` |
 | `tags.find` | — | read | Fetch tags. | — | `kimai_read` |
 | `tags.list` | — | read | Fetch tags. | Preferred over tags.search only when the agent must walk pages; tags.search is the bounded default read. | `kimai_read` |
@@ -360,7 +360,7 @@ exists; otherwise the operation is reachable through the dispatch tool named in
 | `teams.addMember` | `kimai_add_team_member` | write | Add team member. | — | `kimai_add_team_member` |
 | `teams.create` | `kimai_create_team` | write | Create team. | Preferred over teams.update for a new team. | `kimai_create_team` |
 | `teams.delete` | `kimai_delete_team` | destructive | Delete team. | — | `kimai_delete_team` |
-| `teams.getById` | — | read | Fetch team. | Preferred over teams.list + a client-side find when the id is known. | `kimai_read` |
+| `teams.get` | — | read | Fetch team. | Preferred over teams.list + a client-side find when the id is known. | `kimai_read` |
 | `teams.grantActivityAccess` | `kimai_grant_team_activity_access` | write | Grant activity access. | — | `kimai_grant_team_activity_access` |
 | `teams.grantCustomerAccess` | `kimai_grant_team_customer_access` | write | Grant customer access. | — | `kimai_grant_team_customer_access` |
 | `teams.grantProjectAccess` | `kimai_grant_team_project_access` | write | Grant project access. | — | `kimai_grant_team_project_access` |
@@ -374,9 +374,9 @@ exists; otherwise the operation is reachable through the dispatch tool named in
 | `timesheets.create` | `kimai_create_timesheet` | write | Create a timesheet. | — | `kimai_create_timesheet` |
 | `timesheets.delete` | `kimai_delete_timesheet` | destructive | Delete a timesheet. | — | `kimai_delete_timesheet` |
 | `timesheets.duplicate` | `kimai_duplicate_timesheet` | write | Duplicate a timesheet (resetting its export state). | — | `kimai_duplicate_timesheet` |
+| `timesheets.get` | — | read | Fetch one timesheet by its id. | Preferred over timesheets.list + client-side find when the id is known. | `kimai_read` |
 | `timesheets.getActive` | `kimai_get_active_timesheets` | read | Fetch the active (running) timesheets. | Preferred over timesheets.list({ active: true }) for the plain active set: the dedicated endpoint, no list envelope. | `kimai_get_active_timesheets` |
-| `timesheets.getById` | — | read | Fetch one timesheet by its id. | Preferred over timesheets.list + client-side find when the id is known. | `kimai_read` |
-| `timesheets.getContext` | `kimai_get_timesheet_context` | read | Fetch a timesheet with its referenced user, activity, project and customer. | Preferred over getById + individual user/activity/project/customer reads: one call instead of four or five. | `kimai_get_timesheet_context` |
+| `timesheets.getContext` | `kimai_get_timesheet_context` | read | Fetch a timesheet with its referenced user, activity, project and customer. | Preferred over get + individual user/activity/project/customer reads: one call instead of four or five. | `kimai_get_timesheet_context` |
 | `timesheets.getRecent` | `kimai_get_recent_timesheets` | read | Fetch the most recent timesheets. | — | `kimai_get_recent_timesheets` |
 | `timesheets.list` | — | read | Fetch timesheets. | Preferred over timesheets.search only when the agent must walk pages; search is the bounded default read. | `kimai_read` |
 | `timesheets.resolve` | `kimai_resolve_timesheet` | read | Resolve one timesheet from an id or a begin timestamp. | Preferred over timesheets.list for any identifier lookup — it removes the paging and the hand-matching. | `kimai_resolve_timesheet` |
@@ -387,7 +387,7 @@ exists; otherwise the operation is reachable through the dispatch tool named in
 | `timesheets.updateMeta` | `kimai_update_timesheet_meta` | write | Update the custom meta fields of a timesheet. | — | `kimai_update_timesheet_meta` |
 | `users.create` | `kimai_create_user` | write | Create user. | Preferred over users.update for a new user. | `kimai_create_user` |
 | `users.deleteApiToken` | — | destructive | Delete API token. | — | `kimai_delete` |
-| `users.getById` | — | read | Fetch user. | Preferred over users.list + a client-side find when the id is known. | `kimai_read` |
+| `users.get` | — | read | Fetch user. | Preferred over users.list + a client-side find when the id is known. | `kimai_read` |
 | `users.list` | — | read | Fetch users. | Preferred over users.search only when the agent must walk pages; users.search is the bounded default read. | `kimai_read` |
 | `users.resolve` | `kimai_resolve_user` | read | Resolve one user from an identifier. | Preferred over users.list + a client-side find for any single-user lookup. | `kimai_resolve_user` |
 | `users.search` | `kimai_search_users` | read | Search users with the spec filters, bounded by an explicit limit. | Preferred over users.list for any bounded filtered read (at most 100 rows). | `kimai_search_users` |
@@ -421,7 +421,7 @@ where one exists; every mutation carries the `dry_run` affordance.
 | `kimai_list_customer_comments` | `customers.listComments` | primitive | `id: number (required)` | `Comment[]` | readOnlyHint, openWorldHint |
 | `kimai_list_plugins` | `system.getPlugins` | primitive | `none` | `Plugin[]` | readOnlyHint, openWorldHint |
 | `kimai_list_project_comments` | `projects.listComments` | primitive | `id: number (required)` | `Comment[]` | readOnlyHint, openWorldHint |
-| `kimai_list_teams` | `teams.list` | primitive | `params: object` | `Team[]` | readOnlyHint, openWorldHint |
+| `kimai_list_teams` | `teams.list` | primitive | `params: object` | `unknown` | readOnlyHint, openWorldHint |
 | `kimai_ping` | `system.ping` | primitive | `none` | `boolean` | readOnlyHint, openWorldHint |
 | `kimai_resolve_activity` | `activities.resolve` | helper | `identifier: object (required), expand: boolean, resolution_details: boolean` | `ActivitySummary (drops internalRate, fixedRate, hourlyRate, metaFields — expand: true returns them)` | readOnlyHint, openWorldHint |
 | `kimai_resolve_customer` | `customers.resolve` | helper | `identifier: object (required), expand: boolean, resolution_details: boolean` | `CustomerSummary (drops internalRate, fixedRate, hourlyRate, metaFields — expand: true returns them)` | readOnlyHint, openWorldHint |
@@ -508,20 +508,20 @@ where one exists; every mutation carries the `dry_run` affordance.
 
 ### Read primitives subsumed by a helper (tools back onto the helper tier)
 
-- `activities.getById` — subsumed by the helper activities.resolve (resolve covers get-by-id, compact with an expand escape hatch)
+- `activities.get` — subsumed by the helper activities.resolve (resolve covers get-by-id, compact with an expand escape hatch)
 - `activities.list` — subsumed by the helper activities.search (bounded search covers list + filter; name one read tool per resource)
-- `customers.getById` — subsumed by the helper customers.resolve (resolve covers get-by-id, compact with an expand escape hatch)
+- `customers.get` — subsumed by the helper customers.resolve (resolve covers get-by-id, compact with an expand escape hatch)
 - `customers.list` — subsumed by the helper customers.search (bounded search covers list + filter; name one read tool per resource)
-- `invoices.getById` — subsumed by the helper invoices.resolve (resolve covers get-by-id, compact with an expand escape hatch)
+- `invoices.get` — subsumed by the helper invoices.resolve (resolve covers get-by-id, compact with an expand escape hatch)
 - `invoices.list` — subsumed by the helper invoices.search (bounded search covers list + filter; name one read tool per resource)
-- `projects.getById` — subsumed by the helper projects.resolve (resolve covers get-by-id, compact with an expand escape hatch)
+- `projects.get` — subsumed by the helper projects.resolve (resolve covers get-by-id, compact with an expand escape hatch)
 - `projects.list` — subsumed by the helper projects.search (bounded search covers list + filter; name one read tool per resource)
 - `tags.find` — subsumed by the helper tags.search (one search tool per resource)
 - `tags.list` — subsumed by the helper tags.search (bounded search covers list + filter; name one read tool per resource)
-- `teams.getById` — subsumed by the helper teams.resolve (resolve covers get-by-id, compact with an expand escape hatch)
-- `timesheets.getById` — subsumed by the helper timesheets.resolve (resolve covers get-by-id, compact with an expand escape hatch)
+- `teams.get` — subsumed by the helper teams.resolve (resolve covers get-by-id, compact with an expand escape hatch)
+- `timesheets.get` — subsumed by the helper timesheets.resolve (resolve covers get-by-id, compact with an expand escape hatch)
 - `timesheets.list` — subsumed by the helper timesheets.search (bounded search covers list + filter; name one read tool per resource)
-- `users.getById` — subsumed by the helper users.resolve (resolve covers get-by-id, compact with an expand escape hatch)
+- `users.get` — subsumed by the helper users.resolve (resolve covers get-by-id, compact with an expand escape hatch)
 - `users.list` — subsumed by the helper users.search (bounded search covers list + filter; name one read tool per resource)
 
 ### Excluded by curation (`MCP_TOOL_OVERRIDES.json`)
@@ -569,7 +569,7 @@ where one exists; every mutation carries the `dry_run` affordance.
 
 ## Meta
 
-- planHash: `72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7`
+- planHash: `c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629`
 - registry records: 108
 - projected tools: 90
 - core tier: 10

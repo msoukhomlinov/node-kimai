@@ -23,6 +23,8 @@ import type { DryRunResult, HelperOptions, MutationOptions, Resolution, Resoluti
 import { KimaiConfigError } from '../errors';
 
 import type { ApiClient } from '../client';
+import { collectPages, pageParams, streamItems, streamPages, type PageFetcher } from './paging';
+import type { Page } from '../types/common';
 
 /** Helper `limit` bounds (policy §9): default 25, hard maximum 100. */
 const DEFAULT_HELPER_LIMIT = 25;
@@ -143,54 +145,41 @@ const DRY_RUN_WARNING_NO_DIFF = 'the current record is not fetched by dry-run (z
 export class InvoiceClient {
   constructor(private client: ApiClient) {}
 
-  async list(params?: InvoiceListParams): Promise<Invoice[]> {
-    return this.client.get<Invoice[]>('/api/invoices', { query: params });
+  /** Stream every Invoice record across pages until a short/empty page. */
+  list(params?: InvoiceListParams): AsyncIterable<Invoice> {
+    const plan = this.pagePlan(params);
+    return streamItems(plan.fetch, plan.page, plan.size);
   }
 
-  async getAll(params?: InvoiceListParams): Promise<Invoice[]> {
-    const query = { ...params };
-    const pages: Invoice[] = [];
-    let page = query.page || 1;
-    const size = query.size || 100;
-
-    while (true) {
-      const results = await this.client.get<Invoice[]>('/api/invoices', {
-        query: { ...query, page, size },
-      });
-      if (!results || results.length === 0) break;
-      pages.push(...results);
-      if (results.length < size) break;
-      page++;
-    }
-    return pages;
+  /** Collect every page of Invoice records (MCP-preferred read). */
+  async listAll(params?: InvoiceListParams): Promise<Invoice[]> {
+    const plan = this.pagePlan(params);
+    return collectPages(plan.fetch, plan.page, plan.size);
   }
 
   /**
    * Page stream for `for await (const page of client.invoices.listPages())`.
-   * Declared non-async so the public type is `AsyncIterable<Invoice[]>`, not
-   * `AsyncGenerator` (line convention shared with node-hudu/node-autotask).
+   * Public and non-async: the return type is `AsyncIterable<Page<Invoice>>`. Kimai
+   * returns bare arrays with no totals, so `hasMore` is derived honestly:
+   * `hasMore = items.length === size`.
    */
-  listPages(params?: InvoiceListParams): AsyncIterable<Invoice[]> {
-    return this.collectPages(params);
+  listPages(params?: InvoiceListParams): AsyncIterable<Page<Invoice>> {
+    const plan = this.pagePlan(params);
+    return streamPages(plan.fetch, plan.page, plan.size);
   }
 
-  private async *collectPages(params?: InvoiceListParams): AsyncGenerator<Invoice[]> {
-    const query = { ...params };
-    const size = query.size || 100;
-    let page = query.page || 1;
-
-    while (true) {
-      const results = await this.client.get<Invoice[]>('/api/invoices', {
-        query: { ...query, page, size },
-      });
-      if (!results || results.length === 0) break;
-      yield results;
-      if (results.length < size) break;
-      page++;
-    }
+  /** Resolve the paging params (default page 1 / size 100) and the per-page fetcher. */
+  private pagePlan(params?: InvoiceListParams): { fetch: PageFetcher<Invoice>; page: number; size: number } {
+    const { page, size } = pageParams(params);
+    return {
+      page,
+      size,
+      fetch: (p, s) => this.client.get<Invoice[]>('/api/invoices', { query: { ...params, page: p, size: s } }),
+    };
   }
 
-  async getById(id: number): Promise<Invoice> {
+  /** Get one Invoice record by id; a 404 normalises to NOT_FOUND. */
+  async get(id: number): Promise<Invoice> {
     return this.client.get<Invoice>(`/api/invoices/${id}`);
   }
 
@@ -308,7 +297,7 @@ export class InvoiceClient {
 
   /** Direct fetch by id: a miss throws NOT_FOUND (never `null`). */
   private async resolveById(id: number): Promise<Resolution<Invoice>> {
-    const invoice = await this.getById(id);
+    const invoice = await this.get(id);
     const candidate: ResolutionCandidate = { id: invoice.id ?? id, label: invoiceLabel(invoice) };
     return {
       value: invoice,

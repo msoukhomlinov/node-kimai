@@ -134,7 +134,7 @@
         "usage": "Irreversible — the vendor offers no archive for activities. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": [
-          "activities.getById"
+          "activities.get"
         ]
       },
       "compact": null,
@@ -233,7 +233,7 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch activities.",
-        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and activities.search for the agent-facing compact read.",
+        "usage": "Streams the single non-paginated batch; listAll collects it. activities.search is the agent-facing compact read.",
         "preferredWhen": "Preferred over activities.search only when the agent must walk pages; activities.search is the bounded default read.",
         "related": [
           "activities.search",
@@ -253,7 +253,12 @@
         {
           "id": "activities.list.success",
           "file": "test/resources/activity.test.ts",
-          "title": "returns the unwrapped activities list"
+          "title": "streams the unwrapped activities records"
+        },
+        {
+          "id": "activities.list.listAll",
+          "file": "test/resources/activity.test.ts",
+          "title": "listAll collects the single non-paginated batch"
         },
         {
           "id": "activities.list.pagination",
@@ -266,7 +271,7 @@
     },
     {
       "endpoint": "GET /api/activities/{id}",
-      "primitive": "activities.getById",
+      "primitive": "activities.get",
       "specialOp": null,
       "vendorFilters": [],
       "search": null,
@@ -296,12 +301,12 @@
       ],
       "tests": [
         {
-          "id": "activities.getById.success",
+          "id": "activities.get.success",
           "file": "test/resources/activity.test.ts",
           "title": "returns the unwrapped activities record"
         },
         {
-          "id": "activities.getById.not-found",
+          "id": "activities.get.not-found",
           "file": "test/resources/activity.test.ts",
           "title": "normalises a 404 into NOT_FOUND"
         }
@@ -601,7 +606,7 @@
         "usage": "Accepts { id }, { name } or a bare numeric id / exact name. activities have no other business key. A complete filtered read with no exact match returns null; a filtered page that filled its 500-record cap with no exact match throws RESOLUTION_TRUNCATED; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
         "preferredWhen": "Preferred over activities.list + a client-side find for any single-activity lookup.",
         "related": [
-          "activities.getById",
+          "activities.get",
           "activities.list",
           "activities.search"
         ]
@@ -1004,7 +1009,7 @@
         "usage": "Irreversible — the vendor offers no archive for customers. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": [
-          "customers.getById"
+          "customers.get"
         ]
       },
       "compact": null,
@@ -1148,7 +1153,7 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch customers.",
-        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and customers.search for the agent-facing compact read.",
+        "usage": "Streams the single non-paginated batch; listAll collects it. customers.search is the agent-facing compact read.",
         "preferredWhen": "Preferred over customers.search only when the agent must walk pages; customers.search is the bounded default read.",
         "related": [
           "customers.search",
@@ -1169,7 +1174,12 @@
         {
           "id": "customers.list.success",
           "file": "test/resources/customer.test.ts",
-          "title": "returns the unwrapped customers list"
+          "title": "streams the unwrapped customers records"
+        },
+        {
+          "id": "customers.list.listAll",
+          "file": "test/resources/customer.test.ts",
+          "title": "listAll collects the single non-paginated batch"
         },
         {
           "id": "customers.list.pagination",
@@ -1182,7 +1192,7 @@
     },
     {
       "endpoint": "GET /api/customers/{id}",
-      "primitive": "customers.getById",
+      "primitive": "customers.get",
       "specialOp": null,
       "vendorFilters": [],
       "search": null,
@@ -1213,12 +1223,12 @@
       ],
       "tests": [
         {
-          "id": "customers.getById.success",
+          "id": "customers.get.success",
           "file": "test/resources/customer.test.ts",
           "title": "returns the unwrapped customers record"
         },
         {
-          "id": "customers.getById.not-found",
+          "id": "customers.get.not-found",
           "file": "test/resources/customer.test.ts",
           "title": "normalises a 404 into NOT_FOUND"
         }
@@ -1648,7 +1658,7 @@
         "usage": "Accepts { id }, { name } or a bare numeric id / exact name. A complete filtered read with no exact match returns null; a filtered page that filled its 500-record cap with no exact match throws RESOLUTION_TRUNCATED; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
         "preferredWhen": "Preferred over customers.list + a client-side find for any single-customer lookup.",
         "related": [
-          "customers.getById",
+          "customers.get",
           "customers.list",
           "customers.search",
           "customers.getContext"
@@ -1755,9 +1765,9 @@
       "metadata": {
         "purpose": "Fetch the working context of one customer.",
         "usage": "Returns the customer together with its rates, comments and meta fields. Compact by default; expand: true for the full child records. Fetches run concurrently with a bounded pool.",
-        "preferredWhen": "Preferred over separate customers.getById + getRates + listComments calls when the agent needs the customer's working context.",
+        "preferredWhen": "Preferred over separate customers.get + getRates + listComments calls when the agent needs the customer's working context.",
         "related": [
-          "customers.getById",
+          "customers.get",
           "customers.getRates",
           "customers.listComments"
         ]
@@ -1853,7 +1863,7 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch invoices.",
-        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and invoices.search for the agent-facing compact read.",
+        "usage": "Streams the spec-filtered invoices records across the vendor pages (listAll collects every page; listPages exposes Page<T> with hasMore = items.length === size). invoices.search is the agent-facing compact read.",
         "preferredWhen": "Preferred over invoices.search only when the agent must walk pages; invoices.search is the bounded default read.",
         "related": [
           "invoices.search",
@@ -1873,12 +1883,17 @@
         {
           "id": "invoices.list.success",
           "file": "test/resources/invoice.test.ts",
-          "title": "returns the unwrapped invoices list"
+          "title": "streams the unwrapped invoices records"
         },
         {
-          "id": "invoices.list.pagination",
+          "id": "invoices.list.listAll",
           "file": "test/resources/invoice.test.ts",
-          "title": "sends page/size and stops on a short page"
+          "title": "listAll collects every page"
+        },
+        {
+          "id": "invoices.list.listPages",
+          "file": "test/resources/invoice.test.ts",
+          "title": "listPages yields pages with hasMore from a full page"
         }
       ],
       "group": "invoices",
@@ -1886,7 +1901,7 @@
     },
     {
       "endpoint": "GET /api/invoices/{id}",
-      "primitive": "invoices.getById",
+      "primitive": "invoices.get",
       "specialOp": null,
       "vendorFilters": [],
       "search": null,
@@ -1916,12 +1931,12 @@
       ],
       "tests": [
         {
-          "id": "invoices.getById.success",
+          "id": "invoices.get.success",
           "file": "test/resources/invoice.test.ts",
           "title": "returns the unwrapped invoices record"
         },
         {
-          "id": "invoices.getById.not-found",
+          "id": "invoices.get.not-found",
           "file": "test/resources/invoice.test.ts",
           "title": "normalises a 404 into NOT_FOUND"
         }
@@ -2031,7 +2046,7 @@
         "usage": "Accepts { id } or a bare numeric id. Invoices have no vendor filter for a business key (invoice number), so no name/number resolution is offered; a miss throws NOT_FOUND rather than returning null.",
         "preferredWhen": "Preferred over invoices.list when the id is already known.",
         "related": [
-          "invoices.getById",
+          "invoices.get",
           "invoices.list",
           "invoices.search"
         ]
@@ -2129,7 +2144,7 @@
         "usage": "Irreversible — the vendor offers no archive for projects. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": [
-          "projects.getById"
+          "projects.get"
         ]
       },
       "compact": null,
@@ -2278,7 +2293,7 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch projects.",
-        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and projects.search for the agent-facing compact read.",
+        "usage": "Streams the single non-paginated batch; listAll collects it. projects.search is the agent-facing compact read.",
         "preferredWhen": "Preferred over projects.search only when the agent must walk pages; projects.search is the bounded default read.",
         "related": [
           "projects.search",
@@ -2299,7 +2314,12 @@
         {
           "id": "projects.list.success",
           "file": "test/resources/project.test.ts",
-          "title": "returns the unwrapped projects list"
+          "title": "streams the unwrapped projects records"
+        },
+        {
+          "id": "projects.list.listAll",
+          "file": "test/resources/project.test.ts",
+          "title": "listAll collects the single non-paginated batch"
         },
         {
           "id": "projects.list.pagination",
@@ -2312,7 +2332,7 @@
     },
     {
       "endpoint": "GET /api/projects/{id}",
-      "primitive": "projects.getById",
+      "primitive": "projects.get",
       "specialOp": null,
       "vendorFilters": [],
       "search": null,
@@ -2343,12 +2363,12 @@
       ],
       "tests": [
         {
-          "id": "projects.getById.success",
+          "id": "projects.get.success",
           "file": "test/resources/project.test.ts",
           "title": "returns the unwrapped projects record"
         },
         {
-          "id": "projects.getById.not-found",
+          "id": "projects.get.not-found",
           "file": "test/resources/project.test.ts",
           "title": "normalises a 404 into NOT_FOUND"
         }
@@ -2778,7 +2798,7 @@
         "usage": "Accepts { id }, { name } or a bare numeric id / exact name. A complete filtered read with no exact match returns null; a filtered page that filled its 500-record cap with no exact match throws RESOLUTION_TRUNCATED; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
         "preferredWhen": "Preferred over projects.list + a client-side find for any single-project lookup.",
         "related": [
-          "projects.getById",
+          "projects.get",
           "projects.list",
           "projects.search",
           "projects.getContext"
@@ -2885,9 +2905,9 @@
       "metadata": {
         "purpose": "Fetch the working context of one project.",
         "usage": "Returns the project together with its customer, rates and meta fields. Compact by default; expand: true for the full child records. Fetches run concurrently with a bounded pool.",
-        "preferredWhen": "Preferred over separate projects.getById + getRates calls when the agent needs the project's working context.",
+        "preferredWhen": "Preferred over separate projects.get + getRates calls when the agent needs the project's working context.",
         "related": [
-          "projects.getById",
+          "projects.get",
           "projects.getRates"
         ]
       },
@@ -3046,7 +3066,7 @@
         "usage": "Irreversible — the vendor offers no archive for tags. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": [
-          "tags.getById"
+          "tags.list"
         ]
       },
       "compact": null,
@@ -3092,7 +3112,7 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch tags.",
-        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and tags.search for the agent-facing compact read.",
+        "usage": "Streams the single non-paginated batch; listAll collects it. tags.search is the agent-facing compact read.",
         "preferredWhen": "Preferred over tags.search only when the agent must walk pages; tags.search is the bounded default read.",
         "related": [
           "tags.search",
@@ -3112,7 +3132,12 @@
         {
           "id": "tags.list.success",
           "file": "test/resources/tag.test.ts",
-          "title": "returns the unwrapped tags list"
+          "title": "streams the unwrapped tags records"
+        },
+        {
+          "id": "tags.list.listAll",
+          "file": "test/resources/tag.test.ts",
+          "title": "listAll collects the single non-paginated batch"
         },
         {
           "id": "tags.list.pagination",
@@ -3177,10 +3202,8 @@
       "metadata": {
         "purpose": "Create tag.",
         "usage": "Creates a tag; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
-        "preferredWhen": "Preferred over tags.update for a new tag.",
-        "related": [
-          "tags.update"
-        ]
+        "preferredWhen": "Preferred for creating a new tag; the vendor exposes no tag update, so a rename is a create + delete pair.",
+        "related": []
       },
       "compact": null,
       "resolution": null,
@@ -3329,7 +3352,7 @@
         "usage": "Irreversible — the vendor offers no archive for teams. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": [
-          "teams.getById"
+          "teams.get"
         ]
       },
       "compact": null,
@@ -3565,7 +3588,7 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch teams.",
-        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages.",
+        "usage": "Streams the single non-paginated batch; listAll collects it. Primitives return the full typed record.",
         "preferredWhen": "Preferred when the caller must walk pages; otherwise a bounded read is enough.",
         "related": [
           "teams.resolve"
@@ -3584,7 +3607,12 @@
         {
           "id": "teams.list.success",
           "file": "test/resources/team.test.ts",
-          "title": "returns the unwrapped teams list"
+          "title": "streams the unwrapped teams records"
+        },
+        {
+          "id": "teams.list.listAll",
+          "file": "test/resources/team.test.ts",
+          "title": "listAll collects the single non-paginated batch"
         },
         {
           "id": "teams.list.pagination",
@@ -3597,7 +3625,7 @@
     },
     {
       "endpoint": "GET /api/teams/{id}",
-      "primitive": "teams.getById",
+      "primitive": "teams.get",
       "specialOp": null,
       "vendorFilters": [],
       "search": null,
@@ -3627,12 +3655,12 @@
       ],
       "tests": [
         {
-          "id": "teams.getById.success",
+          "id": "teams.get.success",
           "file": "test/resources/team.test.ts",
           "title": "returns the unwrapped teams record"
         },
         {
-          "id": "teams.getById.not-found",
+          "id": "teams.get.not-found",
           "file": "test/resources/team.test.ts",
           "title": "normalises a 404 into NOT_FOUND"
         }
@@ -3660,8 +3688,7 @@
         "usage": "Replaces the editable fields of an existing team; supports { dryRun: true }. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": "Preferred over teams.create for any change to an existing team.",
         "related": [
-          "teams.create",
-          "teams.updateMeta"
+          "teams.create"
         ]
       },
       "compact": null,
@@ -3951,7 +3978,7 @@
         "usage": "Accepts { id }, { name } or a bare numeric id / exact name. A miss returns null; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
         "preferredWhen": "Preferred over teams.list + a client-side find for any single-team lookup.",
         "related": [
-          "teams.getById",
+          "teams.get",
           "teams.list"
         ]
       },
@@ -4073,7 +4100,7 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch timesheets.",
-        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and timesheets.search for the agent-facing compact read.",
+        "usage": "Streams the spec-filtered timesheets records across the vendor pages (listAll collects every page; listPages exposes Page<T> with hasMore = items.length === size). timesheets.search is the agent-facing compact read.",
         "preferredWhen": "Preferred over timesheets.search only when the agent must walk pages; search is the bounded default read.",
         "related": [
           "timesheets.search",
@@ -4094,12 +4121,17 @@
         {
           "id": "timesheets.list.success",
           "file": "test/resources/timesheet.test.ts",
-          "title": "returns the unwrapped timesheets list"
+          "title": "streams the unwrapped timesheets records"
         },
         {
-          "id": "timesheets.list.pagination",
+          "id": "timesheets.list.listAll",
           "file": "test/resources/timesheet.test.ts",
-          "title": "sends page/size and stops on a short page"
+          "title": "listAll collects every page"
+        },
+        {
+          "id": "timesheets.list.listPages",
+          "file": "test/resources/timesheet.test.ts",
+          "title": "listPages yields pages with hasMore from a full page"
         },
         {
           "id": "timesheets.list.429",
@@ -4117,7 +4149,7 @@
     },
     {
       "endpoint": "GET /api/timesheets/{id}",
-      "primitive": "timesheets.getById",
+      "primitive": "timesheets.get",
       "specialOp": null,
       "vendorFilters": [],
       "search": null,
@@ -4148,12 +4180,12 @@
       ],
       "tests": [
         {
-          "id": "timesheets.getById.success",
+          "id": "timesheets.get.success",
           "file": "test/resources/timesheet.test.ts",
           "title": "returns the unwrapped timesheet record"
         },
         {
-          "id": "timesheets.getById.not-found",
+          "id": "timesheets.get.not-found",
           "file": "test/resources/timesheet.test.ts",
           "title": "normalises a 404 into NOT_FOUND"
         }
@@ -4607,7 +4639,7 @@
         "usage": "Accepts { id }, { begin } or a bare numeric id / begin timestamp; timesheets have no name field, so any other text resolves to nothing. The begin filter is \"at or after\", so a stale timestamp matches many records and throws RESOLUTION_AMBIGUOUS — narrow it. A miss by id throws NOT_FOUND (never null). No client scan occurs (vendor filter), so the scan never truncates. expand: true for the full record; resolutionDetails: true for the Resolution wrapper (cost, scanned, scanTruncated).",
         "preferredWhen": "Preferred over timesheets.list for any identifier lookup — it removes the paging and the hand-matching.",
         "related": [
-          "timesheets.getById",
+          "timesheets.get",
           "timesheets.search",
           "timesheets.getContext"
         ]
@@ -4747,9 +4779,9 @@
       "metadata": {
         "purpose": "Fetch a timesheet with its referenced user, activity, project and customer.",
         "usage": "user and activity are null when the record carries no reference; project is null when absent; customer is null unless the project carries one. Compact TimesheetSummary by default; expand: true for the full timesheet record.",
-        "preferredWhen": "Preferred over getById + individual user/activity/project/customer reads: one call instead of four or five.",
+        "preferredWhen": "Preferred over get + individual user/activity/project/customer reads: one call instead of four or five.",
         "related": [
-          "timesheets.getById",
+          "timesheets.get",
           "timesheets.resolve"
         ]
       },
@@ -4850,7 +4882,7 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch users.",
-        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and users.search for the agent-facing compact read.",
+        "usage": "Streams the single non-paginated batch; listAll collects it. users.search is the agent-facing compact read.",
         "preferredWhen": "Preferred over users.search only when the agent must walk pages; users.search is the bounded default read.",
         "related": [
           "users.search",
@@ -4870,7 +4902,12 @@
         {
           "id": "users.list.success",
           "file": "test/resources/user.test.ts",
-          "title": "returns the unwrapped users list"
+          "title": "streams the unwrapped users records"
+        },
+        {
+          "id": "users.list.listAll",
+          "file": "test/resources/user.test.ts",
+          "title": "listAll collects the single non-paginated batch"
         },
         {
           "id": "users.list.pagination",
@@ -4883,7 +4920,7 @@
     },
     {
       "endpoint": "GET /api/users/{id}",
-      "primitive": "users.getById",
+      "primitive": "users.get",
       "specialOp": null,
       "vendorFilters": [],
       "search": null,
@@ -4913,12 +4950,12 @@
       ],
       "tests": [
         {
-          "id": "users.getById.success",
+          "id": "users.get.success",
           "file": "test/resources/user.test.ts",
           "title": "returns the unwrapped users record"
         },
         {
-          "id": "users.getById.not-found",
+          "id": "users.get.not-found",
           "file": "test/resources/user.test.ts",
           "title": "normalises a 404 into NOT_FOUND"
         }
@@ -4983,7 +5020,7 @@
         "preferredWhen": "Preferred over users.create for any change to an existing user.",
         "related": [
           "users.create",
-          "users.updateMeta"
+          "users.get"
         ]
       },
       "compact": null,
@@ -5126,7 +5163,7 @@
         "usage": "Accepts { id }, { username } or a bare numeric id / exact username. The username path scans the user list with a bounded cap (cap 500 records; the collection is unpaginated); a truncated scan throws RESOLUTION_TRUNCATED and an ambiguous match throws RESOLUTION_AMBIGUOUS with the candidate ids.",
         "preferredWhen": "Preferred over users.list + a client-side find for any single-user lookup.",
         "related": [
-          "users.getById",
+          "users.get",
           "users.list",
           "users.search",
           "users.getMe"

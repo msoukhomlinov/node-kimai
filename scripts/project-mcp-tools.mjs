@@ -77,7 +77,7 @@ const plur = (r) => PLURAL[r] ?? r;
  */
 const OPERATION_NAME = {
   list: (r) => `list_${plur(r)}`,
-  getById: (r) => `get_${sing(r)}`,
+  get: (r) => `get_${sing(r)}`,
   find: (r) => `find_${plur(r)}`,
   resolve: (r) => `resolve_${sing(r)}`,
   search: (r) => `search_${plur(r)}`,
@@ -148,7 +148,7 @@ function subsumedBy(rec, helpers) {
   if (rec.kind !== 'primitive') return null;
   const forRes = helpers.get(rec.resource) ?? {};
   if (rec.operation === 'list' && forRes.search) return `subsumed by the helper ${forRes.search} (bounded search covers list + filter; name one read tool per resource)`;
-  if (rec.operation === 'getById' && forRes.resolve) return `subsumed by the helper ${forRes.resolve} (resolve covers get-by-id, compact with an expand escape hatch)`;
+  if (rec.operation === 'get' && forRes.resolve) return `subsumed by the helper ${forRes.resolve} (resolve covers get-by-id, compact with an expand escape hatch)`;
   if (rec.operation === 'find' && forRes.search) return `subsumed by the helper ${forRes.search} (one search tool per resource)`;
   return null;
 }

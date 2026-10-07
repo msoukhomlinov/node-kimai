@@ -11,6 +11,13 @@ function loadFixture(name: string): unknown {
   return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
+/** Collect an AsyncIterable into an array (the D2 `list` stream). */
+async function collect<T>(iter: AsyncIterable<T>): Promise<T[]> {
+  const out: T[] = [];
+  for await (const item of iter) out.push(item);
+  return out;
+}
+
 describe('InvoiceClient', () => {
   let client: ApiClient;
   let transport: { request: ReturnType<typeof vi.fn> };
@@ -29,12 +36,12 @@ describe('InvoiceClient', () => {
       const fixture = loadFixture('invoice');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.invoices.list();
+      await collect(client.invoices.list());
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
         path: '/api/invoices',
-        query: undefined,
+        query: { page: 1, size: 100 },
       });
     });
 
@@ -42,7 +49,7 @@ describe('InvoiceClient', () => {
       const fixture = loadFixture('invoice');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.invoices.list({ customer: 1, page: 2, size: 50 });
+      await collect(client.invoices.list({ customer: 1, page: 2, size: 50 }));
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -52,7 +59,7 @@ describe('InvoiceClient', () => {
     });
   });
 
-  describe('getAll', () => {
+  describe('listAll', () => {
     it('should paginate until empty', async () => {
       const page1 = loadFixture('invoice');
       const emptyPage: unknown[] = [];
@@ -62,7 +69,7 @@ describe('InvoiceClient', () => {
         .mockResolvedValueOnce(emptyPage);
 
       // Use size=1 so 2 items triggers pagination
-      await client.invoices.getAll({ size: 1 });
+      await client.invoices.listAll({ size: 1 });
 
       expect(transport.request).toHaveBeenNthCalledWith(1, {
         method: 'GET',
@@ -85,7 +92,7 @@ describe('InvoiceClient', () => {
         .mockResolvedValueOnce(page1)
         .mockResolvedValueOnce(page2);
 
-      const result = await client.invoices.getAll({ size: 2 });
+      const result = await client.invoices.listAll({ size: 2 });
 
       expect(transport.request).toHaveBeenCalledTimes(2);
       expect(result).toEqual([...page1, ...page2]);
@@ -95,7 +102,7 @@ describe('InvoiceClient', () => {
       const page1 = loadFixture('invoice');
       transport.request.mockResolvedValueOnce(page1);
 
-      await client.invoices.getAll({ customer: 5 });
+      await client.invoices.listAll({ customer: 5 });
 
       const call = transport.request.mock.calls[0]![0];
       expect(call.query.customer).toBe(5);
@@ -114,19 +121,19 @@ describe('InvoiceClient', () => {
 
       const pages: unknown[][] = [];
       for await (const page of client.invoices.listPages({ size: 2 })) {
-        pages.push(page as unknown[]);
+        pages.push(page.items);
       }
 
       expect(pages).toHaveLength(2);
     });
   });
 
-  describe('getById', () => {
+  describe('get', () => {
     it('should call GET /api/invoices/{id}', async () => {
       const fixture = loadFixture('invoice_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.invoices.getById(1);
+      await client.invoices.get(1);
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -216,16 +223,16 @@ describe('InvoiceClient — Phase F agent execution layer', () => {
   });
 
   describe('invoices.list (pinned rows)', () => {
-    it('returns the unwrapped invoices list', async () => {
+    it('streams the unwrapped invoices records', async () => {
       const rows = [PHASE_F_INVOICE];
       transport.request.mockResolvedValueOnce(rows);
 
-      const res = await client.invoices.list({
+      const res = await collect(client.invoices.list({
         begin: '2026-01-01T00:00:00',
         end: '2026-01-31T23:59:59',
         customers: [3],
         status: ['paid'],
-      });
+      }));
 
       expect(res).toEqual(rows);
       expect(transport.request).toHaveBeenCalledWith({
@@ -236,17 +243,19 @@ describe('InvoiceClient — Phase F agent execution layer', () => {
           end: '2026-01-31T23:59:59',
           customers: [3],
           status: ['paid'],
+          page: 1,
+          size: 100,
         },
       });
     });
 
-    it('sends page/size and stops on a short page', async () => {
+    it('listAll collects every page', async () => {
       const page1 = [PHASE_F_INVOICE];
       transport.request
         .mockResolvedValueOnce(page1)
         .mockResolvedValueOnce([]);
 
-      const result = await client.invoices.getAll({ size: 1 });
+      const result = await client.invoices.listAll({ size: 1 });
 
       expect(transport.request).toHaveBeenNthCalledWith(1, {
         method: 'GET',
@@ -263,11 +272,28 @@ describe('InvoiceClient — Phase F agent execution layer', () => {
     });
   });
 
-  describe('invoices.getById (pinned rows)', () => {
+    it('listPages yields pages with hasMore from a full page', async () => {
+      const page1 = loadFixture('invoice') as unknown[];
+      transport.request
+        .mockResolvedValueOnce(page1)
+        .mockResolvedValueOnce([]);
+
+      const pages: Array<{ items: unknown[]; page: number; size: number; hasMore: boolean }> = [];
+      for await (const page of client.invoices.listPages({ size: page1.length })) {
+        pages.push(page);
+      }
+
+      expect(pages).toHaveLength(2);
+      expect(pages[0]).toMatchObject({ page: 1, size: page1.length, hasMore: true });
+      expect(pages[0]!.items).toEqual(page1);
+      expect(pages[1]).toMatchObject({ page: 2, size: page1.length, hasMore: false });
+    });
+
+  describe('invoices.get (pinned rows)', () => {
     it('returns the unwrapped invoices record', async () => {
       transport.request.mockResolvedValueOnce(PHASE_F_INVOICE);
 
-      const invoice = await client.invoices.getById(7);
+      const invoice = await client.invoices.get(7);
 
       expect(invoice).toEqual(PHASE_F_INVOICE);
       expect(transport.request).toHaveBeenCalledWith({
@@ -281,7 +307,7 @@ describe('InvoiceClient — Phase F agent execution layer', () => {
         createApiError({ status: 404, message: 'Not Found', data: { title: 'Not Found' } }),
       );
 
-      const err = await client.invoices.getById(404).catch((e: unknown) => e);
+      const err = await client.invoices.get(404).catch((e: unknown) => e);
 
       expect(err).toBeInstanceOf(NotFoundError);
       expect((err as NotFoundError).code).toBe('NOT_FOUND');

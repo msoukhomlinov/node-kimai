@@ -69,8 +69,8 @@ export interface CapabilityRecord {
 /** Grouped registry (one section per built group). */
 export const CAPABILITY_GROUPS = {
   "actions": {
-    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
-    "builtAt": "2026-10-07T12:22:14.107Z",
+    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+    "builtAt": "2026-10-07T12:34:18.461Z",
     "records": [
       {
         "id": "actions.getActions",
@@ -145,7 +145,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActionsClient.ts",
           "sourceHash": "8b17771dad5d7d7fff03abcde1c1d2095955fa2d924c1db4237fe5a07df2ff96",
           "testFiles": [
@@ -157,8 +157,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "activities": {
-    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
-    "builtAt": "2026-10-07T12:22:14.107Z",
+    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+    "builtAt": "2026-10-07T12:34:18.462Z",
     "records": [
       {
         "id": "activities.addToTeam",
@@ -240,13 +240,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
+          "sourceHash": "8c6eb2cd852c8149d14fb67f80ab5a5f698cf356f08e83562afaa9bf69b69068",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
+          "testHash": "11aaa14f71175566ef2f584a3ef2f38ff9fc09cd67bcd25c17eaf515920c264b"
         }
       },
       {
@@ -318,13 +318,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
+          "sourceHash": "8c6eb2cd852c8149d14fb67f80ab5a5f698cf356f08e83562afaa9bf69b69068",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
+          "testHash": "11aaa14f71175566ef2f584a3ef2f38ff9fc09cd67bcd25c17eaf515920c264b"
         }
       },
       {
@@ -398,13 +398,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
+          "sourceHash": "8c6eb2cd852c8149d14fb67f80ab5a5f698cf356f08e83562afaa9bf69b69068",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
+          "testHash": "11aaa14f71175566ef2f584a3ef2f38ff9fc09cd67bcd25c17eaf515920c264b"
         }
       },
       {
@@ -459,7 +459,7 @@ export const CAPABILITY_GROUPS = {
           "usage": "Irreversible — the vendor offers no archive for activities. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": [
-            "activities.getById"
+            "activities.get"
           ]
         },
         "compact": null,
@@ -477,13 +477,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
+          "sourceHash": "8c6eb2cd852c8149d14fb67f80ab5a5f698cf356f08e83562afaa9bf69b69068",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
+          "testHash": "11aaa14f71175566ef2f584a3ef2f38ff9fc09cd67bcd25c17eaf515920c264b"
         }
       },
       {
@@ -558,19 +558,19 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
+          "sourceHash": "8c6eb2cd852c8149d14fb67f80ab5a5f698cf356f08e83562afaa9bf69b69068",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
+          "testHash": "11aaa14f71175566ef2f584a3ef2f38ff9fc09cd67bcd25c17eaf515920c264b"
         }
       },
       {
-        "id": "activities.getById",
+        "id": "activities.get",
         "resource": "activities",
-        "operation": "getById",
+        "operation": "get",
         "kind": "primitive",
         "endpoint": "GET /api/activities/{id}",
         "effect": "read",
@@ -587,7 +587,7 @@ export const CAPABILITY_GROUPS = {
           "drops": []
         },
         "examples": [
-          "await client.activities.getById(1)"
+          "await client.activities.get(1)"
         ],
         "permissions": "unknown",
         "pagination": {
@@ -623,24 +623,24 @@ export const CAPABILITY_GROUPS = {
         "status": "tested",
         "tests": [
           {
-            "id": "activities.getById.success",
+            "id": "activities.get.success",
             "file": "test/resources/activity.test.ts",
             "title": "returns the unwrapped activities record"
           },
           {
-            "id": "activities.getById.not-found",
+            "id": "activities.get.not-found",
             "file": "test/resources/activity.test.ts",
             "title": "normalises a 404 into NOT_FOUND"
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
+          "sourceHash": "8c6eb2cd852c8149d14fb67f80ab5a5f698cf356f08e83562afaa9bf69b69068",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
+          "testHash": "11aaa14f71175566ef2f584a3ef2f38ff9fc09cd67bcd25c17eaf515920c264b"
         }
       },
       {
@@ -703,13 +703,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
+          "sourceHash": "8c6eb2cd852c8149d14fb67f80ab5a5f698cf356f08e83562afaa9bf69b69068",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
+          "testHash": "11aaa14f71175566ef2f584a3ef2f38ff9fc09cd67bcd25c17eaf515920c264b"
         }
       },
       {
@@ -729,7 +729,7 @@ export const CAPABILITY_GROUPS = {
           }
         },
         "outputSchema": {
-          "type": "Activity[]",
+          "type": "unknown",
           "drops": []
         },
         "examples": [
@@ -760,7 +760,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch activities.",
-          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and activities.search for the agent-facing compact read.",
+          "usage": "Streams the single non-paginated batch; listAll collects it. activities.search is the agent-facing compact read.",
           "preferredWhen": "Preferred over activities.search only when the agent must walk pages; activities.search is the bounded default read.",
           "related": [
             "activities.search",
@@ -773,7 +773,12 @@ export const CAPABILITY_GROUPS = {
           {
             "id": "activities.list.success",
             "file": "test/resources/activity.test.ts",
-            "title": "returns the unwrapped activities list"
+            "title": "streams the unwrapped activities records"
+          },
+          {
+            "id": "activities.list.listAll",
+            "file": "test/resources/activity.test.ts",
+            "title": "listAll collects the single non-paginated batch"
           },
           {
             "id": "activities.list.pagination",
@@ -782,13 +787,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
+          "sourceHash": "8c6eb2cd852c8149d14fb67f80ab5a5f698cf356f08e83562afaa9bf69b69068",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
+          "testHash": "11aaa14f71175566ef2f584a3ef2f38ff9fc09cd67bcd25c17eaf515920c264b"
         }
       },
       {
@@ -858,7 +863,7 @@ export const CAPABILITY_GROUPS = {
           "usage": "Accepts { id }, { name } or a bare numeric id / exact name. activities have no other business key. A complete filtered read with no exact match returns null; a filtered page that filled its 500-record cap with no exact match throws RESOLUTION_TRUNCATED; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
           "preferredWhen": "Preferred over activities.list + a client-side find for any single-activity lookup.",
           "related": [
-            "activities.getById",
+            "activities.get",
             "activities.list",
             "activities.search"
           ]
@@ -888,13 +893,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
+          "sourceHash": "8c6eb2cd852c8149d14fb67f80ab5a5f698cf356f08e83562afaa9bf69b69068",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
+          "testHash": "11aaa14f71175566ef2f584a3ef2f38ff9fc09cd67bcd25c17eaf515920c264b"
         }
       },
       {
@@ -985,13 +990,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
+          "sourceHash": "8c6eb2cd852c8149d14fb67f80ab5a5f698cf356f08e83562afaa9bf69b69068",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
+          "testHash": "11aaa14f71175566ef2f584a3ef2f38ff9fc09cd67bcd25c17eaf515920c264b"
         }
       },
       {
@@ -1076,13 +1081,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
+          "sourceHash": "8c6eb2cd852c8149d14fb67f80ab5a5f698cf356f08e83562afaa9bf69b69068",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
+          "testHash": "11aaa14f71175566ef2f584a3ef2f38ff9fc09cd67bcd25c17eaf515920c264b"
         }
       },
       {
@@ -1164,20 +1169,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
+          "sourceHash": "8c6eb2cd852c8149d14fb67f80ab5a5f698cf356f08e83562afaa9bf69b69068",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
+          "testHash": "11aaa14f71175566ef2f584a3ef2f38ff9fc09cd67bcd25c17eaf515920c264b"
         }
       }
     ]
   },
   "approvalBundle": {
-    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
-    "builtAt": "2026-10-07T12:22:14.107Z",
+    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+    "builtAt": "2026-10-07T12:34:18.462Z",
     "records": [
       {
         "id": "approvalBundle.addToApprove",
@@ -1248,7 +1253,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1317,7 +1322,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1386,7 +1391,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1455,7 +1460,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1524,7 +1529,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1536,8 +1541,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "config": {
-    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
-    "builtAt": "2026-10-07T12:22:14.107Z",
+    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+    "builtAt": "2026-10-07T12:34:18.462Z",
     "records": [
       {
         "id": "config.getColors",
@@ -1593,7 +1598,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ConfigClient.ts",
           "sourceHash": "adc0f6d6fb493cb57c878084d8ef592c5f48c21cdb6befcf6b46c2c4aa25cfa1",
           "testFiles": [
@@ -1656,7 +1661,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ConfigClient.ts",
           "sourceHash": "adc0f6d6fb493cb57c878084d8ef592c5f48c21cdb6befcf6b46c2c4aa25cfa1",
           "testFiles": [
@@ -1668,8 +1673,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "customers": {
-    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
-    "builtAt": "2026-10-07T12:22:14.107Z",
+    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+    "builtAt": "2026-10-07T12:34:18.462Z",
     "records": [
       {
         "id": "customers.addToTeam",
@@ -1751,13 +1756,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -1829,13 +1834,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -1909,13 +1914,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -1989,13 +1994,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -2050,7 +2055,7 @@ export const CAPABILITY_GROUPS = {
           "usage": "Irreversible — the vendor offers no archive for customers. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": [
-            "customers.getById"
+            "customers.get"
           ]
         },
         "compact": null,
@@ -2068,13 +2073,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -2149,13 +2154,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -2230,19 +2235,19 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
-        "id": "customers.getById",
+        "id": "customers.get",
         "resource": "customers",
-        "operation": "getById",
+        "operation": "get",
         "kind": "primitive",
         "endpoint": "GET /api/customers/{id}",
         "effect": "read",
@@ -2259,7 +2264,7 @@ export const CAPABILITY_GROUPS = {
           "drops": []
         },
         "examples": [
-          "await client.customers.getById(1)"
+          "await client.customers.get(1)"
         ],
         "permissions": "unknown",
         "pagination": {
@@ -2296,24 +2301,24 @@ export const CAPABILITY_GROUPS = {
         "status": "tested",
         "tests": [
           {
-            "id": "customers.getById.success",
+            "id": "customers.get.success",
             "file": "test/resources/customer.test.ts",
             "title": "returns the unwrapped customers record"
           },
           {
-            "id": "customers.getById.not-found",
+            "id": "customers.get.not-found",
             "file": "test/resources/customer.test.ts",
             "title": "normalises a 404 into NOT_FOUND"
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -2373,9 +2378,9 @@ export const CAPABILITY_GROUPS = {
         "metadata": {
           "purpose": "Fetch the working context of one customer.",
           "usage": "Returns the customer together with its rates, comments and meta fields. Compact by default; expand: true for the full child records. Fetches run concurrently with a bounded pool.",
-          "preferredWhen": "Preferred over separate customers.getById + getRates + listComments calls when the agent needs the customer's working context.",
+          "preferredWhen": "Preferred over separate customers.get + getRates + listComments calls when the agent needs the customer's working context.",
           "related": [
-            "customers.getById",
+            "customers.get",
             "customers.getRates",
             "customers.listComments"
           ]
@@ -2395,13 +2400,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -2464,13 +2469,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -2490,7 +2495,7 @@ export const CAPABILITY_GROUPS = {
           }
         },
         "outputSchema": {
-          "type": "Customer[]",
+          "type": "unknown",
           "drops": []
         },
         "examples": [
@@ -2521,7 +2526,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch customers.",
-          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and customers.search for the agent-facing compact read.",
+          "usage": "Streams the single non-paginated batch; listAll collects it. customers.search is the agent-facing compact read.",
           "preferredWhen": "Preferred over customers.search only when the agent must walk pages; customers.search is the bounded default read.",
           "related": [
             "customers.search",
@@ -2535,7 +2540,12 @@ export const CAPABILITY_GROUPS = {
           {
             "id": "customers.list.success",
             "file": "test/resources/customer.test.ts",
-            "title": "returns the unwrapped customers list"
+            "title": "streams the unwrapped customers records"
+          },
+          {
+            "id": "customers.list.listAll",
+            "file": "test/resources/customer.test.ts",
+            "title": "listAll collects the single non-paginated batch"
           },
           {
             "id": "customers.list.pagination",
@@ -2544,13 +2554,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -2613,13 +2623,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -2700,13 +2710,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -2776,7 +2786,7 @@ export const CAPABILITY_GROUPS = {
           "usage": "Accepts { id }, { name } or a bare numeric id / exact name. A complete filtered read with no exact match returns null; a filtered page that filled its 500-record cap with no exact match throws RESOLUTION_TRUNCATED; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
           "preferredWhen": "Preferred over customers.list + a client-side find for any single-customer lookup.",
           "related": [
-            "customers.getById",
+            "customers.get",
             "customers.list",
             "customers.search",
             "customers.getContext"
@@ -2807,13 +2817,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -2894,13 +2904,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -2985,13 +2995,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       },
       {
@@ -3073,20 +3083,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "sourceHash": "78cf302c3864a5977693c9c1d6f204104a34ddf26fe6d064795d097d67812895",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+          "testHash": "4048585d58509a734c870582d479a23f13fdca35699bc3da8221f32475ff0718"
         }
       }
     ]
   },
   "export": {
-    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
-    "builtAt": "2026-10-07T12:22:14.107Z",
+    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+    "builtAt": "2026-10-07T12:34:18.462Z",
     "records": [
       {
         "id": "export.deleteTemplate",
@@ -3156,7 +3166,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ExportClient.ts",
           "sourceHash": "9faf9f6222d6e47605cbd7d5a212614863cf340898546842ea4be2788d3012a8",
           "testFiles": [
@@ -3168,8 +3178,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "invoices": {
-    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
-    "builtAt": "2026-10-07T12:22:14.107Z",
+    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+    "builtAt": "2026-10-07T12:34:18.462Z",
     "records": [
       {
         "id": "invoices.download",
@@ -3231,19 +3241,19 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
+          "sourceHash": "16494c84eb2a5f3d297aee5f0d9517ba5695ea4850017b5b2cc18c42eefa13e2",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
-          "testHash": "687628080258372aac630f543cf2475d28f6c2b75d2b98f448280dfd520df986"
+          "testHash": "6ea1bd06b004a31b3fea66980bc6fd5da2e3f725ed41ad15d32b9e22d9c6d7c8"
         }
       },
       {
-        "id": "invoices.getById",
+        "id": "invoices.get",
         "resource": "invoices",
-        "operation": "getById",
+        "operation": "get",
         "kind": "primitive",
         "endpoint": "GET /api/invoices/{id}",
         "effect": "read",
@@ -3260,7 +3270,7 @@ export const CAPABILITY_GROUPS = {
           "drops": []
         },
         "examples": [
-          "await client.invoices.getById(1)"
+          "await client.invoices.get(1)"
         ],
         "permissions": "unknown",
         "pagination": {
@@ -3296,24 +3306,24 @@ export const CAPABILITY_GROUPS = {
         "status": "tested",
         "tests": [
           {
-            "id": "invoices.getById.success",
+            "id": "invoices.get.success",
             "file": "test/resources/invoice.test.ts",
             "title": "returns the unwrapped invoices record"
           },
           {
-            "id": "invoices.getById.not-found",
+            "id": "invoices.get.not-found",
             "file": "test/resources/invoice.test.ts",
             "title": "normalises a 404 into NOT_FOUND"
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
+          "sourceHash": "16494c84eb2a5f3d297aee5f0d9517ba5695ea4850017b5b2cc18c42eefa13e2",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
-          "testHash": "687628080258372aac630f543cf2475d28f6c2b75d2b98f448280dfd520df986"
+          "testHash": "6ea1bd06b004a31b3fea66980bc6fd5da2e3f725ed41ad15d32b9e22d9c6d7c8"
         }
       },
       {
@@ -3333,7 +3343,7 @@ export const CAPABILITY_GROUPS = {
           }
         },
         "outputSchema": {
-          "type": "Invoice[]",
+          "type": "unknown",
           "drops": []
         },
         "examples": [
@@ -3364,7 +3374,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch invoices.",
-          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and invoices.search for the agent-facing compact read.",
+          "usage": "Streams the spec-filtered invoices records across the vendor pages (listAll collects every page; listPages exposes Page<T> with hasMore = items.length === size). invoices.search is the agent-facing compact read.",
           "preferredWhen": "Preferred over invoices.search only when the agent must walk pages; invoices.search is the bounded default read.",
           "related": [
             "invoices.search",
@@ -3377,22 +3387,27 @@ export const CAPABILITY_GROUPS = {
           {
             "id": "invoices.list.success",
             "file": "test/resources/invoice.test.ts",
-            "title": "returns the unwrapped invoices list"
+            "title": "streams the unwrapped invoices records"
           },
           {
-            "id": "invoices.list.pagination",
+            "id": "invoices.list.listAll",
             "file": "test/resources/invoice.test.ts",
-            "title": "sends page/size and stops on a short page"
+            "title": "listAll collects every page"
+          },
+          {
+            "id": "invoices.list.listPages",
+            "file": "test/resources/invoice.test.ts",
+            "title": "listPages yields pages with hasMore from a full page"
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
+          "sourceHash": "16494c84eb2a5f3d297aee5f0d9517ba5695ea4850017b5b2cc18c42eefa13e2",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
-          "testHash": "687628080258372aac630f543cf2475d28f6c2b75d2b98f448280dfd520df986"
+          "testHash": "6ea1bd06b004a31b3fea66980bc6fd5da2e3f725ed41ad15d32b9e22d9c6d7c8"
         }
       },
       {
@@ -3460,7 +3475,7 @@ export const CAPABILITY_GROUPS = {
           "usage": "Accepts { id } or a bare numeric id. Invoices have no vendor filter for a business key (invoice number), so no name/number resolution is offered; a miss throws NOT_FOUND rather than returning null.",
           "preferredWhen": "Preferred over invoices.list when the id is already known.",
           "related": [
-            "invoices.getById",
+            "invoices.get",
             "invoices.list",
             "invoices.search"
           ]
@@ -3480,13 +3495,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
+          "sourceHash": "16494c84eb2a5f3d297aee5f0d9517ba5695ea4850017b5b2cc18c42eefa13e2",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
-          "testHash": "687628080258372aac630f543cf2475d28f6c2b75d2b98f448280dfd520df986"
+          "testHash": "6ea1bd06b004a31b3fea66980bc6fd5da2e3f725ed41ad15d32b9e22d9c6d7c8"
         }
       },
       {
@@ -3567,13 +3582,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
+          "sourceHash": "16494c84eb2a5f3d297aee5f0d9517ba5695ea4850017b5b2cc18c42eefa13e2",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
-          "testHash": "687628080258372aac630f543cf2475d28f6c2b75d2b98f448280dfd520df986"
+          "testHash": "6ea1bd06b004a31b3fea66980bc6fd5da2e3f725ed41ad15d32b9e22d9c6d7c8"
         }
       },
       {
@@ -3655,20 +3670,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
+          "sourceHash": "16494c84eb2a5f3d297aee5f0d9517ba5695ea4850017b5b2cc18c42eefa13e2",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
-          "testHash": "687628080258372aac630f543cf2475d28f6c2b75d2b98f448280dfd520df986"
+          "testHash": "6ea1bd06b004a31b3fea66980bc6fd5da2e3f725ed41ad15d32b9e22d9c6d7c8"
         }
       }
     ]
   },
   "projects": {
-    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
-    "builtAt": "2026-10-07T12:22:14.107Z",
+    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+    "builtAt": "2026-10-07T12:34:18.462Z",
     "records": [
       {
         "id": "projects.addToTeam",
@@ -3750,13 +3765,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -3828,13 +3843,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -3908,13 +3923,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -3988,13 +4003,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -4049,7 +4064,7 @@ export const CAPABILITY_GROUPS = {
           "usage": "Irreversible — the vendor offers no archive for projects. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": [
-            "projects.getById"
+            "projects.get"
           ]
         },
         "compact": null,
@@ -4067,13 +4082,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -4148,13 +4163,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -4229,19 +4244,19 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
-        "id": "projects.getById",
+        "id": "projects.get",
         "resource": "projects",
-        "operation": "getById",
+        "operation": "get",
         "kind": "primitive",
         "endpoint": "GET /api/projects/{id}",
         "effect": "read",
@@ -4258,7 +4273,7 @@ export const CAPABILITY_GROUPS = {
           "drops": []
         },
         "examples": [
-          "await client.projects.getById(1)"
+          "await client.projects.get(1)"
         ],
         "permissions": "unknown",
         "pagination": {
@@ -4295,24 +4310,24 @@ export const CAPABILITY_GROUPS = {
         "status": "tested",
         "tests": [
           {
-            "id": "projects.getById.success",
+            "id": "projects.get.success",
             "file": "test/resources/project.test.ts",
             "title": "returns the unwrapped projects record"
           },
           {
-            "id": "projects.getById.not-found",
+            "id": "projects.get.not-found",
             "file": "test/resources/project.test.ts",
             "title": "normalises a 404 into NOT_FOUND"
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -4372,9 +4387,9 @@ export const CAPABILITY_GROUPS = {
         "metadata": {
           "purpose": "Fetch the working context of one project.",
           "usage": "Returns the project together with its customer, rates and meta fields. Compact by default; expand: true for the full child records. Fetches run concurrently with a bounded pool.",
-          "preferredWhen": "Preferred over separate projects.getById + getRates calls when the agent needs the project's working context.",
+          "preferredWhen": "Preferred over separate projects.get + getRates calls when the agent needs the project's working context.",
           "related": [
-            "projects.getById",
+            "projects.get",
             "projects.getRates"
           ]
         },
@@ -4393,13 +4408,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -4462,13 +4477,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -4488,7 +4503,7 @@ export const CAPABILITY_GROUPS = {
           }
         },
         "outputSchema": {
-          "type": "Project[]",
+          "type": "unknown",
           "drops": []
         },
         "examples": [
@@ -4519,7 +4534,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch projects.",
-          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and projects.search for the agent-facing compact read.",
+          "usage": "Streams the single non-paginated batch; listAll collects it. projects.search is the agent-facing compact read.",
           "preferredWhen": "Preferred over projects.search only when the agent must walk pages; projects.search is the bounded default read.",
           "related": [
             "projects.search",
@@ -4533,7 +4548,12 @@ export const CAPABILITY_GROUPS = {
           {
             "id": "projects.list.success",
             "file": "test/resources/project.test.ts",
-            "title": "returns the unwrapped projects list"
+            "title": "streams the unwrapped projects records"
+          },
+          {
+            "id": "projects.list.listAll",
+            "file": "test/resources/project.test.ts",
+            "title": "listAll collects the single non-paginated batch"
           },
           {
             "id": "projects.list.pagination",
@@ -4542,13 +4562,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -4611,13 +4631,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -4698,13 +4718,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -4774,7 +4794,7 @@ export const CAPABILITY_GROUPS = {
           "usage": "Accepts { id }, { name } or a bare numeric id / exact name. A complete filtered read with no exact match returns null; a filtered page that filled its 500-record cap with no exact match throws RESOLUTION_TRUNCATED; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
           "preferredWhen": "Preferred over projects.list + a client-side find for any single-project lookup.",
           "related": [
-            "projects.getById",
+            "projects.get",
             "projects.list",
             "projects.search",
             "projects.getContext"
@@ -4805,13 +4825,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -4892,13 +4912,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -4983,13 +5003,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       },
       {
@@ -5071,20 +5091,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "sourceHash": "079b651da776daf9da3b011427de1beb3f4ae642256a9de8661ea85308d5aae8",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+          "testHash": "12a971f2efcae553a6ecb9e157302660038ee537adeeb21ea7e83ca3ec701d7c"
         }
       }
     ]
   },
   "system": {
-    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
-    "builtAt": "2026-10-07T12:22:14.107Z",
+    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+    "builtAt": "2026-10-07T12:34:18.462Z",
     "records": [
       {
         "id": "system.getPlugins",
@@ -5140,7 +5160,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/SystemClient.ts",
           "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
           "testFiles": [
@@ -5203,7 +5223,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/SystemClient.ts",
           "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
           "testFiles": [
@@ -5266,7 +5286,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/SystemClient.ts",
           "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
           "testFiles": [
@@ -5278,8 +5298,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "tags": {
-    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
-    "builtAt": "2026-10-07T12:22:14.107Z",
+    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+    "builtAt": "2026-10-07T12:34:18.462Z",
     "records": [
       {
         "id": "tags.create",
@@ -5330,10 +5350,8 @@ export const CAPABILITY_GROUPS = {
         "metadata": {
           "purpose": "Create tag.",
           "usage": "Creates a tag; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
-          "preferredWhen": "Preferred over tags.update for a new tag.",
-          "related": [
-            "tags.update"
-          ]
+          "preferredWhen": "Preferred for creating a new tag; the vendor exposes no tag update, so a rename is a create + delete pair.",
+          "related": []
         },
         "compact": null,
         "status": "tested",
@@ -5350,13 +5368,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
+          "sourceHash": "2e117d06e2eafdbe69fdeb611c9dba0b5dd0df6a8b02b3bb5543e7214202d1ba",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
-          "testHash": "d2063bf590b584e5b28486186b38d9c4dfcbd0a85218d6f502323479401f199b"
+          "testHash": "3736a8a02ae1e7551e7d20af015c0278028d27ab44d3ca93e200972f422e07c4"
         }
       },
       {
@@ -5411,7 +5429,7 @@ export const CAPABILITY_GROUPS = {
           "usage": "Irreversible — the vendor offers no archive for tags. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": [
-            "tags.getById"
+            "tags.list"
           ]
         },
         "compact": null,
@@ -5429,13 +5447,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
+          "sourceHash": "2e117d06e2eafdbe69fdeb611c9dba0b5dd0df6a8b02b3bb5543e7214202d1ba",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
-          "testHash": "d2063bf590b584e5b28486186b38d9c4dfcbd0a85218d6f502323479401f199b"
+          "testHash": "3736a8a02ae1e7551e7d20af015c0278028d27ab44d3ca93e200972f422e07c4"
         }
       },
       {
@@ -5497,13 +5515,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
+          "sourceHash": "2e117d06e2eafdbe69fdeb611c9dba0b5dd0df6a8b02b3bb5543e7214202d1ba",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
-          "testHash": "d2063bf590b584e5b28486186b38d9c4dfcbd0a85218d6f502323479401f199b"
+          "testHash": "3736a8a02ae1e7551e7d20af015c0278028d27ab44d3ca93e200972f422e07c4"
         }
       },
       {
@@ -5517,7 +5535,7 @@ export const CAPABILITY_GROUPS = {
         "dryRun": false,
         "inputSchema": {},
         "outputSchema": {
-          "type": "Tag[]",
+          "type": "unknown",
           "drops": []
         },
         "examples": [
@@ -5548,7 +5566,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch tags.",
-          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and tags.search for the agent-facing compact read.",
+          "usage": "Streams the single non-paginated batch; listAll collects it. tags.search is the agent-facing compact read.",
           "preferredWhen": "Preferred over tags.search only when the agent must walk pages; tags.search is the bounded default read.",
           "related": [
             "tags.search",
@@ -5561,7 +5579,12 @@ export const CAPABILITY_GROUPS = {
           {
             "id": "tags.list.success",
             "file": "test/resources/tag.test.ts",
-            "title": "returns the unwrapped tags list"
+            "title": "streams the unwrapped tags records"
+          },
+          {
+            "id": "tags.list.listAll",
+            "file": "test/resources/tag.test.ts",
+            "title": "listAll collects the single non-paginated batch"
           },
           {
             "id": "tags.list.pagination",
@@ -5570,13 +5593,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
+          "sourceHash": "2e117d06e2eafdbe69fdeb611c9dba0b5dd0df6a8b02b3bb5543e7214202d1ba",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
-          "testHash": "d2063bf590b584e5b28486186b38d9c4dfcbd0a85218d6f502323479401f199b"
+          "testHash": "3736a8a02ae1e7551e7d20af015c0278028d27ab44d3ca93e200972f422e07c4"
         }
       },
       {
@@ -5668,13 +5691,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
+          "sourceHash": "2e117d06e2eafdbe69fdeb611c9dba0b5dd0df6a8b02b3bb5543e7214202d1ba",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
-          "testHash": "d2063bf590b584e5b28486186b38d9c4dfcbd0a85218d6f502323479401f199b"
+          "testHash": "3736a8a02ae1e7551e7d20af015c0278028d27ab44d3ca93e200972f422e07c4"
         }
       },
       {
@@ -5756,20 +5779,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
+          "sourceHash": "2e117d06e2eafdbe69fdeb611c9dba0b5dd0df6a8b02b3bb5543e7214202d1ba",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
-          "testHash": "d2063bf590b584e5b28486186b38d9c4dfcbd0a85218d6f502323479401f199b"
+          "testHash": "3736a8a02ae1e7551e7d20af015c0278028d27ab44d3ca93e200972f422e07c4"
         }
       }
     ]
   },
   "teams": {
-    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
-    "builtAt": "2026-10-07T12:22:14.107Z",
+    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+    "builtAt": "2026-10-07T12:34:18.462Z",
     "records": [
       {
         "id": "teams.addMember",
@@ -5851,13 +5874,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "sourceHash": "235ec46bf5b6b5e6ff3be1004f75694b09a6cee6a5a2d710e2b4963fd4ada1ab",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+          "testHash": "e8d2dc2936983fd25392b52fd9d1091d614f191dc87cdc09da1e4d9ee35862a7"
         }
       },
       {
@@ -5929,13 +5952,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "sourceHash": "235ec46bf5b6b5e6ff3be1004f75694b09a6cee6a5a2d710e2b4963fd4ada1ab",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+          "testHash": "e8d2dc2936983fd25392b52fd9d1091d614f191dc87cdc09da1e4d9ee35862a7"
         }
       },
       {
@@ -5990,7 +6013,7 @@ export const CAPABILITY_GROUPS = {
           "usage": "Irreversible — the vendor offers no archive for teams. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": [
-            "teams.getById"
+            "teams.get"
           ]
         },
         "compact": null,
@@ -6008,19 +6031,19 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "sourceHash": "235ec46bf5b6b5e6ff3be1004f75694b09a6cee6a5a2d710e2b4963fd4ada1ab",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+          "testHash": "e8d2dc2936983fd25392b52fd9d1091d614f191dc87cdc09da1e4d9ee35862a7"
         }
       },
       {
-        "id": "teams.getById",
+        "id": "teams.get",
         "resource": "teams",
-        "operation": "getById",
+        "operation": "get",
         "kind": "primitive",
         "endpoint": "GET /api/teams/{id}",
         "effect": "read",
@@ -6037,7 +6060,7 @@ export const CAPABILITY_GROUPS = {
           "drops": []
         },
         "examples": [
-          "await client.teams.getById(1)"
+          "await client.teams.get(1)"
         ],
         "permissions": "unknown",
         "pagination": {
@@ -6073,24 +6096,24 @@ export const CAPABILITY_GROUPS = {
         "status": "tested",
         "tests": [
           {
-            "id": "teams.getById.success",
+            "id": "teams.get.success",
             "file": "test/resources/team.test.ts",
             "title": "returns the unwrapped teams record"
           },
           {
-            "id": "teams.getById.not-found",
+            "id": "teams.get.not-found",
             "file": "test/resources/team.test.ts",
             "title": "normalises a 404 into NOT_FOUND"
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "sourceHash": "235ec46bf5b6b5e6ff3be1004f75694b09a6cee6a5a2d710e2b4963fd4ada1ab",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+          "testHash": "e8d2dc2936983fd25392b52fd9d1091d614f191dc87cdc09da1e4d9ee35862a7"
         }
       },
       {
@@ -6173,13 +6196,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "sourceHash": "235ec46bf5b6b5e6ff3be1004f75694b09a6cee6a5a2d710e2b4963fd4ada1ab",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+          "testHash": "e8d2dc2936983fd25392b52fd9d1091d614f191dc87cdc09da1e4d9ee35862a7"
         }
       },
       {
@@ -6262,13 +6285,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "sourceHash": "235ec46bf5b6b5e6ff3be1004f75694b09a6cee6a5a2d710e2b4963fd4ada1ab",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+          "testHash": "e8d2dc2936983fd25392b52fd9d1091d614f191dc87cdc09da1e4d9ee35862a7"
         }
       },
       {
@@ -6351,13 +6374,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "sourceHash": "235ec46bf5b6b5e6ff3be1004f75694b09a6cee6a5a2d710e2b4963fd4ada1ab",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+          "testHash": "e8d2dc2936983fd25392b52fd9d1091d614f191dc87cdc09da1e4d9ee35862a7"
         }
       },
       {
@@ -6377,7 +6400,7 @@ export const CAPABILITY_GROUPS = {
           }
         },
         "outputSchema": {
-          "type": "Team[]",
+          "type": "unknown",
           "drops": []
         },
         "examples": [
@@ -6408,7 +6431,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch teams.",
-          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages.",
+          "usage": "Streams the single non-paginated batch; listAll collects it. Primitives return the full typed record.",
           "preferredWhen": "Preferred when the caller must walk pages; otherwise a bounded read is enough.",
           "related": [
             "teams.resolve"
@@ -6420,7 +6443,12 @@ export const CAPABILITY_GROUPS = {
           {
             "id": "teams.list.success",
             "file": "test/resources/team.test.ts",
-            "title": "returns the unwrapped teams list"
+            "title": "streams the unwrapped teams records"
+          },
+          {
+            "id": "teams.list.listAll",
+            "file": "test/resources/team.test.ts",
+            "title": "listAll collects the single non-paginated batch"
           },
           {
             "id": "teams.list.pagination",
@@ -6429,13 +6457,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "sourceHash": "235ec46bf5b6b5e6ff3be1004f75694b09a6cee6a5a2d710e2b4963fd4ada1ab",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+          "testHash": "e8d2dc2936983fd25392b52fd9d1091d614f191dc87cdc09da1e4d9ee35862a7"
         }
       },
       {
@@ -6511,13 +6539,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "sourceHash": "235ec46bf5b6b5e6ff3be1004f75694b09a6cee6a5a2d710e2b4963fd4ada1ab",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+          "testHash": "e8d2dc2936983fd25392b52fd9d1091d614f191dc87cdc09da1e4d9ee35862a7"
         }
       },
       {
@@ -6586,7 +6614,7 @@ export const CAPABILITY_GROUPS = {
           "usage": "Accepts { id }, { name } or a bare numeric id / exact name. A miss returns null; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
           "preferredWhen": "Preferred over teams.list + a client-side find for any single-team lookup.",
           "related": [
-            "teams.getById",
+            "teams.get",
             "teams.list"
           ]
         },
@@ -6610,13 +6638,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "sourceHash": "235ec46bf5b6b5e6ff3be1004f75694b09a6cee6a5a2d710e2b4963fd4ada1ab",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+          "testHash": "e8d2dc2936983fd25392b52fd9d1091d614f191dc87cdc09da1e4d9ee35862a7"
         }
       },
       {
@@ -6692,13 +6720,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "sourceHash": "235ec46bf5b6b5e6ff3be1004f75694b09a6cee6a5a2d710e2b4963fd4ada1ab",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+          "testHash": "e8d2dc2936983fd25392b52fd9d1091d614f191dc87cdc09da1e4d9ee35862a7"
         }
       },
       {
@@ -6774,13 +6802,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "sourceHash": "235ec46bf5b6b5e6ff3be1004f75694b09a6cee6a5a2d710e2b4963fd4ada1ab",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+          "testHash": "e8d2dc2936983fd25392b52fd9d1091d614f191dc87cdc09da1e4d9ee35862a7"
         }
       },
       {
@@ -6856,13 +6884,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "sourceHash": "235ec46bf5b6b5e6ff3be1004f75694b09a6cee6a5a2d710e2b4963fd4ada1ab",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+          "testHash": "e8d2dc2936983fd25392b52fd9d1091d614f191dc87cdc09da1e4d9ee35862a7"
         }
       },
       {
@@ -6929,8 +6957,7 @@ export const CAPABILITY_GROUPS = {
           "usage": "Replaces the editable fields of an existing team; supports { dryRun: true }. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": "Preferred over teams.create for any change to an existing team.",
           "related": [
-            "teams.create",
-            "teams.updateMeta"
+            "teams.create"
           ]
         },
         "compact": null,
@@ -6948,20 +6975,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "sourceHash": "235ec46bf5b6b5e6ff3be1004f75694b09a6cee6a5a2d710e2b4963fd4ada1ab",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+          "testHash": "e8d2dc2936983fd25392b52fd9d1091d614f191dc87cdc09da1e4d9ee35862a7"
         }
       }
     ]
   },
   "timesheets": {
-    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
-    "builtAt": "2026-10-07T12:22:14.107Z",
+    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+    "builtAt": "2026-10-07T12:34:18.462Z",
     "records": [
       {
         "id": "timesheets.create",
@@ -7042,13 +7069,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
         }
       },
       {
@@ -7121,13 +7148,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
         }
       },
       {
@@ -7198,13 +7225,90 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
+        }
+      },
+      {
+        "id": "timesheets.get",
+        "resource": "timesheets",
+        "operation": "get",
+        "kind": "primitive",
+        "endpoint": "GET /api/timesheets/{id}",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Timesheet",
+          "drops": []
+        },
+        "examples": [
+          "await client.timesheets.get(1)"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch one timesheet by its id.",
+          "usage": "Use when the id is already known; otherwise call timesheets.resolve.",
+          "preferredWhen": "Preferred over timesheets.list + client-side find when the id is known.",
+          "related": [
+            "timesheets.resolve",
+            "timesheets.getContext"
+          ]
+        },
+        "compact": null,
+        "status": "tested",
+        "tests": [
+          {
+            "id": "timesheets.get.success",
+            "file": "test/resources/timesheet.test.ts",
+            "title": "returns the unwrapped timesheet record"
+          },
+          {
+            "id": "timesheets.get.not-found",
+            "file": "test/resources/timesheet.test.ts",
+            "title": "normalises a 404 into NOT_FOUND"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "sourceFile": "src/resources/TimesheetClient.ts",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
+          "testFiles": [
+            "test/resources/timesheet.test.ts"
+          ],
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
         }
       },
       {
@@ -7263,90 +7367,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
-        }
-      },
-      {
-        "id": "timesheets.getById",
-        "resource": "timesheets",
-        "operation": "getById",
-        "kind": "primitive",
-        "endpoint": "GET /api/timesheets/{id}",
-        "effect": "read",
-        "flags": [],
-        "dryRun": false,
-        "inputSchema": {
-          "id": {
-            "type": "number",
-            "required": true
-          }
-        },
-        "outputSchema": {
-          "type": "Timesheet",
-          "drops": []
-        },
-        "examples": [
-          "await client.timesheets.getById(1)"
-        ],
-        "permissions": "unknown",
-        "pagination": {
-          "mode": "none"
-        },
-        "resolution": null,
-        "retry": {
-          "retryableStatuses": [
-            429,
-            500,
-            502,
-            503,
-            504
-          ],
-          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
-          "idempotencySupport": "none"
-        },
-        "errors": [
-          "CONFIG_ERROR",
-          "NOT_FOUND",
-          "RATE_LIMITED",
-          "SERVER_ERROR"
-        ],
-        "metadata": {
-          "purpose": "Fetch one timesheet by its id.",
-          "usage": "Use when the id is already known; otherwise call timesheets.resolve.",
-          "preferredWhen": "Preferred over timesheets.list + client-side find when the id is known.",
-          "related": [
-            "timesheets.resolve",
-            "timesheets.getContext"
-          ]
-        },
-        "compact": null,
-        "status": "tested",
-        "tests": [
-          {
-            "id": "timesheets.getById.success",
-            "file": "test/resources/timesheet.test.ts",
-            "title": "returns the unwrapped timesheet record"
-          },
-          {
-            "id": "timesheets.getById.not-found",
-            "file": "test/resources/timesheet.test.ts",
-            "title": "normalises a 404 into NOT_FOUND"
-          }
-        ],
-        "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
-          "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
-          "testFiles": [
-            "test/resources/timesheet.test.ts"
-          ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
         }
       },
       {
@@ -7405,9 +7432,9 @@ export const CAPABILITY_GROUPS = {
         "metadata": {
           "purpose": "Fetch a timesheet with its referenced user, activity, project and customer.",
           "usage": "user and activity are null when the record carries no reference; project is null when absent; customer is null unless the project carries one. Compact TimesheetSummary by default; expand: true for the full timesheet record.",
-          "preferredWhen": "Preferred over getById + individual user/activity/project/customer reads: one call instead of four or five.",
+          "preferredWhen": "Preferred over get + individual user/activity/project/customer reads: one call instead of four or five.",
           "related": [
-            "timesheets.getById",
+            "timesheets.get",
             "timesheets.resolve"
           ]
         },
@@ -7431,13 +7458,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
         }
       },
       {
@@ -7502,13 +7529,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
         }
       },
       {
@@ -7528,7 +7555,7 @@ export const CAPABILITY_GROUPS = {
           }
         },
         "outputSchema": {
-          "type": "Timesheet[]",
+          "type": "unknown",
           "drops": []
         },
         "examples": [
@@ -7559,7 +7586,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch timesheets.",
-          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and timesheets.search for the agent-facing compact read.",
+          "usage": "Streams the spec-filtered timesheets records across the vendor pages (listAll collects every page; listPages exposes Page<T> with hasMore = items.length === size). timesheets.search is the agent-facing compact read.",
           "preferredWhen": "Preferred over timesheets.search only when the agent must walk pages; search is the bounded default read.",
           "related": [
             "timesheets.search",
@@ -7573,12 +7600,17 @@ export const CAPABILITY_GROUPS = {
           {
             "id": "timesheets.list.success",
             "file": "test/resources/timesheet.test.ts",
-            "title": "returns the unwrapped timesheets list"
+            "title": "streams the unwrapped timesheets records"
           },
           {
-            "id": "timesheets.list.pagination",
+            "id": "timesheets.list.listAll",
             "file": "test/resources/timesheet.test.ts",
-            "title": "sends page/size and stops on a short page"
+            "title": "listAll collects every page"
+          },
+          {
+            "id": "timesheets.list.listPages",
+            "file": "test/resources/timesheet.test.ts",
+            "title": "listPages yields pages with hasMore from a full page"
           },
           {
             "id": "timesheets.list.429",
@@ -7592,13 +7624,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
         }
       },
       {
@@ -7667,7 +7699,7 @@ export const CAPABILITY_GROUPS = {
           "usage": "Accepts { id }, { begin } or a bare numeric id / begin timestamp; timesheets have no name field, so any other text resolves to nothing. The begin filter is \"at or after\", so a stale timestamp matches many records and throws RESOLUTION_AMBIGUOUS — narrow it. A miss by id throws NOT_FOUND (never null). No client scan occurs (vendor filter), so the scan never truncates. expand: true for the full record; resolutionDetails: true for the Resolution wrapper (cost, scanned, scanTruncated).",
           "preferredWhen": "Preferred over timesheets.list for any identifier lookup — it removes the paging and the hand-matching.",
           "related": [
-            "timesheets.getById",
+            "timesheets.get",
             "timesheets.search",
             "timesheets.getContext"
           ]
@@ -7712,13 +7744,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
         }
       },
       {
@@ -7795,13 +7827,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
         }
       },
       {
@@ -7902,13 +7934,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
         }
       },
       {
@@ -7987,13 +8019,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
         }
       },
       {
@@ -8070,13 +8102,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
         }
       },
       {
@@ -8161,13 +8193,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
         }
       },
       {
@@ -8251,20 +8283,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+          "sourceHash": "e3eccf07487aa06cbb7c047d9ecb6b45b15e3f44a0c12763c024ebd9d3100ed7",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
-          "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          "testHash": "fbb54fb6fe157713f4a2088c25b5b67b40fc0aa504133b08706b819ae7edde11"
         }
       }
     ]
   },
   "users": {
-    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
-    "builtAt": "2026-10-07T12:22:14.107Z",
+    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+    "builtAt": "2026-10-07T12:34:18.462Z",
     "records": [
       {
         "id": "users.create",
@@ -8337,13 +8369,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
+          "sourceHash": "bae4991eff11eb9f7e2a6db1e41f0d5ca24eb2109fcc756a0edad9d418e5c7d5",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
+          "testHash": "9aed534cf4262d3c4f1f4bfb8b1bddb2835412fdbe71a3821db5fc2f505a4ed0"
         }
       },
       {
@@ -8415,19 +8447,19 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
+          "sourceHash": "bae4991eff11eb9f7e2a6db1e41f0d5ca24eb2109fcc756a0edad9d418e5c7d5",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
+          "testHash": "9aed534cf4262d3c4f1f4bfb8b1bddb2835412fdbe71a3821db5fc2f505a4ed0"
         }
       },
       {
-        "id": "users.getById",
+        "id": "users.get",
         "resource": "users",
-        "operation": "getById",
+        "operation": "get",
         "kind": "primitive",
         "endpoint": "GET /api/users/{id}",
         "effect": "read",
@@ -8444,7 +8476,7 @@ export const CAPABILITY_GROUPS = {
           "drops": []
         },
         "examples": [
-          "await client.users.getById(1)"
+          "await client.users.get(1)"
         ],
         "permissions": "unknown",
         "pagination": {
@@ -8480,24 +8512,24 @@ export const CAPABILITY_GROUPS = {
         "status": "tested",
         "tests": [
           {
-            "id": "users.getById.success",
+            "id": "users.get.success",
             "file": "test/resources/user.test.ts",
             "title": "returns the unwrapped users record"
           },
           {
-            "id": "users.getById.not-found",
+            "id": "users.get.not-found",
             "file": "test/resources/user.test.ts",
             "title": "normalises a 404 into NOT_FOUND"
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
+          "sourceHash": "bae4991eff11eb9f7e2a6db1e41f0d5ca24eb2109fcc756a0edad9d418e5c7d5",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
+          "testHash": "9aed534cf4262d3c4f1f4bfb8b1bddb2835412fdbe71a3821db5fc2f505a4ed0"
         }
       },
       {
@@ -8554,13 +8586,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
+          "sourceHash": "bae4991eff11eb9f7e2a6db1e41f0d5ca24eb2109fcc756a0edad9d418e5c7d5",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
+          "testHash": "9aed534cf4262d3c4f1f4bfb8b1bddb2835412fdbe71a3821db5fc2f505a4ed0"
         }
       },
       {
@@ -8580,7 +8612,7 @@ export const CAPABILITY_GROUPS = {
           }
         },
         "outputSchema": {
-          "type": "User[]",
+          "type": "unknown",
           "drops": []
         },
         "examples": [
@@ -8611,7 +8643,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch users.",
-          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and users.search for the agent-facing compact read.",
+          "usage": "Streams the single non-paginated batch; listAll collects it. users.search is the agent-facing compact read.",
           "preferredWhen": "Preferred over users.search only when the agent must walk pages; users.search is the bounded default read.",
           "related": [
             "users.search",
@@ -8624,7 +8656,12 @@ export const CAPABILITY_GROUPS = {
           {
             "id": "users.list.success",
             "file": "test/resources/user.test.ts",
-            "title": "returns the unwrapped users list"
+            "title": "streams the unwrapped users records"
+          },
+          {
+            "id": "users.list.listAll",
+            "file": "test/resources/user.test.ts",
+            "title": "listAll collects the single non-paginated batch"
           },
           {
             "id": "users.list.pagination",
@@ -8633,13 +8670,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
+          "sourceHash": "bae4991eff11eb9f7e2a6db1e41f0d5ca24eb2109fcc756a0edad9d418e5c7d5",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
+          "testHash": "9aed534cf4262d3c4f1f4bfb8b1bddb2835412fdbe71a3821db5fc2f505a4ed0"
         }
       },
       {
@@ -8709,7 +8746,7 @@ export const CAPABILITY_GROUPS = {
           "usage": "Accepts { id }, { username } or a bare numeric id / exact username. The username path scans the user list with a bounded cap (cap 500 records; the collection is unpaginated); a truncated scan throws RESOLUTION_TRUNCATED and an ambiguous match throws RESOLUTION_AMBIGUOUS with the candidate ids.",
           "preferredWhen": "Preferred over users.list + a client-side find for any single-user lookup.",
           "related": [
-            "users.getById",
+            "users.get",
             "users.list",
             "users.search",
             "users.getMe"
@@ -8740,13 +8777,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
+          "sourceHash": "bae4991eff11eb9f7e2a6db1e41f0d5ca24eb2109fcc756a0edad9d418e5c7d5",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
+          "testHash": "9aed534cf4262d3c4f1f4bfb8b1bddb2835412fdbe71a3821db5fc2f505a4ed0"
         }
       },
       {
@@ -8827,13 +8864,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
+          "sourceHash": "bae4991eff11eb9f7e2a6db1e41f0d5ca24eb2109fcc756a0edad9d418e5c7d5",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
+          "testHash": "9aed534cf4262d3c4f1f4bfb8b1bddb2835412fdbe71a3821db5fc2f505a4ed0"
         }
       },
       {
@@ -8900,7 +8937,7 @@ export const CAPABILITY_GROUPS = {
           "preferredWhen": "Preferred over users.create for any change to an existing user.",
           "related": [
             "users.create",
-            "users.updateMeta"
+            "users.get"
           ]
         },
         "compact": null,
@@ -8918,13 +8955,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
+          "sourceHash": "bae4991eff11eb9f7e2a6db1e41f0d5ca24eb2109fcc756a0edad9d418e5c7d5",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
+          "testHash": "9aed534cf4262d3c4f1f4bfb8b1bddb2835412fdbe71a3821db5fc2f505a4ed0"
         }
       },
       {
@@ -9006,13 +9043,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
+          "sourceHash": "bae4991eff11eb9f7e2a6db1e41f0d5ca24eb2109fcc756a0edad9d418e5c7d5",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
+          "testHash": "9aed534cf4262d3c4f1f4bfb8b1bddb2835412fdbe71a3821db5fc2f505a4ed0"
         }
       }
     ]

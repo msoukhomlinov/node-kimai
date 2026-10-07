@@ -12,6 +12,13 @@ function loadFixture(name: string): unknown {
   return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
+/** Collect an AsyncIterable into an array (the D2 `list` stream). */
+async function collect<T>(iter: AsyncIterable<T>): Promise<T[]> {
+  const out: T[] = [];
+  for await (const item of iter) out.push(item);
+  return out;
+}
+
 describe('ProjectClient', () => {
   let client: ApiClient;
   let transport: { request: ReturnType<typeof vi.fn> };
@@ -30,7 +37,7 @@ describe('ProjectClient', () => {
       const fixture = loadFixture('project');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const result = await client.projects.list();
+      const result = await collect(client.projects.list());
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -44,7 +51,7 @@ describe('ProjectClient', () => {
       const fixture = loadFixture('project');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.projects.list({ customer: 1, visible: true });
+      await collect(client.projects.list({ customer: 1, visible: true }));
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -54,23 +61,23 @@ describe('ProjectClient', () => {
     });
   });
 
-  describe('getAll', () => {
+  describe('listAll', () => {
     it('should delegate to list for non-paginated resource', async () => {
       const fixture = loadFixture('project');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const result = await client.projects.getAll();
+      const result = await client.projects.listAll();
 
       expect(transport.request).toHaveBeenCalledTimes(1);
     });
   });
 
-  describe('getById', () => {
+  describe('get', () => {
     it('should call GET /api/projects/{id}', async () => {
       const fixture = loadFixture('project_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.projects.getById(1);
+      await client.projects.get(1);
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'GET',
@@ -261,11 +268,11 @@ describe('ProjectClient', () => {
 // ---------------------------------------------------------------------------
 
 describe('projects.list (pinned rows)', () => {
-  it('returns the unwrapped projects list', async () => {
+  it('streams the unwrapped projects records', async () => {
     const fixture = loadFixture('project');
     transport.request.mockResolvedValueOnce(fixture);
 
-    const rows = await client.projects.list({ name: 'Website', visible: true });
+    const rows = await collect(client.projects.list({ name: 'Website', visible: true }));
 
     expect(rows).toEqual(fixture);
     expect(transport.request).toHaveBeenCalledWith({
@@ -275,14 +282,23 @@ describe('projects.list (pinned rows)', () => {
     });
   });
 
+  it('listAll collects the single non-paginated batch', async () => {
+    const fixture = loadFixture('project');
+    transport.request.mockResolvedValueOnce(fixture);
+
+    const rows = await client.projects.listAll();
+
+    expect(rows).toEqual(fixture);
+  });
+
   it('does not send page/size params for this non-paginated endpoint', async () => {
-    // This endpoint is not paged by the SDK: `getAll` delegates to a single
+    // This endpoint is not paged by the SDK: `listAll` delegates to a single
     // `list` and never injects paging params, so the whole collection arrives
     // in one request.
     const fixture = loadFixture('project');
     transport.request.mockResolvedValueOnce(fixture);
 
-    const result = await client.projects.getAll();
+    const result = await client.projects.listAll();
 
     expect(transport.request).toHaveBeenCalledTimes(1);
     const call = transport.request.mock.calls[0]![0];
@@ -292,12 +308,12 @@ describe('projects.list (pinned rows)', () => {
   });
 });
 
-describe('projects.getById (pinned rows)', () => {
+describe('projects.get (pinned rows)', () => {
   it('returns the unwrapped projects record', async () => {
     const fixture = loadFixture('project_single');
     transport.request.mockResolvedValueOnce(fixture);
 
-    const project = await client.projects.getById(1);
+    const project = await client.projects.get(1);
 
     expect(project).toEqual(fixture);
     expect(transport.request).toHaveBeenCalledWith({
@@ -312,7 +328,7 @@ describe('projects.getById (pinned rows)', () => {
       createApiError({ status: 404, message: 'Not Found', data: { title: 'Not Found' } }),
     );
 
-    const err = await client.projects.getById(404).catch((e: unknown) => e);
+    const err = await client.projects.get(404).catch((e: unknown) => e);
 
     expect(err).toBeInstanceOf(NotFoundError);
     expect((err as NotFoundError).code).toBe('NOT_FOUND');

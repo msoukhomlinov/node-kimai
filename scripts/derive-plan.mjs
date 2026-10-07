@@ -53,7 +53,7 @@ const OVERRIDES = {
   'POST /api/timesheets':                 [['timesheets', 'create', null]],
   'GET /api/timesheets/active':           [['timesheets', 'getActive', 'active']],
   'GET /api/timesheets/recent':           [['timesheets', 'getRecent', 'recent']],
-  'GET /api/timesheets/{id}':             [['timesheets', 'getById', null]],
+  'GET /api/timesheets/{id}':             [['timesheets', 'get', null]],
   'DELETE /api/timesheets/{id}':          [['timesheets', 'delete', null]],
   'PATCH /api/timesheets/{id}':           [['timesheets', 'update', null]],
   'PATCH /api/timesheets/{id}/duplicate': [['timesheets', 'duplicate', 'duplicate']],
@@ -64,7 +64,7 @@ const OVERRIDES = {
 
   // --- activities ---
   'GET /api/activities':                    [['activities', 'list', null]],
-  'GET /api/activities/{id}':               [['activities', 'getById', null]],
+  'GET /api/activities/{id}':               [['activities', 'get', null]],
   'POST /api/activities':                   [['activities', 'create', null]],
   'PATCH /api/activities/{id}':             [['activities', 'update', null]],
   'DELETE /api/activities/{id}':            [['activities', 'delete', null]],
@@ -76,7 +76,7 @@ const OVERRIDES = {
 
   // --- customers ---
   'GET /api/customers':                     [['customers', 'list', null]],
-  'GET /api/customers/{id}':                [['customers', 'getById', null]],
+  'GET /api/customers/{id}':                [['customers', 'get', null]],
   'POST /api/customers':                    [['customers', 'create', null]],
   'PATCH /api/customers/{id}':              [['customers', 'update', null]],
   'DELETE /api/customers/{id}':             [['customers', 'delete', null]],
@@ -92,7 +92,7 @@ const OVERRIDES = {
 
   // --- projects ---
   'GET /api/projects':                      [['projects', 'list', null]],
-  'GET /api/projects/{id}':                 [['projects', 'getById', null]],
+  'GET /api/projects/{id}':                 [['projects', 'get', null]],
   'POST /api/projects':                     [['projects', 'create', null]],
   'PATCH /api/projects/{id}':               [['projects', 'update', null]],
   'DELETE /api/projects/{id}':              [['projects', 'delete', null]],
@@ -108,7 +108,7 @@ const OVERRIDES = {
 
   // --- users ---
   'GET /api/users':                         [['users', 'list', null]],
-  'GET /api/users/{id}':                    [['users', 'getById', null]],
+  'GET /api/users/{id}':                    [['users', 'get', null]],
   'GET /api/users/me':                      [['users', 'getMe', 'me']],
   'POST /api/users':                        [['users', 'create', null]],
   'PATCH /api/users/{id}':                  [['users', 'update', null]],
@@ -124,7 +124,7 @@ const OVERRIDES = {
 
   // --- teams ---
   'GET /api/teams':                         [['teams', 'list', null]],
-  'GET /api/teams/{id}':                    [['teams', 'getById', null]],
+  'GET /api/teams/{id}':                    [['teams', 'get', null]],
   'POST /api/teams':                        [['teams', 'create', null]],
   'PATCH /api/teams/{id}':                  [['teams', 'update', null]],
   'DELETE /api/teams/{id}':                 [['teams', 'delete', null]],
@@ -139,7 +139,7 @@ const OVERRIDES = {
 
   // --- invoices ---
   'GET /api/invoices':                      [['invoices', 'list', null]],
-  'GET /api/invoices/{id}':                 [['invoices', 'getById', null]],
+  'GET /api/invoices/{id}':                 [['invoices', 'get', null]],
   'GET /api/invoices/{id}/download':        [['invoices', 'download', 'download']],
   'PATCH /api/invoices/{id}/custom-fields': [['invoices', 'updateCustomFields', 'custom-fields']],
 
@@ -233,11 +233,15 @@ function testsSkeleton(resource, primitive, shape, file, paginated = false) {
   const t = (c, title) => ({ id: `${primitive}.${c}`, file, title });
   const out = [];
   if (shape === 'list') {
-    out.push(t('success', `returns the unwrapped ${resource} list`));
-    // A paginated endpoint walks pages; a non-paginated one must NOT be sent page/size.
+    // D2 (node-hudu convergence): `list` is an AsyncIterable STREAM, `listAll`
+    // collects every page, and `listPages` (paginated resources only) exposes Page<T>.
+    out.push(t('success', `streams the unwrapped ${resource} records`));
     out.push(paginated
-      ? t('pagination', 'sends page/size and stops on a short page')
-      : t('non-paginated', 'does not send page/size params for this non-paginated endpoint'));
+      ? t('listAll', 'listAll collects every page')
+      : t('listAll', 'listAll collects the single non-paginated batch'));
+    if (paginated) out.push(t('listPages', 'listPages yields pages with hasMore from a full page'));
+    // A paginated endpoint walks pages; a non-paginated one must NOT be sent page/size.
+    if (!paginated) out.push(t('non-paginated', 'does not send page/size params for this non-paginated endpoint'));
   } else if (shape === 'get') {
     out.push(t('success', `returns the unwrapped ${resource} record`));
     out.push(t('not-found', 'normalises a 404 into NOT_FOUND'));
@@ -295,7 +299,7 @@ for (const [path, item] of Object.entries(spec.paths)) {
       const effect = method === 'GET' ? 'read' : method === 'DELETE' ? 'destructive' : 'write';
       const shape = specialOp !== null
         ? (method === 'GET' ? 'read-special' : 'write-special')
-        : (primitive === 'list' ? 'list' : primitive === 'getById' ? 'get' : primitive);
+        : (primitive === 'list' ? 'list' : primitive === 'get' ? 'get' : primitive);
       const file = `test/resources/${TEST_FILES[resource] ?? resource}.test.ts`;
       const purpose = (op.summary || op.description || `${method} ${path}`).split('\n')[0].trim().replace(/\.$/, '') + '.';
       derived.push({

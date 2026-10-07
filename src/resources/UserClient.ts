@@ -26,6 +26,7 @@ import type { DryRunResult, HelperOptions, MutationOptions, Resolution, Resoluti
 import { KimaiConfigError, ResolutionError } from '../errors';
 
 import type { ApiClient } from '../client';
+import { streamOnce } from './paging';
 
 /** Helper `limit` bounds (policy §9): default 25, hard maximum 100. */
 const DEFAULT_HELPER_LIMIT = 25;
@@ -143,15 +144,18 @@ const DRY_RUN_WARNING_NO_DIFF = 'the current record is not fetched by dry-run (z
 export class UserClient {
   constructor(private client: ApiClient) {}
 
-  async list(params?: UserListParams): Promise<User[]> {
+  /** Stream every User record from the single non-paginated batch. */
+  list(params?: UserListParams): AsyncIterable<User> {
+    return streamOnce(() => this.listAll(params));
+  }
+
+  /** Collect the single non-paginated batch of User records (MCP-preferred read). */
+  async listAll(params?: UserListParams): Promise<User[]> {
     return this.client.get<User[]>('/api/users', { query: params });
   }
 
-  async getAll(params?: UserListParams): Promise<User[]> {
-    return this.list(params);
-  }
-
-  async getById(id: number): Promise<User> {
+  /** Get one User record by id; a 404 normalises to NOT_FOUND. */
+  async get(id: number): Promise<User> {
     return this.client.get<User>(`/api/users/${id}`);
   }
 
@@ -369,7 +373,7 @@ export class UserClient {
 
   /** Direct fetch by id: a miss throws NOT_FOUND (never `null`). */
   private async resolveByIdentifier(id: number): Promise<Resolution<User>> {
-    const user = await this.getById(id);
+    const user = await this.get(id);
     const candidate: ResolutionCandidate = { id: user.id ?? id, label: userLabel(user) };
     return {
       value: user,
