@@ -11,11 +11,12 @@ Full coverage of the Kimai Pro API v1.1 (66 paths, 52 schemas, 13 resources) wit
 
 ## Features
 
-- **Full API coverage** — All 66 API endpoints across 13 resources
+- **Full API coverage** — All 66 API paths / 90 endpoint operations across 13 resources
 - **Type-safe** — Complete TypeScript types for every request and response
 - **Zero runtime deps** — Uses native `fetch`; no extra packages
 - **Dual ESM + CJS** — Works in any Node.js environment (>= 20)
 - **MCP-first design** — Plain `T` / `T[]` returns, no wrapper envelopes
+- **Agent execution layer** — `resolve` / `search` / `getContext` helpers, dry-run on every mutation, structured errors, a generated capability registry
 - **Transport-injectable** — Drop-in compatibility with n8n and other runtimes
 - **Typed errors** — Catchable error hierarchy per HTTP status code
 
@@ -514,9 +515,93 @@ import type { Activity, Timesheet, User } from 'node-kimai/types';
 
 // Errors only
 import { ApiError, NotFoundError } from 'node-kimai/errors';
+
+// Capability registry only (zero-import static data, no SDK runtime pulled in)
+import { CAPABILITIES, CAPABILITY_GROUPS } from 'node-kimai/capabilities';
 ```
 
+## Agent Execution Layer
+
+The primitives above are the endpoint surface. On top of them sits a small agent-facing layer
+(everything below is additive — the primitives are unchanged). Full details in `ARCHITECTURE.md` §15.
+
+### Helpers
+
+- `resolve(identifier)` — turn a human identifier into a record.
+  Accepts `{ id }`, `{ name }`, a bare numeric id or an exact name.
+  Several exact matches throw `ResolutionError` (`RESOLUTION_AMBIGUOUS`, candidates in
+  `err.resourceIds`); a *full* 500-record page with no exact match throws
+  `RESOLUTION_TRUNCATED` — a bounded scan never reports a silent `null`.
+- `search(params, { limit })` — one filtered page. `limit` defaults to **25**, maximum **100**;
+  anything outside 1…100 throws `KimaiConfigError` (never silently clamped).
+- `getContext(id)` — one call for a workflow record plus its references
+  (timesheets, customers, projects only).
+
+Helpers return a **compact summary** by default. `{ expand: true }` returns the full record;
+`{ resolutionDetails: true }` returns the `Resolution<T>` wrapper (`value`, `scanned`,
+`scanTruncated`, `candidates`).
+
+```typescript
+const ts = await client.timesheets.resolve({ id: 42 });        // TimesheetSummary | null
+const full = await client.timesheets.resolve(42, { expand: true }); // Timesheet | null
+const page = await client.timesheets.search({ customer: 3 }, { limit: 50 });
+```
+
+### Dry-run every mutation
+
+Every mutation accepts `{ dryRun: true }` and issues **no wire call** — it validates the
+arguments and returns what it would send:
+
+```typescript
+const preview = await client.timesheets.create(
+  { project: 1, activity: 2, begin: '2026-08-10T09:00:00+02:00' },
+  { dryRun: true },
+);
+// preview.simulated === true; preview.target / preview.request / preview.checks / preview.impact
+// preview.warnings says the referenced records were not verified and the impact is best-effort
+```
+
+### Structured errors
+
+`ApiError` carries a closed `category` (`auth`, `not_found`, `validation`, `conflict`,
+`rate_limit`, `server`, `network`, `timeout`, `resolution`, `policy`) and, when known,
+`operation`, `retryable`, `vendorError`, `resourceIds`, `suggestedAction`, `correlationId`
+and `retryAfter` (parsed from `Retry-After` on a 429). `KimaiConfigError` marks an argument the
+SDK refused locally — zero fetch, non-retryable.
+
+```typescript
+catch (err) {
+  if (err instanceof ApiError && err.category === 'rate_limit') {
+    // wait err.retryAfter (seconds) before retrying — the transport itself never retries
+    console.warn(`retry in ${err.retryAfter ?? 5}s`, err.correlationId);
+  }
+  // err.correlationId identifies the one request for a server-side trace
+}
+```
+
+### Capability registry
+
+`node-kimai/capabilities` is generated, zero-import static data describing the whole surface —
+one record per implemented operation. It is the same registry the MCP manifest is projected from:
+
+```typescript
+import { CAPABILITIES } from 'node-kimai/capabilities';
+
+const helpers = CAPABILITIES.filter((c) => c.kind === 'helper');            // 18 helpers
+const gated = CAPABILITIES.filter((c) => c.flags.includes('requiresApproval')); // 21 rows
+// each record: id, resource, operation, kind, endpoint, effect, flags, dryRun,
+// inputSchema, outputSchema, examples, pagination, resolution, retry, errors, compact, tests
+```
+
+Also shipped: `capabilities.json` (the registry on disk), `capabilities.schema.json` (its schema),
+`capabilities.plan.json` (the audited plan it is built from) and `MCP_TOOL_MANIFEST.md`
+(the projected tool surface for a MCP server).
+
 ## MCP Server Usage
+
+For MCP-targeted builds, start from `MCP_TOOL_MANIFEST.md` and the `node-kimai/capabilities`
+registry: each tool is one registry record, so `inputSchema`, `outputSchema`, `effect` and
+`flags` come from data rather than from prose.
 
 This SDK is designed as the foundation for MCP (Model Context Protocol) servers. Its MCP-friendly characteristics:
 

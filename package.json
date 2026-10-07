@@ -59,7 +59,7 @@
         "default": "./dist/capabilities.mjs"
       },
       "require": {
-        "types": "./dist/capabilities.d.cts",
+        "types": "./dist/capabilities.d.ts",
         "default": "./dist/capabilities.cjs"
       }
     },
@@ -87,14 +87,15 @@
     "coverage": "vitest run --coverage",
     "lint": "eslint src test",
     "lint:fix": "eslint src test --fix",
-    "verify": "npm run typecheck && npm run lint && npm run build && npm run capabilities:check && npm run capabilities:check:fixture && npm run coverage",
+    "verify": "npm run typecheck && npm run lint && npm run build && npm run public-surface && npm run capabilities:check && npm run capabilities:check:fixture && npm run coverage",
     "plan:derive": "node scripts/derive-plan.mjs",
     "capabilities:build": "node scripts/generate-capabilities.mjs",
     "capabilities:check": "node scripts/check-capabilities.mjs",
     "capabilities:check:fixture": "node scripts/check-negative-fixture.mjs",
     "clean": "rimraf dist coverage",
     "prepublishOnly": "npm run clean && npm run verify && npm run capabilities:check:ship",
-    "capabilities:check:ship": "node scripts/check-capabilities.mjs --ship"
+    "capabilities:check:ship": "node scripts/check-capabilities.mjs --ship",
+    "public-surface": "node scripts/public-surface.mjs"
   },
   "engines": {
     "node": ">=20.0.0"
