@@ -1,4 +1,5 @@
 // ProjectClient tests
+import { readFileSync } from 'node:fs';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ApiClient } from '../../src/client';
 
@@ -6,8 +7,7 @@ const BASE_URL = 'https://api.kimai.test';
 const TOKEN = 'test-token';
 
 function loadFixture(name: string): unknown {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  return require(`../../test/__fixtures__/${name}.json`);
+  return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
 describe('ProjectClient', () => {
@@ -99,7 +99,7 @@ describe('ProjectClient', () => {
       const fixture = loadFixture('project_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const input = { name: 'Updated' };
+      const input = { name: 'Updated', customer: 1 };
       await client.projects.update(1, input);
 
       expect(transport.request).toHaveBeenCalledWith({
@@ -199,12 +199,12 @@ describe('ProjectClient', () => {
       const fixture = loadFixture('comment_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.projects.createComment(1, { body: 'Comment' });
+      await client.projects.createComment(1, { message: 'Comment' });
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'POST',
         path: '/api/projects/1/comments',
-        body: { body: 'Comment' },
+        body: { message: 'Comment' },
       });
     });
   });

@@ -1,9 +1,9 @@
+import type { ProjectExpanded } from './project';
+import type { Team } from './team';
+import type { User } from './user';
+
 // Generated types for activity resource
 // DO NOT EDIT MANUALLY
-
-import type { Team } from './team';
-import type { ProjectExpanded } from './project';
-import type { User } from './user';
 
 export interface Activity {
   project?: number;
@@ -17,6 +17,7 @@ export interface Activity {
   number?: string;
   color?: string;
 }
+
 
 export interface ActivityEntity {
   parentTitle?: string;
@@ -36,6 +37,7 @@ export interface ActivityEntity {
   color?: string;
 }
 
+
 export interface ActivityExpanded {
   "color-safe"?: string;
   id?: number;
@@ -48,6 +50,7 @@ export interface ActivityExpanded {
   number?: string;
   color?: string;
 }
+
 
 export interface ActivityEditForm {
   name: string;
@@ -64,10 +67,12 @@ export interface ActivityEditForm {
   billable?: boolean;
 }
 
+
 export interface ActivityMeta {
   name: string;
   value?: string;
 }
+
 
 export interface ActivityRate {
   id?: number;
@@ -77,9 +82,11 @@ export interface ActivityRate {
   isFixed?: boolean;
 }
 
+
 export interface ActivityRateForm {
   user?: number;
   rate: number;
   internalRate?: number;
   isFixed?: boolean;
 }
+

@@ -19,7 +19,7 @@ import { ActionsClient } from './resources/ActionsClient';
 export interface TransportRequest {
   method: 'GET' | 'POST' | 'PATCH' | 'DELETE';
   path: string;
-  query?: Record<string, string | number | boolean | string[] | number[] | undefined>;
+  query?: Record<string, string | number | boolean | null | string[] | number[] | undefined>;
   body?: unknown;
   headers?: Record<string, string>;
   responseType?: 'json' | 'arraybuffer' | 'text';
@@ -177,19 +177,19 @@ export class ApiClient {
     this.actions = new ActionsClient(this);
   }
 
-  async get<T>(path: string, options?: { query?: Record<string, string | number | boolean | string[] | number[] | undefined>; responseType?: 'json' | 'arraybuffer' | 'text' }): Promise<T> {
+  async get<T>(path: string, options?: { query?: Record<string, string | number | boolean | null | string[] | number[] | undefined>; responseType?: 'json' | 'arraybuffer' | 'text' }): Promise<T> {
     return this.transport.request<T>({ method: 'GET', path, query: options?.query, responseType: options?.responseType });
   }
 
-  async post<T>(path: string, options?: { query?: Record<string, string | number | boolean | string[] | number[] | undefined>; body?: unknown }): Promise<T> {
+  async post<T>(path: string, options?: { query?: Record<string, string | number | boolean | null | string[] | number[] | undefined>; body?: unknown }): Promise<T> {
     return this.transport.request<T>({ method: 'POST', path, query: options?.query, body: options?.body });
   }
 
-  async patch<T>(path: string, options?: { query?: Record<string, string | number | boolean | string[] | number[] | undefined>; body?: unknown }): Promise<T> {
+  async patch<T>(path: string, options?: { query?: Record<string, string | number | boolean | null | string[] | number[] | undefined>; body?: unknown }): Promise<T> {
     return this.transport.request<T>({ method: 'PATCH', path, query: options?.query, body: options?.body });
   }
 
-  async delete(path: string, options?: { query?: Record<string, string | number | boolean | string[] | number[] | undefined>; body?: unknown }): Promise<void> {
+  async delete(path: string, options?: { query?: Record<string, string | number | boolean | null | string[] | number[] | undefined>; body?: unknown }): Promise<void> {
     await this.transport.request<void>({ method: 'DELETE', path, query: options?.query, body: options?.body });
   }
 }

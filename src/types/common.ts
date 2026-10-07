@@ -1,35 +1,31 @@
 // Shared types used across resources
 // DO NOT EDIT MANUALLY
 
-export interface ListParams {
-  [key: string]: string | number | boolean | string[] | number[] | undefined;
+export type ListParams = {
   page?: number;
   size?: number;
-}
+};
 
-export interface ActivityListParams {
-  [key: string]: string | number | boolean | string[] | number[] | undefined;
+export type ActivityListParams = {
   name?: string;
   visible?: boolean;
   customer?: number;
-}
+};
 
-export interface CustomerListParams {
-  [key: string]: string | number | boolean | string[] | number[] | undefined;
+export type CustomerListParams = {
   name?: string;
   visible?: boolean;
-}
+  customer?: number;
+};
 
-export interface ProjectListParams {
-  [key: string]: string | number | boolean | string[] | number[] | undefined;
+export type ProjectListParams = {
   name?: string;
   visible?: boolean;
   customer?: number;
   activity?: number;
-}
+};
 
-export interface TimesheetListParams {
-  [key: string]: string | number | boolean | string[] | number[] | undefined;
+export type TimesheetListParams = {
   page?: number;
   size?: number;
   user?: string | number;
@@ -41,22 +37,19 @@ export interface TimesheetListParams {
   customer?: number;
   tag?: string;
   exported?: boolean;
-}
+};
 
-export interface UserListParams {
-  [key: string]: string | number | boolean | string[] | number[] | undefined;
+export type UserListParams = {
   role?: string;
   team?: number;
-}
+};
 
-export interface InvoiceListParams {
-  [key: string]: string | number | boolean | string[] | number[] | undefined;
+export type InvoiceListParams = {
   page?: number;
   size?: number;
   customer?: number;
-}
+};
 
-export interface TeamListParams {
-  [key: string]: string | number | boolean | string[] | number[] | undefined;
+export type TeamListParams = {
   name?: string;
-}
+};

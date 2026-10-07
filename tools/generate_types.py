@@ -6,10 +6,16 @@ Generates type files from OpenAPI spec.
 
 import json
 import os
+import re
 from pathlib import Path
 
-ROOT = Path("/Users/maxs/gitrepos/node-kimai")
-SPEC_PATH = "/Users/maxs/gitrepos/n8n/n8n-nodes-kimai-pro/api-docs-v1.1.json"
+ROOT = Path(__file__).resolve().parent.parent
+# In-repo spec first; the n8n node's vendored copy is the fallback source.
+SPEC_CANDIDATES = [
+    ROOT / "api-docs.json",
+    "/Users/maxs/gitrepos/n8n/n8n-nodes-kimai-pro/api-docs-v1.1.json",
+]
+SPEC_PATH = next(str(p) for p in SPEC_CANDIDATES if os.path.exists(p))
 SRC = ROOT / "src"
 TYPES_DIR = SRC / "types"
 
@@ -90,10 +96,13 @@ def generate_interface(name, schema):
     lines = [f"export interface {name} {{"]
     for prop_name, prop_schema in all_properties.items():
         required = prop_name in all_required
-        ts_type = ts_type_from_schema(name + prop_name.capitalize(), prop_schema)
+        ts_type = ts_type_from_schema(name + re.sub(r"[^A-Za-z0-9]", "", prop_name), prop_schema)
         ts_type = ts_type.replace("  ", " ").strip()
         optional = "" if required else "?"
-        lines.append(f"  {prop_name}{optional}: {ts_type};")
+        # Vendor field names that are not TS identifiers (e.g. "color-safe")
+        # must be quoted; property access then uses bracket notation.
+        key = f'"{prop_name}"' if not re.match(r"^[A-Za-z_$][A-Za-z0-9_$]*$", prop_name) else prop_name
+        lines.append(f"  {key}{optional}: {ts_type};")
     lines.append("}")
     return "\n".join(lines) + "\n"
 
@@ -115,6 +124,13 @@ def generate_types():
         "system": ["Version", "Plugin", "PageAction"],
     }
 
+    # Which module each generated schema name lives in (for cross-module imports).
+    owner = {}
+    for resource, names in resource_schemas.items():
+        for n in names:
+            if n in schemas:
+                owner[n] = resource
+
     for resource, schema_names in resource_schemas.items():
         content_lines = [f"// Generated types for {resource} resource", "// DO NOT EDIT MANUALLY", ""]
 
@@ -128,9 +144,21 @@ def generate_types():
                 content_lines.append(interface)
                 content_lines.append("")
 
+        body = "\n".join(content_lines)
+        local = set(schema_names)
+        needed = {}
+        for n, mod in owner.items():
+            if n in local or mod == resource:
+                continue
+            if re.search(rf"\b{n}\b", body):
+                needed.setdefault(mod, []).append(n)
+        imports = [
+            f"import type {{ {', '.join(sorted(names))} }} from './{mod}';"
+            for mod, names in sorted(needed.items())
+        ]
         filepath = TYPES_DIR / f"{resource}.ts"
         with open(filepath, "w") as f:
-            f.write("\n".join(content_lines))
+            f.write("\n".join(imports) + (("\n\n" + body) if imports else body))
         print(f"  Generated {filepath}")
 
     # approval_bundle types
@@ -183,34 +211,37 @@ def generate_types():
     print(f"  Generated {TYPES_DIR / 'export.ts'}")
 
     # common types
+    # Query-param shapes are type aliases (not interfaces) so they carry an implicit
+    # index signature and stay assignable to the transport's Record-typed query param.
     common_lines = [
         "// Shared types used across resources",
         "// DO NOT EDIT MANUALLY",
         "",
-        "export interface ListParams {",
+        "export type ListParams = {",
         "  page?: number;",
         "  size?: number;",
-        "}",
+        "};",
         "",
-        "export interface ActivityListParams {",
+        "export type ActivityListParams = {",
         "  name?: string;",
         "  visible?: boolean;",
         "  customer?: number;",
-        "}",
+        "};",
         "",
-        "export interface CustomerListParams {",
+        "export type CustomerListParams = {",
         "  name?: string;",
         "  visible?: boolean;",
-        "}",
+        "  customer?: number;",
+        "};",
         "",
-        "export interface ProjectListParams {",
+        "export type ProjectListParams = {",
         "  name?: string;",
         "  visible?: boolean;",
         "  customer?: number;",
         "  activity?: number;",
-        "}",
+        "};",
         "",
-        "export interface TimesheetListParams {",
+        "export type TimesheetListParams = {",
         "  page?: number;",
         "  size?: number;",
         "  user?: string | number;",
@@ -222,22 +253,22 @@ def generate_types():
         "  customer?: number;",
         "  tag?: string;",
         "  exported?: boolean;",
-        "}",
+        "};",
         "",
-        "export interface UserListParams {",
+        "export type UserListParams = {",
         "  role?: string;",
         "  team?: number;",
-        "}",
+        "};",
         "",
-        "export interface InvoiceListParams {",
+        "export type InvoiceListParams = {",
         "  page?: number;",
         "  size?: number;",
         "  customer?: number;",
-        "}",
+        "};",
         "",
-        "export interface TeamListParams {",
+        "export type TeamListParams = {",
         "  name?: string;",
-        "}",
+        "};",
     ]
     with open(TYPES_DIR / "common.ts", "w") as f:
         f.write("\n".join(common_lines) + "\n")

@@ -1,27 +1,31 @@
-// Generated types for invoice resource
-// DO NOT EDIT MANUALLY
-
 import type { Customer } from './customer';
 import type { User } from './user';
 
+// Generated types for invoice resource
+// DO NOT EDIT MANUALLY
+
 export interface Invoice {
+  createdAt: string;
+  overdue?: boolean;
   id?: number;
-  customer?: Customer;
-  user?: User;
-  number?: string;
-  year?: number;
-  month?: number;
-  begin?: string;
-  end?: string;
-  currency?: string;
-  sum?: number;
-  sumWithTax?: number;
+  invoiceNumber: string;
+  comment?: string;
+  customer: Customer;
+  user: User;
+  total?: number;
   tax?: number;
-  template?: string;
-  customFields?: InvoiceMeta[];
+  currency: string;
+  dueDays?: number;
+  vat?: number;
+  status?: string;
+  invoiceFilename: string;
+  paymentDate?: string;
+  metaFields?: InvoiceMeta[];
 }
+
 
 export interface InvoiceMeta {
   name: string;
   value?: string;
 }
+

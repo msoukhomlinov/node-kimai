@@ -1,53 +1,78 @@
+import type { ActivityExpanded } from './activity';
+import type { ProjectExpanded } from './project';
+import type { User } from './user';
+
 // Generated types for timesheet resource
 // DO NOT EDIT MANUALLY
 
-import type { User } from './user';
-import type { ActivityExpanded } from './activity';
-import type { ProjectExpanded } from './project';
-
 export interface TimesheetEntity {
-  id?: number;
-  user?: User;
-  activity?: ActivityExpanded;
-  project?: ProjectExpanded;
-  begin?: string;
-  end?: string;
-  duration?: number;
-  description?: string;
-  exportable?: boolean;
-  metaFields?: TimesheetMeta[];
-}
-
-export interface TimesheetExpanded {
-  id?: number;
-  user?: User;
-  activity?: ActivityExpanded;
-  project?: ProjectExpanded;
-  begin?: string;
-  end?: string;
-  duration?: number;
-  description?: string;
-  exportable?: boolean;
-  metaFields?: TimesheetMeta[];
-}
-
-export interface TimesheetEditForm {
-  user?: number;
   activity?: number;
   project?: number;
+  user?: number;
+  tags?: string[];
+  id?: number;
+  begin: string;
+  end?: string;
+  duration?: number;
+  break?: number;
+  description?: string;
+  rate?: number;
+  internalRate?: number;
+  fixedRate?: number;
+  hourlyRate?: number;
+  exported?: boolean;
+  billable?: boolean;
+  metaFields?: TimesheetMeta[];
+}
+
+
+export interface TimesheetExpanded {
+  tags?: string[];
+  id?: number;
+  begin: string;
+  end?: string;
+  duration?: number;
+  break?: number;
+  user: User;
+  activity: ActivityExpanded;
+  project: ProjectExpanded;
+  description?: string;
+  rate?: number;
+  internalRate?: number;
+  fixedRate?: number;
+  hourlyRate?: number;
+  exported?: boolean;
+  billable?: boolean;
+  metaFields?: TimesheetMeta[];
+}
+
+
+export interface TimesheetEditForm {
   begin?: string;
   end?: string;
+  project: number;
+  activity: number;
   description?: string;
+  fixedRate?: number;
+  hourlyRate?: number;
+  user?: number;
+  tags?: string;
+  exported?: boolean;
+  billable?: boolean;
 }
+
 
 export interface TimesheetMeta {
   name: string;
   value?: string;
 }
 
+
 export interface TimesheetConfig {
-  timesheet: string;
-  timesheetPage: string;
-  timesheetDefaultProject: string;
-  timesheetDefaultActivity: string;
+  trackingMode?: string;
+  defaultBeginTime?: string;
+  activeEntriesHardLimit?: number;
+  isAllowFutureTimes?: boolean;
+  isAllowOverlapping?: boolean;
 }
+

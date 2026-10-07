@@ -1,16 +1,22 @@
 [
   {
     "id": 1,
-    "user": { "id": 1, "username": "admin" },
-    "date": "2024-01-15T10:30:00+00:00",
-    "body": "Important client note",
+    "message": "Important client note",
+    "createdBy": {
+      "id": 1,
+      "username": "admin"
+    },
+    "createdAt": "2024-01-15T10:30:00+00:00",
     "pinned": false
   },
   {
     "id": 2,
-    "user": { "id": 2, "username": "dev" },
-    "date": "2024-01-16T14:20:00+00:00",
-    "body": "Follow-up discussion",
+    "message": "Follow-up discussion",
+    "createdBy": {
+      "id": 2,
+      "username": "dev"
+    },
+    "createdAt": "2024-01-16T14:20:00+00:00",
     "pinned": true
   }
 ]

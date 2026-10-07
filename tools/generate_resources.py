@@ -8,8 +8,12 @@ import json
 import os
 from pathlib import Path
 
-ROOT = Path("/Users/maxs/gitrepos/node-kimai")
-SPEC_PATH = "/Users/maxs/gitrepos/n8n/n8n-nodes-kimai-pro/api-docs-v1.1.json"
+ROOT = Path(__file__).resolve().parent.parent
+SPEC_CANDIDATES = [
+    ROOT / "api-docs.json",
+    "/Users/maxs/gitrepos/n8n/n8n-nodes-kimai-pro/api-docs-v1.1.json",
+]
+SPEC_PATH = next(str(p) for p in SPEC_CANDIDATES if os.path.exists(p))
 SRC = ROOT / "src"
 RESOURCES_DIR = SRC / "resources"
 
@@ -307,7 +311,16 @@ export class TimesheetClient {
     return pages;
   }
 
-  async listPages(params?: TimesheetListParams): AsyncIterable<Timesheet[]> {
+  /**
+   * Page stream for `for await (const page of client.timesheets.listPages())`.
+   * Declared non-async so the public type is `AsyncIterable<Timesheet[]>`, not
+   * `AsyncGenerator` (line convention shared with node-hudu/node-autotask).
+   */
+  listPages(params?: TimesheetListParams): AsyncIterable<Timesheet[]> {
+    return this.collectPages(params);
+  }
+
+  private async *collectPages(params?: TimesheetListParams): AsyncGenerator<Timesheet[]> {
     const query = { ...params };
     if (!query.user && !query.users) {
       query.user = 'all';
@@ -406,8 +419,8 @@ export class UserClient {
     return this.client.get<User>(`/api/users/${id}`);
   }
 
-  async getMe(): Promise<User> {
-    return this.client.get<User>('/api/users/me');
+  async getMe(): Promise<UserEntity> {
+    return this.client.get<UserEntity>('/api/users/me');
   }
 
   async create(input: UserCreateForm): Promise<UserEntity> {
@@ -575,7 +588,16 @@ export class InvoiceClient {
     return pages;
   }
 
-  async listPages(params?: InvoiceListParams): AsyncIterable<Invoice[]> {
+  /**
+   * Page stream for `for await (const page of client.invoices.listPages())`.
+   * Declared non-async so the public type is `AsyncIterable<Invoice[]>`, not
+   * `AsyncGenerator` (line convention shared with node-hudu/node-autotask).
+   */
+  listPages(params?: InvoiceListParams): AsyncIterable<Invoice[]> {
+    return this.collectPages(params);
+  }
+
+  private async *collectPages(params?: InvoiceListParams): AsyncGenerator<Invoice[]> {
     const query = { ...params };
     const size = query.size || 100;
     let page = query.page || 1;

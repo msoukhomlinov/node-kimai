@@ -27,7 +27,9 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "noUncheckedIndexedAccess": true,
+    "verbatimModuleSyntax": true
   },
   "include": [
     "src"

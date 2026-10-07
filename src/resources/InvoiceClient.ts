@@ -30,7 +30,16 @@ export class InvoiceClient {
     return pages;
   }
 
-  async *listPages(params?: InvoiceListParams): AsyncIterable<Invoice[]> {
+  /**
+   * Page stream for `for await (const page of client.invoices.listPages())`.
+   * Declared non-async so the public type is `AsyncIterable<Invoice[]>`, not
+   * `AsyncGenerator` (line convention shared with node-hudu/node-autotask).
+   */
+  listPages(params?: InvoiceListParams): AsyncIterable<Invoice[]> {
+    return this.collectPages(params);
+  }
+
+  private async *collectPages(params?: InvoiceListParams): AsyncGenerator<Invoice[]> {
     const query = { ...params };
     const size = query.size || 100;
     let page = query.page || 1;

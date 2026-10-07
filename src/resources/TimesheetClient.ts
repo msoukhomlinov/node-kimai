@@ -42,7 +42,16 @@ export class TimesheetClient {
     return pages;
   }
 
-  async *listPages(params?: TimesheetListParams): AsyncIterable<Timesheet[]> {
+  /**
+   * Page stream for `for await (const page of client.timesheets.listPages())`.
+   * Declared non-async so the public type is `AsyncIterable<Timesheet[]>`, not
+   * `AsyncGenerator` (line convention shared with node-hudu/node-autotask).
+   */
+  listPages(params?: TimesheetListParams): AsyncIterable<Timesheet[]> {
+    return this.collectPages(params);
+  }
+
+  private async *collectPages(params?: TimesheetListParams): AsyncGenerator<Timesheet[]> {
     const query = { ...params };
     if (!query.user && !query.users) {
       query.user = 'all';

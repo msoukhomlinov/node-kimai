@@ -1,4 +1,5 @@
 // SystemClient tests
+import { readFileSync } from 'node:fs';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ApiClient } from '../../src/client';
 
@@ -6,8 +7,7 @@ const BASE_URL = 'https://api.kimai.test';
 const TOKEN = 'test-token';
 
 function loadFixture(name: string): unknown {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  return require(`../../test/__fixtures__/${name}.json`);
+  return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
 describe('SystemClient', () => {

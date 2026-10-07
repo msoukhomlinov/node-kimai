@@ -1,13 +1,14 @@
 // CustomerClient tests
+import { readFileSync } from 'node:fs';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ApiClient } from '../../src/client';
+import type { CustomerEditForm } from '../../src/types';
 
 const BASE_URL = 'https://api.kimai.test';
 const TOKEN = 'test-token';
 
 function loadFixture(name: string): unknown {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  return require(`../../test/__fixtures__/${name}.json`);
+  return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
 describe('CustomerClient', () => {
@@ -85,7 +86,7 @@ describe('CustomerClient', () => {
       const fixture = loadFixture('customer_entity');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const input = {
+      const input: CustomerEditForm = {
         name: 'New Customer',
         country: 'US',
         language: 'en',
@@ -109,7 +110,13 @@ describe('CustomerClient', () => {
       const fixture = loadFixture('customer_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const input = { name: 'Updated Customer' };
+      const input: CustomerEditForm = {
+        name: 'Updated Customer',
+        country: 'US',
+        language: 'en',
+        currency: 'USD',
+        timezone: 'America/New_York',
+      };
       const result = await client.customers.update(1, input);
 
       expect(transport.request).toHaveBeenCalledWith({
@@ -225,7 +232,7 @@ describe('CustomerClient', () => {
       const fixture = loadFixture('comment_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const input = { body: 'New comment' };
+      const input = { message: 'New comment' };
       const result = await client.customers.createComment(1, input);
 
       expect(transport.request).toHaveBeenCalledWith({

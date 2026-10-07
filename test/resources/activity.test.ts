@@ -1,4 +1,5 @@
 // ActivityClient tests
+import { readFileSync } from 'node:fs';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ApiClient } from '../../src/client';
 import { ActivityClient } from '../../src/resources/ActivityClient';
@@ -7,8 +8,7 @@ const BASE_URL = 'https://api.kimai.test';
 const TOKEN = 'test-token';
 
 function loadFixture(name: string): unknown {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  return require(`../../test/__fixtures__/${name}.json`);
+  return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
 describe('ActivityClient', () => {
@@ -60,7 +60,7 @@ describe('ActivityClient', () => {
 
       await activityClient.list({ name: 'test' });
 
-      const call = transport.request.mock.calls[0][0];
+      const call = transport.request.mock.calls[0]![0];
       expect(call.query).not.toHaveProperty('page');
       expect(call.query).not.toHaveProperty('size');
     });

@@ -1,4 +1,5 @@
 // TeamClient tests
+import { readFileSync } from 'node:fs';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ApiClient } from '../../src/client';
 
@@ -6,8 +7,7 @@ const BASE_URL = 'https://api.kimai.test';
 const TOKEN = 'test-token';
 
 function loadFixture(name: string): unknown {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  return require(`../../test/__fixtures__/${name}.json`);
+  return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
 describe('TeamClient', () => {
@@ -68,12 +68,12 @@ describe('TeamClient', () => {
       const fixture = loadFixture('team_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.teams.create({ name: 'New Team' });
+      await client.teams.create({ name: 'New Team', members: [] });
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'POST',
         path: '/api/teams',
-        body: { name: 'New Team' },
+        body: { name: 'New Team', members: [] },
       });
     });
   });
@@ -83,12 +83,12 @@ describe('TeamClient', () => {
       const fixture = loadFixture('team_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      await client.teams.update(1, { name: 'Updated' });
+      await client.teams.update(1, { name: 'Updated', members: [] });
 
       expect(transport.request).toHaveBeenCalledWith({
         method: 'PATCH',
         path: '/api/teams/1',
-        body: { name: 'Updated' },
+        body: { name: 'Updated', members: [] },
       });
     });
   });

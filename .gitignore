@@ -5,7 +5,7 @@ coverage/
 .env
 .env.local
 
-# Squad process artifacts
-SCOPING.md
+# Squad process artifacts (scope record is tracked; reviews stay local)
 REVIEW_FINDINGS.md
 SQUAD_QA_REPORT.md
+.run/

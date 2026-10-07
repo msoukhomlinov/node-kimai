@@ -184,6 +184,7 @@ await client.projects.addToTeam(project.id!, { teams: [2] });
 
 ```typescript
 // List timesheets (paginated; defaults to all users)
+// NOTE: on paginated endpoints `list()` fetches the FIRST page only.
 const recent = await client.timesheets.list({ begin: '2026-08-01' });
 
 // Fetch ALL pages
@@ -527,7 +528,7 @@ This SDK is designed as the foundation for MCP (Model Context Protocol) servers.
 When building an MCP server with this SDK:
 
 1. Use `getAll()` for tool inputs that need complete data (e.g., `list_activities`)
-2. Use `list()` with filters for targeted queries (e.g., `list_timesheets(user=3)`)
+2. Use `list()` with filters for targeted queries on NON-paginated resources; on paginated ones (timesheets, invoices) it returns the first page only — prefer `getAll()` for tool inputs
 3. Wrap SDK errors into MCP tool errors with `err.status` and `err.message`
 4. Use deep imports (`node-kimai/types`) to avoid bundling unused code
 

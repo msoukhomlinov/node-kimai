@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": [
+      "ES2022"
+    ],
+    "strict": true,
+    "noImplicitAny": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
+    "resolveJsonModule": true,
+    "types": [
+      "node"
+    ],
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "node-kimai": [
+        "src/index.ts"
+      ],
+      "node-kimai/resources": [
+        "src/resources/index.ts"
+      ],
+      "node-kimai/types": [
+        "src/types/index.ts"
+      ],
+      "node-kimai/errors": [
+        "src/errors.ts"
+      ]
+    }
+  },
+  "include": [
+    "examples/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

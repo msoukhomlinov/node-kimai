@@ -1,4 +1,5 @@
 // InvoiceClient tests - includes pagination
+import { readFileSync } from 'node:fs';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ApiClient } from '../../src/client';
 
@@ -6,8 +7,7 @@ const BASE_URL = 'https://api.kimai.test';
 const TOKEN = 'test-token';
 
 function loadFixture(name: string): unknown {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  return require(`../../test/__fixtures__/${name}.json`);
+  return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
 describe('InvoiceClient', () => {
@@ -96,7 +96,7 @@ describe('InvoiceClient', () => {
 
       await client.invoices.getAll({ customer: 5 });
 
-      const call = transport.request.mock.calls[0][0];
+      const call = transport.request.mock.calls[0]![0];
       expect(call.query.customer).toBe(5);
     });
   });
@@ -168,7 +168,7 @@ describe('InvoiceClient', () => {
 
   describe('no delete method', () => {
     it('should NOT have a delete(id) method', () => {
-      expect(client.invoices.delete).toBeUndefined();
+      expect('delete' in client.invoices).toBe(false);
     });
   });
 });

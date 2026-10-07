@@ -44,11 +44,13 @@ async function listTimesheets(params?: {
   end?: string;
 }): Promise<unknown> {
   const timesheets = await kimai.timesheets.getAll(params);
+  // TimesheetEntity carries numeric activity/project ids (the Expanded variant
+  // from the vendor API embeds the objects).
   return timesheets.map((t) => ({
     id: t.id,
     description: t.description,
-    activity: t.activity?.name,
-    project: t.project?.name,
+    activity: t.activity,
+    project: t.project,
     begin: t.begin,
     end: t.end,
     duration: t.duration,
@@ -90,7 +92,7 @@ async function getUserInfo(): Promise<unknown> {
   const user = await kimai.users.getMe();
   return {
     id: user.id,
-    name: `${user.firstname ?? ''} ${user.lastname ?? ''}`.trim() || user.username,
+    name: user.username ?? user.initials ?? 'unknown',
     email: user.email,
     teams: user.teams?.map((t) => t.name),
   };

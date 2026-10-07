@@ -1,4 +1,5 @@
 // TimesheetClient tests - includes user-filter override and pagination
+import { readFileSync } from 'node:fs';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ApiClient } from '../../src/client';
 
@@ -6,8 +7,7 @@ const BASE_URL = 'https://api.kimai.test';
 const TOKEN = 'test-token';
 
 function loadFixture(name: string): unknown {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  return require(`../../test/__fixtures__/${name}.json`);
+  return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
 describe('TimesheetClient', () => {
@@ -43,7 +43,7 @@ describe('TimesheetClient', () => {
 
       await client.timesheets.list({ user: 5 });
 
-      const call = transport.request.mock.calls[0][0];
+      const call = transport.request.mock.calls[0]![0];
       expect(call.query.user).toBe(5);
     });
 
@@ -53,7 +53,7 @@ describe('TimesheetClient', () => {
 
       await client.timesheets.list({ users: [1, 2] });
 
-      const call = transport.request.mock.calls[0][0];
+      const call = transport.request.mock.calls[0]![0];
       expect(call.query.users).toEqual([1, 2]);
       expect(call.query.user).toBeUndefined();
     });
@@ -64,7 +64,7 @@ describe('TimesheetClient', () => {
 
       await client.timesheets.list({ begin: '2024-01-01', end: '2024-01-31' });
 
-      const call = transport.request.mock.calls[0][0];
+      const call = transport.request.mock.calls[0]![0];
       expect(call.query.user).toBe('all');
       expect(call.query.begin).toBe('2024-01-01');
       expect(call.query.end).toBe('2024-01-31');
@@ -119,7 +119,7 @@ describe('TimesheetClient', () => {
 
       await client.timesheets.getAll({ page: 5, size: 200 });
 
-      const call = transport.request.mock.calls[0][0];
+      const call = transport.request.mock.calls[0]![0];
       expect(call.query.page).toBe(5);
       expect(call.query.size).toBe(200);
     });
@@ -130,7 +130,7 @@ describe('TimesheetClient', () => {
 
       await client.timesheets.getAll({ user: 3 });
 
-      const call = transport.request.mock.calls[0][0];
+      const call = transport.request.mock.calls[0]![0];
       expect(call.query.user).toBe(3);
     });
   });
@@ -206,7 +206,7 @@ describe('TimesheetClient', () => {
       const fixture = loadFixture('timesheet_created');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const input = { activity: 1, begin: '2024-01-15T09:00:00+00:00' };
+      const input = { activity: 1, project: 1, begin: '2024-01-15T09:00:00+00:00' };
       await client.timesheets.create(input);
 
       expect(transport.request).toHaveBeenCalledWith({
@@ -222,7 +222,7 @@ describe('TimesheetClient', () => {
       const fixture = loadFixture('timesheet_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const input = { description: 'Updated' };
+      const input = { description: 'Updated', activity: 1, project: 1 };
       await client.timesheets.update(1, input);
 
       expect(transport.request).toHaveBeenCalledWith({

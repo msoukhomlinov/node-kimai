@@ -2,6 +2,7 @@
   "name": "node-kimai",
   "version": "1.0.1",
   "description": "TypeScript API client SDK for Kimai time-tracking software",
+  "sideEffects": false,
   "license": "MIT",
   "author": "Max Soukhomlinov",
   "repository": {
@@ -51,22 +52,31 @@
         "types": "./dist/errors.d.ts",
         "default": "./dist/errors.cjs"
       }
-    }
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "dist",
-    "src",
+    "examples",
     "README.md",
+    "LICENSE",
     "CHANGELOG.md",
     "ARCHITECTURE.md",
-    "LICENSE"
+    "docs/API.md",
+    "MCP_TOOL_MANIFEST.md"
   ],
   "scripts": {
     "build": "tsup",
-    "lint": "eslint src/",
-    "test": "vitest run --coverage",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.test.json && tsc --noEmit -p tsconfig.examples.json",
+    "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "coverage": "vitest run --coverage",
+    "lint": "eslint src test",
+    "lint:fix": "eslint src test --fix",
+    "verify": "npm run typecheck && npm run lint && npm run build && npm run coverage",
+    "clean": "rimraf dist coverage",
+    "prepublishOnly": "npm run clean && npm run verify"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -86,7 +96,10 @@
     "tsup": "^8.5.1",
     "typescript": "^5.9.0",
     "typescript-eslint": "^8.46.0",
-    "vitest": "^3.2.7"
+    "vitest": "^3.2.7",
+    "@eslint/js": "^9.17.0",
+    "globals": "^15.14.0",
+    "rimraf": "^6.0.1"
   },
   "overrides": {
     "esbuild": "0.28.2"

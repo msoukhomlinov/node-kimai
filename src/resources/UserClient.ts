@@ -27,8 +27,8 @@ export class UserClient {
     return this.client.get<User>(`/api/users/${id}`);
   }
 
-  async getMe(): Promise<User> {
-    return this.client.get<User>('/api/users/me');
+  async getMe(): Promise<UserEntity> {
+    return this.client.get<UserEntity>('/api/users/me');
   }
 
   async create(input: UserCreateForm): Promise<UserEntity> {

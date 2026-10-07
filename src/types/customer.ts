@@ -1,8 +1,8 @@
-// Generated types for customer resource
-// DO NOT EDIT MANUALLY
-
 import type { Team } from './team';
 import type { User } from './user';
+
+// Generated types for customer resource
+// DO NOT EDIT MANUALLY
 
 export interface Customer {
   "color-safe"?: string;
@@ -24,6 +24,7 @@ export interface Customer {
   metaFields?: CustomerMeta[];
   color?: string;
 }
+
 
 export interface CustomerEntity {
   "color-safe"?: string;
@@ -61,6 +62,7 @@ export interface CustomerEntity {
   color?: string;
 }
 
+
 export interface CustomerEditForm {
   name: string;
   number?: string;
@@ -95,10 +97,12 @@ export interface CustomerEditForm {
   billable?: boolean;
 }
 
+
 export interface CustomerMeta {
   name: string;
   value?: string;
 }
+
 
 export interface CustomerRate {
   id?: number;
@@ -108,6 +112,7 @@ export interface CustomerRate {
   isFixed?: boolean;
 }
 
+
 export interface CustomerRateForm {
   user?: number;
   rate: number;
@@ -115,14 +120,18 @@ export interface CustomerRateForm {
   isFixed?: boolean;
 }
 
+
 export interface Comment {
   id?: number;
-  user?: User;
-  date: string;
-  body: string;
+  message: string;
+  createdBy: User;
+  createdAt: string;
   pinned?: boolean;
 }
 
+
 export interface CommentForm {
-  body: string;
+  pinned?: boolean;
+  message: string;
 }
+

@@ -1,0 +1,32 @@
+name: ci
+
+# Quality gates for the node-kimai SDK, ported from the node-hudu/node-autotask
+# line: typecheck, lint, build, offline test suite with coverage thresholds.
+# Deliberate omissions (per the line): no secrets, no publish-adjacent steps.
+on: [push, pull_request]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20, 24] # engines.node: ">=20.0.0"; 24 matches the line's engines
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - name: Install (npm ci)
+        run: npm ci
+      - name: Typecheck (root + test + examples tsconfigs)
+        run: npm run typecheck
+      - name: Lint
+        run: npm run lint
+      - name: Build
+        run: npm run build
+      # Offline suite with the coverage thresholds from vitest.config.ts.
+      - name: Test (coverage)
+        run: npm run coverage

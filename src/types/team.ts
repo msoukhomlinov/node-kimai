@@ -1,31 +1,38 @@
-// Generated types for team resource
-// DO NOT EDIT MANUALLY
-
+import type { Activity } from './activity';
 import type { Customer } from './customer';
 import type { Project } from './project';
-import type { Activity } from './activity';
 import type { User } from './user';
+
+// Generated types for team resource
+// DO NOT EDIT MANUALLY
 
 export interface Team {
   "color-safe"?: string;
   id?: number;
   name: string;
+  members?: TeamMember[];
   customers?: Customer[];
   projects?: Project[];
   activities?: Activity[];
-  members?: TeamMember[];
   color?: string;
 }
 
+
 export interface TeamMember {
-  user?: User;
+  user: User;
+  teamlead?: boolean;
 }
 
+
 export interface TeamMembership {
-  team?: Team;
+  team: Team;
+  teamlead?: boolean;
 }
+
 
 export interface TeamEditForm {
   name: string;
   color?: string;
+  members: { user: number, teamlead: boolean }[];
 }
+

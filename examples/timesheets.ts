@@ -18,8 +18,8 @@ async function main() {
     return;
   }
 
-  const project = projects[0];
-  const activity = activities[0];
+  const project = projects[0]!;
+  const activity = activities[0]!;
 
   console.log(`Using project "${project.name}" (${project.id}) and activity "${activity.name}" (${activity.id})`);
 

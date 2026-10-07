@@ -1,13 +1,14 @@
 // UserClient tests
+import { readFileSync } from 'node:fs';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ApiClient } from '../../src/client';
+import type { UserCreateForm, UserEditForm } from '../../src/types';
 
 const BASE_URL = 'https://api.kimai.test';
 const TOKEN = 'test-token';
 
 function loadFixture(name: string): unknown {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  return require(`../../test/__fixtures__/${name}.json`);
+  return JSON.parse(readFileSync(new URL(`../__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
 describe('UserClient', () => {
@@ -95,7 +96,7 @@ describe('UserClient', () => {
       const fixture = loadFixture('user_entity');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const input = { username: 'newuser', email: 'new@example.com' };
+      const input: UserCreateForm = { username: 'newuser', email: 'new@example.com', language: 'en', locale: 'en', timezone: 'UTC', plainPassword: 'secret123' };
       await client.users.create(input);
 
       expect(transport.request).toHaveBeenCalledWith({
@@ -111,7 +112,7 @@ describe('UserClient', () => {
       const fixture = loadFixture('user_single');
       transport.request.mockResolvedValueOnce(fixture);
 
-      const input = { firstname: 'Updated' };
+      const input: UserEditForm = { email: 'updated@example.com', language: 'en', locale: 'en', timezone: 'UTC' };
       await client.users.update(1, input);
 
       expect(transport.request).toHaveBeenCalledWith({
@@ -153,7 +154,7 @@ describe('UserClient', () => {
 
   describe('no delete method', () => {
     it('should NOT have a delete(id) method', () => {
-      expect(client.users.delete).toBeUndefined();
+      expect('delete' in client.users).toBe(false);
     });
   });
 });

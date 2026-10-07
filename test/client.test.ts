@@ -1,6 +1,7 @@
 // Base client, transport, and error handling tests
+import { readFileSync } from 'node:fs';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { ApiClient, FetchTransport, HttpTransport, TransportRequest } from '../src/client';
+import { ApiClient, FetchTransport, type HttpTransport, type TransportRequest } from '../src/client';
 import {
   ApiError,
   BadRequestError,
@@ -17,8 +18,7 @@ const BASE_URL = 'https://api.kimai.test';
 const TOKEN = 'test-token-123';
 
 function loadFixture(name: string): unknown {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  return require(`./__fixtures__/${name}.json`);
+  return JSON.parse(readFileSync(new URL(`./__fixtures__/${name}.json`, import.meta.url), 'utf8'));
 }
 
 describe('FetchTransport', () => {
@@ -62,7 +62,7 @@ describe('FetchTransport', () => {
 
       await transport.request({ method: 'GET', path: '/api/activities' });
 
-      const [url] = mockFetch.mock.calls[0];
+      const [url] = mockFetch.mock.calls[0]!;
       expect(url).toBe(`${BASE_URL}/api/activities`);
     });
 
@@ -76,7 +76,7 @@ describe('FetchTransport', () => {
 
       await transport.request({ method: 'GET', path: 'api/activities' });
 
-      const [url] = mockFetch.mock.calls[0];
+      const [url] = mockFetch.mock.calls[0]!;
       expect(url).toBe(`${BASE_URL}/api/activities`);
     });
   });
@@ -96,7 +96,7 @@ describe('FetchTransport', () => {
         query: { name: 'test', visible: true },
       });
 
-      const [url] = mockFetch.mock.calls[0];
+      const [url] = mockFetch.mock.calls[0]!;
       expect(url).toContain('name=test');
       expect(url).toContain('visible=true');
     });
@@ -115,7 +115,7 @@ describe('FetchTransport', () => {
         query: { users: [1, 2, 3] },
       });
 
-      const [url] = mockFetch.mock.calls[0];
+      const [url] = mockFetch.mock.calls[0]!;
       expect(url).toContain('users=1');
       expect(url).toContain('users=2');
       expect(url).toContain('users=3');
@@ -135,7 +135,7 @@ describe('FetchTransport', () => {
         query: { name: 'test', visible: undefined, billable: null },
       });
 
-      const [url] = mockFetch.mock.calls[0];
+      const [url] = mockFetch.mock.calls[0]!;
       expect(url).toContain('name=test');
       expect(url).not.toContain('visible');
       expect(url).not.toContain('billable');
@@ -155,7 +155,7 @@ describe('FetchTransport', () => {
         query: {},
       });
 
-      const [url] = mockFetch.mock.calls[0];
+      const [url] = mockFetch.mock.calls[0]!;
       expect(url).toBe(`${BASE_URL}/api/activities`);
     });
   });
@@ -171,7 +171,7 @@ describe('FetchTransport', () => {
 
       await transport.request({ method: 'GET', path: '/api/activities' });
 
-      const [, opts] = mockFetch.mock.calls[0];
+      const [, opts] = mockFetch.mock.calls[0]!;
       expect(opts.headers.Authorization).toBe('Bearer test-token-123');
     });
 
@@ -185,7 +185,7 @@ describe('FetchTransport', () => {
 
       await transport.request({ method: 'GET', path: '/api/activities' });
 
-      const [, opts] = mockFetch.mock.calls[0];
+      const [, opts] = mockFetch.mock.calls[0]!;
       expect(opts.headers['Content-Type']).toBe('application/json');
     });
 
@@ -203,7 +203,7 @@ describe('FetchTransport', () => {
         headers: { 'X-Custom': 'value' },
       });
 
-      const [, opts] = mockFetch.mock.calls[0];
+      const [, opts] = mockFetch.mock.calls[0]!;
       expect(opts.headers['X-Custom']).toBe('value');
     });
   });
@@ -220,7 +220,7 @@ describe('FetchTransport', () => {
       const body = { name: 'Test', visible: true };
       await transport.request({ method: 'POST', path: '/api/activities', body });
 
-      const [, opts] = mockFetch.mock.calls[0];
+      const [, opts] = mockFetch.mock.calls[0]!;
       expect(opts.body).toBe(JSON.stringify(body));
     });
 
@@ -235,7 +235,7 @@ describe('FetchTransport', () => {
       const body = { name: 'Updated' };
       await transport.request({ method: 'PATCH', path: '/api/activities/1', body });
 
-      const [, opts] = mockFetch.mock.calls[0];
+      const [, opts] = mockFetch.mock.calls[0]!;
       expect(opts.body).toBe(JSON.stringify(body));
     });
 
@@ -253,7 +253,7 @@ describe('FetchTransport', () => {
         body: { name: 'test' },
       });
 
-      const [, opts] = mockFetch.mock.calls[0];
+      const [, opts] = mockFetch.mock.calls[0]!;
       expect(opts.body).toBeUndefined();
     });
 
@@ -271,7 +271,7 @@ describe('FetchTransport', () => {
         body: { name: 'test', visible: true },
       });
 
-      const [url] = mockFetch.mock.calls[0];
+      const [url] = mockFetch.mock.calls[0]!;
       expect(url).toContain('name=test');
       expect(url).toContain('visible=true');
     });
@@ -289,7 +289,7 @@ describe('FetchTransport', () => {
         body: { force: true },
       });
 
-      const [url] = mockFetch.mock.calls[0];
+      const [url] = mockFetch.mock.calls[0]!;
       expect(url).toContain('force=true');
     });
 
@@ -307,7 +307,7 @@ describe('FetchTransport', () => {
         body: null,
       });
 
-      const [, opts] = mockFetch.mock.calls[0];
+      const [, opts] = mockFetch.mock.calls[0]!;
       expect(opts.body).toBeUndefined();
     });
   });
@@ -325,7 +325,7 @@ describe('FetchTransport', () => {
 
         await transport.request({ method, path: '/api/activities' });
 
-        const [, opts] = mockFetch.mock.calls[0];
+        const [, opts] = mockFetch.mock.calls[0]!;
         expect(opts.method).toBe(method);
       },
     );
