@@ -40,6 +40,7 @@ import type {
 import { KimaiConfigError, ResolutionError } from '../errors';
 
 import type { ApiClient } from '../client';
+import { pathId } from '../guards';
 import { streamOnce } from './paging';
 
 /** Helper `limit` bounds (policy §9): default 25, hard maximum 100. */
@@ -224,7 +225,7 @@ export class ProjectClient {
 
   /** Get one Project record by id; a 404 normalises to NOT_FOUND. */
   async get(id: number): Promise<Project> {
-    return this.client.get<Project>(`/api/projects/${id}`);
+    return this.client.get<Project>(`/api/projects/${pathId(id)}`);
   }
 
   async create(input: ProjectEditForm): Promise<ProjectEntity>;
@@ -269,7 +270,7 @@ export class ProjectClient {
         'projects.update',
         'projects',
         'PATCH',
-        `/api/projects/${id}`,
+        `/api/projects/${pathId(id)}`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         input,
@@ -280,7 +281,7 @@ export class ProjectClient {
         [DRY_RUN_WARNING_NO_DIFF],
       );
     }
-    return this.client.patch<Project>(`/api/projects/${id}`, { body: input });
+    return this.client.patch<Project>(`/api/projects/${pathId(id)}`, { body: input });
   }
 
   async delete(id: number): Promise<void>;
@@ -297,7 +298,7 @@ export class ProjectClient {
         'projects.delete',
         'projects',
         'DELETE',
-        `/api/projects/${id}`,
+        `/api/projects/${pathId(id)}`,
         [id],
         { affected: 1, scope: 'single', reversible: false },
         undefined,
@@ -305,7 +306,7 @@ export class ProjectClient {
         ['the delete is irreversible: no dry-run warning restores a deleted record'],
       );
     }
-    return this.client.delete(`/api/projects/${id}`);
+    return this.client.delete(`/api/projects/${pathId(id)}`);
   }
 
   async updateMeta(id: number, meta: Record<string, unknown>): Promise<Project>;
@@ -325,7 +326,7 @@ export class ProjectClient {
         'projects.updateMeta',
         'projects',
         'PATCH',
-        `/api/projects/${id}/meta`,
+        `/api/projects/${pathId(id)}/meta`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         meta,
@@ -336,11 +337,11 @@ export class ProjectClient {
         [],
       );
     }
-    return this.client.patch<Project>(`/api/projects/${id}/meta`, { body: meta });
+    return this.client.patch<Project>(`/api/projects/${pathId(id)}/meta`, { body: meta });
   }
 
   async getRates(id: number): Promise<ProjectRate[]> {
-    return this.client.get<ProjectRate[]>(`/api/projects/${id}/rates`);
+    return this.client.get<ProjectRate[]>(`/api/projects/${pathId(id)}/rates`);
   }
 
   async createRate(id: number, input: ProjectRateForm): Promise<ProjectRate>;
@@ -358,7 +359,7 @@ export class ProjectClient {
         'projects.createRate',
         'projects',
         'POST',
-        `/api/projects/${id}/rates`,
+        `/api/projects/${pathId(id)}/rates`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         input,
@@ -369,7 +370,7 @@ export class ProjectClient {
         [],
       );
     }
-    return this.client.post<ProjectRate>(`/api/projects/${id}/rates`, { body: input });
+    return this.client.post<ProjectRate>(`/api/projects/${pathId(id)}/rates`, { body: input });
   }
 
   async deleteRate(id: number, rateId: number): Promise<void>;
@@ -387,7 +388,7 @@ export class ProjectClient {
         'projects.deleteRate',
         'projects',
         'DELETE',
-        `/api/projects/${id}/rates/${rateId}`,
+        `/api/projects/${pathId(id)}/rates/${pathId(rateId, 'rateId')}`,
         [id, rateId],
         { affected: 1, scope: 'single', reversible: false },
         undefined,
@@ -398,11 +399,11 @@ export class ProjectClient {
         [],
       );
     }
-    return this.client.delete(`/api/projects/${id}/rates/${rateId}`);
+    return this.client.delete(`/api/projects/${pathId(id)}/rates/${pathId(rateId, 'rateId')}`);
   }
 
   async listComments(id: number): Promise<Comment[]> {
-    return this.client.get<Comment[]>(`/api/projects/${id}/comments`);
+    return this.client.get<Comment[]>(`/api/projects/${pathId(id)}/comments`);
   }
 
   async createComment(id: number, input: CommentForm): Promise<Comment>;
@@ -420,7 +421,7 @@ export class ProjectClient {
         'projects.createComment',
         'projects',
         'POST',
-        `/api/projects/${id}/comments`,
+        `/api/projects/${pathId(id)}/comments`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         input,
@@ -431,7 +432,7 @@ export class ProjectClient {
         [],
       );
     }
-    return this.client.post<Comment>(`/api/projects/${id}/comments`, { body: input });
+    return this.client.post<Comment>(`/api/projects/${pathId(id)}/comments`, { body: input });
   }
 
   async deleteComment(id: number, commentId: number): Promise<void>;
@@ -449,7 +450,7 @@ export class ProjectClient {
         'projects.deleteComment',
         'projects',
         'DELETE',
-        `/api/projects/${id}/comments/${commentId}`,
+        `/api/projects/${pathId(id)}/comments/${pathId(commentId, 'commentId')}`,
         [id, commentId],
         { affected: 1, scope: 'single', reversible: false },
         undefined,
@@ -460,7 +461,7 @@ export class ProjectClient {
         [],
       );
     }
-    return this.client.delete(`/api/projects/${id}/comments/${commentId}`);
+    return this.client.delete(`/api/projects/${pathId(id)}/comments/${pathId(commentId, 'commentId')}`);
   }
 
   async pinComment(id: number, commentId: number): Promise<Comment>;
@@ -478,7 +479,7 @@ export class ProjectClient {
         'projects.pinComment',
         'projects',
         'PATCH',
-        `/api/projects/${id}/comments/${commentId}/pin`,
+        `/api/projects/${pathId(id)}/comments/${pathId(commentId, 'commentId')}/pin`,
         [id, commentId],
         { affected: 1, scope: 'single', reversible: true },
         undefined,
@@ -489,7 +490,7 @@ export class ProjectClient {
         [],
       );
     }
-    return this.client.patch<Comment>(`/api/projects/${id}/comments/${commentId}/pin`);
+    return this.client.patch<Comment>(`/api/projects/${pathId(id)}/comments/${pathId(commentId, 'commentId')}/pin`);
   }
 
   async addToTeam(id: number, input: { teams?: number[] }): Promise<Team>;
@@ -507,7 +508,7 @@ export class ProjectClient {
         'projects.addToTeam',
         'projects',
         'POST',
-        `/api/projects/${id}/team`,
+        `/api/projects/${pathId(id)}/team`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         input,
@@ -521,7 +522,7 @@ export class ProjectClient {
         [],
       );
     }
-    return this.client.post<Team>(`/api/projects/${id}/team`, { body: input });
+    return this.client.post<Team>(`/api/projects/${pathId(id)}/team`, { body: input });
   }
 
   // ---------------------------------------------------------------------------

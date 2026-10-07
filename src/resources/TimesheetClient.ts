@@ -28,6 +28,7 @@ import type { DryRunResult, HelperOptions, MutationOptions, Resolution, Resoluti
 import { KimaiConfigError, ResolutionError } from '../errors';
 
 import type { ApiClient } from '../client';
+import { pathId } from '../guards';
 import { collectPages, pageParams, streamItems, streamPages, type PageFetcher } from './paging';
 import type { Page } from '../types/common';
 
@@ -176,7 +177,7 @@ export class TimesheetClient {
 
   /** Get one Timesheet record by id; a 404 normalises to NOT_FOUND. */
   async get(id: number): Promise<Timesheet> {
-    return this.client.get<Timesheet>(`/api/timesheets/${id}`);
+    return this.client.get<Timesheet>(`/api/timesheets/${pathId(id)}`);
   }
 
   async create(input: TimesheetEditForm): Promise<Timesheet>;
@@ -229,7 +230,7 @@ export class TimesheetClient {
       return mutationDryRun<TimesheetEditForm>(
         'timesheets.update',
         'PATCH',
-        `/api/timesheets/${id}`,
+        `/api/timesheets/${pathId(id)}`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         input,
@@ -237,7 +238,7 @@ export class TimesheetClient {
         [DRY_RUN_WARNING_NO_DIFF],
       );
     }
-    return this.client.patch<Timesheet>(`/api/timesheets/${id}`, { body: input });
+    return this.client.patch<Timesheet>(`/api/timesheets/${pathId(id)}`, { body: input });
   }
 
   async delete(id: number): Promise<void>;
@@ -253,7 +254,7 @@ export class TimesheetClient {
       return mutationDryRun<void>(
         'timesheets.delete',
         'DELETE',
-        `/api/timesheets/${id}`,
+        `/api/timesheets/${pathId(id)}`,
         [id],
         { affected: 1, scope: 'single', reversible: false },
         undefined,
@@ -261,7 +262,7 @@ export class TimesheetClient {
         ['the delete is irreversible: no dry-run warning restores a deleted record'],
       );
     }
-    return this.client.delete(`/api/timesheets/${id}`);
+    return this.client.delete(`/api/timesheets/${pathId(id)}`);
   }
 
   async updateMeta(id: number, meta: Record<string, unknown>): Promise<Timesheet>;
@@ -280,7 +281,7 @@ export class TimesheetClient {
       return mutationDryRun<Record<string, unknown>>(
         'timesheets.updateMeta',
         'PATCH',
-        `/api/timesheets/${id}/meta`,
+        `/api/timesheets/${pathId(id)}/meta`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         meta,
@@ -291,7 +292,7 @@ export class TimesheetClient {
         [],
       );
     }
-    return this.client.patch<Timesheet>(`/api/timesheets/${id}/meta`, { body: meta });
+    return this.client.patch<Timesheet>(`/api/timesheets/${pathId(id)}/meta`, { body: meta });
   }
 
   async getActive(): Promise<Timesheet[]> {
@@ -316,7 +317,7 @@ export class TimesheetClient {
       return mutationDryRun<void>(
         'timesheets.stop',
         'PATCH',
-        `/api/timesheets/${id}/stop`,
+        `/api/timesheets/${pathId(id)}/stop`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         undefined,
@@ -324,7 +325,7 @@ export class TimesheetClient {
         [],
       );
     }
-    return this.client.patch<Timesheet>(`/api/timesheets/${id}/stop`);
+    return this.client.patch<Timesheet>(`/api/timesheets/${pathId(id)}/stop`);
   }
 
   async restart(id: number, input?: { copy?: string, begin?: string }): Promise<Timesheet>;
@@ -342,7 +343,7 @@ export class TimesheetClient {
       return mutationDryRun<{ copy?: string, begin?: string }>(
         'timesheets.restart',
         'PATCH',
-        `/api/timesheets/${id}/restart`,
+        `/api/timesheets/${pathId(id)}/restart`,
         [id],
         { affected: 1, scope: 'single', reversible: false },
         input,
@@ -350,7 +351,7 @@ export class TimesheetClient {
         [],
       );
     }
-    return this.client.patch<Timesheet>(`/api/timesheets/${id}/restart`, { body: input });
+    return this.client.patch<Timesheet>(`/api/timesheets/${pathId(id)}/restart`, { body: input });
   }
 
   async duplicate(id: number): Promise<Timesheet>;
@@ -368,7 +369,7 @@ export class TimesheetClient {
       return mutationDryRun<void>(
         'timesheets.duplicate',
         'PATCH',
-        `/api/timesheets/${id}/duplicate`,
+        `/api/timesheets/${pathId(id)}/duplicate`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         undefined,
@@ -376,7 +377,7 @@ export class TimesheetClient {
         [],
       );
     }
-    return this.client.patch<Timesheet>(`/api/timesheets/${id}/duplicate`);
+    return this.client.patch<Timesheet>(`/api/timesheets/${pathId(id)}/duplicate`);
   }
 
   async toggleExport(id: number): Promise<Timesheet>;
@@ -394,7 +395,7 @@ export class TimesheetClient {
       return mutationDryRun<void>(
         'timesheets.toggleExport',
         'PATCH',
-        `/api/timesheets/${id}/export`,
+        `/api/timesheets/${pathId(id)}/export`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         undefined,
@@ -402,7 +403,7 @@ export class TimesheetClient {
         [],
       );
     }
-    return this.client.patch<Timesheet>(`/api/timesheets/${id}/export`);
+    return this.client.patch<Timesheet>(`/api/timesheets/${pathId(id)}/export`);
   }
 
   // ---------------------------------------------------------------------------

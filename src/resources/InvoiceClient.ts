@@ -23,6 +23,7 @@ import type { DryRunResult, HelperOptions, MutationOptions, Resolution, Resoluti
 import { KimaiConfigError } from '../errors';
 
 import type { ApiClient } from '../client';
+import { pathId } from '../guards';
 import { collectPages, pageParams, streamItems, streamPages, type PageFetcher } from './paging';
 import type { Page } from '../types/common';
 
@@ -180,7 +181,7 @@ export class InvoiceClient {
 
   /** Get one Invoice record by id; a 404 normalises to NOT_FOUND. */
   async get(id: number): Promise<Invoice> {
-    return this.client.get<Invoice>(`/api/invoices/${id}`);
+    return this.client.get<Invoice>(`/api/invoices/${pathId(id)}`);
   }
 
   async updateCustomFields(id: number, fields: InvoiceMeta[]): Promise<Invoice>;
@@ -201,7 +202,7 @@ export class InvoiceClient {
       return mutationDryRun<InvoiceMeta[]>(
         'invoices.updateCustomFields',
         'PATCH',
-        `/api/invoices/${id}/custom-fields`,
+        `/api/invoices/${pathId(id)}/custom-fields`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         fields,
@@ -212,11 +213,11 @@ export class InvoiceClient {
         [DRY_RUN_WARNING_NO_DIFF],
       );
     }
-    return this.client.patch<Invoice>(`/api/invoices/${id}/custom-fields`, { body: fields });
+    return this.client.patch<Invoice>(`/api/invoices/${pathId(id)}/custom-fields`, { body: fields });
   }
 
   async download(id: number): Promise<ArrayBuffer> {
-    return this.client.get<ArrayBuffer>(`/api/invoices/${id}/download`, { responseType: 'arraybuffer' });
+    return this.client.get<ArrayBuffer>(`/api/invoices/${pathId(id)}/download`, { responseType: 'arraybuffer' });
   }
 
   // ---------------------------------------------------------------------------

@@ -17,6 +17,7 @@ import type { DryRunResult, HelperOptions, MutationOptions, Resolution, Resoluti
 import { KimaiConfigError, ResolutionError } from '../errors';
 
 import type { ApiClient } from '../client';
+import { pathId } from '../guards';
 import { streamOnce } from './paging';
 
 /** Helper `limit` bounds (policy §9): default 25, hard maximum 100. */
@@ -164,7 +165,7 @@ export class TagClient {
       return mutationDryRun<void>(
         'tags.delete',
         'DELETE',
-        `/api/tags/${id}`,
+        `/api/tags/${pathId(id)}`,
         [id],
         { affected: 1, scope: 'single', reversible: false },
         undefined,
@@ -172,7 +173,7 @@ export class TagClient {
         ['the delete is irreversible: no dry-run warning restores a deleted tag'],
       );
     }
-    return this.client.delete(`/api/tags/${id}`);
+    return this.client.delete(`/api/tags/${pathId(id)}`);
   }
 
   async find(name: string): Promise<Tag[]> {

@@ -26,6 +26,7 @@ import type { DryRunResult, HelperOptions, MutationOptions, Resolution, Resoluti
 import { KimaiConfigError, ResolutionError } from '../errors';
 
 import type { ApiClient } from '../client';
+import { pathId } from '../guards';
 import { streamOnce } from './paging';
 
 /** Helper `limit` bounds (policy §9): default 25, hard maximum 100. */
@@ -156,7 +157,7 @@ export class UserClient {
 
   /** Get one User record by id; a 404 normalises to NOT_FOUND. */
   async get(id: number): Promise<User> {
-    return this.client.get<User>(`/api/users/${id}`);
+    return this.client.get<User>(`/api/users/${pathId(id)}`);
   }
 
   async getMe(): Promise<UserEntity> {
@@ -221,7 +222,7 @@ export class UserClient {
       return mutationDryRun<UserEditForm>(
         'users.update',
         'PATCH',
-        `/api/users/${id}`,
+        `/api/users/${pathId(id)}`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         input,
@@ -232,7 +233,7 @@ export class UserClient {
         [DRY_RUN_WARNING_NO_DIFF, ...warnings],
       );
     }
-    return this.client.patch<User>(`/api/users/${id}`, { body: input });
+    return this.client.patch<User>(`/api/users/${pathId(id)}`, { body: input });
   }
 
   async updatePreferences(id: number, prefs: UserPreference[]): Promise<User>;
@@ -249,7 +250,7 @@ export class UserClient {
       return mutationDryRun<UserPreference[]>(
         'users.updatePreferences',
         'PATCH',
-        `/api/users/${id}/preferences`,
+        `/api/users/${pathId(id)}/preferences`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         prefs,
@@ -260,7 +261,7 @@ export class UserClient {
         [DRY_RUN_WARNING_NO_DIFF],
       );
     }
-    return this.client.patch<User>(`/api/users/${id}/preferences`, { body: prefs });
+    return this.client.patch<User>(`/api/users/${pathId(id)}/preferences`, { body: prefs });
   }
 
   async deleteApiToken(tokenId: number): Promise<void>;
@@ -276,7 +277,7 @@ export class UserClient {
       return mutationDryRun<void>(
         'users.deleteApiToken',
         'DELETE',
-        `/api/users/api-token/${tokenId}`,
+        `/api/users/api-token/${pathId(tokenId, 'tokenId')}`,
         [tokenId],
         { affected: 1, scope: 'single', reversible: false },
         undefined,
@@ -284,7 +285,7 @@ export class UserClient {
         ['the delete is irreversible: no dry-run warning restores a deleted API token'],
       );
     }
-    return this.client.delete(`/api/users/api-token/${tokenId}`);
+    return this.client.delete(`/api/users/api-token/${pathId(tokenId, 'tokenId')}`);
   }
 
   // ---------------------------------------------------------------------------

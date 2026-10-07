@@ -14,7 +14,7 @@
 - subsumed read primitives: 15 (covered by a helper — see below)
 - excluded by curation: 2
 - overrides applied: 16
-- projected at: 2026-10-07T12:44:27.575Z
+- projected at: 2026-10-07T14:46:31.159Z
 
 ## Progressive disclosure — the decision
 

@@ -10,6 +10,7 @@
 import type { DryRunResult, MutationOptions } from '../types/common';
 
 import type { ApiClient } from '../client';
+import { pathId } from '../guards';
 
 /** True for a valid target id (positive integer). */
 function validId(id: number): boolean {
@@ -66,7 +67,7 @@ export class ExportClient {
       return mutationDryRun<void>(
         'export.deleteTemplate',
         'DELETE',
-        `/api/export/${templateId}`,
+        `/api/export/${pathId(templateId, 'templateId')}`,
         [templateId],
         { affected: 1, scope: 'single', reversible: false },
         undefined,
@@ -74,6 +75,6 @@ export class ExportClient {
         ['the delete is irreversible: no dry-run warning restores a deleted template'],
       );
     }
-    return this.client.delete(`/api/export/${templateId}`);
+    return this.client.delete(`/api/export/${pathId(templateId, 'templateId')}`);
   }
 }

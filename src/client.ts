@@ -2,6 +2,7 @@
 // DO NOT EDIT MANUALLY
 
 import { createApiError } from './errors';
+import { assertSafeRequestPath } from './guards';
 import { ActivityClient } from './resources/ActivityClient';
 import { CustomerClient } from './resources/CustomerClient';
 import { ProjectClient } from './resources/ProjectClient';
@@ -36,7 +37,9 @@ export class FetchTransport implements HttpTransport {
   ) {}
 
   async request<T>(options: TransportRequest): Promise<T> {
-    const url = new URL(options.path, this.baseUrl);
+    assertSafeRequestPath(options.path);
+    // Append the path to the base (never resolve it), so a base sub-path such as `/kimai` is kept.
+    const url = new URL(this.baseUrl.replace(/\/+$/, '') + '/' + options.path.replace(/^\//, ''));
     // Phase F: one correlation id per request (policy §7.3), surfaced on errors.
     const correlationId = crypto.randomUUID();
 
@@ -200,18 +203,22 @@ export class ApiClient {
   }
 
   async get<T>(path: string, options?: { query?: Record<string, string | number | boolean | null | string[] | number[] | undefined>; responseType?: 'json' | 'arraybuffer' | 'text' }): Promise<T> {
+    assertSafeRequestPath(path);
     return this.transport.request<T>({ method: 'GET', path, query: options?.query, responseType: options?.responseType });
   }
 
   async post<T>(path: string, options?: { query?: Record<string, string | number | boolean | null | string[] | number[] | undefined>; body?: unknown }): Promise<T> {
+    assertSafeRequestPath(path);
     return this.transport.request<T>({ method: 'POST', path, query: options?.query, body: options?.body });
   }
 
   async patch<T>(path: string, options?: { query?: Record<string, string | number | boolean | null | string[] | number[] | undefined>; body?: unknown }): Promise<T> {
+    assertSafeRequestPath(path);
     return this.transport.request<T>({ method: 'PATCH', path, query: options?.query, body: options?.body });
   }
 
   async delete(path: string, options?: { query?: Record<string, string | number | boolean | null | string[] | number[] | undefined>; body?: unknown }): Promise<void> {
+    assertSafeRequestPath(path);
     await this.transport.request<void>({ method: 'DELETE', path, query: options?.query, body: options?.body });
   }
 }

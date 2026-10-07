@@ -25,6 +25,7 @@ import type { DryRunResult, HelperOptions, MutationOptions, Resolution, Resoluti
 import { KimaiConfigError, ResolutionError } from '../errors';
 
 import type { ApiClient } from '../client';
+import { pathId } from '../guards';
 import { streamOnce } from './paging';
 
 /** Helper `limit` bounds (policy §9): default 25, hard maximum 100. */
@@ -146,7 +147,7 @@ export class ActivityClient {
 
   /** Get one Activity record by id; a 404 normalises to NOT_FOUND. */
   async get(id: number): Promise<Activity> {
-    return this.client.get<Activity>(`/api/activities/${id}`);
+    return this.client.get<Activity>(`/api/activities/${pathId(id)}`);
   }
 
   async create(input: ActivityEditForm): Promise<ActivityEntity>;
@@ -191,7 +192,7 @@ export class ActivityClient {
         'activities.update',
         'activities',
         'PATCH',
-        `/api/activities/${id}`,
+        `/api/activities/${pathId(id)}`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         input,
@@ -202,7 +203,7 @@ export class ActivityClient {
         [DRY_RUN_WARNING_NO_DIFF],
       );
     }
-    return this.client.patch<Activity>(`/api/activities/${id}`, { body: input });
+    return this.client.patch<Activity>(`/api/activities/${pathId(id)}`, { body: input });
   }
 
   async delete(id: number): Promise<void>;
@@ -219,7 +220,7 @@ export class ActivityClient {
         'activities.delete',
         'activities',
         'DELETE',
-        `/api/activities/${id}`,
+        `/api/activities/${pathId(id)}`,
         [id],
         { affected: 1, scope: 'single', reversible: false },
         undefined,
@@ -227,7 +228,7 @@ export class ActivityClient {
         ['the delete is irreversible: no dry-run warning restores a deleted record'],
       );
     }
-    return this.client.delete(`/api/activities/${id}`);
+    return this.client.delete(`/api/activities/${pathId(id)}`);
   }
 
   async updateMeta(id: number, meta: Record<string, unknown>): Promise<Activity>;
@@ -247,7 +248,7 @@ export class ActivityClient {
         'activities.updateMeta',
         'activities',
         'PATCH',
-        `/api/activities/${id}/meta`,
+        `/api/activities/${pathId(id)}/meta`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         meta,
@@ -258,11 +259,11 @@ export class ActivityClient {
         [],
       );
     }
-    return this.client.patch<Activity>(`/api/activities/${id}/meta`, { body: meta });
+    return this.client.patch<Activity>(`/api/activities/${pathId(id)}/meta`, { body: meta });
   }
 
   async getRates(id: number): Promise<ActivityRate[]> {
-    return this.client.get<ActivityRate[]>(`/api/activities/${id}/rates`);
+    return this.client.get<ActivityRate[]>(`/api/activities/${pathId(id)}/rates`);
   }
 
   async createRate(id: number, input: ActivityRateForm): Promise<ActivityRate>;
@@ -280,7 +281,7 @@ export class ActivityClient {
         'activities.createRate',
         'activities',
         'POST',
-        `/api/activities/${id}/rates`,
+        `/api/activities/${pathId(id)}/rates`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         input,
@@ -291,7 +292,7 @@ export class ActivityClient {
         [],
       );
     }
-    return this.client.post<ActivityRate>(`/api/activities/${id}/rates`, { body: input });
+    return this.client.post<ActivityRate>(`/api/activities/${pathId(id)}/rates`, { body: input });
   }
 
   async deleteRate(id: number, rateId: number): Promise<void>;
@@ -309,7 +310,7 @@ export class ActivityClient {
         'activities.deleteRate',
         'activities',
         'DELETE',
-        `/api/activities/${id}/rates/${rateId}`,
+        `/api/activities/${pathId(id)}/rates/${pathId(rateId, 'rateId')}`,
         [id, rateId],
         { affected: 1, scope: 'single', reversible: false },
         undefined,
@@ -320,7 +321,7 @@ export class ActivityClient {
         [],
       );
     }
-    return this.client.delete(`/api/activities/${id}/rates/${rateId}`);
+    return this.client.delete(`/api/activities/${pathId(id)}/rates/${pathId(rateId, 'rateId')}`);
   }
 
   async addToTeam(id: number, input: { teams?: number[] }): Promise<Team>;
@@ -338,7 +339,7 @@ export class ActivityClient {
         'activities.addToTeam',
         'activities',
         'POST',
-        `/api/activities/${id}/team`,
+        `/api/activities/${pathId(id)}/team`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         input,
@@ -352,7 +353,7 @@ export class ActivityClient {
         [],
       );
     }
-    return this.client.post<Team>(`/api/activities/${id}/team`, { body: input });
+    return this.client.post<Team>(`/api/activities/${pathId(id)}/team`, { body: input });
   }
 
   // ---------------------------------------------------------------------------

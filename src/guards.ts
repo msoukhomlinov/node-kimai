@@ -9,7 +9,7 @@
  *
  * Both are VALUE-FREE by construction: the returned string names the artifact, never the value.
  */
-import { ApiError } from './errors.js';
+import { ApiError, KimaiConfigError } from './errors.js';
 
 /**
  * True when `err` is one of this SDK's typed errors (`ApiError` and its subclasses:
@@ -102,4 +102,51 @@ export function credentialShapeProblem(config: CredentialShapeInput): string | n
   if (typeof token !== 'string' || token === '') return 'token must be a non-empty string';
   const shape = credentialValueShapeProblem(token);
   return shape === undefined ? null : `token has ${shape}: ${CREDENTIAL_ENV_LOAD_ACTION}`;
+}
+
+// ---------------------------------------------------------------------------
+// Request path validation (internal: used by the client and the resource clients).
+// ---------------------------------------------------------------------------
+
+/**
+ * One record identifier as a path segment: a safe positive integer, returned as its decimal
+ * string. Anything else throws `KimaiConfigError` before a request is built.
+ */
+export function pathId(value: unknown, name = 'id'): string {
+  if (typeof value === 'number' && Number.isSafeInteger(value) && value > 0) return String(value);
+  throw new KimaiConfigError(`${name} must be a positive integer. No request was issued.`);
+}
+
+/** One free-text path segment (letters, digits, `_`, `-`), returned unchanged. */
+export function pathToken(value: unknown, name: string): string {
+  if (typeof value === 'string' && /^[A-Za-z0-9_-]+$/.test(value)) return value;
+  throw new KimaiConfigError(`${name} must contain only letters, digits, "_" or "-". No request was issued.`);
+}
+
+/** True when one form of a request path is not made of ordinary segments. */
+function unsafePathForm(path: string): boolean {
+  // eslint-disable-next-line no-control-regex
+  if (/[\\?#\u0000-\u001f\u007f]/.test(path)) return true;
+  return path.replace(/^\//, '').split('/').some((segment) => segment === '' || segment === '.' || segment === '..');
+}
+
+/**
+ * Throw `KimaiConfigError` unless `path` is a plain relative request path made of ordinary
+ * `/segment` parts, checked as given and after percent-decoding. Query parameters belong in
+ * `query`, never in the path.
+ */
+export function assertSafeRequestPath(path: unknown): asserts path is string {
+  let form = path;
+  for (let round = 0; typeof form === 'string' && round < 4; round++) {
+    if (unsafePathForm(form)) break;
+    let decoded: string;
+    try {
+      decoded = decodeURIComponent(form);
+    } catch {
+      break;
+    }
+    if (decoded === form) return;
+    form = decoded;
+  }
+  throw new KimaiConfigError('request path is not a plain relative API path. No request was issued.');
 }

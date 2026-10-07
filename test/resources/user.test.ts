@@ -390,13 +390,18 @@ describe('UserClient — Phase F agent execution layer', () => {
       expect(transport.request).not.toHaveBeenCalled();
     });
 
-    it('dry-run reports an invalid target id and missing required fields without a wire call', async () => {
-      const res = await client.users.update(0, {} as never, { dryRun: true });
+    it('dry-run reports missing required fields without a wire call', async () => {
+      const res = await client.users.update(1, {} as never, { dryRun: true });
 
       expect(res.checks).toEqual([
-        { name: 'target-id', ok: false },
+        { name: 'target-id', ok: true },
         { name: 'required-fields', ok: false },
       ]);
+      expect(transport.request).not.toHaveBeenCalled();
+    });
+
+    it('dry-run rejects an invalid target id without a wire call', async () => {
+      await expect(client.users.update(0, {} as never, { dryRun: true })).rejects.toBeInstanceOf(KimaiConfigError);
       expect(transport.request).not.toHaveBeenCalled();
     });
   });

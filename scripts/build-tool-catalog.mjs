@@ -367,6 +367,10 @@ function main() {
           properties[f.name] = specSchemaNode(spec.doc, specRequestBody(spec.doc, specOp));
         } else {
           properties[f.name] = schemaNodeFor(f, spec.unions);
+          // A record identifier is a path segment: served as a positive integer, not any number.
+          if (/^id$|Id$|_id$/.test(f.name) && properties[f.name].type === 'number') {
+            properties[f.name] = { type: 'integer', minimum: 1 };
+          }
         }
         if (f.description) properties[f.name].description = f.description;
         if (f.required === true) required.push(f.name);
@@ -641,6 +645,7 @@ export interface InputJsonSchema {
   type?: string | string[];
   const?: string;
   enum?: string[];
+  minimum?: number;
   description?: string;
   additionalProperties?: boolean;
   properties?: Record<string, InputJsonSchema>;

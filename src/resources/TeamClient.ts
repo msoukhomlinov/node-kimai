@@ -16,6 +16,7 @@ import type { DryRunResult, HelperOptions, MutationOptions, Resolution, Resoluti
 import { KimaiConfigError, ResolutionError } from '../errors';
 
 import type { ApiClient } from '../client';
+import { pathId } from '../guards';
 import { streamOnce } from './paging';
 
 /** The identifier kinds `teams.resolve` documents (policy §6). */
@@ -113,7 +114,7 @@ export class TeamClient {
 
   /** Get one Team record by id; a 404 normalises to NOT_FOUND. */
   async get(id: number): Promise<Team> {
-    return this.client.get<Team>(`/api/teams/${id}`);
+    return this.client.get<Team>(`/api/teams/${pathId(id)}`);
   }
 
   async create(input: TeamEditForm): Promise<Team>;
@@ -159,7 +160,7 @@ export class TeamClient {
       return mutationDryRun<TeamEditForm>(
         'teams.update',
         'PATCH',
-        `/api/teams/${id}`,
+        `/api/teams/${pathId(id)}`,
         [id],
         { affected: 1, scope: 'single', reversible: true },
         input,
@@ -170,7 +171,7 @@ export class TeamClient {
         [DRY_RUN_WARNING_NO_DIFF],
       );
     }
-    return this.client.patch<Team>(`/api/teams/${id}`, { body: input });
+    return this.client.patch<Team>(`/api/teams/${pathId(id)}`, { body: input });
   }
 
   async delete(id: number): Promise<void>;
@@ -186,7 +187,7 @@ export class TeamClient {
       return mutationDryRun<void>(
         'teams.delete',
         'DELETE',
-        `/api/teams/${id}`,
+        `/api/teams/${pathId(id)}`,
         [id],
         { affected: 1, scope: 'single', reversible: false },
         undefined,
@@ -194,7 +195,7 @@ export class TeamClient {
         ['the delete is irreversible: no dry-run warning restores a deleted team'],
       );
     }
-    return this.client.delete(`/api/teams/${id}`);
+    return this.client.delete(`/api/teams/${pathId(id)}`);
   }
 
   async addMember(teamId: number, userId: number): Promise<Team>;
@@ -211,7 +212,7 @@ export class TeamClient {
       return mutationDryRun<void>(
         'teams.addMember',
         'POST',
-        `/api/teams/${teamId}/members/${userId}`,
+        `/api/teams/${pathId(teamId, 'teamId')}/members/${pathId(userId, 'userId')}`,
         [teamId, userId],
         { affected: 1, scope: 'single', reversible: true },
         undefined,
@@ -219,7 +220,7 @@ export class TeamClient {
         [],
       );
     }
-    return this.client.post<Team>(`/api/teams/${teamId}/members/${userId}`);
+    return this.client.post<Team>(`/api/teams/${pathId(teamId, 'teamId')}/members/${pathId(userId, 'userId')}`);
   }
 
   async removeMember(teamId: number, userId: number): Promise<void>;
@@ -236,7 +237,7 @@ export class TeamClient {
       return mutationDryRun<void>(
         'teams.removeMember',
         'DELETE',
-        `/api/teams/${teamId}/members/${userId}`,
+        `/api/teams/${pathId(teamId, 'teamId')}/members/${pathId(userId, 'userId')}`,
         [teamId, userId],
         { affected: 1, scope: 'single', reversible: false },
         undefined,
@@ -244,7 +245,7 @@ export class TeamClient {
         [],
       );
     }
-    return this.client.delete(`/api/teams/${teamId}/members/${userId}`);
+    return this.client.delete(`/api/teams/${pathId(teamId, 'teamId')}/members/${pathId(userId, 'userId')}`);
   }
 
   async grantCustomerAccess(teamId: number, customerId: number): Promise<Team>;
@@ -260,7 +261,7 @@ export class TeamClient {
       return mutationDryRun<void>(
         'teams.grantCustomerAccess',
         'POST',
-        `/api/teams/${teamId}/customers/${customerId}`,
+        `/api/teams/${pathId(teamId, 'teamId')}/customers/${pathId(customerId, 'customerId')}`,
         [teamId, customerId],
         { affected: 1, scope: 'single', reversible: true },
         undefined,
@@ -268,7 +269,7 @@ export class TeamClient {
         [],
       );
     }
-    return this.client.post<Team>(`/api/teams/${teamId}/customers/${customerId}`);
+    return this.client.post<Team>(`/api/teams/${pathId(teamId, 'teamId')}/customers/${pathId(customerId, 'customerId')}`);
   }
 
   async revokeCustomerAccess(teamId: number, customerId: number): Promise<void>;
@@ -285,7 +286,7 @@ export class TeamClient {
       return mutationDryRun<void>(
         'teams.revokeCustomerAccess',
         'DELETE',
-        `/api/teams/${teamId}/customers/${customerId}`,
+        `/api/teams/${pathId(teamId, 'teamId')}/customers/${pathId(customerId, 'customerId')}`,
         [teamId, customerId],
         { affected: 1, scope: 'single', reversible: false },
         undefined,
@@ -293,7 +294,7 @@ export class TeamClient {
         [],
       );
     }
-    return this.client.delete(`/api/teams/${teamId}/customers/${customerId}`);
+    return this.client.delete(`/api/teams/${pathId(teamId, 'teamId')}/customers/${pathId(customerId, 'customerId')}`);
   }
 
   async grantProjectAccess(teamId: number, projectId: number): Promise<Team>;
@@ -309,7 +310,7 @@ export class TeamClient {
       return mutationDryRun<void>(
         'teams.grantProjectAccess',
         'POST',
-        `/api/teams/${teamId}/projects/${projectId}`,
+        `/api/teams/${pathId(teamId, 'teamId')}/projects/${pathId(projectId, 'projectId')}`,
         [teamId, projectId],
         { affected: 1, scope: 'single', reversible: true },
         undefined,
@@ -317,7 +318,7 @@ export class TeamClient {
         [],
       );
     }
-    return this.client.post<Team>(`/api/teams/${teamId}/projects/${projectId}`);
+    return this.client.post<Team>(`/api/teams/${pathId(teamId, 'teamId')}/projects/${pathId(projectId, 'projectId')}`);
   }
 
   async revokeProjectAccess(teamId: number, projectId: number): Promise<void>;
@@ -334,7 +335,7 @@ export class TeamClient {
       return mutationDryRun<void>(
         'teams.revokeProjectAccess',
         'DELETE',
-        `/api/teams/${teamId}/projects/${projectId}`,
+        `/api/teams/${pathId(teamId, 'teamId')}/projects/${pathId(projectId, 'projectId')}`,
         [teamId, projectId],
         { affected: 1, scope: 'single', reversible: false },
         undefined,
@@ -342,7 +343,7 @@ export class TeamClient {
         [],
       );
     }
-    return this.client.delete(`/api/teams/${teamId}/projects/${projectId}`);
+    return this.client.delete(`/api/teams/${pathId(teamId, 'teamId')}/projects/${pathId(projectId, 'projectId')}`);
   }
 
   async grantActivityAccess(teamId: number, activityId: number): Promise<Team>;
@@ -358,7 +359,7 @@ export class TeamClient {
       return mutationDryRun<void>(
         'teams.grantActivityAccess',
         'POST',
-        `/api/teams/${teamId}/activities/${activityId}`,
+        `/api/teams/${pathId(teamId, 'teamId')}/activities/${pathId(activityId, 'activityId')}`,
         [teamId, activityId],
         { affected: 1, scope: 'single', reversible: true },
         undefined,
@@ -366,7 +367,7 @@ export class TeamClient {
         [],
       );
     }
-    return this.client.post<Team>(`/api/teams/${teamId}/activities/${activityId}`);
+    return this.client.post<Team>(`/api/teams/${pathId(teamId, 'teamId')}/activities/${pathId(activityId, 'activityId')}`);
   }
 
   async revokeActivityAccess(teamId: number, activityId: number): Promise<void>;
@@ -383,7 +384,7 @@ export class TeamClient {
       return mutationDryRun<void>(
         'teams.revokeActivityAccess',
         'DELETE',
-        `/api/teams/${teamId}/activities/${activityId}`,
+        `/api/teams/${pathId(teamId, 'teamId')}/activities/${pathId(activityId, 'activityId')}`,
         [teamId, activityId],
         { affected: 1, scope: 'single', reversible: false },
         undefined,
@@ -391,7 +392,7 @@ export class TeamClient {
         [],
       );
     }
-    return this.client.delete(`/api/teams/${teamId}/activities/${activityId}`);
+    return this.client.delete(`/api/teams/${pathId(teamId, 'teamId')}/activities/${pathId(activityId, 'activityId')}`);
   }
 
   // ---------------------------------------------------------------------------

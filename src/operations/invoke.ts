@@ -208,6 +208,18 @@ function runtimeTypeOf(value: unknown): string {
   return typeof value;
 }
 
+/** True for a record identifier: a safe positive integer. */
+function isRecordId(value: unknown): boolean {
+  return typeof value === 'number' && Number.isSafeInteger(value) && value > 0;
+}
+
+/** A resolve `identifier`: a bare number, or an object's `id`, must be a record identifier. */
+function identifierIdOk(value: unknown): boolean {
+  if (typeof value === 'number') return isRecordId(value);
+  if (isObject(value) && value.id !== undefined) return isRecordId(value.id);
+  return true;
+}
+
 /**
  * Validate a call against the operation's closed input contract, BEFORE any request. A refusal
  * names every offending field path; nothing about it is a guess and nothing is clamped.
@@ -245,6 +257,15 @@ export function validateInvokeInput(record: CapabilityRecord, input: unknown): I
   const problems: InvokeProblem[] = [];
   for (const name of required) {
     if (bag[name] === undefined) problems.push({ path: name, message: 'required' });
+  }
+  // Record identifiers become request path segments: each must be a safe positive integer.
+  for (const [name, value] of Object.entries(bag)) {
+    if (value === undefined) continue;
+    if (/^id$|Id$|_id$/.test(name) && !isRecordId(value)) {
+      problems.push({ path: name, message: 'must be a positive integer' });
+    } else if (name === 'identifier' && !identifierIdOk(value)) {
+      problems.push({ path: 'identifier.id', message: 'must be a positive integer' });
+    }
   }
   // NOTE: the contract's `type` keyword is the generator's rendering of the TypeScript type, and
   // a NAMED type (a string union, an interface) is rendered `object`. Enforcing it would refuse a
