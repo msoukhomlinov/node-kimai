@@ -1,0 +1,1308 @@
+{
+  "generatedAt": "2026-10-07T10:11:29.472Z",
+  "groups": {
+    "timesheets": {
+      "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+      "builtAt": "2026-10-07T10:11:29.471Z",
+      "records": [
+        {
+          "id": "timesheets.create",
+          "resource": "timesheets",
+          "operation": "create",
+          "kind": "primitive",
+          "endpoint": "POST /api/timesheets",
+          "effect": "write",
+          "flags": [],
+          "dryRun": true,
+          "inputSchema": {
+            "input": {
+              "type": "object",
+              "required": true,
+              "description": "TimesheetEditForm"
+            },
+            "opts": {
+              "type": "object",
+              "required": false,
+              "description": "{ dryRun?: boolean }"
+            }
+          },
+          "outputSchema": {
+            "type": "Timesheet | DryRunResult<TimesheetEditForm>",
+            "drops": []
+          },
+          "examples": [
+            "await client.timesheets.create({ project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "none"
+          },
+          "resolution": null,
+          "retry": {
+            "retryableStatuses": [],
+            "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "BAD_REQUEST",
+            "CONFIG_ERROR",
+            "NOT_FOUND",
+            "RATE_LIMITED",
+            "SERVER_ERROR",
+            "VALIDATION_FAILED"
+          ],
+          "metadata": {
+            "purpose": "Create a timesheet.",
+            "usage": "Requires project + activity (vendor); begin is vendor-required — the dry run warns when it is missing. Dry-run validates without issuing the write.",
+            "preferredWhen": null,
+            "related": [
+              "timesheets.update"
+            ]
+          },
+          "compact": null,
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.create.success",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "returns the created timesheet record"
+            },
+            {
+              "id": "timesheets.create.dry-run",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "dry-run issues no mutating request and returns simulated: true"
+            },
+            {
+              "id": "timesheets.create.validation",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "normalises a 400 into BAD_REQUEST"
+            },
+            {
+              "id": "timesheets.create.classification",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "classifies the mutations per the registry (create, restart, duplicate non-idempotent; update, stop, toggleExport, updateMeta idempotent; delete requires approval)"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        },
+        {
+          "id": "timesheets.delete",
+          "resource": "timesheets",
+          "operation": "delete",
+          "kind": "primitive",
+          "endpoint": "DELETE /api/timesheets/{id}",
+          "effect": "destructive",
+          "flags": [
+            "requiresApproval"
+          ],
+          "dryRun": true,
+          "inputSchema": {
+            "id": {
+              "type": "number",
+              "required": true
+            },
+            "opts": {
+              "type": "object",
+              "required": false,
+              "description": "{ dryRun?: boolean }"
+            }
+          },
+          "outputSchema": {
+            "type": "void | DryRunResult<void>",
+            "drops": []
+          },
+          "examples": [
+            "await client.timesheets.delete(1, { dryRun: true })"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "none"
+          },
+          "resolution": null,
+          "retry": {
+            "retryableStatuses": [],
+            "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "BAD_REQUEST",
+            "CONFIG_ERROR",
+            "NOT_FOUND",
+            "RATE_LIMITED",
+            "SERVER_ERROR",
+            "VALIDATION_FAILED"
+          ],
+          "metadata": {
+            "purpose": "Delete a timesheet.",
+            "usage": "Irreversible — the vendor offers no archive for timesheets. Always dry-run first.",
+            "preferredWhen": null,
+            "related": [
+              "timesheets.stop"
+            ]
+          },
+          "compact": null,
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.delete.success",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "resolves void after a successful delete"
+            },
+            {
+              "id": "timesheets.delete.dry-run",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "dry-run issues no DELETE request and returns simulated: true"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        },
+        {
+          "id": "timesheets.duplicate",
+          "resource": "timesheets",
+          "operation": "duplicate",
+          "kind": "primitive",
+          "endpoint": "PATCH /api/timesheets/{id}/duplicate",
+          "effect": "write",
+          "flags": [],
+          "dryRun": true,
+          "inputSchema": {
+            "id": {
+              "type": "number",
+              "required": true
+            },
+            "opts": {
+              "type": "object",
+              "required": false,
+              "description": "{ dryRun?: boolean }"
+            }
+          },
+          "outputSchema": {
+            "type": "Timesheet | DryRunResult<void>",
+            "drops": []
+          },
+          "examples": [
+            "await client.timesheets.duplicate(1, { dryRun: true })"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "none"
+          },
+          "resolution": null,
+          "retry": {
+            "retryableStatuses": [],
+            "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "BAD_REQUEST",
+            "CONFIG_ERROR",
+            "NOT_FOUND",
+            "RATE_LIMITED",
+            "SERVER_ERROR",
+            "VALIDATION_FAILED"
+          ],
+          "metadata": {
+            "purpose": "Duplicate a timesheet (resetting its export state).",
+            "usage": "Every call creates a new record — not safe to re-issue. Dry-run before use.",
+            "preferredWhen": null,
+            "related": [
+              "timesheets.create"
+            ]
+          },
+          "compact": null,
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.duplicate.success",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "calls the duplicate endpoint and normalises the result"
+            },
+            {
+              "id": "timesheets.duplicate.dry-run",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "dry-run issues no mutating request and returns simulated: true"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        },
+        {
+          "id": "timesheets.getActive",
+          "resource": "timesheets",
+          "operation": "getActive",
+          "kind": "primitive",
+          "endpoint": "GET /api/timesheets/active",
+          "effect": "read",
+          "flags": [],
+          "dryRun": false,
+          "inputSchema": {},
+          "outputSchema": {
+            "type": "Timesheet[]",
+            "drops": []
+          },
+          "examples": [
+            "await client.timesheets.getActive()"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "none"
+          },
+          "resolution": null,
+          "retry": {
+            "retryableStatuses": [
+              429,
+              500,
+              502,
+              503,
+              504
+            ],
+            "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "CONFIG_ERROR",
+            "RATE_LIMITED",
+            "SERVER_ERROR"
+          ],
+          "metadata": {
+            "purpose": "Fetch the active (running) timesheets.",
+            "usage": "The vendor dedicated endpoint; sends no page params. For user scoping use timesheets.list with the active filter.",
+            "preferredWhen": "Preferred over timesheets.list({ active: true }) for the plain active set: the dedicated endpoint, no list envelope.",
+            "related": [
+              "timesheets.list"
+            ]
+          },
+          "compact": null,
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.getActive.success",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "calls the getActive endpoint and returns the documented shape"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        },
+        {
+          "id": "timesheets.getById",
+          "resource": "timesheets",
+          "operation": "getById",
+          "kind": "primitive",
+          "endpoint": "GET /api/timesheets/{id}",
+          "effect": "read",
+          "flags": [],
+          "dryRun": false,
+          "inputSchema": {
+            "id": {
+              "type": "number",
+              "required": true
+            }
+          },
+          "outputSchema": {
+            "type": "Timesheet",
+            "drops": []
+          },
+          "examples": [
+            "await client.timesheets.getById(1)"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "none"
+          },
+          "resolution": null,
+          "retry": {
+            "retryableStatuses": [
+              429,
+              500,
+              502,
+              503,
+              504
+            ],
+            "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "CONFIG_ERROR",
+            "NOT_FOUND",
+            "RATE_LIMITED",
+            "SERVER_ERROR"
+          ],
+          "metadata": {
+            "purpose": "Fetch one timesheet by its id.",
+            "usage": "Use when the id is already known; otherwise call timesheets.resolve.",
+            "preferredWhen": "Preferred over timesheets.list + client-side find when the id is known.",
+            "related": [
+              "timesheets.resolve",
+              "timesheets.getContext"
+            ]
+          },
+          "compact": null,
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.getById.success",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "returns the unwrapped timesheet record"
+            },
+            {
+              "id": "timesheets.getById.not-found",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "normalises a 404 into NOT_FOUND"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        },
+        {
+          "id": "timesheets.getContext",
+          "resource": "timesheets",
+          "operation": "getContext",
+          "kind": "helper",
+          "endpoint": null,
+          "effect": "read",
+          "flags": [],
+          "dryRun": false,
+          "inputSchema": {
+            "id": {
+              "type": "number",
+              "required": true
+            },
+            "opts": {
+              "type": "object",
+              "required": false,
+              "description": "{ expand?: boolean }"
+            }
+          },
+          "outputSchema": {
+            "type": "TimesheetSummary",
+            "drops": [
+              "internalRate",
+              "fixedRate",
+              "hourlyRate",
+              "metaFields"
+            ]
+          },
+          "examples": [
+            "await client.timesheets.getContext(1, { expand: true })"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "none"
+          },
+          "resolution": null,
+          "retry": {
+            "retryableStatuses": [
+              429,
+              500,
+              502,
+              503,
+              504
+            ],
+            "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "NOT_FOUND",
+            "RATE_LIMITED",
+            "SERVER_ERROR"
+          ],
+          "metadata": {
+            "purpose": "Fetch a timesheet with its referenced user, activity, project and customer.",
+            "usage": "user and activity are null when the record carries no reference; project is null when absent; customer is null unless the project carries one. Compact TimesheetSummary by default; expand: true for the full timesheet record.",
+            "preferredWhen": "Preferred over getById + individual user/activity/project/customer reads: one call instead of four or five.",
+            "related": [
+              "timesheets.getById",
+              "timesheets.resolve"
+            ]
+          },
+          "compact": "TimesheetSummary",
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.getContext.success",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "returns the timesheet with its referenced user, activity, project and customer"
+            },
+            {
+              "id": "timesheets.getContext.partial",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "returns null for absent references (no activity, no project, or a project without a customer)"
+            },
+            {
+              "id": "timesheets.getContext.expand",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "returns the full timesheet record for expand: true"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        },
+        {
+          "id": "timesheets.getRecent",
+          "resource": "timesheets",
+          "operation": "getRecent",
+          "kind": "primitive",
+          "endpoint": "GET /api/timesheets/recent",
+          "effect": "read",
+          "flags": [],
+          "dryRun": false,
+          "inputSchema": {
+            "params": {
+              "type": "object",
+              "required": false,
+              "description": "{ begin?: string, size?: number }"
+            }
+          },
+          "outputSchema": {
+            "type": "Timesheet[]",
+            "drops": []
+          },
+          "examples": [
+            "await client.timesheets.getRecent()"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "none"
+          },
+          "resolution": null,
+          "retry": {
+            "retryableStatuses": [
+              429,
+              500,
+              502,
+              503,
+              504
+            ],
+            "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "CONFIG_ERROR",
+            "RATE_LIMITED",
+            "SERVER_ERROR"
+          ],
+          "metadata": {
+            "purpose": "Fetch the most recent timesheets.",
+            "usage": "The vendor dedicated endpoint; sends no page params.",
+            "preferredWhen": null,
+            "related": [
+              "timesheets.list"
+            ]
+          },
+          "compact": null,
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.getRecent.success",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "calls the getRecent endpoint and returns the documented shape"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        },
+        {
+          "id": "timesheets.list",
+          "resource": "timesheets",
+          "operation": "list",
+          "kind": "primitive",
+          "endpoint": "GET /api/timesheets",
+          "effect": "read",
+          "flags": [],
+          "dryRun": false,
+          "inputSchema": {
+            "params": {
+              "type": "object",
+              "required": false,
+              "description": "TimesheetListParams"
+            }
+          },
+          "outputSchema": {
+            "type": "Timesheet[]",
+            "drops": []
+          },
+          "examples": [
+            "await client.timesheets.list()"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "page",
+            "vendorDefaultPageSize": 50,
+            "vendorMaxPageSize": 500
+          },
+          "resolution": null,
+          "retry": {
+            "retryableStatuses": [
+              429,
+              500,
+              502,
+              503,
+              504
+            ],
+            "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "CONFIG_ERROR",
+            "RATE_LIMITED",
+            "SERVER_ERROR"
+          ],
+          "metadata": {
+            "purpose": "Fetch timesheets.",
+            "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and timesheets.search for the agent-facing compact read.",
+            "preferredWhen": "Preferred over timesheets.search only when the agent must walk pages; search is the bounded default read.",
+            "related": [
+              "timesheets.search",
+              "timesheets.getActive",
+              "timesheets.getRecent"
+            ]
+          },
+          "compact": null,
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.list.success",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "returns the unwrapped timesheets list"
+            },
+            {
+              "id": "timesheets.list.pagination",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "sends page/size and stops on a short page"
+            },
+            {
+              "id": "timesheets.list.429",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "normalises a 429 into RATE_LIMITED with retryAfter from the Retry-After header"
+            },
+            {
+              "id": "timesheets.list.error-fields",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "populates the structured error contract (category, code, retryable, httpStatus, vendorError, correlationId)"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        },
+        {
+          "id": "timesheets.resolve",
+          "resource": "timesheets",
+          "operation": "resolve",
+          "kind": "helper",
+          "endpoint": null,
+          "effect": "read",
+          "flags": [],
+          "dryRun": false,
+          "inputSchema": {
+            "identifier": {
+              "type": "number | string | object",
+              "required": true,
+              "description": "{ id: number } | { begin: string } | bare number (id) | bare string (begin timestamp)"
+            },
+            "opts": {
+              "type": "object",
+              "required": false,
+              "description": "{ expand?: boolean; resolutionDetails?: boolean }"
+            }
+          },
+          "outputSchema": {
+            "type": "TimesheetSummary",
+            "drops": [
+              "internalRate",
+              "fixedRate",
+              "hourlyRate",
+              "metaFields"
+            ]
+          },
+          "examples": [
+            "await client.timesheets.resolve(1)",
+            "await client.timesheets.resolve({ begin: '2026-01-01T10:00:00Z' })"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "none"
+          },
+          "resolution": {
+            "basis": "server-filter",
+            "maxScanRecords": 500,
+            "maxScanPages": 1
+          },
+          "retry": {
+            "retryableStatuses": [
+              429,
+              500,
+              502,
+              503,
+              504
+            ],
+            "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "CONFIG_ERROR",
+            "NOT_FOUND",
+            "RATE_LIMITED",
+            "RESOLUTION_AMBIGUOUS",
+            "SERVER_ERROR"
+          ],
+          "metadata": {
+            "purpose": "Resolve one timesheet from an id or a begin timestamp.",
+            "usage": "Accepts { id }, { begin } or a bare numeric id / begin timestamp; timesheets have no name field, so any other text resolves to nothing. The begin filter is \"at or after\", so a stale timestamp matches many records and throws RESOLUTION_AMBIGUOUS — narrow it. A miss by id throws NOT_FOUND (never null). No client scan occurs (vendor filter), so the scan never truncates. expand: true for the full record; resolutionDetails: true for the Resolution wrapper (cost, scanned, scanTruncated).",
+            "preferredWhen": "Preferred over timesheets.list for any identifier lookup — it removes the paging and the hand-matching.",
+            "related": [
+              "timesheets.getById",
+              "timesheets.search",
+              "timesheets.getContext"
+            ]
+          },
+          "compact": "TimesheetSummary",
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.resolve.unique",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "returns the compact TimesheetSummary for a unique begin filter"
+            },
+            {
+              "id": "timesheets.resolve.miss",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "returns null when the begin filter matches no timesheet"
+            },
+            {
+              "id": "timesheets.resolve.ambiguous",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "throws RESOLUTION_AMBIGUOUS with the candidate ids when begin matches several timesheets"
+            },
+            {
+              "id": "timesheets.resolve.id-miss",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "throws NOT_FOUND when the id does not exist"
+            },
+            {
+              "id": "timesheets.resolve.details",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "returns the Resolution wrapper (resolutionCost, scanned, scanTruncated) for resolutionDetails: true"
+            },
+            {
+              "id": "timesheets.resolve.expand",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "returns the full record for expand: true"
+            },
+            {
+              "id": "timesheets.resolve.truncated-code",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "ResolutionError.truncated emits RESOLUTION_TRUNCATED (category resolution, not retryable)"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        },
+        {
+          "id": "timesheets.restart",
+          "resource": "timesheets",
+          "operation": "restart",
+          "kind": "primitive",
+          "endpoint": "PATCH /api/timesheets/{id}/restart",
+          "effect": "write",
+          "flags": [],
+          "dryRun": true,
+          "inputSchema": {
+            "id": {
+              "type": "number",
+              "required": true
+            },
+            "input": {
+              "type": "object",
+              "required": false,
+              "description": "{ copy?: string, begin?: string }"
+            },
+            "opts": {
+              "type": "object",
+              "required": false,
+              "description": "{ dryRun?: boolean }"
+            }
+          },
+          "outputSchema": {
+            "type": "Timesheet | DryRunResult<{ copy?: string, begin?: string }>",
+            "drops": []
+          },
+          "examples": [
+            "await client.timesheets.restart(1, { copy: 'example' }, { dryRun: true })"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "none"
+          },
+          "resolution": null,
+          "retry": {
+            "retryableStatuses": [],
+            "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "BAD_REQUEST",
+            "CONFIG_ERROR",
+            "NOT_FOUND",
+            "RATE_LIMITED",
+            "SERVER_ERROR",
+            "VALIDATION_FAILED"
+          ],
+          "metadata": {
+            "purpose": "Restart a timesheet for the same customer, project and activity.",
+            "usage": "Every call starts a new running record — not safe to re-issue. Dry-run before use.",
+            "preferredWhen": null,
+            "related": [
+              "timesheets.create",
+              "timesheets.stop"
+            ]
+          },
+          "compact": null,
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.restart.success",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "calls the restart endpoint and normalises the result"
+            },
+            {
+              "id": "timesheets.restart.dry-run",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "dry-run issues no mutating request and returns simulated: true"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        },
+        {
+          "id": "timesheets.search",
+          "resource": "timesheets",
+          "operation": "search",
+          "kind": "helper",
+          "endpoint": null,
+          "effect": "read",
+          "flags": [],
+          "dryRun": false,
+          "inputSchema": {
+            "params": {
+              "type": "object",
+              "required": false,
+              "description": "every filter the spec declares on GET /api/timesheets (user/users/customer/customers/project/projects/activity/activities/tags/orderBy/order/begin/end/exported/active/billable/full/modified_after/term); paging is the limit option, not a param"
+            },
+            "opts": {
+              "type": "object",
+              "required": false,
+              "description": "{ limit?: number; expand?: boolean }"
+            }
+          },
+          "outputSchema": {
+            "type": "TimesheetSummary",
+            "drops": [
+              "internalRate",
+              "fixedRate",
+              "hourlyRate",
+              "metaFields"
+            ]
+          },
+          "examples": [
+            "await client.timesheets.search({ begin: '2026-01-01' }, { limit: 25 })"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "none"
+          },
+          "resolution": null,
+          "retry": {
+            "retryableStatuses": [
+              429,
+              500,
+              502,
+              503,
+              504
+            ],
+            "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "CONFIG_ERROR",
+            "RATE_LIMITED",
+            "SERVER_ERROR"
+          ],
+          "metadata": {
+            "purpose": "Search timesheets with the spec filters, bounded by an explicit limit.",
+            "usage": "limit defaults to 25, hard max 100 (a non-integer or out-of-range value throws KimaiConfigError — never silently clamped). Without a user filter the SDK passes user=all (requires the vendor view_other_timesheet permission). Compact TimesheetSummary rows by default; expand: true for the full records.",
+            "preferredWhen": "Preferred over timesheets.list for any bounded filtered read (at most 100 rows).",
+            "related": [
+              "timesheets.list",
+              "timesheets.resolve"
+            ]
+          },
+          "compact": "TimesheetSummary",
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.search.success",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "returns compact TimesheetSummary rows for the spec filters"
+            },
+            {
+              "id": "timesheets.search.user-all",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "passes user=all when no user filter is given"
+            },
+            {
+              "id": "timesheets.search.limit-default",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "sends size 25 when no limit is given"
+            },
+            {
+              "id": "timesheets.search.limit-max",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "sends size 100 when limit is 100"
+            },
+            {
+              "id": "timesheets.search.limit-reject",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "throws KimaiConfigError for a limit above 100 or a non-integer limit"
+            },
+            {
+              "id": "timesheets.search.expand",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "returns the full records for expand: true"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        },
+        {
+          "id": "timesheets.stop",
+          "resource": "timesheets",
+          "operation": "stop",
+          "kind": "primitive",
+          "endpoint": "PATCH /api/timesheets/{id}/stop",
+          "effect": "write",
+          "flags": [
+            "idempotent"
+          ],
+          "dryRun": true,
+          "inputSchema": {
+            "id": {
+              "type": "number",
+              "required": true
+            },
+            "opts": {
+              "type": "object",
+              "required": false,
+              "description": "{ dryRun?: boolean }"
+            }
+          },
+          "outputSchema": {
+            "type": "Timesheet | DryRunResult<void>",
+            "drops": []
+          },
+          "examples": [
+            "await client.timesheets.stop(1, { dryRun: true })"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "none"
+          },
+          "resolution": null,
+          "retry": {
+            "retryableStatuses": [
+              429,
+              500,
+              502,
+              503,
+              504
+            ],
+            "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "BAD_REQUEST",
+            "CONFIG_ERROR",
+            "NOT_FOUND",
+            "RATE_LIMITED",
+            "SERVER_ERROR",
+            "VALIDATION_FAILED"
+          ],
+          "metadata": {
+            "purpose": "Stop an active timesheet.",
+            "usage": "Closes the running timesheet. Dry-run before use.",
+            "preferredWhen": null,
+            "related": [
+              "timesheets.restart"
+            ]
+          },
+          "compact": null,
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.stop.success",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "calls the stop endpoint and normalises the result"
+            },
+            {
+              "id": "timesheets.stop.dry-run",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "dry-run issues no mutating request and returns simulated: true"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        },
+        {
+          "id": "timesheets.toggleExport",
+          "resource": "timesheets",
+          "operation": "toggleExport",
+          "kind": "primitive",
+          "endpoint": "PATCH /api/timesheets/{id}/export",
+          "effect": "write",
+          "flags": [
+            "idempotent"
+          ],
+          "dryRun": true,
+          "inputSchema": {
+            "id": {
+              "type": "number",
+              "required": true
+            },
+            "opts": {
+              "type": "object",
+              "required": false,
+              "description": "{ dryRun?: boolean }"
+            }
+          },
+          "outputSchema": {
+            "type": "Timesheet | DryRunResult<void>",
+            "drops": []
+          },
+          "examples": [
+            "await client.timesheets.toggleExport(1, { dryRun: true })"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "none"
+          },
+          "resolution": null,
+          "retry": {
+            "retryableStatuses": [
+              429,
+              500,
+              502,
+              503,
+              504
+            ],
+            "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "BAD_REQUEST",
+            "CONFIG_ERROR",
+            "NOT_FOUND",
+            "RATE_LIMITED",
+            "SERVER_ERROR",
+            "VALIDATION_FAILED"
+          ],
+          "metadata": {
+            "purpose": "Toggle the exported state of a timesheet (the record is locked while exported).",
+            "usage": "Toggles the state; while exported the vendor locks the record against edits. Dry-run before use.",
+            "preferredWhen": null,
+            "related": []
+          },
+          "compact": null,
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.toggleExport.success",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "calls the toggleExport endpoint and normalises the result"
+            },
+            {
+              "id": "timesheets.toggleExport.dry-run",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "dry-run issues no mutating request and returns simulated: true"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        },
+        {
+          "id": "timesheets.update",
+          "resource": "timesheets",
+          "operation": "update",
+          "kind": "primitive",
+          "endpoint": "PATCH /api/timesheets/{id}",
+          "effect": "write",
+          "flags": [
+            "idempotent"
+          ],
+          "dryRun": true,
+          "inputSchema": {
+            "id": {
+              "type": "number",
+              "required": true
+            },
+            "input": {
+              "type": "object",
+              "required": true,
+              "description": "TimesheetEditForm"
+            },
+            "opts": {
+              "type": "object",
+              "required": false,
+              "description": "{ dryRun?: boolean }"
+            }
+          },
+          "outputSchema": {
+            "type": "Timesheet | DryRunResult<TimesheetEditForm>",
+            "drops": []
+          },
+          "examples": [
+            "await client.timesheets.update(1, { project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "none"
+          },
+          "resolution": null,
+          "retry": {
+            "retryableStatuses": [
+              429,
+              500,
+              502,
+              503,
+              504
+            ],
+            "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "BAD_REQUEST",
+            "CONFIG_ERROR",
+            "NOT_FOUND",
+            "RATE_LIMITED",
+            "SERVER_ERROR",
+            "VALIDATION_FAILED"
+          ],
+          "metadata": {
+            "purpose": "Update a timesheet.",
+            "usage": "Replaces the editable fields of an existing timesheet. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+            "preferredWhen": "Preferred over timesheets.create for any change to an existing timesheet.",
+            "related": [
+              "timesheets.create",
+              "timesheets.updateMeta"
+            ]
+          },
+          "compact": null,
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.update.success",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "returns the updated timesheet record"
+            },
+            {
+              "id": "timesheets.update.dry-run",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "dry-run issues no PATCH request and returns simulated: true"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        },
+        {
+          "id": "timesheets.updateMeta",
+          "resource": "timesheets",
+          "operation": "updateMeta",
+          "kind": "primitive",
+          "endpoint": "PATCH /api/timesheets/{id}/meta",
+          "effect": "write",
+          "flags": [
+            "idempotent"
+          ],
+          "dryRun": true,
+          "inputSchema": {
+            "id": {
+              "type": "number",
+              "required": true
+            },
+            "meta": {
+              "type": "object",
+              "required": true,
+              "description": "a string-keyed map — Record<string, unknown>"
+            },
+            "opts": {
+              "type": "object",
+              "required": false,
+              "description": "{ dryRun?: boolean }"
+            }
+          },
+          "outputSchema": {
+            "type": "Timesheet | DryRunResult<Record<string, unknown>>",
+            "drops": []
+          },
+          "examples": [
+            "await client.timesheets.updateMeta(1, { cost: '10' }, { dryRun: true })"
+          ],
+          "permissions": "unknown",
+          "pagination": {
+            "mode": "none"
+          },
+          "resolution": null,
+          "retry": {
+            "retryableStatuses": [
+              429,
+              500,
+              502,
+              503,
+              504
+            ],
+            "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+            "idempotencySupport": "none"
+          },
+          "errors": [
+            "BAD_REQUEST",
+            "CONFIG_ERROR",
+            "NOT_FOUND",
+            "RATE_LIMITED",
+            "SERVER_ERROR",
+            "VALIDATION_FAILED"
+          ],
+          "metadata": {
+            "purpose": "Update the custom meta fields of a timesheet.",
+            "usage": "Replaces the timesheet meta map. Dry-run before use.",
+            "preferredWhen": null,
+            "related": [
+              "timesheets.update"
+            ]
+          },
+          "compact": null,
+          "status": "tested",
+          "tests": [
+            {
+              "id": "timesheets.updateMeta.success",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "calls the updateMeta endpoint and normalises the result"
+            },
+            {
+              "id": "timesheets.updateMeta.dry-run",
+              "file": "test/resources/timesheet.test.ts",
+              "title": "dry-run issues no mutating request and returns simulated: true"
+            }
+          ],
+          "staleCheck": {
+            "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+            "sourceFile": "src/resources/TimesheetClient.ts",
+            "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
+            "testFiles": [
+              "test/resources/timesheet.test.ts"
+            ],
+            "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -53,6 +53,16 @@
         "default": "./dist/errors.cjs"
       }
     },
+    "./capabilities": {
+      "import": {
+        "types": "./dist/capabilities.d.mts",
+        "default": "./dist/capabilities.mjs"
+      },
+      "require": {
+        "types": "./dist/capabilities.d.cts",
+        "default": "./dist/capabilities.cjs"
+      }
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -63,7 +73,10 @@
     "CHANGELOG.md",
     "ARCHITECTURE.md",
     "docs/API.md",
-    "MCP_TOOL_MANIFEST.md"
+    "MCP_TOOL_MANIFEST.md",
+    "capabilities.json",
+    "capabilities.schema.json",
+    "capabilities.plan.json"
   ],
   "scripts": {
     "build": "tsup",
@@ -74,7 +87,11 @@
     "coverage": "vitest run --coverage",
     "lint": "eslint src test",
     "lint:fix": "eslint src test --fix",
-    "verify": "npm run typecheck && npm run lint && npm run build && npm run coverage",
+    "verify": "npm run typecheck && npm run lint && npm run build && npm run capabilities:check -- --group timesheets && npm run coverage",
+    "plan:derive": "node scripts/derive-plan.mjs",
+    "capabilities:build": "node scripts/generate-capabilities.mjs",
+    "capabilities:check": "node scripts/check-capabilities.mjs",
+    "capabilities:check:fixture": "node scripts/check-negative-fixture.mjs",
     "clean": "rimraf dist coverage",
     "prepublishOnly": "npm run clean && npm run verify"
   },

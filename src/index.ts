@@ -1,7 +1,7 @@
 // node-kimai - Kimai API Client SDK
 // Main entry point
 
-export { ApiClient, type ApiClientOptions, type HttpTransport, type TransportRequest, FetchTransport } from './client';
+export { ApiClient, type ApiClientOptions, type HttpTransport, type TransportRequest, FetchTransport, parseRetryAfter } from './client';
 
 // Errors
 export {
@@ -13,6 +13,10 @@ export {
   UnprocessableEntityError,
   RateLimitError,
   ServerError,
+  // Phase F (agent execution layer): the structured error contract additions.
+  KimaiConfigError,
+  ResolutionError,
+  type ErrorCategory,
 } from './errors';
 
 // Resource clients

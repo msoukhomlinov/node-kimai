@@ -478,6 +478,7 @@ describe('FetchTransport', () => {
       const errorData = loadFixture('error_400');
       mockFetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => null },
         status: 400,
         statusText: 'Bad Request',
         json: async () => errorData,
@@ -499,6 +500,7 @@ describe('FetchTransport', () => {
       const errorData = loadFixture('error_401');
       mockFetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => null },
         status: 401,
         statusText: 'Unauthorized',
         json: async () => errorData,
@@ -513,6 +515,7 @@ describe('FetchTransport', () => {
       const errorData = loadFixture('error_403');
       mockFetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => null },
         status: 403,
         statusText: 'Forbidden',
         json: async () => errorData,
@@ -527,6 +530,7 @@ describe('FetchTransport', () => {
       const errorData = loadFixture('error_404');
       mockFetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => null },
         status: 404,
         statusText: 'Not Found',
         json: async () => errorData,
@@ -541,6 +545,7 @@ describe('FetchTransport', () => {
       const errorData = loadFixture('error_422');
       mockFetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => null },
         status: 422,
         statusText: 'Unprocessable Entity',
         json: async () => errorData,
@@ -555,6 +560,7 @@ describe('FetchTransport', () => {
       const errorData = loadFixture('error_429');
       mockFetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => null },
         status: 429,
         statusText: 'Too Many Requests',
         json: async () => errorData,
@@ -569,6 +575,7 @@ describe('FetchTransport', () => {
       const errorData = loadFixture('error_500');
       mockFetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => null },
         status: 500,
         statusText: 'Internal Server Error',
         json: async () => errorData,
@@ -582,6 +589,7 @@ describe('FetchTransport', () => {
     it('should throw ServerError for 502', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => null },
         status: 502,
         statusText: 'Bad Gateway',
         json: async () => ({ title: 'Bad Gateway' }),
@@ -595,6 +603,7 @@ describe('FetchTransport', () => {
     it('should throw generic ApiError for unhandled status codes', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => null },
         status: 418,
         statusText: "I'm a Teapot",
         json: async () => ({ title: "I'm a Teapot" }),
@@ -608,6 +617,7 @@ describe('FetchTransport', () => {
     it('should use message field from error response', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => null },
         status: 400,
         statusText: 'Bad Request',
         json: async () => ({ message: 'Custom error message' }),
@@ -623,6 +633,7 @@ describe('FetchTransport', () => {
     it('should fall back to title field when message is missing', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => null },
         status: 404,
         statusText: 'Not Found',
         json: async () => ({ title: 'Resource not found' }),
@@ -638,6 +649,7 @@ describe('FetchTransport', () => {
     it('should use HTTP status text when no message or title', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => null },
         status: 500,
         statusText: 'Internal Server Error',
         json: async () => ({ detail: 'Something went wrong' }),
@@ -653,6 +665,7 @@ describe('FetchTransport', () => {
     it('should handle text error response', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => null },
         status: 500,
         statusText: 'Internal Server Error',
         json: async () => { throw new Error('Not JSON'); },
@@ -669,6 +682,7 @@ describe('FetchTransport', () => {
     it('should include request URL in error', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => null },
         status: 404,
         statusText: 'Not Found',
         json: async () => ({ title: 'Not Found' }),

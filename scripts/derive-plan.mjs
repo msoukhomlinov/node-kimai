@@ -1,0 +1,337 @@
+#!/usr/bin/env node
+/**
+ * scripts/derive-plan.mjs — derive capabilities.plan.json from api-docs.json
+ * + the source tree (Kimai Pro API v1.1).
+ *
+ * DERIVABLE COLUMNS ONLY. Judgement columns (helper, helperBasis,
+ * helperRationale, flags, metadata, compact, resolution, staleCheck,
+ * redaction, errors, tests) are owned by the Architect/coordinator and are
+ * PRESERVED verbatim on every re-run. Ported from the node-hudu line
+ * (scripts/derive-plan.mjs), adapted to the Kimai spec (OpenAPI 3.0, /api/*
+ * paths) and the PascalCase client files.
+ *
+ * Idempotent: re-running with unchanged inputs produces byte-identical output
+ * (generatedAt only advances when the derived content actually changes) and
+ * never wipes a judgement column.
+ *
+ * Usage:
+ *   node scripts/derive-plan.mjs                     # all known resources
+ *   node scripts/derive-plan.mjs --resource timesheets
+ *                                                     # rewrite only that
+ *                                                     # resource's rows; all
+ *                                                     # other rows copied
+ *                                                     # through verbatim
+ *   node scripts/derive-plan.mjs --out <path>        # write to <path>
+ *                                                     # (the committed plan
+ *                                                     # still supplies the
+ *                                                     # preserved judgement
+ *                                                     # columns)
+ *
+ * Policy: ~/.prime/agent/skills/api-node-squad/references/agent-execution-layer.md
+ * §4 / §4.2 (plan shape is normative there).
+ */
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { join, resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const SPEC_PATH = join(ROOT, 'api-docs.json');
+const PLAN_PATH = join(ROOT, 'capabilities.plan.json'); // read base: prior state / judgement columns
+const RES_DIR = join(ROOT, 'src', 'resources');
+
+const spec = JSON.parse(readFileSync(SPEC_PATH, 'utf8'));
+
+/* ------------------------------------------------------------------ *
+ * 1. Endpoint -> owning SDK resource + primitive + specialOp.
+ *    The generic rule covers uniform CRUD shapes; the table below lists
+ *    every endpoint whose SDK method name is NOT uniform (Kimai clients).
+ * ------------------------------------------------------------------ */
+const OVERRIDES = {
+  'GET /api/timesheets':                  ['timesheets', 'list', null],
+  'POST /api/timesheets':                 ['timesheets', 'create', null],
+  'GET /api/timesheets/active':           ['timesheets', 'getActive', 'active'],
+  'GET /api/timesheets/recent':           ['timesheets', 'getRecent', 'recent'],
+  'GET /api/timesheets/{id}':             ['timesheets', 'getById', null],
+  'DELETE /api/timesheets/{id}':          ['timesheets', 'delete', null],
+  'PATCH /api/timesheets/{id}':           ['timesheets', 'update', null],
+  'PATCH /api/timesheets/{id}/duplicate': ['timesheets', 'duplicate', 'duplicate'],
+  'PATCH /api/timesheets/{id}/export':    ['timesheets', 'toggleExport', 'toggle-export'],
+  'PATCH /api/timesheets/{id}/meta':      ['timesheets', 'updateMeta', 'meta'],
+  'PATCH /api/timesheets/{id}/restart':   ['timesheets', 'restart', 'restart'],
+  'PATCH /api/timesheets/{id}/stop':      ['timesheets', 'stop', 'stop'],
+};
+
+/** SDK resource key -> client class file (the Kimai line uses PascalCase files). */
+const SOURCE_FILES = {
+  timesheets: 'TimesheetClient',
+  activities: 'ActivityClient',
+  customers: 'CustomerClient',
+  projects: 'ProjectClient',
+  users: 'UserClient',
+  tags: 'TagClient',
+  teams: 'TeamClient',
+  invoices: 'InvoiceClient',
+  approvalBundle: 'ApprovalBundleClient',
+  config: 'ConfigClient',
+  system: 'SystemClient',
+  export: 'ExportClient',
+  actions: 'ActionsClient',
+};
+
+/** SDK resource key -> test file base name (test/resources/<name>.test.ts). */
+const TEST_FILES = {
+  timesheets: 'timesheet',
+  activities: 'activity',
+  customers: 'customer',
+  projects: 'project',
+  users: 'user',
+  tags: 'tag',
+  teams: 'team',
+  invoices: 'invoice',
+  approvalBundle: 'approval_bundle',
+  config: 'config',
+  system: 'system',
+  export: 'export',
+  actions: 'actions',
+};
+
+/** The group a resource belongs to: in the Kimai pilot each resource is its own group. */
+const GROUP_OF = {};
+const RES_ORDER = Object.keys(SOURCE_FILES);
+for (const r of RES_ORDER) GROUP_OF[r] = r;
+
+/* ------------------------------------------------------------------ *
+ * 2. Errors: the SCREAMING_SNAKE codes the SDK throws for a documented
+ *    status. Mirrors src/errors.ts (createApiError / defaultCodeForStatus).
+ *    The Kimai spec documents only success responses, so the failure set
+ *    is the SDK's status mapping, not a spec enumeration.
+ * ------------------------------------------------------------------ */
+function errorsFor(method, path) {
+  const out = new Set(['CONFIG_ERROR']); // universal: every op validates its inputs before the wire
+  const hasId = path.includes('{');
+  if (method === 'GET') {
+    if (hasId) out.add('NOT_FOUND');
+    out.add('RATE_LIMITED');
+    out.add('SERVER_ERROR');
+  } else {
+    out.add('BAD_REQUEST');
+    out.add('NOT_FOUND');
+    out.add('RATE_LIMITED');
+    out.add('SERVER_ERROR');
+    out.add('VALIDATION_FAILED');
+  }
+  return [...out].sort();
+}
+
+/* ------------------------------------------------------------------ *
+ * 3. Tests skeleton — the normative rows of agent-execution-layer.md §11,
+ *    expressed as {id, file, title}. Preserved verbatim once non-empty.
+ * ------------------------------------------------------------------ */
+function testsSkeleton(resource, primitive, shape, file) {
+  const t = (c, title) => ({ id: `${primitive}.${c}`, file, title });
+  const out = [];
+  if (shape === 'list') {
+    out.push(t('success', `returns the unwrapped ${resource} list`));
+    out.push(t('pagination', 'sends page/size and stops on a short page'));
+  } else if (shape === 'get') {
+    out.push(t('success', `returns the unwrapped ${resource} record`));
+    out.push(t('not-found', 'normalises a 404 into NOT_FOUND'));
+  } else if (shape === 'create') {
+    out.push(t('success', `returns the created ${resource} record`));
+    out.push(t('dry-run', 'dry-run issues no mutating request and returns simulated: true'));
+  } else if (shape === 'update') {
+    out.push(t('success', `returns the updated ${resource} record`));
+    out.push(t('dry-run', 'dry-run issues no PATCH request and returns simulated: true'));
+  } else if (shape === 'delete') {
+    out.push(t('success', 'resolves void after a successful delete'));
+    out.push(t('dry-run', 'dry-run issues no DELETE request and returns simulated: true'));
+  } else if (shape === 'write-special') {
+    out.push(t('success', `calls the ${primitive} endpoint and normalises the result`));
+    out.push(t('dry-run', 'dry-run issues no mutating request and returns simulated: true'));
+  } else {
+    out.push(t('success', `calls the ${primitive} endpoint and returns the documented shape`));
+  }
+  return out;
+}
+
+/* ------------------------------------------------------------------ *
+ * 4. Existing primitives in the source tree -> status "implemented".
+ * ------------------------------------------------------------------ */
+function sourceMethods(resource) {
+  const cls = SOURCE_FILES[resource];
+  if (!cls) return new Set();
+  const p = join(RES_DIR, `${cls}.ts`);
+  if (!existsSync(p)) return new Set();
+  const src = readFileSync(p, 'utf8');
+  const out = new Set();
+  for (const m of src.matchAll(/^\s{2}(?:(?:public|protected|private|override|static|async)\s+)*([A-Za-z_][A-Za-z0-9_]*)\s*(?:<[^>]*>)?\s*\(/gm)) out.add(m[1]);
+  return out;
+}
+const METHODS = {};
+for (const r of RES_ORDER) METHODS[r] = sourceMethods(r);
+
+/* ------------------------------------------------------------------ *
+ * 5. Derive rows.
+ * ------------------------------------------------------------------ */
+const SPEC_VERSION = (spec.info?.version ?? 'unknown').toString();
+const derived = [];
+for (const [path, item] of Object.entries(spec.paths)) {
+  for (const [rawMethod, op] of Object.entries(item)) {
+    const method = rawMethod.toUpperCase();
+    if (!['GET', 'POST', 'PATCH', 'PUT', 'DELETE'].includes(method)) continue;
+    const key = `${method} ${path}`;
+    const override = OVERRIDES[key];
+    if (!override) continue; // not part of the known SDK surface (the pilot derives scoped resources)
+    const [resource, primitive, specialOp] = override;
+    const params = (op.parameters || []).filter((p) => p.in === 'query');
+    const names = params.map((p) => p.name);
+    const vendorFilters = names.filter((n) => !['page', 'size'].includes(n)).sort();
+    const search = names.includes('term') ? 'term' : null;
+    const effect = method === 'GET' ? 'read' : method === 'DELETE' ? 'destructive' : 'write';
+    const shape = specialOp !== null
+      ? (method === 'GET' ? 'read-special' : 'write-special')
+      : (primitive === 'list' ? 'list' : primitive === 'getById' ? 'get' : primitive);
+    const file = `test/resources/${TEST_FILES[resource] ?? resource}.test.ts`;
+    const purpose = (op.summary || op.description || `${method} ${path}`).split('\n')[0].trim().replace(/\.$/, '') + '.';
+    derived.push({
+      endpoint: key,
+      primitive: `${resource}.${primitive}`,
+      specialOp,
+      vendorFilters,
+      search,
+      helper: null,
+      helperBasis: null,
+      helperRationale: null,
+      effect,
+      flags: [],
+      dryRun: effect !== 'read',
+      metadata: {
+        purpose,
+        usage: method === 'GET'
+          ? `Read path for ${resource}. Primitives return the full typed record.`
+          : `Mutating path for ${resource}; supports { dryRun: true }, which validates without issuing the write.`,
+        preferredWhen: null,
+        related: [],
+      },
+      compact: null,
+      resolution: null,
+      staleCheck: null,
+      redaction: null,
+      errors: errorsFor(method, path),
+      tests: testsSkeleton(resource, `${resource}.${primitive}`, shape, file),
+      group: GROUP_OF[resource] ?? null,
+      status: METHODS[resource].has(primitive) ? 'implemented' : 'planned',
+      _resource: resource,
+    });
+  }
+}
+
+derived.sort((a, b) => String(a.endpoint).localeCompare(String(b.endpoint)));
+
+/* ------------------------------------------------------------------ *
+ * 6. Preserve: never wipe a judgement column, never downgrade a status,
+ *    never regenerate test rows the Tests stage has refined.
+ * ------------------------------------------------------------------ */
+const STATUS_RANK = { planned: 0, implemented: 1, tested: 2 };
+const isEmpty = (v) => v === null || v === undefined || v === '' || (Array.isArray(v) && v.length === 0);
+const JUDGEMENT = ['helper', 'helperBasis', 'helperRationale', 'flags', 'compact', 'resolution', 'staleCheck', 'redaction', 'errors', 'tests'];
+
+function preserve(row) {
+  const before = row._before;
+  delete row._before;
+  delete row._resource;
+  if (!before) return row;
+  for (const k of JUDGEMENT) {
+    if (isEmpty(before[k])) continue;
+    if (k === 'flags' && !Array.isArray(before[k])) continue; // a malformed prior flags is re-derived
+    row[k] = before[k];
+  }
+  if (before.metadata && typeof before.metadata === 'object') {
+    const m = before.metadata;
+    row.metadata = {
+      purpose: typeof m.purpose === 'string' && m.purpose.trim() !== '' ? m.purpose : row.metadata.purpose,
+      usage: typeof m.usage === 'string' && m.usage.trim() !== '' ? m.usage : row.metadata.usage,
+      preferredWhen: m.preferredWhen ?? null,
+      related: Array.isArray(m.related) ? m.related : [],
+    };
+  }
+  if ((STATUS_RANK[before.status] ?? 0) > (STATUS_RANK[row.status] ?? 0)) row.status = before.status;
+  return row;
+}
+
+/* ------------------------------------------------------------------ *
+ * 7. Main
+ * ------------------------------------------------------------------ */
+const args = process.argv.slice(2);
+const only = [];
+for (let i = 0; i < args.length; i++) if (args[i] === '--resource') only.push(args[++i]);
+const OUT_I = args.indexOf('--out');
+const PLAN_OUT = OUT_I === -1 ? PLAN_PATH : resolve(ROOT, args[OUT_I + 1]);
+
+let prior = null;
+if (existsSync(PLAN_PATH)) prior = JSON.parse(readFileSync(PLAN_PATH, 'utf8'));
+const priorByEndpoint = new Map((prior?.operations ?? []).map((r) => [r.endpoint, r]));
+
+const selected = derived.filter((r) => only.length === 0 || only.includes(r._resource));
+for (const r of selected) r._before = priorByEndpoint.get(r.endpoint);
+const preservedCount = selected.filter((r) => r._before).length;
+const rows = selected.map(preserve);
+
+/** Helper rows (endpoint: null) are AUTHORED by the coordinator, never derived: keep them. */
+const priorHelpers = (prior?.operations ?? []).filter((r) => r.endpoint === null || r.endpoint === undefined);
+const sortRows = (list) => list.sort((a, b) => {
+  const g = String(a.group).localeCompare(String(b.group));
+  if (g !== 0) return g;
+  const ra = RES_ORDER.indexOf(((a.primitive ?? a.helper) ?? '').split('.')[0]);
+  const rb = RES_ORDER.indexOf(((b.primitive ?? b.helper) ?? '').split('.')[0]);
+  if (ra !== rb) return ra - rb;
+  const ha = a.helper ? 1 : 0, hb = b.helper ? 1 : 0;
+  if (ha !== hb) return ha - hb;
+  return String(a.endpoint ?? '').localeCompare(String(b.endpoint ?? ''));
+});
+
+let operations;
+if (only.length === 0 && !prior) operations = [...rows, ...priorHelpers];
+else {
+  const rewritten = new Map(rows.map((r) => [r.endpoint, r]));
+  operations = (prior?.operations ?? []).map((r) => rewritten.get(r.endpoint) ?? r);
+  for (const r of rows) if (!operations.some((o) => o.endpoint === r.endpoint)) operations.push(r);
+}
+operations = sortRows(operations);
+
+const resources = {};
+for (const r of only.length > 0 ? only : RES_ORDER) {
+  if (!SOURCE_FILES[r]) continue;
+  const prev = prior?.resources?.[r];
+  resources[r] = {
+    helperCap: prev?.helperCap ?? 4,
+    compact: prev?.compact ?? null,
+    workflowResource: prev?.workflowResource ?? false,
+  };
+}
+
+const head = { spec: { source: 'api-docs.json', version: SPEC_VERSION }, generatedAt: null, resources, operations };
+/** Hash the content with generatedAt neutralised on BOTH sides, so a re-run is a no-op in git. */
+const strip = (o) => JSON.stringify({ ...o, generatedAt: null });
+const contentHash = createHash('sha256').update(strip(head)).digest('hex');
+const priorHash = prior ? createHash('sha256').update(strip(prior)).digest('hex') : null;
+// Keep generatedAt stable when nothing else changed: a re-run must be a no-op in git.
+head.generatedAt = contentHash === priorHash && prior?.generatedAt ? prior.generatedAt : new Date().toISOString();
+const out = `${JSON.stringify(head, null, 2)}\n`;
+writeFileSync(PLAN_OUT, out);
+
+/* ------------------------------------------------------------------ *
+ * 8. Report
+ * ------------------------------------------------------------------ */
+const byStatus = { planned: 0, implemented: 0, tested: 0 };
+for (const r of operations) byStatus[r.status] = (byStatus[r.status] ?? 0) + 1;
+const notFound = operations.filter((r) => r.status === 'planned');
+console.log(`plan:derive -> ${PLAN_OUT === PLAN_PATH ? 'capabilities.plan.json' : PLAN_OUT}`);
+console.log(`  spec                 : ${SPEC_PATH} (openapi ${spec.openapi}, ${Object.keys(spec.paths).length} paths)`);
+console.log(`  operations           : ${operations.length} rows (${derived.length} derivable, ${operations.filter((r) => r.helper && !r.primitive).length} authored helper rows preserved)`);
+console.log(`  status tested        : ${byStatus.tested}`);
+console.log(`  status implemented   : ${byStatus.implemented}`);
+console.log(`  status planned       : ${byStatus.planned}${notFound.length ? ' -> ' + notFound.slice(0, 8).map((r) => r.primitive ?? r.helper).join(', ') : ''}`);
+console.log(`  rows re-derived      : ${selected.length} (judgement columns preserved on ${preservedCount})`);
+console.log(`  plan bytes           : ${Buffer.byteLength(out)}  sha256 ${createHash('sha256').update(out).digest('hex').slice(0, 16)}`);

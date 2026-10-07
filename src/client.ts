@@ -37,6 +37,8 @@ export class FetchTransport implements HttpTransport {
 
   async request<T>(options: TransportRequest): Promise<T> {
     const url = new URL(options.path, this.baseUrl);
+    // Phase F: one correlation id per request (policy §7.3), surfaced on errors.
+    const correlationId = crypto.randomUUID();
 
     // Build query string
     if (options.query) {
@@ -99,6 +101,10 @@ export class FetchTransport implements HttpTransport {
         message,
         data: errorData,
         request: url.toString(),
+        // Phase F (additive): the structured contract on transport errors.
+        vendorError: errorData,
+        correlationId,
+        retryAfter: parseRetryAfter(response.headers.get('retry-after')),
       });
     }
 
@@ -130,6 +136,22 @@ export class FetchTransport implements HttpTransport {
       return text as T;
     }
   }
+}
+
+/**
+ * Parse a `Retry-After` header value (policy §8: surfaced as `retryAfter` on
+ * 429). Accepts the two RFC 9110 forms: delta-seconds, or an HTTP-date
+ * (converted to the whole seconds still to wait, clamped at 0).
+ */
+export function parseRetryAfter(value: string | null): number | undefined {
+  if (value === null || value.trim().length === 0) return undefined;
+  const asSeconds = Number(value);
+  if (Number.isFinite(asSeconds)) {
+    return Math.max(0, Math.floor(asSeconds));
+  }
+  const asDate = Date.parse(value);
+  if (Number.isNaN(asDate)) return undefined;
+  return Math.max(0, Math.floor((asDate - Date.now()) / 1000));
 }
 
 export interface ApiClientOptions {

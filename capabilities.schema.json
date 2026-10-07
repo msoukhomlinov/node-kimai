@@ -1,0 +1,346 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/msoukhomlinov/node-kimai/capabilities.schema.json",
+  "title": "node-kimai capability registry",
+  "type": "object",
+  "required": [
+    "generatedAt",
+    "groups"
+  ],
+  "properties": {
+    "generatedAt": {
+      "type": "string"
+    },
+    "groups": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "planHash",
+          "builtAt",
+          "records"
+        ],
+        "properties": {
+          "planHash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "builtAt": {
+            "type": "string"
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "resource",
+                "operation",
+                "kind",
+                "endpoint",
+                "effect",
+                "flags",
+                "dryRun",
+                "inputSchema",
+                "outputSchema",
+                "examples",
+                "permissions",
+                "pagination",
+                "retry",
+                "errors",
+                "metadata",
+                "compact",
+                "status",
+                "tests",
+                "staleCheck"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "resource": {
+                  "type": "string"
+                },
+                "operation": {
+                  "type": "string"
+                },
+                "kind": {
+                  "enum": [
+                    "primitive",
+                    "helper"
+                  ]
+                },
+                "endpoint": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "effect": {
+                  "enum": [
+                    "read",
+                    "write",
+                    "destructive"
+                  ]
+                },
+                "flags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "dryRun": {
+                  "type": "boolean"
+                },
+                "inputSchema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "required"
+                    ],
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "outputSchema": {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "drops"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "drops": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "permissions": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "pagination": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "required": [
+                        "mode",
+                        "vendorDefaultPageSize",
+                        "vendorMaxPageSize"
+                      ],
+                      "properties": {
+                        "mode": {
+                          "const": "page"
+                        },
+                        "vendorDefaultPageSize": {
+                          "type": "number"
+                        },
+                        "vendorMaxPageSize": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "mode"
+                      ],
+                      "properties": {
+                        "mode": {
+                          "const": "none"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "resolution": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "required": [
+                    "basis",
+                    "maxScanRecords",
+                    "maxScanPages"
+                  ],
+                  "properties": {
+                    "basis": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "maxScanRecords": {
+                      "type": "number"
+                    },
+                    "maxScanPages": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "retry": {
+                  "type": "object",
+                  "required": [
+                    "retryableStatuses",
+                    "policy",
+                    "idempotencySupport"
+                  ],
+                  "properties": {
+                    "retryableStatuses": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer"
+                      }
+                    },
+                    "policy": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "idempotencySupport": {
+                      "const": "none"
+                    }
+                  }
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "metadata": {
+                  "type": "object",
+                  "required": [
+                    "purpose",
+                    "usage"
+                  ],
+                  "properties": {
+                    "purpose": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "usage": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "preferredWhen": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "related": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "compact": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "implemented",
+                    "tested"
+                  ]
+                },
+                "tests": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "id",
+                      "file",
+                      "title"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "file": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                },
+                "staleCheck": {
+                  "type": "object",
+                  "required": [
+                    "planHash",
+                    "sourceFile",
+                    "sourceHash"
+                  ],
+                  "properties": {
+                    "planHash": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "sourceFile": {
+                      "type": "string"
+                    },
+                    "sourceHash": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "testFiles": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "testHash": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

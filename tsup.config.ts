@@ -6,6 +6,7 @@ export default defineConfig({
     "resources/index": "src/resources/index.ts",
     "types/index": "src/types/index.ts",
     errors: "src/errors.ts",
+    capabilities: "src/capabilities.ts",
   },
   format: ["esm", "cjs"],
   dts: true,
