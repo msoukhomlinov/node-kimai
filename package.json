@@ -74,9 +74,9 @@
     "ARCHITECTURE.md",
     "docs/API.md",
     "MCP_TOOL_MANIFEST.md",
+    "MCP_TOOL_OVERRIDES.json",
     "capabilities.json",
-    "capabilities.schema.json",
-    "capabilities.plan.json"
+    "capabilities.schema.json"
   ],
   "scripts": {
     "build": "tsup",
@@ -87,7 +87,7 @@
     "coverage": "vitest run --coverage",
     "lint": "eslint src test",
     "lint:fix": "eslint src test --fix",
-    "verify": "npm run typecheck && npm run lint && npm run build && npm run public-surface && npm run capabilities:check && npm run capabilities:check:fixture && npm run coverage",
+    "verify": "npm run typecheck && npm run lint && npm run build && npm run public-surface && npm run capabilities:check && npm run capabilities:check:fixture && npm run mcp:project:check && npm run coverage",
     "plan:derive": "node scripts/derive-plan.mjs",
     "capabilities:build": "node scripts/generate-capabilities.mjs",
     "capabilities:check": "node scripts/check-capabilities.mjs",
@@ -95,7 +95,9 @@
     "clean": "rimraf dist coverage",
     "prepublishOnly": "npm run clean && npm run verify && npm run capabilities:check:ship",
     "capabilities:check:ship": "node scripts/check-capabilities.mjs --ship",
-    "public-surface": "node scripts/public-surface.mjs"
+    "public-surface": "node scripts/public-surface.mjs",
+    "mcp:project": "node scripts/project-mcp-tools.mjs",
+    "mcp:project:check": "node scripts/project-mcp-tools.mjs --check"
   },
   "engines": {
     "node": ">=20.0.0"

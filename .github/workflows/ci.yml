@@ -21,12 +21,10 @@ jobs:
           cache: npm
       - name: Install (npm ci)
         run: npm ci
-      - name: Typecheck (root + test + examples tsconfigs)
-        run: npm run typecheck
-      - name: Lint
-        run: npm run lint
-      - name: Build
-        run: npm run build
-      # Offline suite with the coverage thresholds from vitest.config.ts.
-      - name: Test (coverage)
-        run: npm run coverage
+      # Full offline gate chain: typecheck x3, lint, build, published-surface guard,
+      # capability gate + negative-fixture proof, MCP projection check, coverage.
+      - name: Verify
+        run: npm run verify
+      # Ship gate: no capability row may remain planned/implemented.
+      - name: Ship gate
+        run: npm run capabilities:check:ship

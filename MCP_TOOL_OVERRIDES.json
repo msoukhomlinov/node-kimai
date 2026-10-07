@@ -1,0 +1,98 @@
+[
+  {
+    "tool": "kimai_get_actions",
+    "field": "exclude",
+    "newValue": true,
+    "reason": "UI-only view rendering (GET /api/actions/{resource}/{id}/{view}/{locale}): the payload is pre-rendered HTML fragments for the Kimai web UI, not agent-usable data. Still reachable through kimai_read when a host deliberately needs it."
+  },
+  {
+    "tool": "kimai_delete_user_api_token",
+    "field": "exclude",
+    "newValue": true,
+    "reason": "Credential-lifecycle operation: a model must not be handed the API-key deletion path as a first-class tool. Registry flags: destructive + requiresApproval. Still reachable, confirmation-gated, through kimai_delete for a host that deliberately enables it."
+  },
+  {
+    "tool": "kimai_update_user_preferences",
+    "field": "description",
+    "newValue": "Update the UI preferences (language, timezone, theme, rows per page) of one user. Admin or self only. Registry purpose was the terse vendor label 'Update user preferences'; this states what the preference bag changes and who may change it.",
+    "reason": "Registry purpose was not LLM-directed (a bare label) and the shared usage string said nothing about the preference semantics."
+  },
+  {
+    "tool": "kimai_get_week_status",
+    "field": "description",
+    "newValue": "Get the approval status of one calendar week for a user: whether it is approved plus its timesheets and total duration. Pass the ISO date (YYYY-MM-DD) that identifies the week; omit `user` for the API-key owner.",
+    "reason": "Registry purpose was the raw route string 'GET /api/approval-bundle/week-status.' \u2014 not LLM-directed."
+  },
+  {
+    "tool": "kimai_get_next_approval_week",
+    "field": "description",
+    "newValue": "Get the next week that still requires approval for a user, so an agent can pick the week to submit. Omit `user` for the API-key owner.",
+    "reason": "Registry purpose was the raw route string 'GET /api/approval-bundle/next-week.' \u2014 not LLM-directed."
+  },
+  {
+    "tool": "kimai_get_overtime_year",
+    "field": "description",
+    "newValue": "Get the yearly overtime summary for a user (total and per-week breakdown) for the year of the given ISO date. Omit `user` for the API-key owner.",
+    "reason": "Registry purpose was the raw route string 'GET /api/approval-bundle/overtime_year.' \u2014 not LLM-directed."
+  },
+  {
+    "tool": "kimai_get_weekly_overtime",
+    "field": "description",
+    "newValue": "Get the weekly overtime entries for a user around the given ISO date. Omit `user` for the API-key owner.",
+    "reason": "Registry purpose was the raw route string 'GET /api/approval-bundle/weekly_overtime.' \u2014 not LLM-directed."
+  },
+  {
+    "tool": "kimai_submit_for_approval",
+    "field": "description",
+    "newValue": "Submit one calendar week of timesheets for approval and return the approval URL. Pass the ISO date (YYYY-MM-DD) identifying the week; omit `user` for the API-key owner. Dry-run first: dry_run: true validates and returns the plan without submitting.",
+    "reason": "Registry purpose was the bare label 'Add to approve.' \u2014 it did not say what is submitted or what is returned."
+  },
+  {
+    "tool": "kimai_ping",
+    "field": "description",
+    "newValue": "Health-check the Kimai instance. Returns true when the API is reachable. Call it first to verify connectivity and credentials.",
+    "reason": "Registry purpose was 'Testing route for the API.' \u2014 not LLM-directed."
+  },
+  {
+    "tool": "kimai_get_version",
+    "field": "description",
+    "newValue": "Get the Kimai server version (version string, version id, copyright). Useful before relying on an endpoint that a specific server version introduced.",
+    "reason": "Registry purpose was 'Fetch Kimai release.' \u2014 too terse to guide a tool choice."
+  },
+  {
+    "tool": "kimai_list_plugins",
+    "field": "description",
+    "newValue": "List the plugins installed on the Kimai server, with name and version. Call it to discover optional vendor features before assuming one is absent.",
+    "reason": "Registry purpose was 'Fetch installed Plugins.' \u2014 too terse to guide a tool choice."
+  },
+  {
+    "tool": "kimai_search_timesheets",
+    "field": "description",
+    "newValue": "Search timesheets with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100 (out of range throws KimaiConfigError \u2014 never silently clamped). Without a user filter the SDK passes user=all (requires the vendor view_other_timesheet permission). Find activity/project/customer ids with kimai_search_activities / kimai_search_projects / kimai_search_customers. Compact TimesheetSummary rows by default; expand: true for the full records.",
+    "reason": "Curation adds the cross-tool look-up hints the MCP standard requires on id filters; the registry usage stated the bound and the compact/expand behaviour but not where the referenced ids come from."
+  },
+  {
+    "tool": "kimai_create_timesheet",
+    "field": "description",
+    "newValue": "Create a timesheet. Requires project + activity (vendor); begin is vendor-required \u2014 the dry run warns when it is missing. Find the ids with kimai_search_projects / kimai_search_activities and the user id with kimai_search_users or kimai_get_current_user. Dry-run first: dry_run: true validates and returns the plan without writing.",
+    "reason": "Curation adds the cross-tool look-up hints the MCP standard requires on required id fields."
+  },
+  {
+    "tool": "kimai_search_customers",
+    "field": "description",
+    "newValue": "Search customers with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100. Compact CustomerSummary rows by default; expand: true for the full records. Use kimai_resolve_customer to turn a name into one id.",
+    "reason": "Curation adds the cross-tool look-up hint to the resolver; the registry usage stated the bound and the compact/expand behaviour only."
+  },
+  {
+    "tool": "kimai_search_projects",
+    "field": "description",
+    "newValue": "Search projects with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100. Filter by customer/activity ids from kimai_search_customers / kimai_search_activities. Compact ProjectSummary rows by default; expand: true for the full records.",
+    "reason": "Curation adds the cross-tool look-up hints the MCP standard requires on id filters."
+  },
+  {
+    "tool": "kimai_list_teams",
+    "field": "description",
+    "newValue": "List teams, bounded by vendor paging (default page size 50, max 500). Teams have no text-search helper, so this is the read tool for the resource; use kimai_resolve_team to turn a name into one id. Output is the full Team[] records, including members and the customers/projects/activities access lists.",
+    "reason": "Registry usage told the caller to use the SDK's getAll/listPages iterators, which are deliberately not MCP tools; the served text must not recommend an unsupported path. Adds the vendor page bound and the resolver hint."
+  }
+]
