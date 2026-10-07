@@ -8,11 +8,12 @@
  * missing one.
  *
  * The generated catalog carries data and a schema reader. `dispatchOperation` adds an exact
- * effect boundary before invocation; it does not duplicate argument validation or mutation
- * governance. Never add a second write governor. A second implementation here would be a second
- * chance to be wrong. The helpers are MCP-agnostic and take the registry record they need as an
- * argument, so a host passes `getCapability(op)` from `node-kimai/capabilities` and nothing can
- * drift.
+ * effect boundary and then DELEGATES to `invokeOperation` (`node-kimai/operations`); it does not
+ * duplicate argument validation or mutation governance. Never add a second write governor.
+ * Validation and governance live in exactly ONE place - the SDK's `operations.invoke` /
+ * `planInvoke` - and a second implementation here would be a second chance to be wrong. The
+ * helpers are MCP-agnostic and take the registry record they need as an argument, so a host
+ * passes `getCapability(op)` from `node-kimai/capabilities` and nothing can drift.
  *
  * `./catalog.generated.ts` is MACHINE-WRITTEN by `scripts/build-tool-catalog.mjs` from
  * `capabilities.json` + `MCP_TOOL_OVERRIDES.json`. Never hand-edit it;
@@ -51,4 +52,4 @@ export type {
 } from './catalog.generated.js';
 
 export { dispatchOperation } from './dispatch.js';
-export type { DispatchEffect, DispatchTarget } from './dispatch.js';
+export type { DispatchClient, DispatchEffect } from './dispatch.js';

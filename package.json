@@ -84,6 +84,16 @@
         "types": "./dist/mcp/index.d.cts",
         "default": "./dist/mcp/index.cjs"
       }
+    },
+    "./operations": {
+      "import": {
+        "types": "./dist/operations/index.d.ts",
+        "default": "./dist/operations/index.js"
+      },
+      "require": {
+        "types": "./dist/operations/index.d.cts",
+        "default": "./dist/operations/index.cjs"
+      }
     }
   },
   "files": [

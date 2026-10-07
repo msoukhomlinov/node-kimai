@@ -33,7 +33,7 @@
 //
 // Exit codes: 0 ok, 1 registry missing/unreadable or a reachability violation.
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { project, inputFields } from './project-mcp-tools.mjs';
@@ -50,6 +50,16 @@ const ARTIFACT = path.resolve(ROOT, argValue('--artifact', 'MCP_TOOL_CATALOG.jso
 const CHECK = argv.includes('--check');
 const REGISTRY = path.resolve(ROOT, argValue('--registry', 'capabilities.json'));
 const OVERRIDES = path.resolve(ROOT, 'MCP_TOOL_OVERRIDES.json');
+// The VENDORED vendor spec. It is the authority on which fields a write body carries and which of
+// them the vendor REQUIRES - the registry records the SDK method signature (an opaque
+// `input: { type: 'object', description: 'TimesheetEditForm' }`), so without this file the served
+// contract is a bare object while its note still says "exactly these fields - input". That is the
+// node-hudu #70 failure class: a claim of closure over a body the spec fills with required fields.
+const SPEC = path.resolve(ROOT, argValue('--spec', 'api-docs.json'));
+// Directories scanned for the SDK's OWN exported string-literal unions, so a field the registry
+// types as the catch-all 'object' (e.g. `resource`, whose SDK type is ActionResource) is served
+// as the string it actually is instead of as an object the SDK would interpolate into a path.
+const SDK_SOURCE_DIRS = ['src/resources', 'src/types'];
 
 /**
  * The written CORE_RULE (mirrors MCP_TOOL_MANIFEST.md). R1-R4 are the requirements the projection
@@ -113,11 +123,135 @@ const REFUSAL_REASON =
 
 const DISPATCH_TOOLS = { read: 'kimai_read', write: 'kimai_write', destructive: 'kimai_delete' };
 
-/** Map a registry field descriptor to the JSON Schema keyword subset the projection emits. */
-function schemaNodeFor(field) {
-  const t = field && field.type;
-  const type = t === 'number' ? 'number' : t === 'string' ? 'string' : t === 'boolean' ? 'boolean' : 'object';
-  return { type };
+/** The SDK's exported string-literal unions: `export type ActionResource = 'activity' | ...;`. */
+function sdkStringUnions() {
+  const out = {};
+  for (const dir of SDK_SOURCE_DIRS) {
+    const abs = path.resolve(ROOT, dir);
+    if (!existsSync(abs)) continue;
+    for (const entry of readdirSync(abs)) {
+      if (!entry.endsWith('.ts')) continue;
+      const text = readFileSync(path.join(abs, entry), 'utf8');
+      for (const m of text.matchAll(/export type ([A-Za-z_]\w*) =((?:\s*'[^']*'\s*\|?)+)\s*;/g)) {
+        const values = [...m[2].matchAll(/'([^']*)'/g)].map((v) => v[1]);
+        if (values.length) out[m[1]] = values;
+      }
+    }
+  }
+  return out;
+}
+
+/** Load the vendored spec: the path scan, the spec text, and the SDK's own string-literal unions. */
+function loadSpec() {
+  const unions = sdkStringUnions();
+  if (!existsSync(SPEC)) return { doc: null, byEndpoint: new Map(), unions };
+  const doc = JSON.parse(readFileSync(SPEC, 'utf8'));
+  const byEndpoint = new Map();
+  for (const [p, ops] of Object.entries(doc.paths || {})) {
+    for (const [method, op] of Object.entries(ops)) byEndpoint.set(`${method.toUpperCase()} ${p}`, op);
+  }
+  return { doc, byEndpoint, unions };
+}
+
+/** Follow a local `$ref` into components.schemas (bounded depth; an unresolved ref is left alone). */
+function resolveSpecNode(doc, node, depth = 0) {
+  if (!node || typeof node !== 'object' || depth > 4) return node;
+  if (typeof node.$ref === 'string') {
+    const name = node.$ref.split('/').pop();
+    const target = (doc.components && doc.components.schemas ? doc.components.schemas[name] : null);
+    return target ? resolveSpecNode(doc, target, depth + 1) : node;
+  }
+  return node;
+}
+
+/** The RESOLVED vendor request-body schema for one spec operation, or null when the spec is silent. */
+function specRequestBody(doc, specOp) {
+  const schema = specOp && specOp.requestBody && specOp.requestBody.content
+    && specOp.requestBody.content['application/json'] && specOp.requestBody.content['application/json'].schema;
+  if (!schema) return null;
+  return resolveSpecNode(doc, schema);
+}
+
+const SPEC_JSON_TYPE = { integer: 'number', number: 'number', string: 'string', boolean: 'boolean', object: 'object', array: 'array' };
+
+/** Project a resolved vendor schema node into the served keyword subset (compact: 2 levels deep). */
+function specSchemaNode(doc, node, depth = 0) {
+  const resolved = resolveSpecNode(doc, node);
+  if (!resolved || typeof resolved !== 'object') return { type: 'object' };
+  const branches = resolved.anyOf || resolved.oneOf;
+  if (Array.isArray(branches)) return { anyOf: branches.map((b) => specSchemaNode(doc, b, depth + 1)) };
+  const out = {};
+  if (resolved.type !== undefined) {
+    const raw = Array.isArray(resolved.type) ? resolved.type : [resolved.type];
+    out.type = raw.length > 1 ? raw.map((t) => SPEC_JSON_TYPE[t] || 'object') : (SPEC_JSON_TYPE[raw[0]] || 'object');
+  }
+  if (Array.isArray(resolved.enum) && resolved.enum.every((v) => typeof v === 'string')) out.enum = resolved.enum;
+  if (out.type === 'array' || resolved.items) out.items = specSchemaNode(doc, resolved.items || {}, depth + 1);
+  if (depth < 2 && resolved.properties) {
+    out.properties = {};
+    for (const [name, sub] of Object.entries(resolved.properties)) out.properties[name] = specSchemaNode(doc, sub, depth + 1);
+    if (Array.isArray(resolved.required) && resolved.required.length) out.required = resolved.required;
+  }
+  if (resolved.additionalProperties === false) out.additionalProperties = false;
+  if (typeof resolved.description === 'string' && resolved.description.length <= 140) out.description = resolved.description;
+  return out;
+}
+
+/** The top-level contract fields that are neither the vendor's params nor an MCP affordance. */
+const CONTRACT_AFFORDANCES = new Set(['limit', 'expand', 'resolution_details']);
+
+/**
+ * The one field that carries the vendor request body, or null. Unambiguous by construction: with a
+ * body-bearing spec operation there must be exactly one top-level object field that is not a spec
+ * parameter and not a mechanical affordance. Anything else is a defect the build reports.
+ */
+function bodyBagFor(specOp, fields) {
+  if (!specOp || !specOp.requestBody) return null;
+  const params = new Set((specOp.parameters || []).map((p) => p.name));
+  const candidates = fields.filter(
+    (f) => f.type === 'object' && f.name !== 'opts' && !params.has(f.name) && !CONTRACT_AFFORDANCES.has(f.name),
+  );
+  if (candidates.length !== 1) return null;
+  return { name: candidates[0].name, field: candidates[0] };
+}
+
+/**
+ * The served sentence for a vendor-backed body: the field list and which of them the vendor
+ * requires, plus the honest statement about closure inside the body (the spec closes almost no
+ * form, so an unknown key INSIDE the body is passed through, not refused - only the top level is
+ * closed by the host's contract check).
+ */
+function bodyContractNote(bag, node) {
+  const label = typeof bag.field.description === 'string' && bag.field.description.length > 0 ? bag.field.description : 'request body';
+  if (node && node.type === 'array') {
+    const item = node.items || {};
+    const itemReq = Array.isArray(item.required) ? item.required : [];
+    const itemFields = item.properties ? Object.keys(item.properties).length : 0;
+    return ` ${bag.name} carries the vendor's array body (SDK type "${label}") - one entry per item; each item declares ${itemFields} field(s)${itemReq.length ? ` and requires ${itemReq.join(', ')}` : ''}; the spec does not close an item, so an unknown key inside it is passed through, never refused.`;
+  }
+  const req = node && Array.isArray(node.required) ? node.required : [];
+  const all = node && node.properties ? Object.keys(node.properties) : [];
+  const opt = all.filter((name) => !req.includes(name));
+  const closure = node && node.additionalProperties === false
+    ? ` The vendor closes ${bag.name} (additionalProperties: false).`
+    : ` The spec does not close ${bag.name} beyond those fields, so an unknown key inside it is passed through, never refused.`;
+  return ` ${bag.name} carries the vendor's request body (SDK type "${label}"): required ${req.length ? req.join(', ') : 'none'}; optional ${opt.length ? opt.join(', ') : 'none'}.${closure}`;
+}
+
+/**
+ * Map a registry field descriptor to the JSON Schema keyword subset the projection emits.
+ * The registry `type` is a TypeScript-flavoured type string, so a union is served as the union
+ * (never collapsed to 'object'), and a named union the SDK exports is served as its actual strings.
+ */
+function schemaNodeFor(field, unions) {
+  const described = field && typeof field.description === 'string' ? field.description : '';
+  if (unions && unions[described]) return { type: 'string', enum: unions[described] };
+  const t = (field && field.type) || '';
+  const nodes = String(t).split('|').map((token) => token.trim()).filter(Boolean)
+    .map((token) => ({ type: token === 'number' || token === 'integer' ? 'number' : token === 'string' ? 'string' : token === 'boolean' ? 'boolean' : token === 'array' ? 'array' : 'object' }));
+  if (nodes.length === 0) return { type: 'object' };
+  if (nodes.length === 1) return nodes[0];
+  return { anyOf: nodes };
 }
 
 function requireNonEmpty(value, what) {
@@ -132,8 +266,14 @@ function main() {
   }
   const registry = JSON.parse(readFileSync(REGISTRY, 'utf8'));
   const overrides = existsSync(OVERRIDES) ? JSON.parse(readFileSync(OVERRIDES, 'utf8')) : [];
+  const spec = loadSpec();
+  if (spec.doc === null) {
+    console.error(`build-tool-catalog: WARNING - the vendored spec ${path.relative(ROOT, SPEC)} is missing, so write-body contracts are served as opaque objects and the vendor-required-field check is SKIPPED (UNVERIFIED).`);
+  }
   const data = project(registry, overrides);
   const records = data.records;
+  const byId = new Map(records.map((r) => [r.id, r]));
+  const specOpFor = (rec) => (rec.endpoint && spec.doc ? spec.byEndpoint.get(rec.endpoint) : null);
   const violations = [];
 
   // ---------------------------------------------------------------- exposure / refusal
@@ -218,14 +358,21 @@ function main() {
     for (const op of ops) {
       const rec = records.find((r) => r.id === op);
       const fields = inputFields(rec).filter((f) => f.name !== 'dry_run' && f.name !== 'confirm');
+      const specOp = specOpFor(rec);
+      const bag = bodyBagFor(specOp, fields);
       const properties = {};
       const required = [];
       for (const f of fields) {
-        properties[f.name] = schemaNodeFor(f);
+        if (bag && f.name === bag.name) {
+          properties[f.name] = specSchemaNode(spec.doc, specRequestBody(spec.doc, specOp));
+        } else {
+          properties[f.name] = schemaNodeFor(f, spec.unions);
+        }
         if (f.description) properties[f.name].description = f.description;
         if (f.required === true) required.push(f.name);
       }
       const declared = Object.keys(properties);
+      const bodyNote = bag ? bodyContractNote(bag, properties[bag.name]) : '';
       const schema = { type: 'object', additionalProperties: false, properties };
       if (required.length) schema.required = required;
       inputContracts[op] = {
@@ -233,7 +380,7 @@ function main() {
         effect,
         closed: true,
         note: declared.length
-          ? `Closed contract for ${op}: exactly these fields - ${declared.join(', ')}. An unknown field is refused before any request. dry_run / confirm are the tool's top-level arguments, never part of this contract.`
+          ? `Closed contract for ${op}: exactly these fields - ${declared.join(', ')}.${bodyNote} An unknown field is refused before any request. Closure is at the top level of this contract: where a vendor request body is served above, the keys inside it follow the vendor's schema. dry_run / confirm are the tool's top-level arguments, never part of this contract.`
           : `Closed contract for ${op}: this operation takes no argument. dry_run / confirm are the tool's top-level arguments, never part of this contract.`,
         schema,
       };
@@ -241,7 +388,52 @@ function main() {
   }
   if (Object.keys(inputContracts).length !== records.length - refusals.length) violations.push('input contracts: not every reachable registry operation has a contract');
 
+  // ------------------------------------------------- vendor-required write fields must be served
+  // The node-hudu #70 class, closed at the generator: the served body contract must carry EVERY
+  // field the vendor spec requires for a write body, and must carry the vendor's ARRAY shape for
+  // an array body. A missing required field fails the build instead of shipping as a note that
+  // reads "exactly these fields" over an opaque object.
+  if (spec.doc) {
+    let checked = 0;
+    for (const [op, contract] of Object.entries(inputContracts)) {
+      const rec = byId.get(op);
+      const specOp = specOpFor(rec);
+      const bodyNode = specOp ? specRequestBody(spec.doc, specOp) : null;
+      if (!bodyNode) continue;
+      checked += 1;
+      const fields = inputFields(rec).filter((f) => f.name !== 'dry_run' && f.name !== 'confirm');
+      const bag = bodyBagFor(specOp, fields);
+      if (!bag) {
+        violations.push(`${op}: the vendor declares a request body but the served contract has no single body field to carry it (fields: ${fields.map((f) => f.name).join(', ') || 'none'})`);
+        continue;
+      }
+      const served = contract.schema.properties[bag.name] || {};
+      if (bodyNode.type === 'array') {
+        if (served.type !== 'array') violations.push(`${op}: the vendor body is an array but the served "${bag.name}" is served as ${JSON.stringify(served.type)}`);
+        continue;
+      }
+      const missing = (bodyNode.required || []).filter((name) => !(Array.isArray(served.required) ? served.required : []).includes(name));
+      if (missing.length) violations.push(`${op}: the served "${bag.name}" contract omits the vendor-required write field(s) ${missing.join(', ')}`);
+    }
+    if (checked === 0) violations.push('vendor write bodies: the vendored spec matched no served contract - the spec path/key spelling and the registry endpoints have diverged');
+    process.stdout.write(`build-tool-catalog - vendor write bodies checked against ${path.basename(SPEC)}: ${checked}\n`);
+  }
+
   // ---------------------------------------------------------------- META tools
+  // The CONFIRMATION-GATED operations: every destructive operation plus every write the registry
+  // flags `requiresApproval`. The catalog row already says `confirm_required: true` for all of
+  // them, so the write dispatcher must DECLARE the confirm argument too - otherwise the served
+  // surfaces disagree (the catalog demands a confirmation the tool's own schema does not carry).
+  const confirmRequiredOperations = records
+    .filter((r) => r.effect === 'destructive' || (r.flags || []).includes('requiresApproval'))
+    .map((r) => r.id)
+    .sort();
+  const approvalGatedWrites = records
+    .filter((r) => r.effect === 'write' && (r.flags || []).includes('requiresApproval'))
+    .map((r) => r.id)
+    .sort();
+  const META_WRITE_CONFIRM = `Required for the approval-gated write operations (${approvalGatedWrites.join(', ')}): must equal the operation key exactly, otherwise the call is refused; a plain mutation does not need it.`;
+
   const metaTool = (name) => {
     const effect = META_EFFECT_OF[name];
     const fields = effect === undefined
@@ -250,7 +442,10 @@ function main() {
           { name: 'operation', type: 'string', required: true, description: `A registry key whose effect is "${effect}".`, enum: dispatchOperations[effect] },
           { name: 'input', type: 'object', required: false, description: "Closed per-operation contract: exactly the operation's declared fields, nothing else." },
           ...(effect === 'read' ? [] : effect === 'write'
-            ? [{ name: 'dry_run', type: 'boolean', required: false, description: 'true (default) = return the plan without issuing the write.' }]
+            ? [
+                { name: 'dry_run', type: 'boolean', required: false, description: 'true (default) = return the plan without issuing the write.' },
+                { name: 'confirm', type: 'string', required: false, description: META_WRITE_CONFIRM },
+              ]
             : [{ name: 'confirm', type: 'string', required: true, description: 'Must equal the operation key exactly; otherwise the call is refused.' }]),
         ];
     return {
@@ -388,6 +583,13 @@ function renderModule({ data, catalog, refusals, dispatchOperations, inputContra
   lines.push('/** effect -> the registry operations the matching dispatch tool accepts (sorted; refused operations excluded). */');
   lines.push(`export const DISPATCH_OPERATIONS: Record<'read' | 'write' | 'destructive', string[]> = ${JSON.stringify(dispatchOperations, null, 2)};`);
   nl();
+  const confirmRequired = records
+    .filter((r) => r.effect === 'destructive' || (r.flags || []).includes('requiresApproval'))
+    .map((r) => r.id)
+    .sort();
+  lines.push('/** Operations whose `confirm` string is REQUIRED (every destructive one, plus every approval-gated write). */');
+  lines.push(`export const CONFIRM_REQUIRED_OPERATIONS: string[] = ${JSON.stringify(confirmRequired, null, 2)};`);
+  nl();
   lines.push('/** One row per registry operation. `requires` = the required top-level argument names. */');
   lines.push('export const CATALOG: CatalogRow[] = [');
   for (const row of catalog) lines.push(`  ${JSON.stringify(row)},`);
@@ -451,7 +653,10 @@ export interface InputJsonSchema {
 /**
  * One operation's CLOSED input contract: exactly the operation's declared fields,
  * \`additionalProperties: false\` at the top level. A field the operation does not declare is
- * refused BEFORE any request. \`dry_run\` / \`confirm\` are the tool's own top-level arguments and
+ * refused BEFORE any request. Where the vendored spec declares a request body, the body field
+ * carries the VENDOR's field list and required set (projected from api-docs.json): a mutation is
+ * never served as an opaque object whose note still claims to be the whole contract.
+ * \`dry_run\` / \`confirm\` are the tool's own top-level arguments and
  * are never part of the served contract. The contract is NOT a second validator: the host's
  * argument check and the SDK's own refuse-unknown-keys path stay the single implementation.
  */
@@ -548,7 +753,15 @@ export function kimaiDispatchInputSchema(effect: 'read' | 'write' | 'destructive
         input: contract ? contract.schema : { type: 'object' },
       },
     };
-    if (contract && contract.schema.required && contract.schema.required.length) branch.required = ['operation', 'input'];
+    const required: string[] = contract && contract.schema.required && contract.schema.required.length ? ['operation', 'input'] : ['operation'];
+    // The catalog serves confirm_required: true for exactly these operations, so the
+    // per-operation branch REQUIRES the confirmation string to be the key: one served claim, one
+    // schema. Without this the catalog demanded a confirmation the write dispatcher never declared.
+    if (CONFIRM_REQUIRED_OPERATIONS.includes(op)) {
+      if (branch.properties) branch.properties.confirm = { const: op };
+      required.push('confirm');
+    }
+    if (required.length > 1) branch.required = required;
     return branch;
   });
   return top;

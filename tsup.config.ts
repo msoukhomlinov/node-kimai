@@ -7,6 +7,7 @@ export default defineConfig({
     "types/index": "src/types/index.ts",
     errors: "src/errors.ts",
     capabilities: "src/capabilities.ts",
+    "operations/index": "src/operations/index.ts",
     untrusted: "src/untrusted.ts",
     "mcp/index": "src/mcp/index.ts",
   },

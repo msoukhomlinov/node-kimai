@@ -254,7 +254,15 @@ describe('INPUT_CONTRACTS + kimaiDispatchInputSchema', () => {
     const schema = kimaiDispatchInputSchema('write');
     const withRequired = schema.oneOf!.filter((b) => b.required !== undefined);
     expect(withRequired.length).toBeGreaterThan(0);
-    for (const branch of withRequired) expect(branch.required).toEqual(['operation', 'input']);
+    // A confirmation-gated write (registry `requiresApproval`) also requires `confirm`, which the
+    // catalog row already serves as `confirm_required: true` - the branch and the row are one claim.
+    const confirmRequired = new Set(CATALOG.filter((r) => r.confirm_required).map((r) => r.op));
+    for (const branch of withRequired) {
+      const op = branch.properties?.operation?.const as string;
+      expect(branch.required).toEqual(
+        confirmRequired.has(op) ? ['operation', 'input', 'confirm'] : ['operation', 'input'],
+      );
+    }
   });
 });
 

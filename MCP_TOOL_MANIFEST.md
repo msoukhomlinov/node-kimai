@@ -14,7 +14,7 @@
 - subsumed read primitives: 15 (covered by a helper — see below)
 - excluded by curation: 2
 - overrides applied: 16
-- projected at: 2026-10-07T12:34:31.108Z
+- projected at: 2026-10-07T12:44:27.575Z
 
 ## Progressive disclosure — the decision
 
@@ -143,6 +143,7 @@ on demand in addition to the always-on core.
 | `operation` | `string` | yes | A registry key whose effect is "write". |
 | `input` | `object` | no | Closed per-operation contract: exactly the operation's declared fields, nothing else. |
 | `dry_run` | `boolean` | no | true (default) = return the plan without issuing the write. |
+| `confirm` | `string` | no | Required for the approval-gated write operations (teams.addMember, teams.grantActivityAccess, teams.grantCustomerAccess, teams.grantProjectAccess): must equal the operation key exactly, otherwise the call is refused; a plain mutation does not need it. |
 
 **Annotations:** openWorldHint
 

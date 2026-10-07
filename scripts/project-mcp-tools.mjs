@@ -490,7 +490,8 @@ function render(data) {
       nl();
       md.push('| field | type | required | notes |');
       md.push('|-------|------|----------|-------|');
-      md.push(renderFieldsFull(META_INPUT[c.name] ?? []));
+      const fields = c.name === 'kimai_write' ? [...(META_INPUT[c.name] ?? []), metaWriteConfirmField(data.records)] : (META_INPUT[c.name] ?? []);
+      md.push(renderFieldsFull(fields));
       nl();
       md.push(`**Annotations:** ${renderAnnotations(META_ANNOTATIONS[c.name])}`);
       nl();
@@ -612,6 +613,20 @@ const META_INPUT = {
     { name: 'confirm', type: 'string', required: true, description: 'Must equal the operation key exactly; otherwise the call is refused.' },
   ],
 };
+/**
+ * The confirmation-gated WRITE operations (registry `flags: ['requiresApproval']`). They carry a
+ * `confirm` argument in the write dispatcher's schema, so the manifest must declare it too - the
+ * catalog row's `confirm_required: true` and the tool's declared arguments are one claim.
+ */
+function metaWriteConfirmField(records) {
+  const gated = records.filter((r) => r.effect === 'write' && (r.flags ?? []).includes('requiresApproval')).map((r) => r.id).sort();
+  return {
+    name: 'confirm',
+    type: 'string',
+    required: false,
+    description: `Required for the approval-gated write operations (${gated.join(', ')}): must equal the operation key exactly, otherwise the call is refused; a plain mutation does not need it.`,
+  };
+}
 const META_ANNOTATIONS = {
   kimai_catalog: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
   kimai_describe: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },

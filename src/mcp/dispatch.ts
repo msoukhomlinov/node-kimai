@@ -1,31 +1,29 @@
 // `node-kimai/mcp` dispatch boundary.
 //
-// `dispatchOperation` adds an EXACT effect boundary before the host's own invocation: it refuses
-// an operation the registry does not know, an operation the projection refuses outright, and an
-// operation whose registry effect differs from the dispatcher's effect. Everything else
-// (argument validation, dry-run semantics, approval policy) stays in exactly ONE place - the
-// SDK's own refuse-unknown-keys path and the host's governance - never a second copy here.
+// `dispatchOperation` adds an EXACT effect boundary before the SDK's own invocation and then
+// DELEGATES to the ONE governance path. It refuses an `effect` outside read | write |
+// destructive, and an operation whose registry effect differs from the dispatcher's effect
+// (including any dispatcher record) - that is the boundary this module owns and nothing else.
 //
-// DEVIATION FROM THE SIBLING SDKS (documented on purpose): node-hudu / node-autotask dispatch
-// into `client.operations.invoke`, a generic registry-key invoker. node-kimai has no such
-// generic invoker: its methods are typed resource-client calls. `dispatchOperation` therefore
-// takes a `DispatchTarget` - the host's invoker for a canonical registry key - validates the
-// effect boundary, and only then calls it. The boundary is the same boundary; the call target is
-// the host's, because the SDK has no generic one to hand it.
+// Everything else - the exact-key lookup and its nearest-key refusal, the projection's
+// unreachable-operation refusal, the closed input contract, dry-run-first writes and the
+// confirmation gate - lives in exactly ONE place: the SDK's `operations.invoke`
+// (`node-kimai/operations`). Never add a second write governor. A second implementation here
+// would be a second chance to be wrong.
+//
+// `client` is the SDK's `ApiClient`: the typed resource clients are what `invokeOperation`
+// dispatches into. There is no host-supplied invoker to hand it any more, because that
+// target-shaped hole was the gap this boundary used to leave open.
+import type { ApiClient } from '../client.js';
 import { getCapability } from '../capabilities.js';
 import { KimaiConfigError } from '../errors.js';
-import { REFUSALS, nearestKeys } from './catalog.generated.js';
+import { invokeOperation, type InvokeOptions } from '../operations/invoke.js';
 
 /** The three dispatch effects, split one per dispatcher tool. */
 export type DispatchEffect = 'read' | 'write' | 'destructive';
 
-/**
- * The host's invoker for a canonical registry key. `input` is the operation's closed contract
- * (see `kimaiDispatchInputSchema`); the `dryRun` bag is the host's own argument, not part of it.
- */
-export interface DispatchTarget {
-  invoke(operation: string, input?: Record<string, unknown>): Promise<unknown>;
-}
+/** The client shape the dispatcher needs: the SDK's `ApiClient` (its typed resource clients). */
+export type DispatchClient = ApiClient;
 
 const EFFECTS: readonly string[] = ['read', 'write', 'destructive'];
 
@@ -36,32 +34,27 @@ function refuse(message: string, operation: string, code: string, suggestedActio
 /**
  * Invoke one registry operation through the dispatcher for `effect`.
  *
- * Refused with a typed `CONFIG_ERROR` (zero wire activity, never forwarded):
+ * Refused here with a typed `CONFIG_ERROR` (zero wire activity, never forwarded):
  * - an `effect` outside read | write | destructive;
- * - an operation key the registry does not know (the message names the nearest keys);
- * - an operation the projection refuses outright (binary/download) - the escape hatch cannot
- *   bypass the projection rule;
  * - an operation whose registry effect differs from `effect` (including any dispatcher record).
+ *
+ * Every other refusal - unknown key, unreachable operation, unknown/invalid input, dry-run and
+ * confirmation governance - is the SDK `operations.invoke` path's, and is raised by
+ * `invokeOperation` below with the catalog's own refusal codes.
  */
-export function dispatchOperation(
-  target: DispatchTarget,
+export async function dispatchOperation(
+  client: DispatchClient,
   effect: DispatchEffect,
   operation: string,
   input: Record<string, unknown> = {},
+  options: InvokeOptions = {},
 ): Promise<unknown> {
   if (!EFFECTS.includes(effect)) {
-    return Promise.reject(refuse(`Unknown dispatch effect "${String(effect)}". One of: read, write, destructive.`, operation, 'DISPATCHER_EFFECT', 'Use the dispatcher matching the operation effect.'));
+    throw refuse(`Unknown dispatch effect "${String(effect)}". One of: read, write, destructive.`, operation, 'DISPATCHER_EFFECT', 'Use the dispatcher matching the operation effect.');
   }
   const record = getCapability(operation);
-  if (record === undefined) {
-    const near = nearestKeys(operation, 5);
-    return Promise.reject(refuse(`Unknown operation "${operation}". Operation keys are exact registry keys (never a tool name, never fuzzy). Nearest keys: ${near.length ? near.join(', ') : '(none)'}. Call kimai_catalog to list every operation.`, operation, 'UNKNOWN_OPERATION', 'Call kimai_catalog to list every operation key.'));
+  if (record !== undefined && ((record as { kind: string }).kind === 'dispatcher' || record.effect !== effect)) {
+    throw refuse(`Operation "${operation}" has registry effect "${record.effect}" and is outside this "${effect}" dispatcher.`, operation, 'DISPATCHER_EFFECT', `Use the dispatcher matching the operation effect: ${record.effect}.`);
   }
-  if (REFUSALS[operation] !== undefined) {
-    return Promise.reject(refuse(`Operation "${operation}" is outside the served surface: ${REFUSALS[operation].reason}`, operation, 'UNREACHABLE_OPERATION', 'Use the bounded alternative this operation points at; it is not dispatchable.'));
-  }
-  if ((record as { kind: string }).kind === 'dispatcher' || record.effect !== effect) { // this registry has no dispatcher records; the guard is kept at parity with the sibling SDKs
-    return Promise.reject(refuse(`Operation "${operation}" has registry effect "${record.effect}" and is outside this "${effect}" dispatcher.`, operation, 'DISPATCHER_EFFECT', `Use the dispatcher matching the operation effect: ${record.effect}.`));
-  }
-  return target.invoke(operation, input);
+  return invokeOperation(client, operation, input, options);
 }
