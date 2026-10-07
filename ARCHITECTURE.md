@@ -307,6 +307,25 @@ class N8nTransport implements HttpTransport {
 
 ---
 
+### Secondary consumer: n8n — recorded deviation (`references/mcp-server-surface.md` §6)
+
+`SCOPING.md` names an n8n community node as a secondary consumer, and the agent-execution-layer policy
+is in scope for every variant. This SDK does **not** ship an n8n projection (manifest + curation + drift
+check), and that is a deliberate, recorded skip rather than an omission:
+
+- The n8n node is a **separate, pre-existing package** (`n8n-nodes-kimai-pro`, ~87 operations) that
+  consumes this SDK **only through the injectable transport** above. It carries its own operation list and
+  never reads `capabilities.json`, the registry, or any projected surface.
+- A projection emitted here would therefore have **no reader**, and would become a second operation list
+  to keep in sync — the exact drift the registry exists to prevent.
+- The skill's trigger is the consumer **reading the registry**, not the word "n8n".
+
+**If that changes** — the node starts deriving its operations from this package — the projection becomes
+required: project it from the same registry and gate the drift (`n8n:project:check` in the node-autotask
+lineage), never by hand-maintaining a list.
+
+---
+
 ## 8. Response Envelope / Capability Table
 
 **CRITICAL: This table is authoritative.** All implementation MUST derive response handling from it.

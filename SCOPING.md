@@ -8,6 +8,7 @@ Generated: 2026-08-10
 
 - **Primary consumer:** (a) MCP server — expose Kimai data as tools
 - **Secondary:** (d) SDK reusable by n8n community node (middleware/rebase)
+  - *Post-decision note (2026-10-07):* no n8n projection is shipped — the node is a separate pre-existing package that consumes this SDK only through the injectable transport and never reads the registry, so a projection would have no reader. Deliberate, recorded skip; revisit if the node starts reading the registry. See `ARCHITECTURE.md` → "Secondary consumer: n8n — recorded deviation".
 - **Transport-injectable:** (a) Yes — design for non-MCP use (n8n compatibility)
 - **MCP tool surface:** (a) Yes — MCP Toolsmith stage in scope; produces MCP_TOOL_MANIFEST.md
 
