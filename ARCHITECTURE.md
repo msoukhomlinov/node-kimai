@@ -30,7 +30,16 @@ src/
   index.ts                    # Public API barrel (ApiClient + all resource clients)
   client.ts                   # Base ApiClient class + transport abstraction
   errors.ts                   # Typed error hierarchy + the structured error contract (policy §8)
+  guards.ts                   # isKimaiError + credential-shape checks (re-exported from the root)
   capabilities.ts             # GENERATED capability registry (zero imports; the ./capabilities subpath)
+  operations/                 # Registry-validated invoke layer (the ./operations subpath)
+    index.ts                  # re-exports invokeOperation / planInvoke / REFUSAL_CODES / ...
+    invoke.ts                 # resolve → validate → govern → dispatch; the ONE write governor
+  mcp/                        # Generated MCP tool catalog + dispatcher (the ./mcp subpath)
+    index.ts                  # re-exports the catalog and dispatchOperation
+    dispatch.ts               # effect-split dispatch (read | write | destructive) → invokeOperation
+    catalog.generated.ts      # MACHINE-WRITTEN by scripts/build-tool-catalog.mjs; never hand-edit
+  untrusted.ts                # untrusted-content marking helpers (the ./untrusted subpath)
   types/
     index.ts                  # Barrel export for all types
     common.ts                 # Shared types (ListParams, TimesheetListParams, etc.)
@@ -83,6 +92,8 @@ scripts/
   check-capabilities.mjs      # the capability gate (row coverage, staleness, --ship)
   check-negative-fixture.mjs  # proves the gate can fail (negative fixture)
   project-mcp-tools.mjs       # project the registry into MCP_TOOL_MANIFEST.md (npm run mcp:project)
+  build-tool-catalog.mjs      # generate src/mcp/catalog.generated.ts + MCP_TOOL_CATALOG.json (catalog:check)
+  check-mcp-surface.mjs       # guard the served MCP tool surface (mcp:check-surface)
   public-surface.mjs          # guard the published surface (exports x dist x runtime deps)
 dist/                         # build output — one entry per package.json subpath
   index.{js,d.ts,cjs,d.cts}
@@ -90,6 +101,12 @@ dist/                         # build output — one entry per package.json subp
   types/index.{js,d.ts,cjs,d.cts}
   errors.{js,d.ts,cjs,d.cts}
   capabilities.{js,d.ts,cjs,d.cts}
+  operations/index.{js,d.ts,cjs,d.cts}
+  mcp/index.{js,d.ts,cjs,d.cts}
+  untrusted.{js,d.ts,cjs,d.cts}
+MCP_TOOL_CATALOG.json         # generated MCP catalog (the ./mcp data on disk)
+MCP_TOOL_MANIFEST.md          # projected tool manifest
+MCP_TOOL_OVERRIDES.json       # hand-written catalog overrides (inputs to the generator)
 ```
 
 ---
@@ -99,7 +116,7 @@ dist/                         # build output — one entry per package.json subp
 - **Types:** PascalCase interfaces, no `I` prefix (`Activity`, `Customer`, `TimesheetConfig`)
 - **Resource clients:** PascalCase class names (`ActivityClient`, `CustomerClient`)
 - **Files:** snake_case for types (`activity.ts`), PascalCase for clients (`ActivityClient.ts`)
-- **Functions:** camelCase (`getAll`, `getById`, `createActivity`, `updateMeta`)
+- **Functions:** camelCase (`listAll`, `get`, `list`, `listPages`, `create`, `updateMeta`)
 - **List params:** `{Resource}ListParams` (`ActivityListParams`, `TimesheetListParams`)
 - **Form types:** `{Resource}CreateInput` / `{Resource}UpdateInput` (derived from EditForm schemas)
 
@@ -112,7 +129,8 @@ dist/                         # build output — one entry per package.json subp
 import { ApiClient } from 'node-kimai';
 
 const client = new ApiClient({ baseUrl: 'https://kimai.example.com', token: '...' });
-const activities = await client.activities.getAll();
+const activities = await client.activities.listAll();
+for await (const activity of client.activities.list()) { /* one record at a time */ }
 
 // Resource-specific imports
 import { ActivityClient, TimesheetClient } from 'node-kimai/resources';
@@ -128,10 +146,10 @@ import { CAPABILITY_GROUPS, CAPABILITIES, CAPABILITY_PLAN_HASHES } from 'node-ki
 import type { CapabilityRecord, CapabilityArgSchema } from 'node-kimai/capabilities';
 ```
 
-The published subpaths are `.`, `./resources`, `./types`, `./errors`, `./capabilities` and
-`./package.json` — one per `tsup` entry. `scripts/public-surface.mjs` proves the declared
-`exports` map and the built `dist/` tree agree, and loads each subpath for both `import`
-and `require`.
+The published subpaths are `.`, `./resources`, `./types`, `./errors`, `./capabilities`,
+`./operations`, `./mcp`, `./untrusted` and `./package.json` — one per `tsup` entry.
+`scripts/public-surface.mjs` proves the declared `exports` map and the built `dist/` tree agree,
+and loads each subpath for both `import` and `require`.
 
 ### ApiClient Interface
 
@@ -140,7 +158,6 @@ interface ApiClientOptions {
   baseUrl: string;
   token: string;
   transport?: HttpTransport;
-  defaultPageSize?: number;
 }
 
 class ApiClient {
@@ -197,8 +214,8 @@ All errors expose:
 
 ### Paginated Endpoints (use `page` / `size` params)
 
-- `GET /api/timesheets` — page (default: 1), size (default: 50, max: 500)
-- `GET /api/invoices` — page (default: 1), size (default: 50)
+- `GET /api/timesheets` — page (default: 1), size (default: 100, max: 500)
+- `GET /api/invoices` — page (default: 1), size (default: 100)
 
 ### Non-Paginated Endpoints (single fetch, NEVER send page params)
 
@@ -224,18 +241,26 @@ For each resource client:
 
 ```typescript
 class ActivityClient {
-  // Single fetch with optional params
-  list(params?: ActivityListParams): Promise<Activity[]>;
+  // Stream every record: walks every page on a paginated resource, one batch otherwise
+  list(params?: ActivitySearchParams): AsyncIterable<Activity>;
 
-  // Fetch ALL pages (only for paginated endpoints) or single fetch (non-paginated)
-  getAll(params?: ActivityListParams): Promise<Activity[]>;
+  // Collect the complete set (all pages concatenated)
+  async listAll(params?: ActivitySearchParams): Promise<Activity[]>;
+}
 
-  // Async iterator over pages (only for paginated endpoints)
-  listPages(params?: ActivityListParams): AsyncIterable<Activity[]>;
+class TimesheetClient {
+  list(params?: TimesheetListParams): AsyncIterable<Timesheet>;
+  async listAll(params?: TimesheetListParams): Promise<Timesheet[]>;
+  // Paginated resources only: stream whole pages
+  listPages(params?: TimesheetListParams): AsyncIterable<Page<Timesheet>>;
 }
 ```
 
-For non-paginated endpoints, `getAll()` = `list()` (single fetch). `listPages()` is not available.
+`Page<T> = { items, page, size, hasMore }`, where `hasMore = items.length === size`: Kimai
+returns a bare array with no totals, so a full page is the only continuation signal. `page` and
+`size` must be positive integers or the client throws `KimaiConfigError` (never silently clamped;
+`size` defaults to 100). On non-paginated endpoints `list()` yields the single batch, `listAll()`
+returns it as an array, and `listPages()` is not available.
 
 ---
 
@@ -477,13 +502,13 @@ class ActionsClient {
 
 ```typescript
 class TimesheetClient {
-  // Standard CRUD
-  list(params?: TimesheetListParams): Promise<Timesheet[]>;
-  getAll(params?: TimesheetListParams): Promise<Timesheet[]>;
-  listPages(params?: TimesheetListParams): AsyncIterable<Timesheet[]>;
-  getById(id: number): Promise<Timesheet>;
-  create(input: TimesheetCreateInput): Promise<Timesheet>;
-  update(id: number, input: TimesheetUpdateInput): Promise<Timesheet>;
+  // Standard CRUD + streaming lists
+  list(params?: TimesheetListParams): AsyncIterable<Timesheet>;
+  async listAll(params?: TimesheetListParams): Promise<Timesheet[]>;
+  listPages(params?: TimesheetListParams): AsyncIterable<Page<Timesheet>>;
+  async get(id: number): Promise<Timesheet>;
+  create(input: TimesheetEditForm): Promise<Timesheet>;
+  update(id: number, input: TimesheetEditForm): Promise<Timesheet>;
   delete(id: number): Promise<void>;
 
   // Special endpoints
@@ -501,14 +526,12 @@ class TimesheetClient {
 
 ```typescript
 class InvoiceClient {
-  list(params?: InvoiceListParams): Promise<Invoice[]>;
-  getAll(params?: InvoiceListParams): Promise<Invoice[]>;
-  listPages(params?: InvoiceListParams): AsyncIterable<Invoice[]>;
-  getById(id: number): Promise<Invoice>;
+  list(params?: InvoiceListParams): AsyncIterable<Invoice>;
+  async listAll(params?: InvoiceListParams): Promise<Invoice[]>;
+  listPages(params?: InvoiceListParams): AsyncIterable<Page<Invoice>>;
+  async get(id: number): Promise<Invoice>;
   updateCustomFields(id: number, fields: InvoiceMeta[]): Promise<Invoice>;
-
-  // NOTE: download() is NOT implemented in the SDK (binary response)
-  // n8n handles this directly via its HTTP helpers
+  download(id: number): Promise<ArrayBuffer>;
 }
 ```
 
@@ -516,9 +539,9 @@ class InvoiceClient {
 
 ```typescript
 class UserClient {
-  list(params?: UserListParams): Promise<User[]>;
-  getAll(params?: UserListParams): Promise<User[]>;
-  getById(id: number): Promise<User>;
+  list(params?: UserListParams): AsyncIterable<User>;
+  async listAll(params?: UserListParams): Promise<User[]>;
+  async get(id: number): Promise<User>;
   getMe(): Promise<User>;                    // GET /users/me
   create(input: UserCreateInput): Promise<User>;
   update(id: number, input: UserUpdateInput): Promise<User>;
@@ -597,12 +620,15 @@ These handle system-level operations and special workflows.
 
 ### Build
 
-- **tsup** with 5 entries matching `package.json` exports exactly:
+- **tsup** with one entry per `package.json` subpath:
   - `index` → `src/index.ts`
   - `resources/index` → `src/resources/index.ts`
   - `types/index` → `src/types/index.ts`
   - `errors` → `src/errors.ts`
   - `capabilities` → `src/capabilities.ts` (zero-import generated registry)
+  - `operations/index` → `src/operations/index.ts` (registry-validated invoke)
+  - `mcp/index` → `src/mcp/index.ts` (generated catalog + dispatcher)
+  - `untrusted` → `src/untrusted.ts` (untrusted-content marking)
 - Dual ESM+CJS + dts + sourcemaps
 - Target: node24
 - Artifact layout is **ESM-first** (`outExtension`: esm → `.js`/`.d.ts`, cjs → `.cjs`/`.d.cts`),
@@ -647,15 +673,16 @@ These handle system-level operations and special workflows.
 ## 13. MCP Consumer Contract
 
 - Every read returns plain `T` or `T[]` — never `this`, never raw envelopes
-- `getAll()` is the MCP-preferred all-in-one read method
+- `listAll()` is the MCP-preferred all-in-one read method; `list()` is the full stream
 - No runtime validation lib (zod stays consumer-side)
 - Transport-injectable for n8n reuse without SDK modifications
 - Error types are catchable and typed for structured error handling
 - The projected tool surface is the generated capability registry (`./capabilities`,
   `capabilities.json`): every tool is one registry record — `id`, `inputSchema`,
   `outputSchema`, `effect`, `flags`, `dryRun`, `pagination`, `retry`, `errors`. The
-  rendered tool manifest (`MCP_TOOL_MANIFEST.md`) is a projection of that registry
-  (`scripts/project-mcp-tools.mjs`), not a hand-written list (see §15.6).
+  rendered tool manifest (`MCP_TOOL_MANIFEST.md`) and the machine-readable catalog
+  (`MCP_TOOL_CATALOG.json`, the `./mcp` subpath) are projections of that registry, not
+  hand-written lists (see §15.6 and §16).
 
 ---
 
@@ -837,6 +864,8 @@ untouched.
 | `capabilities.json` | `scripts/generate-capabilities.mjs` | the registry: 13 groups, `planHash` + `builtAt` per group, one record per built row |
 | `src/capabilities.ts` | `scripts/generate-capabilities.mjs` | the same records as a **zero-import** TS module behind `./capabilities`; exports `CAPABILITY_GROUPS`, `CAPABILITIES`, `CAPABILITY_PLAN_HASHES` |
 | `MCP_TOOL_MANIFEST.md` | `scripts/project-mcp-tools.mjs` (`npm run mcp:project`) | the tool surface, projected from `capabilities.json` (never hand-written); `mcp:project:check` fails on drift |
+| `MCP_TOOL_CATALOG.json` | `scripts/build-tool-catalog.mjs` (`catalog:build`) | the machine-readable MCP catalog — CORE profile, META specs, descriptions, closed input contracts, one row per operation; `catalog:check` fails on a stale copy |
+| `src/mcp/catalog.generated.ts` | `scripts/build-tool-catalog.mjs` (`catalog:build`) | the same catalog as a compiled module behind `./mcp`; MACHINE-WRITTEN, never hand-edit |
 
 Gates (`npm run verify` runs the first two):
 
@@ -859,3 +888,78 @@ the expected subpath set from this `package.json` + `tsup.config.ts` (never hard
    non-builtin bare specifier in `dist/`.
 
 Exit 0 when the surface is intact; exit 1 with a failure list otherwise (`--json` for a report).
+
+---
+
+## 16. MCP Server-Support Surface
+
+This section covers the modules a **server author** consumes to stand up an MCP server on this
+SDK. It does not re-describe the agent execution layer (§15); it describes how the layer is
+served to a host and how a host consumes it.
+
+### 16.1 The three data artifacts
+
+All three are projections of one source — the generated capability registry (§15.6) — so a host
+cannot silently diverge from the SDK's own governance:
+
+| Artifact | Subpath / file | Consumer |
+| --- | --- | --- |
+| Tool manifest (human-readable) | `MCP_TOOL_MANIFEST.md` | a maintainer reading the served surface |
+| Tool catalog (machine-readable) | `MCP_TOOL_CATALOG.json` + the `./mcp` subpath | a server host building `tools/list` and dispatch |
+| Capability registry | `capabilities.json` + `./capabilities` subpath | anything that needs the raw per-operation record |
+
+### 16.2 `node-kimai/mcp` — the generated catalog and dispatcher
+
+`./mcp` exports the compiled catalog (`CATALOG`, `CATALOG_PLAN_HASH`, `CORE_RULE`,
+`CORE_TOOLS`, `DEFAULT_CATALOG_LIMIT`, `DISPATCH_OPERATIONS`, `EXPOSED`, `INPUT_CONTRACTS`,
+`MAX_CATALOG_LIMIT`, `META_TOOLS`, `REFUSALS`, `TOOL_DESCRIPTIONS`, `catalogPage`,
+`catalogRow`, `describeOperation`, `inputFields`, `nearestKeys`, `requireCatalogRow`) and the
+dispatcher:
+
+```typescript
+dispatchOperation(
+  client: ApiClient,
+  effect: 'read' | 'write' | 'destructive',
+  operation: string,
+  input?: Record<string, unknown>,
+  options?: InvokeOptions,
+): Promise<unknown>
+```
+
+The dispatcher adds only an **exact effect boundary**: it refuses an effect outside the three, and
+an operation whose registry effect differs from the dispatcher (including dispatcher records),
+with a typed `CONFIG_ERROR` and zero wire activity. Everything else — unknown key, unreachable
+operation, invalid input, dry-run and confirmation governance — is delegated to
+`invokeOperation` (`./operations`). Validation and governance live in exactly ONE place; a second
+implementation here would be a second chance to be wrong.
+
+### 16.3 How a server consumes the surface
+
+1. **`tools/list`** — project `CORE_TOOLS` plus `CATALOG` rows into MCP tool specs; each spec's
+   input schema is `INPUT_CONTRACTS[operation]`, and the description is `TOOL_DESCRIPTIONS`.
+2. **`tools/call`** — resolve the requested operation key through `getCapability(op)`
+   (`./capabilities`) for its `effect`, then call
+   `dispatchOperation(client, effect, operation, input, options)`. Pass `options.dryRun === false`
+   only for a live write; destructive and approval-gated operations also need
+   `options.confirm === operation`.
+3. **Refusals** — catch `KimaiConfigError` and surface `err.code` (`REFUSAL_CODES`:
+   `UNKNOWN_OPERATION`, `UNREACHABLE_OPERATION`, `CONFIG_ERROR`, `DISPATCHER_EFFECT`) rather than
+   parsing prose. Streaming operations are refused before any wire call, with the bounded
+   alternative (`listAll` / `search`) named.
+4. **Untrusted content** — wrap vendor- or user-sourced text with `./untrusted`
+   (`wrapUntrusted`, `markUntrusted`, `deepMarkUntrusted`, `stripUntrustedDeep`) at the boundary
+   before it reaches a prompt.
+
+### 16.4 The `./untrusted` helpers
+
+- `wrapUntrusted(value)` — wrap a string in the `<untrusted_content>` fence (neutralising any
+  embedded fence).
+- `markUntrusted(record, fields)` / `deepMarkUntrusted(value, fields)` — mark named fields of an
+  object (or a whole tree).
+- `stripUntrustedWrapper(value)` / `stripUntrustedDeep(value)` — remove the marking again.
+
+### 16.5 Server-support gates
+
+`scripts/check-mcp-surface.mjs` (`mcp:check-surface`) verifies the served surface, and
+`scripts/build-tool-catalog.mjs --check` (`catalog:check`) fails on a stale catalog. Both run in
+`npm run verify` alongside `mcp:project:check`.

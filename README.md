@@ -14,11 +14,12 @@ Full coverage of the Kimai Pro API v1.1 (66 paths, 52 schemas, 13 resources) wit
 - **Full API coverage** — All 66 API paths / 90 endpoint operations across 13 resources
 - **Type-safe** — Complete TypeScript types for every request and response
 - **Zero runtime deps** — Uses native `fetch`; no extra packages
-- **Dual ESM + CJS** — ESM-first artifacts (`.js` + `.d.ts`) with CJS companions (`.cjs` + `.d.cts`); works in any Node.js environment (>= 24)
-- **MCP-first design** — Plain `T` / `T[]` returns, no wrapper envelopes
-- **Agent execution layer** — `resolve` / `search` / `getContext` helpers, dry-run on every mutation, structured errors, a generated capability registry
+- **ESM-first, dual ESM + CJS** — `type: module`; ESM artifacts use `.js` / `.d.ts` and CJS companions use `.cjs` / `.d.cts`. Requires Node.js >= 24
+- **Streaming lists** — `list()` is an `AsyncIterable<T>` that walks every page, `listAll()` collects the whole set, and `listPages()` streams `Page<T>` records on the paginated resources
+- **MCP-first design** — Plain `T` / `T[]` returns, no wrapper envelopes, plus a generated MCP tool catalog behind `node-kimai/mcp`
+- **Agent execution layer** — `resolve` / `search` / `getContext` helpers, dry-run on every mutation, structured errors, a registry-validated invoke surface, and a generated capability registry
 - **Transport-injectable** — Drop-in compatibility with n8n and other runtimes
-- **Typed errors** — Catchable error hierarchy per HTTP status code
+- **Typed errors** — Catchable error hierarchy per HTTP status code, with a structured error contract
 
 ## Installation
 
@@ -30,7 +31,9 @@ pnpm add node-kimai
 yarn add node-kimai
 ```
 
-Requires Node.js >= 24 (for native fetch).
+Requires Node.js >= 24 (for native fetch). The package is ESM-first (`"type": "module"`): the
+ESM entry points are the bare `.js` / `.d.ts` files, and CommonJS consumers are routed to the
+`.cjs` / `.d.cts` targets by the `exports` map — no extra configuration is needed.
 
 ## Quickstart
 
@@ -47,7 +50,7 @@ const alive = await client.system.ping();
 console.log('Kimai is', alive ? 'up' : 'down');
 
 // Fetch all activities
-const activities = await client.activities.getAll();
+const activities = await client.activities.listAll();
 console.log(`Found ${activities.length} activities`);
 
 // Create a timesheet entry
@@ -61,9 +64,41 @@ const entry = await client.timesheets.create({
 console.log('Started timesheet', entry.id);
 ```
 
+## Streaming and Pagination
+
+The 2.0.0 surface replaces the old first-page-only `list()` with an honest stream:
+
+- `list(params?)` returns an **`AsyncIterable<T>`**. On a paginated resource (timesheets,
+  invoices) it walks **every page**; on a non-paginated resource it yields the single batch.
+  Consume it with `for await`.
+- `listAll(params?)` returns `Promise<T[]>` — the complete collection (all pages concatenated).
+- `listPages(params?)` returns `AsyncIterable<Page<T>>` — available **only** on the paginated
+  resources (timesheets, invoices). Each `Page<T>` is `{ items, page, size, hasMore }`.
+
+```typescript
+// Stream every timesheet, one record at a time (all pages)
+for await (const timesheet of client.timesheets.list()) {
+  console.log(timesheet.id, timesheet.duration);
+}
+
+// Collect the full set in one call
+const all = await client.timesheets.listAll({ begin: '2026-08-01' });
+
+// Stream whole pages (paginated resources only)
+for await (const page of client.timesheets.listPages({ size: 100 })) {
+  console.log(`page ${page.page}: ${page.items.length} items, more=${page.hasMore}`);
+}
+```
+
+Kimai list endpoints return a **bare array with no totals**, so `hasMore` is derived from the
+requested page size: `hasMore = items.length === size`. No `total` or `totalPages` is invented.
+A non-integer or non-positive `page` / `size` throws `KimaiConfigError` — it is never silently
+clamped.
+
 ## Usage by Resource
 
-The SDK exposes 13 resource clients on the `ApiClient` instance. Each client provides type-safe methods matching the Kimai API.
+The SDK exposes 13 resource clients on the `ApiClient` instance. Each client provides type-safe
+methods matching the Kimai API.
 
 ### Activities
 
@@ -72,14 +107,21 @@ import { ApiClient } from 'node-kimai';
 
 const client = new ApiClient({ baseUrl, token });
 
-// List all activities (non-paginated)
-const activities = await client.activities.getAll();
+// Stream all activities (non-paginated: one batch)
+for await (const activity of client.activities.list()) {
+  console.log(activity.name);
+}
 
-// List with filters
-const visibleActivities = await client.activities.list({ visible: true, customer: 3 });
+// Collect all activities
+const activities = await client.activities.listAll();
+
+// Stream with filters (each yielded record)
+for await (const a of client.activities.list({ visible: true, customer: 3 })) {
+  console.log(a.name);
+}
 
 // Get single activity
-const activity = await client.activities.getById(1);
+const activity = await client.activities.get(1);
 
 // Create activity
 const newActivity = await client.activities.create({
@@ -109,11 +151,13 @@ await client.activities.addToTeam(1, { teams: [1, 2] });
 ### Customers
 
 ```typescript
-// List all customers (non-paginated)
-const customers = await client.customers.getAll();
+// Fetch all customers (non-paginated)
+const customers = await client.customers.listAll();
 
-// Filter by visibility
-const visible = await client.customers.list({ visible: true });
+// Filter by visibility (stream)
+for await (const c of client.customers.list({ visible: true })) {
+  console.log(c.name);
+}
 
 // Create customer
 const customer = await client.customers.create({
@@ -149,11 +193,13 @@ await client.customers.addToTeam(customer.id!, { teams: [1] });
 ### Projects
 
 ```typescript
-// List projects
-const projects = await client.projects.getAll();
+// Fetch all projects
+const projects = await client.projects.listAll();
 
-// Filter by customer
-const customerProjects = await client.projects.list({ customer: 3 });
+// Filter by customer (stream)
+for await (const p of client.projects.list({ customer: 3 })) {
+  console.log(p.name);
+}
 
 // Create project
 const project = await client.projects.create({
@@ -184,16 +230,17 @@ await client.projects.addToTeam(project.id!, { teams: [2] });
 ### Timesheets
 
 ```typescript
-// List timesheets (paginated; defaults to all users)
-// NOTE: on paginated endpoints `list()` fetches the FIRST page only.
-const recent = await client.timesheets.list({ begin: '2026-08-01' });
+// Stream timesheets across every page (defaults to all users)
+for await (const timesheet of client.timesheets.list({ begin: '2026-08-01' })) {
+  console.log(timesheet.id);
+}
 
-// Fetch ALL pages
-const allTimesheets = await client.timesheets.getAll();
+// Collect the full set
+const allTimesheets = await client.timesheets.listAll();
 
-// Iterate pages
+// Iterate whole pages
 for await (const page of client.timesheets.listPages({ size: 100 })) {
-  console.log(`Processed ${page.length} timesheets`);
+  console.log(`page ${page.page}: ${page.items.length} timesheets`);
 }
 
 // Get active (running) timesheets
@@ -234,14 +281,14 @@ await client.timesheets.delete(entry.id!);
 ### Users
 
 ```typescript
-// List users
-const users = await client.users.getAll();
+// Fetch all users
+const users = await client.users.listAll();
 
 // Get current API key owner
 const me = await client.users.getMe();
 
 // Get specific user
-const user = await client.users.getById(2);
+const user = await client.users.get(2);
 
 // Create user
 const newUser = await client.users.create({
@@ -267,8 +314,8 @@ await client.users.deleteApiToken(5);
 ### Tags
 
 ```typescript
-// List all tags
-const tags = await client.tags.getAll();
+// Fetch all tags
+const tags = await client.tags.listAll();
 
 // Create tag
 const tag = await client.tags.create({ name: 'urgent', color: '#ff0000' });
@@ -283,8 +330,8 @@ await client.tags.delete(tag.id!);
 ### Teams
 
 ```typescript
-// List teams
-const teams = await client.teams.getAll();
+// Fetch all teams
+const teams = await client.teams.listAll();
 
 // Create team
 const team = await client.teams.create({ name: 'Engineering' });
@@ -311,19 +358,21 @@ await client.teams.revokeActivityAccess(team.id!, 20);
 ### Invoices
 
 ```typescript
-// List invoices (paginated)
-const invoices = await client.invoices.getAll();
+// Fetch all invoices across all pages
+const invoices = await client.invoices.listAll();
 
-// Filter by customer
-const customerInvoices = await client.invoices.list({ customer: 3 });
+// Stream filtered invoices
+for await (const inv of client.invoices.list({ customer: 3 })) {
+  console.log(inv.id);
+}
 
 // Iterate pages
 for await (const page of client.invoices.listPages({ size: 50 })) {
-  console.log(`Page with ${page.length} invoices`);
+  console.log(`Page ${page.page}: ${page.items.length} invoices`);
 }
 
 // Get single invoice
-const invoice = await client.invoices.getById(1);
+const invoice = await client.invoices.get(1);
 
 // Update custom fields
 await client.invoices.updateCustomFields(1, [
@@ -409,7 +458,10 @@ const actions = await client.actions.getActions(resource, 1, 'show', 'en');
 
 ## Error Handling
 
-The SDK throws typed errors for every non-2xx response. All errors extend `ApiError` and expose `status`, `message`, `data`, `request`, and optional `code`.
+The SDK throws typed errors for every non-2xx response. All errors extend `ApiError` and expose
+`status`, `message`, `data`, `request`, optional `code`, and the structured error contract
+(`category`, `retryable`, `operation`, `httpStatus`, `vendorError`, `resourceIds`,
+`suggestedAction`, `correlationId`, and `retryAfter` on a 429).
 
 ```typescript
 import { ApiClient, ApiError, NotFoundError, RateLimitError } from 'node-kimai';
@@ -417,7 +469,7 @@ import { ApiClient, ApiError, NotFoundError, RateLimitError } from 'node-kimai';
 const client = new ApiClient({ baseUrl, token });
 
 try {
-  const activity = await client.activities.getById(9999);
+  const activity = await client.activities.get(9999);
 } catch (err) {
   if (err instanceof NotFoundError) {
     console.log('Activity not found');
@@ -425,6 +477,7 @@ try {
     console.log('Rate limited, retry later');
   } else if (err instanceof ApiError) {
     console.error(`API error ${err.status}:`, err.message);
+    console.error('Category:', err.category, 'Retryable:', err.retryable);
     console.error('Raw response:', err.data);
   } else {
     throw err; // Non-API error (network, etc.)
@@ -444,6 +497,8 @@ try {
 | `UnprocessableEntityError` | 422 | Validation failed |
 | `RateLimitError` | 429 | Rate limit exceeded |
 | `ServerError` | 5xx | Server-side error |
+| `KimaiConfigError` | — | Local argument refusal, zero fetch, non-retryable |
+| `ResolutionError` | — | The bounded `resolve` contract (`RESOLUTION_AMBIGUOUS` / `RESOLUTION_TRUNCATED`) |
 
 ## Transport Injection (n8n Integration)
 
@@ -501,7 +556,8 @@ const client = new ApiClient({
 
 ## Deep Imports
 
-The SDK supports subpath imports for tree-shaking and reduced bundle size:
+The SDK supports subpath imports for tree-shaking and reduced bundle size. Every subpath is
+declared in `package.json` `exports` and ships both an ESM and a CJS target:
 
 ```typescript
 // Main entry (everything)
@@ -517,13 +573,22 @@ import type { Activity, Timesheet, User } from 'node-kimai/types';
 import { ApiError, NotFoundError } from 'node-kimai/errors';
 
 // Capability registry only (zero-import static data, no SDK runtime pulled in)
-import { CAPABILITIES, CAPABILITY_GROUPS } from 'node-kimai/capabilities';
+import { CAPABILITIES, CAPABILITY_GROUPS, getCapability } from 'node-kimai/capabilities';
+
+// Registry-validated invoke only (no client barrel)
+import { invokeOperation, planInvoke, REFUSAL_CODES } from 'node-kimai/operations';
+
+// Generated MCP tool catalog + the effect-split dispatcher
+import { CATALOG, CORE_TOOLS, META_TOOLS, describeOperation, dispatchOperation } from 'node-kimai/mcp';
+
+// Untrusted-content marking for prompt/transport boundaries
+import { wrapUntrusted, markUntrusted, stripUntrustedDeep } from 'node-kimai/untrusted';
 ```
 
 ## Agent Execution Layer
 
 The primitives above are the endpoint surface. On top of them sits a small agent-facing layer
-(everything below is additive — the primitives are unchanged). Full details in `ARCHITECTURE.md` §15.
+(everything below is additive). Full details in `ARCHITECTURE.md` §15.
 
 ### Helpers
 
@@ -565,9 +630,9 @@ const preview = await client.timesheets.create(
 
 `ApiError` carries a closed `category` (`auth`, `not_found`, `validation`, `conflict`,
 `rate_limit`, `server`, `network`, `timeout`, `resolution`, `policy`) and, when known,
-`operation`, `retryable`, `vendorError`, `resourceIds`, `suggestedAction`, `correlationId`
-and `retryAfter` (parsed from `Retry-After` on a 429). `KimaiConfigError` marks an argument the
-SDK refused locally — zero fetch, non-retryable.
+`operation`, `retryable`, `httpStatus`, `vendorError`, `resourceIds`, `suggestedAction`,
+`correlationId` and `retryAfter` (parsed from `Retry-After` on a 429). `KimaiConfigError` marks
+an argument the SDK refused locally — zero fetch, non-retryable.
 
 ```typescript
 catch (err) {
@@ -582,7 +647,8 @@ catch (err) {
 ### Capability registry
 
 `node-kimai/capabilities` is generated, zero-import static data describing the whole surface —
-one record per implemented operation. It is the same registry the MCP manifest is projected from:
+one record per implemented operation. It is the same registry the MCP manifest and catalog are
+projected from:
 
 ```typescript
 import { CAPABILITIES } from 'node-kimai/capabilities';
@@ -593,29 +659,57 @@ const gated = CAPABILITIES.filter((c) => c.flags.includes('requiresApproval')); 
 // inputSchema, outputSchema, examples, pagination, resolution, retry, errors, compact, tests
 ```
 
-Also shipped: `capabilities.json` (the registry on disk), `capabilities.schema.json` (its schema),
-`capabilities.plan.json` (the audited plan it is built from) and `MCP_TOOL_MANIFEST.md`
-(the projected tool surface for a MCP server).
+### Registry-validated invoke
+
+`node-kimai/operations` exposes `invokeOperation(client, operation, input?, options?)` and
+`planInvoke(...)`. Validation and governance live in exactly one place: an unknown operation key,
+an unknown input field, a missing confirmation, or a streaming operation is refused **before any
+wire call**, with a bounded alternative named. Writes are dry-run-first: only an explicit
+`{ dryRun: false }` executes.
+
+```typescript
+import { invokeOperation, planInvoke } from 'node-kimai/operations';
+
+const plan = planInvoke(client, 'timesheets.create', { project: 1, activity: 2 });
+// plan.execute === false, plan.checks / plan.impact describe the call — no wire traffic
+
+const created = await invokeOperation(
+  client,
+  'timesheets.create',
+  { project: 1, activity: 2, begin: '2026-08-10T09:00:00+02:00' },
+  { dryRun: false },
+);
+```
 
 ## MCP Server Usage
 
-For MCP-targeted builds, start from `MCP_TOOL_MANIFEST.md` and the `node-kimai/capabilities`
-registry: each tool is one registry record, so `inputSchema`, `outputSchema`, `effect` and
-`flags` come from data rather than from prose.
+This SDK is designed as the foundation for MCP (Model Context Protocol) servers. Three shipped
+artifacts describe the tool surface, and all of them are projections of the same generated
+capability registry — never hand-written:
 
-This SDK is designed as the foundation for MCP (Model Context Protocol) servers. Its MCP-friendly characteristics:
+- **`MCP_TOOL_MANIFEST.md`** — the projected, human-readable tool manifest.
+- **`MCP_TOOL_CATALOG.json`** — the machine-readable catalog (the same data as the `./mcp`
+  subpath).
+- **`node-kimai/mcp`** — the compiled catalog: `CATALOG`, `CORE_TOOLS`, `META_TOOLS`,
+  `TOOL_DESCRIPTIONS`, `describeOperation`, plus the effect-split `dispatchOperation` for
+  `kimai_read` / `kimai_write` / `kimai_delete`.
+
+When building an MCP server with this SDK:
+
+1. Use `listAll()` for tool inputs that need complete data (e.g., a `list_activities` tool).
+2. Use `list()` for a streamed read, and `listPages()` on paginated resources when page
+   boundaries matter.
+3. Wrap SDK errors into MCP tool errors with `err.status`, `err.category` and `err.message`.
+4. Route writes through `dispatchOperation(client, 'write' | 'destructive', operation, input)` so
+   the SDK's single governor decides dry-run and confirmation; it delegates to `invokeOperation`.
+5. Use deep imports (`node-kimai/types`) to avoid bundling unused code.
+
+MCP-friendly characteristics:
 
 - **Plain returns** — Every read returns `T` or `T[]`, never wrapped in envelopes
 - **No runtime validation** — Zod stays consumer-side; the SDK does not add validation overhead
 - **Typed errors** — Structured error types for clean tool error reporting
-- **`getAll()` methods** — One-call fetch for MCP tool inputs (preferred over pagination)
-
-When building an MCP server with this SDK:
-
-1. Use `getAll()` for tool inputs that need complete data (e.g., `list_activities`)
-2. Use `list()` with filters for targeted queries on NON-paginated resources; on paginated ones (timesheets, invoices) it returns the first page only — prefer `getAll()` for tool inputs
-3. Wrap SDK errors into MCP tool errors with `err.status` and `err.message`
-4. Use deep imports (`node-kimai/types`) to avoid bundling unused code
+- **`listAll()` / `list()`** — one-call collection or a full stream for tool inputs
 
 See `examples/mcp-usage.ts` for a minimal MCP integration pattern.
 
