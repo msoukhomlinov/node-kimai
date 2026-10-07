@@ -3,15 +3,3846 @@
     "source": "api-docs.json",
     "version": "1.1"
   },
-  "generatedAt": "2026-10-07T09:55:13.211Z",
+  "generatedAt": "2026-10-07T11:11:18.719Z",
   "resources": {
     "timesheets": {
       "helperCap": 4,
       "compact": "TimesheetSummary",
       "workflowResource": true
+    },
+    "activities": {
+      "helperCap": 4,
+      "compact": "ActivitySummary",
+      "workflowResource": false
+    },
+    "customers": {
+      "helperCap": 4,
+      "compact": "CustomerSummary",
+      "workflowResource": true
+    },
+    "projects": {
+      "helperCap": 4,
+      "compact": "ProjectSummary",
+      "workflowResource": true
+    },
+    "users": {
+      "helperCap": 4,
+      "compact": "UserSummary",
+      "workflowResource": false
+    },
+    "tags": {
+      "helperCap": 4,
+      "compact": "TagSummary",
+      "workflowResource": false
+    },
+    "teams": {
+      "helperCap": 4,
+      "compact": "TeamSummary",
+      "workflowResource": false
+    },
+    "invoices": {
+      "helperCap": 4,
+      "compact": "InvoiceSummary",
+      "workflowResource": false
+    },
+    "approvalBundle": {
+      "helperCap": 4,
+      "compact": null,
+      "workflowResource": true
+    },
+    "config": {
+      "helperCap": 4,
+      "compact": null,
+      "workflowResource": false
+    },
+    "system": {
+      "helperCap": 4,
+      "compact": null,
+      "workflowResource": false
+    },
+    "export": {
+      "helperCap": 4,
+      "compact": null,
+      "workflowResource": false
+    },
+    "actions": {
+      "helperCap": 4,
+      "compact": null,
+      "workflowResource": false
     }
   },
   "operations": [
+    {
+      "endpoint": "GET /api/actions/timesheet/{id}/{view}/{locale}",
+      "primitive": "actions.getActions",
+      "specialOp": "timesheet",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch item actions for Timesheet.",
+        "usage": "Read path for actions. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "actions.getActions.success",
+          "file": "test/resources/actions.test.ts",
+          "title": "calls the actions.getActions endpoint and returns the documented shape"
+        }
+      ],
+      "group": "actions",
+      "status": "implemented",
+      "_alsoServes": [
+        "GET /api/actions/activity/{id}/{view}/{locale}",
+        "GET /api/actions/project/{id}/{view}/{locale}",
+        "GET /api/actions/customer/{id}/{view}/{locale}"
+      ]
+    },
+    {
+      "endpoint": "DELETE /api/activities/{id}",
+      "primitive": "activities.delete",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Delete activity.",
+        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "activities.delete.success",
+          "file": "test/resources/activity.test.ts",
+          "title": "resolves void after a successful delete"
+        },
+        {
+          "id": "activities.delete.dry-run",
+          "file": "test/resources/activity.test.ts",
+          "title": "dry-run issues no DELETE request and returns simulated: true"
+        }
+      ],
+      "group": "activities",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "DELETE /api/activities/{id}/rates/{rateId}",
+      "primitive": "activities.deleteRate",
+      "specialOp": "delete-rate",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Delete rate for activity.",
+        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "activities.deleteRate.success",
+          "file": "test/resources/activity.test.ts",
+          "title": "calls the activities.deleteRate endpoint and normalises the result"
+        },
+        {
+          "id": "activities.deleteRate.dry-run",
+          "file": "test/resources/activity.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "activities",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/activities",
+      "primitive": "activities.list",
+      "specialOp": null,
+      "vendorFilters": [
+        "globals",
+        "order",
+        "orderBy",
+        "project",
+        "projects[]",
+        "term",
+        "visible"
+      ],
+      "search": "term",
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch activities.",
+        "usage": "Read path for activities. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "activities.list.success",
+          "file": "test/resources/activity.test.ts",
+          "title": "returns the unwrapped activities list"
+        },
+        {
+          "id": "activities.list.pagination",
+          "file": "test/resources/activity.test.ts",
+          "title": "sends page/size and stops on a short page"
+        }
+      ],
+      "group": "activities",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/activities/{id}",
+      "primitive": "activities.getById",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch activity.",
+        "usage": "Read path for activities. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "activities.getById.success",
+          "file": "test/resources/activity.test.ts",
+          "title": "returns the unwrapped activities record"
+        },
+        {
+          "id": "activities.getById.not-found",
+          "file": "test/resources/activity.test.ts",
+          "title": "normalises a 404 into NOT_FOUND"
+        }
+      ],
+      "group": "activities",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/activities/{id}/rates",
+      "primitive": "activities.getRates",
+      "specialOp": "rates",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch rates for activity.",
+        "usage": "Read path for activities. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "activities.getRates.success",
+          "file": "test/resources/activity.test.ts",
+          "title": "calls the activities.getRates endpoint and returns the documented shape"
+        }
+      ],
+      "group": "activities",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "PATCH /api/activities/{id}",
+      "primitive": "activities.update",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Update activity.",
+        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "activities.update.success",
+          "file": "test/resources/activity.test.ts",
+          "title": "returns the updated activities record"
+        },
+        {
+          "id": "activities.update.dry-run",
+          "file": "test/resources/activity.test.ts",
+          "title": "dry-run issues no PATCH request and returns simulated: true"
+        }
+      ],
+      "group": "activities",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "PATCH /api/activities/{id}/meta",
+      "primitive": "activities.updateMeta",
+      "specialOp": "meta",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Update activity custom-field.",
+        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "activities.updateMeta.success",
+          "file": "test/resources/activity.test.ts",
+          "title": "calls the activities.updateMeta endpoint and normalises the result"
+        },
+        {
+          "id": "activities.updateMeta.dry-run",
+          "file": "test/resources/activity.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "activities",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/activities",
+      "primitive": "activities.create",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Create activity.",
+        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "activities.create.success",
+          "file": "test/resources/activity.test.ts",
+          "title": "returns the created activities record"
+        },
+        {
+          "id": "activities.create.dry-run",
+          "file": "test/resources/activity.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "activities",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/activities/{id}/rates",
+      "primitive": "activities.createRate",
+      "specialOp": "create-rate",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Add rate for activity.",
+        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "activities.createRate.success",
+          "file": "test/resources/activity.test.ts",
+          "title": "calls the activities.createRate endpoint and normalises the result"
+        },
+        {
+          "id": "activities.createRate.dry-run",
+          "file": "test/resources/activity.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "activities",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/activities/{id}/team",
+      "primitive": "activities.addToTeam",
+      "specialOp": "add-to-team",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Create team for activity.",
+        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "activities.addToTeam.success",
+          "file": "test/resources/activity.test.ts",
+          "title": "calls the activities.addToTeam endpoint and normalises the result"
+        },
+        {
+          "id": "activities.addToTeam.dry-run",
+          "file": "test/resources/activity.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "activities",
+      "status": "implemented"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "activities.resolve",
+      "helperBasis": "server-filter",
+      "helperRationale": "One bounded server-side read instead of a list walk: { id } fetches directly; a name is passed to the vendor's exact `name` filter (no page walk), and the result is compared exactly so a partial-match filter cannot return a wrong record. A miss after a complete match returns null; more than one match throws RESOLUTION_AMBIGUOUS with the candidate ids.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Resolve one activity from an identifier.",
+        "usage": "Accepts { id }, { name } or a bare numeric id / exact name. activities have no other business key. A miss returns null; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
+        "preferredWhen": "Preferred over activities.list + a client-side find for any single-activity lookup.",
+        "related": [
+          "activities.getById",
+          "activities.list",
+          "activities.search"
+        ]
+      },
+      "compact": "ActivitySummary",
+      "resolution": {
+        "basis": "server-filter",
+        "maxScanRecords": 500,
+        "maxScanPages": 1
+      },
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "RESOLUTION_AMBIGUOUS",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "activities.resolve.id",
+          "file": "test/resources/activity.test.ts",
+          "title": "resolves an activity by numeric id"
+        },
+        {
+          "id": "activities.resolve.name",
+          "file": "test/resources/activity.test.ts",
+          "title": "resolves an activity by exact name"
+        },
+        {
+          "id": "activities.resolve.miss",
+          "file": "test/resources/activity.test.ts",
+          "title": "returns null after a complete match with no hit"
+        },
+        {
+          "id": "activities.resolve.ambiguous",
+          "file": "test/resources/activity.test.ts",
+          "title": "throws RESOLUTION_AMBIGUOUS when a name matches several activities"
+        }
+      ],
+      "group": "activities",
+      "status": "planned"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "activities.search",
+      "helperBasis": "server-filter",
+      "helperRationale": "One bounded server-side read instead of a list walk: passes the spec filters (name/visible/customer) unchanged, enforces an explicit limit (default 25, hard max 100 — garbage throws KimaiConfigError, never a silent clamp) and returns compact ActivitySummary rows with an expand escape hatch.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Search activities with the spec filters, bounded by an explicit limit.",
+        "usage": "limit defaults to 25, hard max 100 (a non-integer or out-of-range value throws KimaiConfigError — never silently clamped). Compact ActivitySummary rows by default; expand: true for the full records.",
+        "preferredWhen": "Preferred over activities.list for any bounded filtered read (at most 100 rows).",
+        "related": [
+          "activities.list",
+          "activities.resolve"
+        ]
+      },
+      "compact": "ActivitySummary",
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "activities.search.success",
+          "file": "test/resources/activity.test.ts",
+          "title": "returns compact ActivitySummary rows for the spec filters"
+        },
+        {
+          "id": "activities.search.limit-default",
+          "file": "test/resources/activity.test.ts",
+          "title": "sends a default limit of 25"
+        },
+        {
+          "id": "activities.search.limit-max",
+          "file": "test/resources/activity.test.ts",
+          "title": "caps the limit at 100"
+        },
+        {
+          "id": "activities.search.limit-reject",
+          "file": "test/resources/activity.test.ts",
+          "title": "throws KimaiConfigError for a non-integer or out-of-range limit"
+        }
+      ],
+      "group": "activities",
+      "status": "planned"
+    },
+    {
+      "endpoint": "GET /api/approval-bundle/next-week",
+      "primitive": "approvalBundle.nextWeek",
+      "specialOp": "next-week",
+      "vendorFilters": [
+        "user"
+      ],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "GET /api/approval-bundle/next-week.",
+        "usage": "Read path for approvalBundle. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "approvalBundle.nextWeek.success",
+          "file": "test/resources/approval_bundle.test.ts",
+          "title": "calls the approvalBundle.nextWeek endpoint and returns the documented shape"
+        }
+      ],
+      "group": "approvalBundle",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/approval-bundle/overtime_year",
+      "primitive": "approvalBundle.overtimeYear",
+      "specialOp": "overtime-year",
+      "vendorFilters": [
+        "date",
+        "user"
+      ],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "GET /api/approval-bundle/overtime_year.",
+        "usage": "Read path for approvalBundle. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "approvalBundle.overtimeYear.success",
+          "file": "test/resources/approval_bundle.test.ts",
+          "title": "calls the approvalBundle.overtimeYear endpoint and returns the documented shape"
+        }
+      ],
+      "group": "approvalBundle",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/approval-bundle/week-status",
+      "primitive": "approvalBundle.weekStatus",
+      "specialOp": "week-status",
+      "vendorFilters": [
+        "date",
+        "user"
+      ],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "GET /api/approval-bundle/week-status.",
+        "usage": "Read path for approvalBundle. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "approvalBundle.weekStatus.success",
+          "file": "test/resources/approval_bundle.test.ts",
+          "title": "calls the approvalBundle.weekStatus endpoint and returns the documented shape"
+        }
+      ],
+      "group": "approvalBundle",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/approval-bundle/weekly_overtime",
+      "primitive": "approvalBundle.weeklyOvertime",
+      "specialOp": "weekly-overtime",
+      "vendorFilters": [
+        "date",
+        "user"
+      ],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "GET /api/approval-bundle/weekly_overtime.",
+        "usage": "Read path for approvalBundle. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "approvalBundle.weeklyOvertime.success",
+          "file": "test/resources/approval_bundle.test.ts",
+          "title": "calls the approvalBundle.weeklyOvertime endpoint and returns the documented shape"
+        }
+      ],
+      "group": "approvalBundle",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/approval-bundle/add_to_approve",
+      "primitive": "approvalBundle.addToApprove",
+      "specialOp": "add-to-approve",
+      "vendorFilters": [
+        "date",
+        "user"
+      ],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "POST /api/approval-bundle/add_to_approve.",
+        "usage": "Mutating path for approvalBundle; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "approvalBundle.addToApprove.success",
+          "file": "test/resources/approval_bundle.test.ts",
+          "title": "calls the approvalBundle.addToApprove endpoint and normalises the result"
+        },
+        {
+          "id": "approvalBundle.addToApprove.dry-run",
+          "file": "test/resources/approval_bundle.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "approvalBundle",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/config/colors",
+      "primitive": "config.getColors",
+      "specialOp": "colors",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch configured color codes.",
+        "usage": "Read path for config. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "config.getColors.success",
+          "file": "test/resources/config.test.ts",
+          "title": "calls the config.getColors endpoint and returns the documented shape"
+        }
+      ],
+      "group": "config",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/config/timesheet",
+      "primitive": "config.getTimesheetConfig",
+      "specialOp": "timesheet-config",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch timesheet configuration.",
+        "usage": "Read path for config. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "config.getTimesheetConfig.success",
+          "file": "test/resources/config.test.ts",
+          "title": "calls the config.getTimesheetConfig endpoint and returns the documented shape"
+        }
+      ],
+      "group": "config",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "DELETE /api/customers/{id}",
+      "primitive": "customers.delete",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Delete customer.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "customers.delete.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "resolves void after a successful delete"
+        },
+        {
+          "id": "customers.delete.dry-run",
+          "file": "test/resources/customer.test.ts",
+          "title": "dry-run issues no DELETE request and returns simulated: true"
+        }
+      ],
+      "group": "customers",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "DELETE /api/customers/{id}/comments/{comment}",
+      "primitive": "customers.deleteComment",
+      "specialOp": "delete-comment",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Delete customer comment.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "customers.deleteComment.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "calls the customers.deleteComment endpoint and normalises the result"
+        },
+        {
+          "id": "customers.deleteComment.dry-run",
+          "file": "test/resources/customer.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "customers",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "DELETE /api/customers/{id}/rates/{rateId}",
+      "primitive": "customers.deleteRate",
+      "specialOp": "delete-rate",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Delete rate for customer.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "customers.deleteRate.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "calls the customers.deleteRate endpoint and normalises the result"
+        },
+        {
+          "id": "customers.deleteRate.dry-run",
+          "file": "test/resources/customer.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "customers",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/customers",
+      "primitive": "customers.list",
+      "specialOp": null,
+      "vendorFilters": [
+        "full",
+        "order",
+        "orderBy",
+        "term",
+        "visible"
+      ],
+      "search": "term",
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch customers.",
+        "usage": "Read path for customers. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "customers.list.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "returns the unwrapped customers list"
+        },
+        {
+          "id": "customers.list.pagination",
+          "file": "test/resources/customer.test.ts",
+          "title": "sends page/size and stops on a short page"
+        }
+      ],
+      "group": "customers",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/customers/{id}",
+      "primitive": "customers.getById",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch customer.",
+        "usage": "Read path for customers. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "customers.getById.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "returns the unwrapped customers record"
+        },
+        {
+          "id": "customers.getById.not-found",
+          "file": "test/resources/customer.test.ts",
+          "title": "normalises a 404 into NOT_FOUND"
+        }
+      ],
+      "group": "customers",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/customers/{id}/comments",
+      "primitive": "customers.listComments",
+      "specialOp": "comments",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch comments for customer.",
+        "usage": "Read path for customers. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "customers.listComments.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "calls the customers.listComments endpoint and returns the documented shape"
+        }
+      ],
+      "group": "customers",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/customers/{id}/rates",
+      "primitive": "customers.getRates",
+      "specialOp": "rates",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch rates for customer.",
+        "usage": "Read path for customers. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "customers.getRates.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "calls the customers.getRates endpoint and returns the documented shape"
+        }
+      ],
+      "group": "customers",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "PATCH /api/customers/{id}",
+      "primitive": "customers.update",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Update customer.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "customers.update.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "returns the updated customers record"
+        },
+        {
+          "id": "customers.update.dry-run",
+          "file": "test/resources/customer.test.ts",
+          "title": "dry-run issues no PATCH request and returns simulated: true"
+        }
+      ],
+      "group": "customers",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "PATCH /api/customers/{id}/comments/{comment}/pin",
+      "primitive": "customers.pinComment",
+      "specialOp": "pin-comment",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Pin customer comment.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "customers.pinComment.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "calls the customers.pinComment endpoint and normalises the result"
+        },
+        {
+          "id": "customers.pinComment.dry-run",
+          "file": "test/resources/customer.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "customers",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "PATCH /api/customers/{id}/meta",
+      "primitive": "customers.updateMeta",
+      "specialOp": "meta",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Update customer custom-field.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "customers.updateMeta.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "calls the customers.updateMeta endpoint and normalises the result"
+        },
+        {
+          "id": "customers.updateMeta.dry-run",
+          "file": "test/resources/customer.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "customers",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/customers",
+      "primitive": "customers.create",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Create customer.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "customers.create.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "returns the created customers record"
+        },
+        {
+          "id": "customers.create.dry-run",
+          "file": "test/resources/customer.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "customers",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/customers/{id}/comments",
+      "primitive": "customers.createComment",
+      "specialOp": "create-comment",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Add comment for customer.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "customers.createComment.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "calls the customers.createComment endpoint and normalises the result"
+        },
+        {
+          "id": "customers.createComment.dry-run",
+          "file": "test/resources/customer.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "customers",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/customers/{id}/rates",
+      "primitive": "customers.createRate",
+      "specialOp": "create-rate",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Add rate for customer.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "customers.createRate.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "calls the customers.createRate endpoint and normalises the result"
+        },
+        {
+          "id": "customers.createRate.dry-run",
+          "file": "test/resources/customer.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "customers",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/customers/{id}/team",
+      "primitive": "customers.addToTeam",
+      "specialOp": "add-to-team",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Create team for customer.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "customers.addToTeam.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "calls the customers.addToTeam endpoint and normalises the result"
+        },
+        {
+          "id": "customers.addToTeam.dry-run",
+          "file": "test/resources/customer.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "customers",
+      "status": "implemented"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "customers.resolve",
+      "helperBasis": "server-filter",
+      "helperRationale": "One bounded server-side read instead of a list walk: { id } fetches directly; a name goes to the vendor's `name` filter and is then compared exactly. A miss after a complete match returns null; several exact matches throw RESOLUTION_AMBIGUOUS with the candidate ids.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Resolve one customer from an identifier.",
+        "usage": "Accepts { id }, { name } or a bare numeric id / exact name. A miss returns null; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
+        "preferredWhen": "Preferred over customers.list + a client-side find for any single-customer lookup.",
+        "related": [
+          "customers.getById",
+          "customers.list",
+          "customers.search",
+          "customers.getContext"
+        ]
+      },
+      "compact": "CustomerSummary",
+      "resolution": {
+        "basis": "server-filter",
+        "maxScanRecords": 500,
+        "maxScanPages": 1
+      },
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "RESOLUTION_AMBIGUOUS",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "customers.resolve.id",
+          "file": "test/resources/customer.test.ts",
+          "title": "resolves a customer by numeric id"
+        },
+        {
+          "id": "customers.resolve.name",
+          "file": "test/resources/customer.test.ts",
+          "title": "resolves a customer by exact name"
+        },
+        {
+          "id": "customers.resolve.miss",
+          "file": "test/resources/customer.test.ts",
+          "title": "returns null after a complete match with no hit"
+        },
+        {
+          "id": "customers.resolve.ambiguous",
+          "file": "test/resources/customer.test.ts",
+          "title": "throws RESOLUTION_AMBIGUOUS when a name matches several customers"
+        }
+      ],
+      "group": "customers",
+      "status": "planned"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "customers.search",
+      "helperBasis": "server-filter",
+      "helperRationale": "One bounded server-side read instead of a list walk: passes the spec filters (name/visible/customer) unchanged, enforces an explicit limit (default 25, hard max 100 — garbage throws KimaiConfigError) and returns compact CustomerSummary rows with an expand escape hatch.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Search customers with the spec filters, bounded by an explicit limit.",
+        "usage": "limit defaults to 25, hard max 100 (out-of-range throws KimaiConfigError — never silently clamped). Compact CustomerSummary rows by default; expand: true for the full records.",
+        "preferredWhen": "Preferred over customers.list for any bounded filtered read (at most 100 rows).",
+        "related": [
+          "customers.list",
+          "customers.resolve"
+        ]
+      },
+      "compact": "CustomerSummary",
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "customers.search.success",
+          "file": "test/resources/customer.test.ts",
+          "title": "returns compact CustomerSummary rows for the spec filters"
+        },
+        {
+          "id": "customers.search.limit-reject",
+          "file": "test/resources/customer.test.ts",
+          "title": "throws KimaiConfigError for a non-integer or out-of-range limit"
+        }
+      ],
+      "group": "customers",
+      "status": "planned"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "customers.getContext",
+      "helperBasis": "workflow",
+      "helperRationale": "One bounded composite read for the customer an agent must reason about: the customer record plus its rates, comments and meta fields, fetched concurrently with a small pool (never an unbounded Promise.all). Compact by default; expand: true returns the full children.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch the working context of one customer.",
+        "usage": "Returns the customer together with its rates, comments and meta fields. Compact by default; expand: true for the full child records. Fetches run concurrently with a bounded pool.",
+        "preferredWhen": "Preferred over separate customers.getById + getRates + listComments calls when the agent needs the customer's working context.",
+        "related": [
+          "customers.getById",
+          "customers.getRates",
+          "customers.listComments"
+        ]
+      },
+      "compact": "CustomerSummary",
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "customers.getContext.full",
+          "file": "test/resources/customer.test.ts",
+          "title": "returns the customer with its rates, comments and meta"
+        },
+        {
+          "id": "customers.getContext.expand",
+          "file": "test/resources/customer.test.ts",
+          "title": "returns the full child records when expand is set"
+        }
+      ],
+      "group": "customers",
+      "status": "planned"
+    },
+    {
+      "endpoint": "DELETE /api/export/{id}",
+      "primitive": "export.deleteTemplate",
+      "specialOp": "delete-template",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Delete export template.",
+        "usage": "Mutating path for export; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "export.deleteTemplate.success",
+          "file": "test/resources/export.test.ts",
+          "title": "calls the export.deleteTemplate endpoint and normalises the result"
+        },
+        {
+          "id": "export.deleteTemplate.dry-run",
+          "file": "test/resources/export.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "export",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/invoices",
+      "primitive": "invoices.list",
+      "specialOp": null,
+      "vendorFilters": [
+        "begin",
+        "customers[]",
+        "end",
+        "status[]"
+      ],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch invoices.",
+        "usage": "Read path for invoices. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "invoices.list.success",
+          "file": "test/resources/invoice.test.ts",
+          "title": "returns the unwrapped invoices list"
+        },
+        {
+          "id": "invoices.list.pagination",
+          "file": "test/resources/invoice.test.ts",
+          "title": "sends page/size and stops on a short page"
+        }
+      ],
+      "group": "invoices",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/invoices/{id}",
+      "primitive": "invoices.getById",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch invoice.",
+        "usage": "Read path for invoices. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "invoices.getById.success",
+          "file": "test/resources/invoice.test.ts",
+          "title": "returns the unwrapped invoices record"
+        },
+        {
+          "id": "invoices.getById.not-found",
+          "file": "test/resources/invoice.test.ts",
+          "title": "normalises a 404 into NOT_FOUND"
+        }
+      ],
+      "group": "invoices",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/invoices/{id}/download",
+      "primitive": "invoices.download",
+      "specialOp": "download",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Download invoice.",
+        "usage": "Read path for invoices. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "invoices.download.success",
+          "file": "test/resources/invoice.test.ts",
+          "title": "calls the invoices.download endpoint and returns the documented shape"
+        }
+      ],
+      "group": "invoices",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "PATCH /api/invoices/{id}/custom-fields",
+      "primitive": "invoices.updateCustomFields",
+      "specialOp": "custom-fields",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Update invoice custom-fields.",
+        "usage": "Mutating path for invoices; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "invoices.updateCustomFields.success",
+          "file": "test/resources/invoice.test.ts",
+          "title": "calls the invoices.updateCustomFields endpoint and normalises the result"
+        },
+        {
+          "id": "invoices.updateCustomFields.dry-run",
+          "file": "test/resources/invoice.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "invoices",
+      "status": "implemented"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "invoices.resolve",
+      "helperBasis": "server-filter",
+      "helperRationale": "One bounded read: invoices have no business-key filter, so resolve accepts the numeric id only and fetches it directly — no list walk, no client scan.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Resolve one invoice from an identifier.",
+        "usage": "Accepts { id } or a bare numeric id. Invoices have no vendor filter for a business key (invoice number), so no name/number resolution is offered; a miss throws NOT_FOUND rather than returning null.",
+        "preferredWhen": "Preferred over invoices.list when the id is already known.",
+        "related": [
+          "invoices.getById",
+          "invoices.list",
+          "invoices.search"
+        ]
+      },
+      "compact": "InvoiceSummary",
+      "resolution": {
+        "basis": "server-filter",
+        "maxScanRecords": 500,
+        "maxScanPages": 1
+      },
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "invoices.resolve.id",
+          "file": "test/resources/invoice.test.ts",
+          "title": "resolves an invoice by numeric id"
+        },
+        {
+          "id": "invoices.resolve.id-miss",
+          "file": "test/resources/invoice.test.ts",
+          "title": "keeps NOT_FOUND for an unknown id"
+        }
+      ],
+      "group": "invoices",
+      "status": "planned"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "invoices.search",
+      "helperBasis": "server-filter",
+      "helperRationale": "One bounded server-side read instead of a page walk: passes the spec filters (customer) unchanged, enforces an explicit limit (default 25, hard max 100) on a paginated endpoint and returns compact InvoiceSummary rows with an expand escape hatch.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Search invoices with the spec filters, bounded by an explicit limit.",
+        "usage": "limit defaults to 25, hard max 100 (out-of-range throws KimaiConfigError). The endpoint is paginated: search reads at most ceil(limit/size) pages and returns compact InvoiceSummary rows by default; expand: true for the full records.",
+        "preferredWhen": "Preferred over invoices.list for any bounded filtered read (at most 100 rows).",
+        "related": [
+          "invoices.list",
+          "invoices.resolve"
+        ]
+      },
+      "compact": "InvoiceSummary",
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "invoices.search.success",
+          "file": "test/resources/invoice.test.ts",
+          "title": "returns compact InvoiceSummary rows for the customer filter"
+        },
+        {
+          "id": "invoices.search.limit-reject",
+          "file": "test/resources/invoice.test.ts",
+          "title": "throws KimaiConfigError for a non-integer or out-of-range limit"
+        }
+      ],
+      "group": "invoices",
+      "status": "planned"
+    },
+    {
+      "endpoint": "DELETE /api/projects/{id}",
+      "primitive": "projects.delete",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Delete project.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "projects.delete.success",
+          "file": "test/resources/project.test.ts",
+          "title": "resolves void after a successful delete"
+        },
+        {
+          "id": "projects.delete.dry-run",
+          "file": "test/resources/project.test.ts",
+          "title": "dry-run issues no DELETE request and returns simulated: true"
+        }
+      ],
+      "group": "projects",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "DELETE /api/projects/{id}/comments/{comment}",
+      "primitive": "projects.deleteComment",
+      "specialOp": "delete-comment",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Delete project comment.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "projects.deleteComment.success",
+          "file": "test/resources/project.test.ts",
+          "title": "calls the projects.deleteComment endpoint and normalises the result"
+        },
+        {
+          "id": "projects.deleteComment.dry-run",
+          "file": "test/resources/project.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "projects",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "DELETE /api/projects/{id}/rates/{rateId}",
+      "primitive": "projects.deleteRate",
+      "specialOp": "delete-rate",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Delete rate for project.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "projects.deleteRate.success",
+          "file": "test/resources/project.test.ts",
+          "title": "calls the projects.deleteRate endpoint and normalises the result"
+        },
+        {
+          "id": "projects.deleteRate.dry-run",
+          "file": "test/resources/project.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "projects",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/projects",
+      "primitive": "projects.list",
+      "specialOp": null,
+      "vendorFilters": [
+        "customer",
+        "customers[]",
+        "end",
+        "globalActivities",
+        "ignoreDates",
+        "order",
+        "orderBy",
+        "start",
+        "term",
+        "visible"
+      ],
+      "search": "term",
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch projects.",
+        "usage": "Read path for projects. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "projects.list.success",
+          "file": "test/resources/project.test.ts",
+          "title": "returns the unwrapped projects list"
+        },
+        {
+          "id": "projects.list.pagination",
+          "file": "test/resources/project.test.ts",
+          "title": "sends page/size and stops on a short page"
+        }
+      ],
+      "group": "projects",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/projects/{id}",
+      "primitive": "projects.getById",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch project.",
+        "usage": "Read path for projects. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "projects.getById.success",
+          "file": "test/resources/project.test.ts",
+          "title": "returns the unwrapped projects record"
+        },
+        {
+          "id": "projects.getById.not-found",
+          "file": "test/resources/project.test.ts",
+          "title": "normalises a 404 into NOT_FOUND"
+        }
+      ],
+      "group": "projects",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/projects/{id}/comments",
+      "primitive": "projects.listComments",
+      "specialOp": "comments",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch comments for project.",
+        "usage": "Read path for projects. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "projects.listComments.success",
+          "file": "test/resources/project.test.ts",
+          "title": "calls the projects.listComments endpoint and returns the documented shape"
+        }
+      ],
+      "group": "projects",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/projects/{id}/rates",
+      "primitive": "projects.getRates",
+      "specialOp": "rates",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch rates for project.",
+        "usage": "Read path for projects. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "projects.getRates.success",
+          "file": "test/resources/project.test.ts",
+          "title": "calls the projects.getRates endpoint and returns the documented shape"
+        }
+      ],
+      "group": "projects",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "PATCH /api/projects/{id}",
+      "primitive": "projects.update",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Update project.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "projects.update.success",
+          "file": "test/resources/project.test.ts",
+          "title": "returns the updated projects record"
+        },
+        {
+          "id": "projects.update.dry-run",
+          "file": "test/resources/project.test.ts",
+          "title": "dry-run issues no PATCH request and returns simulated: true"
+        }
+      ],
+      "group": "projects",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "PATCH /api/projects/{id}/comments/{comment}/pin",
+      "primitive": "projects.pinComment",
+      "specialOp": "pin-comment",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Pin project comment.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "projects.pinComment.success",
+          "file": "test/resources/project.test.ts",
+          "title": "calls the projects.pinComment endpoint and normalises the result"
+        },
+        {
+          "id": "projects.pinComment.dry-run",
+          "file": "test/resources/project.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "projects",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "PATCH /api/projects/{id}/meta",
+      "primitive": "projects.updateMeta",
+      "specialOp": "meta",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Update project custom-field.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "projects.updateMeta.success",
+          "file": "test/resources/project.test.ts",
+          "title": "calls the projects.updateMeta endpoint and normalises the result"
+        },
+        {
+          "id": "projects.updateMeta.dry-run",
+          "file": "test/resources/project.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "projects",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/projects",
+      "primitive": "projects.create",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Create project.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "projects.create.success",
+          "file": "test/resources/project.test.ts",
+          "title": "returns the created projects record"
+        },
+        {
+          "id": "projects.create.dry-run",
+          "file": "test/resources/project.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "projects",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/projects/{id}/comments",
+      "primitive": "projects.createComment",
+      "specialOp": "create-comment",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Add comment for project.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "projects.createComment.success",
+          "file": "test/resources/project.test.ts",
+          "title": "calls the projects.createComment endpoint and normalises the result"
+        },
+        {
+          "id": "projects.createComment.dry-run",
+          "file": "test/resources/project.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "projects",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/projects/{id}/rates",
+      "primitive": "projects.createRate",
+      "specialOp": "create-rate",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Add rate for project.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "projects.createRate.success",
+          "file": "test/resources/project.test.ts",
+          "title": "calls the projects.createRate endpoint and normalises the result"
+        },
+        {
+          "id": "projects.createRate.dry-run",
+          "file": "test/resources/project.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "projects",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/projects/{id}/team",
+      "primitive": "projects.addToTeam",
+      "specialOp": "add-to-team",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Create team for project.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "projects.addToTeam.success",
+          "file": "test/resources/project.test.ts",
+          "title": "calls the projects.addToTeam endpoint and normalises the result"
+        },
+        {
+          "id": "projects.addToTeam.dry-run",
+          "file": "test/resources/project.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "projects",
+      "status": "implemented"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "projects.resolve",
+      "helperBasis": "server-filter",
+      "helperRationale": "One bounded server-side read instead of a list walk: { id } fetches directly; a name goes to the vendor's `name` filter and is compared exactly afterwards. A miss after a complete match returns null; several exact matches throw RESOLUTION_AMBIGUOUS with the candidate ids.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Resolve one project from an identifier.",
+        "usage": "Accepts { id }, { name } or a bare numeric id / exact name. A miss returns null; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
+        "preferredWhen": "Preferred over projects.list + a client-side find for any single-project lookup.",
+        "related": [
+          "projects.getById",
+          "projects.list",
+          "projects.search",
+          "projects.getContext"
+        ]
+      },
+      "compact": "ProjectSummary",
+      "resolution": {
+        "basis": "server-filter",
+        "maxScanRecords": 500,
+        "maxScanPages": 1
+      },
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "RESOLUTION_AMBIGUOUS",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "projects.resolve.id",
+          "file": "test/resources/project.test.ts",
+          "title": "resolves a project by numeric id"
+        },
+        {
+          "id": "projects.resolve.name",
+          "file": "test/resources/project.test.ts",
+          "title": "resolves a project by exact name"
+        },
+        {
+          "id": "projects.resolve.miss",
+          "file": "test/resources/project.test.ts",
+          "title": "returns null after a complete match with no hit"
+        },
+        {
+          "id": "projects.resolve.ambiguous",
+          "file": "test/resources/project.test.ts",
+          "title": "throws RESOLUTION_AMBIGUOUS when a name matches several projects"
+        }
+      ],
+      "group": "projects",
+      "status": "planned"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "projects.search",
+      "helperBasis": "server-filter",
+      "helperRationale": "One bounded server-side read instead of a list walk: passes the spec filters (name/visible/customer/activity) unchanged, enforces an explicit limit (default 25, hard max 100) and returns compact ProjectSummary rows with an expand escape hatch.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Search projects with the spec filters, bounded by an explicit limit.",
+        "usage": "limit defaults to 25, hard max 100 (out-of-range throws KimaiConfigError — never silently clamped). Compact ProjectSummary rows by default; expand: true for the full records.",
+        "preferredWhen": "Preferred over projects.list for any bounded filtered read (at most 100 rows).",
+        "related": [
+          "projects.list",
+          "projects.resolve"
+        ]
+      },
+      "compact": "ProjectSummary",
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "projects.search.success",
+          "file": "test/resources/project.test.ts",
+          "title": "returns compact ProjectSummary rows for the spec filters"
+        },
+        {
+          "id": "projects.search.limit-reject",
+          "file": "test/resources/project.test.ts",
+          "title": "throws KimaiConfigError for a non-integer or out-of-range limit"
+        }
+      ],
+      "group": "projects",
+      "status": "planned"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "projects.getContext",
+      "helperBasis": "workflow",
+      "helperRationale": "One bounded composite read for the project an agent must reason about: the project plus its customer, rates and meta fields, fetched concurrently with a small pool (never an unbounded Promise.all). Compact by default; expand: true returns the full children.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch the working context of one project.",
+        "usage": "Returns the project together with its customer, rates and meta fields. Compact by default; expand: true for the full child records. Fetches run concurrently with a bounded pool.",
+        "preferredWhen": "Preferred over separate projects.getById + getRates calls when the agent needs the project's working context.",
+        "related": [
+          "projects.getById",
+          "projects.getRates"
+        ]
+      },
+      "compact": "ProjectSummary",
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "projects.getContext.full",
+          "file": "test/resources/project.test.ts",
+          "title": "returns the project with its customer, rates and meta"
+        },
+        {
+          "id": "projects.getContext.expand",
+          "file": "test/resources/project.test.ts",
+          "title": "returns the full child records when expand is set"
+        }
+      ],
+      "group": "projects",
+      "status": "planned"
+    },
+    {
+      "endpoint": "GET /api/ping",
+      "primitive": "system.ping",
+      "specialOp": "ping",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Testing route for the API.",
+        "usage": "Read path for system. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "system.ping.success",
+          "file": "test/resources/system.test.ts",
+          "title": "calls the system.ping endpoint and returns the documented shape"
+        }
+      ],
+      "group": "system",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/plugins",
+      "primitive": "system.getPlugins",
+      "specialOp": "plugins",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch installed Plugins.",
+        "usage": "Read path for system. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "system.getPlugins.success",
+          "file": "test/resources/system.test.ts",
+          "title": "calls the system.getPlugins endpoint and returns the documented shape"
+        }
+      ],
+      "group": "system",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/version",
+      "primitive": "system.getVersion",
+      "specialOp": "version",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch Kimai release.",
+        "usage": "Read path for system. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "system.getVersion.success",
+          "file": "test/resources/system.test.ts",
+          "title": "calls the system.getVersion endpoint and returns the documented shape"
+        }
+      ],
+      "group": "system",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "DELETE /api/tags/{id}",
+      "primitive": "tags.delete",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Delete tag.",
+        "usage": "Mutating path for tags; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "tags.delete.success",
+          "file": "test/resources/tag.test.ts",
+          "title": "resolves void after a successful delete"
+        },
+        {
+          "id": "tags.delete.dry-run",
+          "file": "test/resources/tag.test.ts",
+          "title": "dry-run issues no DELETE request and returns simulated: true"
+        }
+      ],
+      "group": "tags",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/tags/find",
+      "primitive": "tags.list",
+      "specialOp": null,
+      "vendorFilters": [
+        "name"
+      ],
+      "search": "name",
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch tags.",
+        "usage": "Read path for tags. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "tags.list.success",
+          "file": "test/resources/tag.test.ts",
+          "title": "returns the unwrapped tags list"
+        },
+        {
+          "id": "tags.list.pagination",
+          "file": "test/resources/tag.test.ts",
+          "title": "sends page/size and stops on a short page"
+        }
+      ],
+      "group": "tags",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/tags/find",
+      "primitive": "tags.find",
+      "specialOp": "find-by-name",
+      "vendorFilters": [
+        "name"
+      ],
+      "search": "name",
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch tags.",
+        "usage": "Read path for tags. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "tags.find.success",
+          "file": "test/resources/tag.test.ts",
+          "title": "calls the tags.find endpoint and returns the documented shape"
+        }
+      ],
+      "group": "tags",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/tags",
+      "primitive": "tags.create",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Create tag.",
+        "usage": "Mutating path for tags; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "tags.create.success",
+          "file": "test/resources/tag.test.ts",
+          "title": "returns the created tags record"
+        },
+        {
+          "id": "tags.create.dry-run",
+          "file": "test/resources/tag.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "tags",
+      "status": "implemented"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "tags.resolve",
+      "helperBasis": "server-filter",
+      "helperRationale": "One bounded server-side read: { id } matches over the vendor's tag list (/api/tags/find) and a name goes to its `name` filter, compared exactly afterwards. A miss returns null; several exact matches throw RESOLUTION_AMBIGUOUS with the candidate ids.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Resolve one tag from an identifier.",
+        "usage": "Accepts { id }, { name } or a bare numeric id / exact name. Resolves through the vendor's tag list (GET /api/tags/find); a miss returns null, an ambiguous name throws RESOLUTION_AMBIGUOUS.",
+        "preferredWhen": "Preferred over tags.list + a client-side find for any single-tag lookup.",
+        "related": [
+          "tags.list",
+          "tags.find"
+        ]
+      },
+      "compact": "TagSummary",
+      "resolution": {
+        "basis": "server-filter",
+        "maxScanRecords": 500,
+        "maxScanPages": 1
+      },
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "RESOLUTION_AMBIGUOUS",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "tags.resolve.id",
+          "file": "test/resources/tag.test.ts",
+          "title": "resolves a tag by numeric id"
+        },
+        {
+          "id": "tags.resolve.name",
+          "file": "test/resources/tag.test.ts",
+          "title": "resolves a tag by exact name"
+        },
+        {
+          "id": "tags.resolve.miss",
+          "file": "test/resources/tag.test.ts",
+          "title": "returns null when no tag matches"
+        }
+      ],
+      "group": "tags",
+      "status": "planned"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "tags.search",
+      "helperBasis": "server-filter",
+      "helperRationale": "One bounded server-side read: passes the name filter to the vendor's tag list and enforces an explicit limit (default 25, hard max 100 — garbage throws KimaiConfigError) over compact TagSummary rows.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Search tags with the spec filters, bounded by an explicit limit.",
+        "usage": "limit defaults to 25, hard max 100 (out-of-range throws KimaiConfigError). Compact TagSummary rows by default; expand: true for the full records.",
+        "preferredWhen": "Preferred over tags.list for any bounded filtered read (at most 100 rows).",
+        "related": [
+          "tags.list",
+          "tags.resolve",
+          "tags.find"
+        ]
+      },
+      "compact": "TagSummary",
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "tags.search.success",
+          "file": "test/resources/tag.test.ts",
+          "title": "returns compact TagSummary rows for a name filter"
+        },
+        {
+          "id": "tags.search.limit-reject",
+          "file": "test/resources/tag.test.ts",
+          "title": "throws KimaiConfigError for a non-integer or out-of-range limit"
+        }
+      ],
+      "group": "tags",
+      "status": "planned"
+    },
+    {
+      "endpoint": "DELETE /api/teams/{id}",
+      "primitive": "teams.delete",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Delete team.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "teams.delete.success",
+          "file": "test/resources/team.test.ts",
+          "title": "resolves void after a successful delete"
+        },
+        {
+          "id": "teams.delete.dry-run",
+          "file": "test/resources/team.test.ts",
+          "title": "dry-run issues no DELETE request and returns simulated: true"
+        }
+      ],
+      "group": "teams",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "DELETE /api/teams/{id}/activities/{activityId}",
+      "primitive": "teams.revokeActivityAccess",
+      "specialOp": "revoke-activity",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Revoke activity access.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "teams.revokeActivityAccess.success",
+          "file": "test/resources/team.test.ts",
+          "title": "calls the teams.revokeActivityAccess endpoint and normalises the result"
+        },
+        {
+          "id": "teams.revokeActivityAccess.dry-run",
+          "file": "test/resources/team.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "teams",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "DELETE /api/teams/{id}/customers/{customerId}",
+      "primitive": "teams.revokeCustomerAccess",
+      "specialOp": "revoke-customer",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Revoke customer access.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "teams.revokeCustomerAccess.success",
+          "file": "test/resources/team.test.ts",
+          "title": "calls the teams.revokeCustomerAccess endpoint and normalises the result"
+        },
+        {
+          "id": "teams.revokeCustomerAccess.dry-run",
+          "file": "test/resources/team.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "teams",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "DELETE /api/teams/{id}/members/{userId}",
+      "primitive": "teams.removeMember",
+      "specialOp": "remove-member",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Remove team member.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "teams.removeMember.success",
+          "file": "test/resources/team.test.ts",
+          "title": "calls the teams.removeMember endpoint and normalises the result"
+        },
+        {
+          "id": "teams.removeMember.dry-run",
+          "file": "test/resources/team.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "teams",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "DELETE /api/teams/{id}/projects/{projectId}",
+      "primitive": "teams.revokeProjectAccess",
+      "specialOp": "revoke-project",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Revoke project access.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "teams.revokeProjectAccess.success",
+          "file": "test/resources/team.test.ts",
+          "title": "calls the teams.revokeProjectAccess endpoint and normalises the result"
+        },
+        {
+          "id": "teams.revokeProjectAccess.dry-run",
+          "file": "test/resources/team.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "teams",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/teams",
+      "primitive": "teams.list",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch teams.",
+        "usage": "Read path for teams. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "teams.list.success",
+          "file": "test/resources/team.test.ts",
+          "title": "returns the unwrapped teams list"
+        },
+        {
+          "id": "teams.list.pagination",
+          "file": "test/resources/team.test.ts",
+          "title": "sends page/size and stops on a short page"
+        }
+      ],
+      "group": "teams",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/teams/{id}",
+      "primitive": "teams.getById",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch team.",
+        "usage": "Read path for teams. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "teams.getById.success",
+          "file": "test/resources/team.test.ts",
+          "title": "returns the unwrapped teams record"
+        },
+        {
+          "id": "teams.getById.not-found",
+          "file": "test/resources/team.test.ts",
+          "title": "normalises a 404 into NOT_FOUND"
+        }
+      ],
+      "group": "teams",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "PATCH /api/teams/{id}",
+      "primitive": "teams.update",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Update team.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "teams.update.success",
+          "file": "test/resources/team.test.ts",
+          "title": "returns the updated teams record"
+        },
+        {
+          "id": "teams.update.dry-run",
+          "file": "test/resources/team.test.ts",
+          "title": "dry-run issues no PATCH request and returns simulated: true"
+        }
+      ],
+      "group": "teams",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/teams",
+      "primitive": "teams.create",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Create team.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "teams.create.success",
+          "file": "test/resources/team.test.ts",
+          "title": "returns the created teams record"
+        },
+        {
+          "id": "teams.create.dry-run",
+          "file": "test/resources/team.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "teams",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/teams/{id}/activities/{activityId}",
+      "primitive": "teams.grantActivityAccess",
+      "specialOp": "grant-activity",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Grant activity access.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "teams.grantActivityAccess.success",
+          "file": "test/resources/team.test.ts",
+          "title": "calls the teams.grantActivityAccess endpoint and normalises the result"
+        },
+        {
+          "id": "teams.grantActivityAccess.dry-run",
+          "file": "test/resources/team.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "teams",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/teams/{id}/customers/{customerId}",
+      "primitive": "teams.grantCustomerAccess",
+      "specialOp": "grant-customer",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Grant customer access.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "teams.grantCustomerAccess.success",
+          "file": "test/resources/team.test.ts",
+          "title": "calls the teams.grantCustomerAccess endpoint and normalises the result"
+        },
+        {
+          "id": "teams.grantCustomerAccess.dry-run",
+          "file": "test/resources/team.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "teams",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/teams/{id}/members/{userId}",
+      "primitive": "teams.addMember",
+      "specialOp": "add-member",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Add team member.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "teams.addMember.success",
+          "file": "test/resources/team.test.ts",
+          "title": "calls the teams.addMember endpoint and normalises the result"
+        },
+        {
+          "id": "teams.addMember.dry-run",
+          "file": "test/resources/team.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "teams",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/teams/{id}/projects/{projectId}",
+      "primitive": "teams.grantProjectAccess",
+      "specialOp": "grant-project",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Grant project access.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "teams.grantProjectAccess.success",
+          "file": "test/resources/team.test.ts",
+          "title": "calls the teams.grantProjectAccess endpoint and normalises the result"
+        },
+        {
+          "id": "teams.grantProjectAccess.dry-run",
+          "file": "test/resources/team.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "teams",
+      "status": "implemented"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "teams.resolve",
+      "helperBasis": "server-filter",
+      "helperRationale": "One bounded server-side read instead of a list walk: { id } fetches directly; a name goes to the vendor's `name` filter and is compared exactly afterwards. A miss returns null; several exact matches throw RESOLUTION_AMBIGUOUS with the candidate ids.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Resolve one team from an identifier.",
+        "usage": "Accepts { id }, { name } or a bare numeric id / exact name. A miss returns null; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
+        "preferredWhen": "Preferred over teams.list + a client-side find for any single-team lookup.",
+        "related": [
+          "teams.getById",
+          "teams.list"
+        ]
+      },
+      "compact": "TeamSummary",
+      "resolution": {
+        "basis": "server-filter",
+        "maxScanRecords": 500,
+        "maxScanPages": 1
+      },
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "RESOLUTION_AMBIGUOUS",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "teams.resolve.id",
+          "file": "test/resources/team.test.ts",
+          "title": "resolves a team by numeric id"
+        },
+        {
+          "id": "teams.resolve.name",
+          "file": "test/resources/team.test.ts",
+          "title": "resolves a team by exact name"
+        },
+        {
+          "id": "teams.resolve.miss",
+          "file": "test/resources/team.test.ts",
+          "title": "returns null after a complete match with no hit"
+        }
+      ],
+      "group": "teams",
+      "status": "planned"
+    },
     {
       "endpoint": "DELETE /api/timesheets/{id}",
       "primitive": "timesheets.delete",
@@ -28,7 +3859,7 @@
       "dryRun": true,
       "metadata": {
         "purpose": "Delete a timesheet.",
-        "usage": "Irreversible \u2014 the vendor offers no archive for timesheets. Always dry-run first.",
+        "usage": "Irreversible — the vendor offers no archive for timesheets. Always dry-run first.",
         "preferredWhen": null,
         "related": [
           "timesheets.stop"
@@ -327,7 +4158,7 @@
       "dryRun": true,
       "metadata": {
         "purpose": "Duplicate a timesheet (resetting its export state).",
-        "usage": "Every call creates a new record \u2014 not safe to re-issue. Dry-run before use.",
+        "usage": "Every call creates a new record — not safe to re-issue. Dry-run before use.",
         "preferredWhen": null,
         "related": [
           "timesheets.create"
@@ -470,7 +4301,7 @@
       "dryRun": true,
       "metadata": {
         "purpose": "Restart a timesheet for the same customer, project and activity.",
-        "usage": "Every call starts a new running record \u2014 not safe to re-issue. Dry-run before use.",
+        "usage": "Every call starts a new running record — not safe to re-issue. Dry-run before use.",
         "preferredWhen": null,
         "related": [
           "timesheets.create",
@@ -569,7 +4400,7 @@
       "dryRun": true,
       "metadata": {
         "purpose": "Create a timesheet.",
-        "usage": "Requires project + activity (vendor); begin is vendor-required \u2014 the dry run warns when it is missing. Dry-run validates without issuing the write.",
+        "usage": "Requires project + activity (vendor); begin is vendor-required — the dry run warns when it is missing. Dry-run validates without issuing the write.",
         "preferredWhen": null,
         "related": [
           "timesheets.update"
@@ -620,14 +4451,14 @@
       "search": null,
       "helper": "timesheets.resolve",
       "helperBasis": "server-filter",
-      "helperRationale": "One call instead of the agent hand-paging timesheets or string-matching timestamps: { id } (or a bare number) is a direct get, { begin } (or a bare timestamp) is one bounded server-filtered read (begin&user=all, a single 500-record page \u2014 the vendor supplies the filter, so no client scan and no RESOLUTION_TRUNCATED); a unique hit returns the compact TimesheetSummary, zero hits null, more than one throws RESOLUTION_AMBIGUOUS with the candidate ids.",
+      "helperRationale": "One call instead of the agent hand-paging timesheets or string-matching timestamps: { id } (or a bare number) is a direct get, { begin } (or a bare timestamp) is one bounded server-filtered read (begin&user=all, a single 500-record page — the vendor supplies the filter, so no client scan and no RESOLUTION_TRUNCATED); a unique hit returns the compact TimesheetSummary, zero hits null, more than one throws RESOLUTION_AMBIGUOUS with the candidate ids.",
       "effect": "read",
       "flags": [],
       "dryRun": false,
       "metadata": {
         "purpose": "Resolve one timesheet from an id or a begin timestamp.",
-        "usage": "Accepts { id }, { begin } or a bare numeric id / begin timestamp; timesheets have no name field, so any other text resolves to nothing. The begin filter is \"at or after\", so a stale timestamp matches many records and throws RESOLUTION_AMBIGUOUS \u2014 narrow it. A miss by id throws NOT_FOUND (never null). No client scan occurs (vendor filter), so the scan never truncates. expand: true for the full record; resolutionDetails: true for the Resolution wrapper (cost, scanned, scanTruncated).",
-        "preferredWhen": "Preferred over timesheets.list for any identifier lookup \u2014 it removes the paging and the hand-matching.",
+        "usage": "Accepts { id }, { begin } or a bare numeric id / begin timestamp; timesheets have no name field, so any other text resolves to nothing. The begin filter is \"at or after\", so a stale timestamp matches many records and throws RESOLUTION_AMBIGUOUS — narrow it. A miss by id throws NOT_FOUND (never null). No client scan occurs (vendor filter), so the scan never truncates. expand: true for the full record; resolutionDetails: true for the Resolution wrapper (cost, scanned, scanTruncated).",
+        "preferredWhen": "Preferred over timesheets.list for any identifier lookup — it removes the paging and the hand-matching.",
         "related": [
           "timesheets.getById",
           "timesheets.search",
@@ -697,13 +4528,13 @@
       "search": null,
       "helper": "timesheets.search",
       "helperBasis": "server-filter",
-      "helperRationale": "One bounded server-side read instead of a page walk: passes every spec filter (user/users/customer/customers/project/projects/activity/activities/tags/orderBy/order/begin/end/exported/active/billable/full/modified_after/term) unchanged, enforces an explicit limit (default 25, hard max 100 \u2014 garbage throws KimaiConfigError, never a silent clamp), defaults to user=all, and returns compact TimesheetSummary rows with an expand escape hatch.",
+      "helperRationale": "One bounded server-side read instead of a page walk: passes every spec filter (user/users/customer/customers/project/projects/activity/activities/tags/orderBy/order/begin/end/exported/active/billable/full/modified_after/term) unchanged, enforces an explicit limit (default 25, hard max 100 — garbage throws KimaiConfigError, never a silent clamp), defaults to user=all, and returns compact TimesheetSummary rows with an expand escape hatch.",
       "effect": "read",
       "flags": [],
       "dryRun": false,
       "metadata": {
         "purpose": "Search timesheets with the spec filters, bounded by an explicit limit.",
-        "usage": "limit defaults to 25, hard max 100 (a non-integer or out-of-range value throws KimaiConfigError \u2014 never silently clamped). Without a user filter the SDK passes user=all (requires the vendor view_other_timesheet permission). Compact TimesheetSummary rows by default; expand: true for the full records.",
+        "usage": "limit defaults to 25, hard max 100 (a non-integer or out-of-range value throws KimaiConfigError — never silently clamped). Without a user filter the SDK passes user=all (requires the vendor view_other_timesheet permission). Compact TimesheetSummary rows by default; expand: true for the full records.",
         "preferredWhen": "Preferred over timesheets.list for any bounded filtered read (at most 100 rows).",
         "related": [
           "timesheets.list",
@@ -762,7 +4593,7 @@
       "search": null,
       "helper": "timesheets.getContext",
       "helperBasis": "workflow",
-      "helperRationale": "The approved workflow resource (timesheets) bundles the timesheet with its referenced user, activity, project and customer in a bounded pool (at most three in flight, then the dependent customer read) \u2014 without it the agent chains four or five gets and reasons through the references itself.",
+      "helperRationale": "The approved workflow resource (timesheets) bundles the timesheet with its referenced user, activity, project and customer in a bounded pool (at most three in flight, then the dependent customer read) — without it the agent chains four or five gets and reasons through the references itself.",
       "effect": "read",
       "flags": [],
       "dryRun": false,
@@ -803,6 +4634,423 @@
       ],
       "group": "timesheets",
       "status": "tested"
+    },
+    {
+      "endpoint": "DELETE /api/users/api-token/{id}",
+      "primitive": "users.deleteApiToken",
+      "specialOp": "delete-api-token",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "destructive",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Delete API token.",
+        "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "users.deleteApiToken.success",
+          "file": "test/resources/user.test.ts",
+          "title": "calls the users.deleteApiToken endpoint and normalises the result"
+        },
+        {
+          "id": "users.deleteApiToken.dry-run",
+          "file": "test/resources/user.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "users",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/users",
+      "primitive": "users.list",
+      "specialOp": null,
+      "vendorFilters": [
+        "full",
+        "order",
+        "orderBy",
+        "term",
+        "visible"
+      ],
+      "search": "term",
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch users.",
+        "usage": "Read path for users. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "users.list.success",
+          "file": "test/resources/user.test.ts",
+          "title": "returns the unwrapped users list"
+        },
+        {
+          "id": "users.list.pagination",
+          "file": "test/resources/user.test.ts",
+          "title": "sends page/size and stops on a short page"
+        }
+      ],
+      "group": "users",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/users/{id}",
+      "primitive": "users.getById",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch user.",
+        "usage": "Read path for users. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "users.getById.success",
+          "file": "test/resources/user.test.ts",
+          "title": "returns the unwrapped users record"
+        },
+        {
+          "id": "users.getById.not-found",
+          "file": "test/resources/user.test.ts",
+          "title": "normalises a 404 into NOT_FOUND"
+        }
+      ],
+      "group": "users",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "GET /api/users/me",
+      "primitive": "users.getMe",
+      "specialOp": "me",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Fetch current user.",
+        "usage": "Read path for users. Primitives return the full typed record.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "users.getMe.success",
+          "file": "test/resources/user.test.ts",
+          "title": "calls the users.getMe endpoint and returns the documented shape"
+        }
+      ],
+      "group": "users",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "PATCH /api/users/{id}",
+      "primitive": "users.update",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Update an existing user.",
+        "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "users.update.success",
+          "file": "test/resources/user.test.ts",
+          "title": "returns the updated users record"
+        },
+        {
+          "id": "users.update.dry-run",
+          "file": "test/resources/user.test.ts",
+          "title": "dry-run issues no PATCH request and returns simulated: true"
+        }
+      ],
+      "group": "users",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "PATCH /api/users/{id}/preferences",
+      "primitive": "users.updatePreferences",
+      "specialOp": "preferences",
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Update user preferences.",
+        "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "users.updatePreferences.success",
+          "file": "test/resources/user.test.ts",
+          "title": "calls the users.updatePreferences endpoint and normalises the result"
+        },
+        {
+          "id": "users.updatePreferences.dry-run",
+          "file": "test/resources/user.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "users",
+      "status": "implemented"
+    },
+    {
+      "endpoint": "POST /api/users",
+      "primitive": "users.create",
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": null,
+      "helperBasis": null,
+      "helperRationale": null,
+      "effect": "write",
+      "flags": [],
+      "dryRun": true,
+      "metadata": {
+        "purpose": "Create user.",
+        "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
+        "preferredWhen": null,
+        "related": []
+      },
+      "compact": null,
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": null,
+      "errors": [
+        "BAD_REQUEST",
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "SERVER_ERROR",
+        "VALIDATION_FAILED"
+      ],
+      "tests": [
+        {
+          "id": "users.create.success",
+          "file": "test/resources/user.test.ts",
+          "title": "returns the created users record"
+        },
+        {
+          "id": "users.create.dry-run",
+          "file": "test/resources/user.test.ts",
+          "title": "dry-run issues no mutating request and returns simulated: true"
+        }
+      ],
+      "group": "users",
+      "status": "implemented"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "users.resolve",
+      "helperBasis": "composite",
+      "helperRationale": "Two paths, both bounded: { id } fetches directly (server-side); a username has no vendor filter, so it is matched exactly over a bounded client scan of the user list (cap 500 records / 5 pages). A miss after a complete scan returns null; a truncated scan throws RESOLUTION_TRUNCATED (never null); several exact matches throw RESOLUTION_AMBIGUOUS.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Resolve one user from an identifier.",
+        "usage": "Accepts { id }, { username } or a bare numeric id / exact username. The username path scans the user list with a bounded cap (500 records, 5 pages); a truncated scan throws RESOLUTION_TRUNCATED and an ambiguous match throws RESOLUTION_AMBIGUOUS with the candidate ids.",
+        "preferredWhen": "Preferred over users.list + a client-side find for any single-user lookup.",
+        "related": [
+          "users.getById",
+          "users.list",
+          "users.search",
+          "users.getMe"
+        ]
+      },
+      "compact": "UserSummary",
+      "resolution": {
+        "basis": "client-scan",
+        "maxScanRecords": 500,
+        "maxScanPages": 5
+      },
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "NOT_FOUND",
+        "RATE_LIMITED",
+        "RESOLUTION_AMBIGUOUS",
+        "RESOLUTION_TRUNCATED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "users.resolve.id",
+          "file": "test/resources/user.test.ts",
+          "title": "resolves a user by numeric id"
+        },
+        {
+          "id": "users.resolve.username",
+          "file": "test/resources/user.test.ts",
+          "title": "resolves a user by exact username through the bounded scan"
+        },
+        {
+          "id": "users.resolve.miss",
+          "file": "test/resources/user.test.ts",
+          "title": "returns null after a complete scan with no hit"
+        },
+        {
+          "id": "users.resolve.truncated",
+          "file": "test/resources/user.test.ts",
+          "title": "throws RESOLUTION_TRUNCATED when the scan cap is reached"
+        }
+      ],
+      "group": "users",
+      "status": "planned"
+    },
+    {
+      "endpoint": null,
+      "primitive": null,
+      "specialOp": null,
+      "vendorFilters": [],
+      "search": null,
+      "helper": "users.search",
+      "helperBasis": "server-filter",
+      "helperRationale": "One bounded server-side read instead of a list walk: passes the spec filters (role/team) unchanged, enforces an explicit limit (default 25, hard max 100) and returns compact UserSummary rows (credential fields dropped) with an expand escape hatch.",
+      "effect": "read",
+      "flags": [],
+      "dryRun": false,
+      "metadata": {
+        "purpose": "Search users with the spec filters, bounded by an explicit limit.",
+        "usage": "limit defaults to 25, hard max 100 (out-of-range throws KimaiConfigError). Compact UserSummary rows by default (no credential fields); expand: true for the full records.",
+        "preferredWhen": "Preferred over users.list for any bounded filtered read (at most 100 rows).",
+        "related": [
+          "users.list",
+          "users.resolve"
+        ]
+      },
+      "compact": "UserSummary",
+      "resolution": null,
+      "staleCheck": null,
+      "redaction": "none",
+      "errors": [
+        "CONFIG_ERROR",
+        "RATE_LIMITED",
+        "SERVER_ERROR"
+      ],
+      "tests": [
+        {
+          "id": "users.search.success",
+          "file": "test/resources/user.test.ts",
+          "title": "returns compact UserSummary rows for the spec filters"
+        },
+        {
+          "id": "users.search.no-credentials",
+          "file": "test/resources/user.test.ts",
+          "title": "drops credential fields from the compact rows"
+        }
+      ],
+      "group": "users",
+      "status": "planned"
     }
   ]
 }

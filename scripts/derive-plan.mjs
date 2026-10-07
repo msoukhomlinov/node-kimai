@@ -48,18 +48,119 @@ const spec = JSON.parse(readFileSync(SPEC_PATH, 'utf8'));
  *    every endpoint whose SDK method name is NOT uniform (Kimai clients).
  * ------------------------------------------------------------------ */
 const OVERRIDES = {
-  'GET /api/timesheets':                  ['timesheets', 'list', null],
-  'POST /api/timesheets':                 ['timesheets', 'create', null],
-  'GET /api/timesheets/active':           ['timesheets', 'getActive', 'active'],
-  'GET /api/timesheets/recent':           ['timesheets', 'getRecent', 'recent'],
-  'GET /api/timesheets/{id}':             ['timesheets', 'getById', null],
-  'DELETE /api/timesheets/{id}':          ['timesheets', 'delete', null],
-  'PATCH /api/timesheets/{id}':           ['timesheets', 'update', null],
-  'PATCH /api/timesheets/{id}/duplicate': ['timesheets', 'duplicate', 'duplicate'],
-  'PATCH /api/timesheets/{id}/export':    ['timesheets', 'toggleExport', 'toggle-export'],
-  'PATCH /api/timesheets/{id}/meta':      ['timesheets', 'updateMeta', 'meta'],
-  'PATCH /api/timesheets/{id}/restart':   ['timesheets', 'restart', 'restart'],
-  'PATCH /api/timesheets/{id}/stop':      ['timesheets', 'stop', 'stop'],
+  // --- timesheets (pilot) ---
+  'GET /api/timesheets':                  [['timesheets', 'list', null]],
+  'POST /api/timesheets':                 [['timesheets', 'create', null]],
+  'GET /api/timesheets/active':           [['timesheets', 'getActive', 'active']],
+  'GET /api/timesheets/recent':           [['timesheets', 'getRecent', 'recent']],
+  'GET /api/timesheets/{id}':             [['timesheets', 'getById', null]],
+  'DELETE /api/timesheets/{id}':          [['timesheets', 'delete', null]],
+  'PATCH /api/timesheets/{id}':           [['timesheets', 'update', null]],
+  'PATCH /api/timesheets/{id}/duplicate': [['timesheets', 'duplicate', 'duplicate']],
+  'PATCH /api/timesheets/{id}/export':    [['timesheets', 'toggleExport', 'toggle-export']],
+  'PATCH /api/timesheets/{id}/meta':      [['timesheets', 'updateMeta', 'meta']],
+  'PATCH /api/timesheets/{id}/restart':   [['timesheets', 'restart', 'restart']],
+  'PATCH /api/timesheets/{id}/stop':      [['timesheets', 'stop', 'stop']],
+
+  // --- activities ---
+  'GET /api/activities':                    [['activities', 'list', null]],
+  'GET /api/activities/{id}':               [['activities', 'getById', null]],
+  'POST /api/activities':                   [['activities', 'create', null]],
+  'PATCH /api/activities/{id}':             [['activities', 'update', null]],
+  'DELETE /api/activities/{id}':            [['activities', 'delete', null]],
+  'PATCH /api/activities/{id}/meta':        [['activities', 'updateMeta', 'meta']],
+  'GET /api/activities/{id}/rates':         [['activities', 'getRates', 'rates']],
+  'POST /api/activities/{id}/rates':        [['activities', 'createRate', 'create-rate']],
+  'DELETE /api/activities/{id}/rates/{rateId}': [['activities', 'deleteRate', 'delete-rate']],
+  'POST /api/activities/{id}/team':         [['activities', 'addToTeam', 'add-to-team']],
+
+  // --- customers ---
+  'GET /api/customers':                     [['customers', 'list', null]],
+  'GET /api/customers/{id}':                [['customers', 'getById', null]],
+  'POST /api/customers':                    [['customers', 'create', null]],
+  'PATCH /api/customers/{id}':              [['customers', 'update', null]],
+  'DELETE /api/customers/{id}':             [['customers', 'delete', null]],
+  'PATCH /api/customers/{id}/meta':         [['customers', 'updateMeta', 'meta']],
+  'GET /api/customers/{id}/rates':          [['customers', 'getRates', 'rates']],
+  'POST /api/customers/{id}/rates':         [['customers', 'createRate', 'create-rate']],
+  'DELETE /api/customers/{id}/rates/{rateId}': [['customers', 'deleteRate', 'delete-rate']],
+  'GET /api/customers/{id}/comments':       [['customers', 'listComments', 'comments']],
+  'POST /api/customers/{id}/comments':      [['customers', 'createComment', 'create-comment']],
+  'DELETE /api/customers/{id}/comments/{comment}': [['customers', 'deleteComment', 'delete-comment']],
+  'PATCH /api/customers/{id}/comments/{comment}/pin': [['customers', 'pinComment', 'pin-comment']],
+  'POST /api/customers/{id}/team':          [['customers', 'addToTeam', 'add-to-team']],
+
+  // --- projects ---
+  'GET /api/projects':                      [['projects', 'list', null]],
+  'GET /api/projects/{id}':                 [['projects', 'getById', null]],
+  'POST /api/projects':                     [['projects', 'create', null]],
+  'PATCH /api/projects/{id}':               [['projects', 'update', null]],
+  'DELETE /api/projects/{id}':              [['projects', 'delete', null]],
+  'PATCH /api/projects/{id}/meta':          [['projects', 'updateMeta', 'meta']],
+  'GET /api/projects/{id}/rates':           [['projects', 'getRates', 'rates']],
+  'POST /api/projects/{id}/rates':          [['projects', 'createRate', 'create-rate']],
+  'DELETE /api/projects/{id}/rates/{rateId}': [['projects', 'deleteRate', 'delete-rate']],
+  'GET /api/projects/{id}/comments':        [['projects', 'listComments', 'comments']],
+  'POST /api/projects/{id}/comments':       [['projects', 'createComment', 'create-comment']],
+  'DELETE /api/projects/{id}/comments/{comment}': [['projects', 'deleteComment', 'delete-comment']],
+  'PATCH /api/projects/{id}/comments/{comment}/pin': [['projects', 'pinComment', 'pin-comment']],
+  'POST /api/projects/{id}/team':           [['projects', 'addToTeam', 'add-to-team']],
+
+  // --- users ---
+  'GET /api/users':                         [['users', 'list', null]],
+  'GET /api/users/{id}':                    [['users', 'getById', null]],
+  'GET /api/users/me':                      [['users', 'getMe', 'me']],
+  'POST /api/users':                        [['users', 'create', null]],
+  'PATCH /api/users/{id}':                  [['users', 'update', null]],
+  'PATCH /api/users/{id}/preferences':      [['users', 'updatePreferences', 'preferences']],
+  'DELETE /api/users/api-token/{id}':       [['users', 'deleteApiToken', 'delete-api-token']],
+
+  // --- tags: the SDK routes both list() and find() through /api/tags/find;
+  //     GET /api/tags is the vendor-equivalent collection and is unserved.
+  'GET /api/tags':                          [],
+  'GET /api/tags/find':                     [['tags', 'list', null], ['tags', 'find', 'find-by-name']],
+  'POST /api/tags':                         [['tags', 'create', null]],
+  'DELETE /api/tags/{id}':                  [['tags', 'delete', null]],
+
+  // --- teams ---
+  'GET /api/teams':                         [['teams', 'list', null]],
+  'GET /api/teams/{id}':                    [['teams', 'getById', null]],
+  'POST /api/teams':                        [['teams', 'create', null]],
+  'PATCH /api/teams/{id}':                  [['teams', 'update', null]],
+  'DELETE /api/teams/{id}':                 [['teams', 'delete', null]],
+  'POST /api/teams/{id}/members/{userId}':      [['teams', 'addMember', 'add-member']],
+  'DELETE /api/teams/{id}/members/{userId}':    [['teams', 'removeMember', 'remove-member']],
+  'POST /api/teams/{id}/customers/{customerId}':   [['teams', 'grantCustomerAccess', 'grant-customer']],
+  'DELETE /api/teams/{id}/customers/{customerId}': [['teams', 'revokeCustomerAccess', 'revoke-customer']],
+  'POST /api/teams/{id}/projects/{projectId}':     [['teams', 'grantProjectAccess', 'grant-project']],
+  'DELETE /api/teams/{id}/projects/{projectId}':   [['teams', 'revokeProjectAccess', 'revoke-project']],
+  'POST /api/teams/{id}/activities/{activityId}':  [['teams', 'grantActivityAccess', 'grant-activity']],
+  'DELETE /api/teams/{id}/activities/{activityId}': [['teams', 'revokeActivityAccess', 'revoke-activity']],
+
+  // --- invoices ---
+  'GET /api/invoices':                      [['invoices', 'list', null]],
+  'GET /api/invoices/{id}':                 [['invoices', 'getById', null]],
+  'GET /api/invoices/{id}/download':        [['invoices', 'download', 'download']],
+  'PATCH /api/invoices/{id}/custom-fields': [['invoices', 'updateCustomFields', 'custom-fields']],
+
+  // --- approval-bundle ---
+  'POST /api/approval-bundle/add_to_approve': [['approvalBundle', 'addToApprove', 'add-to-approve']],
+  'GET /api/approval-bundle/next-week':       [['approvalBundle', 'nextWeek', 'next-week']],
+  'GET /api/approval-bundle/week-status':     [['approvalBundle', 'weekStatus', 'week-status']],
+  'GET /api/approval-bundle/overtime_year':   [['approvalBundle', 'overtimeYear', 'overtime-year']],
+  'GET /api/approval-bundle/weekly_overtime': [['approvalBundle', 'weeklyOvertime', 'weekly-overtime']],
+
+  // --- config / system / export / actions ---
+  'GET /api/config/colors':                 [['config', 'getColors', 'colors']],
+  'GET /api/config/timesheet':              [['config', 'getTimesheetConfig', 'timesheet-config']],
+  'GET /api/ping':                          [['system', 'ping', 'ping']],
+  'GET /api/version':                       [['system', 'getVersion', 'version']],
+  'GET /api/plugins':                       [['system', 'getPlugins', 'plugins']],
+  'DELETE /api/export/{id}':                [['export', 'deleteTemplate', 'delete-template']],
+  'GET /api/actions/activity/{id}/{view}/{locale}':  [['actions', 'getActions', 'activity']],
+  'GET /api/actions/customer/{id}/{view}/{locale}':  [['actions', 'getActions', 'customer']],
+  'GET /api/actions/project/{id}/{view}/{locale}':   [['actions', 'getActions', 'project']],
+  'GET /api/actions/timesheet/{id}/{view}/{locale}': [['actions', 'getActions', 'timesheet']],
 };
 
 /** SDK resource key -> client class file (the Kimai line uses PascalCase files). */
@@ -181,53 +282,67 @@ for (const [path, item] of Object.entries(spec.paths)) {
     const method = rawMethod.toUpperCase();
     if (!['GET', 'POST', 'PATCH', 'PUT', 'DELETE'].includes(method)) continue;
     const key = `${method} ${path}`;
-    const override = OVERRIDES[key];
-    if (!override) continue; // not part of the known SDK surface (the pilot derives scoped resources)
-    const [resource, primitive, specialOp] = override;
+    const overrides = OVERRIDES[key];
+    if (!overrides || overrides.length === 0) continue; // not part of the known SDK surface
+    for (const [resource, primitive, specialOp] of overrides) {
     const params = (op.parameters || []).filter((p) => p.in === 'query');
     const names = params.map((p) => p.name);
     const vendorFilters = names.filter((n) => !['page', 'size'].includes(n)).sort();
-    const search = names.includes('term') ? 'term' : null;
-    const effect = method === 'GET' ? 'read' : method === 'DELETE' ? 'destructive' : 'write';
-    const shape = specialOp !== null
-      ? (method === 'GET' ? 'read-special' : 'write-special')
-      : (primitive === 'list' ? 'list' : primitive === 'getById' ? 'get' : primitive);
-    const file = `test/resources/${TEST_FILES[resource] ?? resource}.test.ts`;
-    const purpose = (op.summary || op.description || `${method} ${path}`).split('\n')[0].trim().replace(/\.$/, '') + '.';
-    derived.push({
-      endpoint: key,
-      primitive: `${resource}.${primitive}`,
-      specialOp,
-      vendorFilters,
-      search,
-      helper: null,
-      helperBasis: null,
-      helperRationale: null,
-      effect,
-      flags: [],
-      dryRun: effect !== 'read',
-      metadata: {
-        purpose,
-        usage: method === 'GET'
-          ? `Read path for ${resource}. Primitives return the full typed record.`
-          : `Mutating path for ${resource}; supports { dryRun: true }, which validates without issuing the write.`,
-        preferredWhen: null,
-        related: [],
-      },
-      compact: null,
-      resolution: null,
-      staleCheck: null,
-      redaction: null,
-      errors: errorsFor(method, path),
-      tests: testsSkeleton(resource, `${resource}.${primitive}`, shape, file),
-      group: GROUP_OF[resource] ?? null,
-      status: METHODS[resource].has(primitive) ? 'implemented' : 'planned',
-      _resource: resource,
-    });
+    const search = names.includes('term') ? 'term' : names.includes('name') ? 'name' : null;
+      const effect = method === 'GET' ? 'read' : method === 'DELETE' ? 'destructive' : 'write';
+      const shape = specialOp !== null
+        ? (method === 'GET' ? 'read-special' : 'write-special')
+        : (primitive === 'list' ? 'list' : primitive === 'getById' ? 'get' : primitive);
+      const file = `test/resources/${TEST_FILES[resource] ?? resource}.test.ts`;
+      const purpose = (op.summary || op.description || `${method} ${path}`).split('\n')[0].trim().replace(/\.$/, '') + '.';
+      derived.push({
+        endpoint: key,
+        primitive: `${resource}.${primitive}`,
+        specialOp,
+        vendorFilters,
+        search,
+        helper: null,
+        helperBasis: null,
+        helperRationale: null,
+        effect,
+        flags: [],
+        dryRun: effect !== 'read',
+        metadata: {
+          purpose,
+          usage: method === 'GET'
+            ? `Read path for ${resource}. Primitives return the full typed record.`
+            : `Mutating path for ${resource}; supports { dryRun: true }, which validates without issuing the write.`,
+          preferredWhen: null,
+          related: [],
+        },
+        compact: null,
+        resolution: null,
+        staleCheck: null,
+        redaction: null,
+        errors: errorsFor(method, path),
+        tests: testsSkeleton(resource, `${resource}.${primitive}`, shape, file),
+        group: GROUP_OF[resource] ?? null,
+        status: METHODS[resource].has(primitive) ? 'implemented' : 'planned',
+        _resource: resource,
+      });
+    }
   }
 }
 
-derived.sort((a, b) => String(a.endpoint).localeCompare(String(b.endpoint)));
+/* Fold rows that share a primitive id (one SDK method serving several vendor
+ * endpoints, e.g. actions.getActions over the four /api/actions paths): keep
+ * the first row and record the sibling endpoints it also serves. */
+const byPrimitive = new Map();
+for (const row of derived) {
+  const existing = byPrimitive.get(row.primitive);
+  if (!existing) { byPrimitive.set(row.primitive, row); continue; }
+  (existing._alsoServes ??= []).push(row.endpoint);
+}
+
+const folded = [...byPrimitive.values()];
+folded.sort((a, b) => String(a.endpoint).localeCompare(String(b.endpoint)));
+derived.length = 0;
+derived.push(...folded);
 
 /* ------------------------------------------------------------------ *
  * 6. Preserve: never wipe a judgement column, never downgrade a status,
@@ -271,10 +386,12 @@ const PLAN_OUT = OUT_I === -1 ? PLAN_PATH : resolve(ROOT, args[OUT_I + 1]);
 
 let prior = null;
 if (existsSync(PLAN_PATH)) prior = JSON.parse(readFileSync(PLAN_PATH, 'utf8'));
-const priorByEndpoint = new Map((prior?.operations ?? []).map((r) => [r.endpoint, r]));
+/** Stable row identity: the primitive/helper id (one endpoint may serve several primitives). */
+const rowId = (r) => r.primitive ?? r.helper ?? `endpoint:${r.endpoint}`;
+const priorById = new Map((prior?.operations ?? []).map((r) => [rowId(r), r]));
 
 const selected = derived.filter((r) => only.length === 0 || only.includes(r._resource));
-for (const r of selected) r._before = priorByEndpoint.get(r.endpoint);
+for (const r of selected) r._before = priorById.get(rowId(r));
 const preservedCount = selected.filter((r) => r._before).length;
 const rows = selected.map(preserve);
 
@@ -294,9 +411,9 @@ const sortRows = (list) => list.sort((a, b) => {
 let operations;
 if (only.length === 0 && !prior) operations = [...rows, ...priorHelpers];
 else {
-  const rewritten = new Map(rows.map((r) => [r.endpoint, r]));
-  operations = (prior?.operations ?? []).map((r) => rewritten.get(r.endpoint) ?? r);
-  for (const r of rows) if (!operations.some((o) => o.endpoint === r.endpoint)) operations.push(r);
+  const rewritten = new Map(rows.map((r) => [rowId(r), r]));
+  operations = (prior?.operations ?? []).map((r) => rewritten.get(rowId(r)) ?? r);
+  for (const r of rows) if (!operations.some((o) => rowId(o) === rowId(r))) operations.push(r);
 }
 operations = sortRows(operations);
 

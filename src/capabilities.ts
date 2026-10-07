@@ -68,9 +68,5206 @@ export interface CapabilityRecord {
 
 /** Grouped registry (one section per built group). */
 export const CAPABILITY_GROUPS = {
+  "actions": {
+    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+    "builtAt": "2026-10-07T11:11:59.887Z",
+    "records": [
+      {
+        "id": "actions.getActions",
+        "resource": "actions",
+        "operation": "getActions",
+        "kind": "primitive",
+        "endpoint": "GET /api/actions/timesheet/{id}/{view}/{locale}",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "resource": {
+            "type": "object",
+            "required": true,
+            "description": "ActionResource"
+          },
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "view": {
+            "type": "string",
+            "required": true
+          },
+          "locale": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "PageAction[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.actions.getActions({ example: 'example' }, 1, 'example', 'example')"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch item actions for Timesheet.",
+          "usage": "Read path for actions. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "actions.getActions.success",
+            "file": "test/resources/actions.test.ts",
+            "title": "calls the actions.getActions endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ActionsClient.ts",
+          "sourceHash": "8b17771dad5d7d7fff03abcde1c1d2095955fa2d924c1db4237fe5a07df2ff96",
+          "testFiles": [
+            "test/resources/actions.test.ts"
+          ],
+          "testHash": "858c577ec97a661ad3217472daf54be651f5a828a317caad2752e53960dc30e4"
+        }
+      }
+    ]
+  },
+  "activities": {
+    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+    "builtAt": "2026-10-07T11:11:59.888Z",
+    "records": [
+      {
+        "id": "activities.addToTeam",
+        "resource": "activities",
+        "operation": "addToTeam",
+        "kind": "primitive",
+        "endpoint": "POST /api/activities/{id}/team",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "{ teams?: number[] }"
+          }
+        },
+        "outputSchema": {
+          "type": "Team",
+          "drops": []
+        },
+        "examples": [
+          "await client.activities.addToTeam(1, { project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Create team for activity.",
+          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "activities.addToTeam.success",
+            "file": "test/resources/activity.test.ts",
+            "title": "calls the activities.addToTeam endpoint and normalises the result"
+          },
+          {
+            "id": "activities.addToTeam.dry-run",
+            "file": "test/resources/activity.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ActivityClient.ts",
+          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "testFiles": [
+            "test/resources/activity.test.ts"
+          ],
+          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+        }
+      },
+      {
+        "id": "activities.create",
+        "resource": "activities",
+        "operation": "create",
+        "kind": "primitive",
+        "endpoint": "POST /api/activities",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "ActivityEditForm"
+          }
+        },
+        "outputSchema": {
+          "type": "ActivityEntity",
+          "drops": []
+        },
+        "examples": [
+          "await client.activities.create({ project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Create activity.",
+          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "activities.create.success",
+            "file": "test/resources/activity.test.ts",
+            "title": "returns the created activities record"
+          },
+          {
+            "id": "activities.create.dry-run",
+            "file": "test/resources/activity.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ActivityClient.ts",
+          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "testFiles": [
+            "test/resources/activity.test.ts"
+          ],
+          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+        }
+      },
+      {
+        "id": "activities.createRate",
+        "resource": "activities",
+        "operation": "createRate",
+        "kind": "primitive",
+        "endpoint": "POST /api/activities/{id}/rates",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "ActivityRateForm"
+          }
+        },
+        "outputSchema": {
+          "type": "ActivityRate",
+          "drops": []
+        },
+        "examples": [
+          "await client.activities.createRate(1, { project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Add rate for activity.",
+          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "activities.createRate.success",
+            "file": "test/resources/activity.test.ts",
+            "title": "calls the activities.createRate endpoint and normalises the result"
+          },
+          {
+            "id": "activities.createRate.dry-run",
+            "file": "test/resources/activity.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ActivityClient.ts",
+          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "testFiles": [
+            "test/resources/activity.test.ts"
+          ],
+          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+        }
+      },
+      {
+        "id": "activities.delete",
+        "resource": "activities",
+        "operation": "delete",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/activities/{id}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.activities.delete(1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Delete activity.",
+          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "activities.delete.success",
+            "file": "test/resources/activity.test.ts",
+            "title": "resolves void after a successful delete"
+          },
+          {
+            "id": "activities.delete.dry-run",
+            "file": "test/resources/activity.test.ts",
+            "title": "dry-run issues no DELETE request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ActivityClient.ts",
+          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "testFiles": [
+            "test/resources/activity.test.ts"
+          ],
+          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+        }
+      },
+      {
+        "id": "activities.deleteRate",
+        "resource": "activities",
+        "operation": "deleteRate",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/activities/{id}/rates/{rateId}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "rateId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.activities.deleteRate(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Delete rate for activity.",
+          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "activities.deleteRate.success",
+            "file": "test/resources/activity.test.ts",
+            "title": "calls the activities.deleteRate endpoint and normalises the result"
+          },
+          {
+            "id": "activities.deleteRate.dry-run",
+            "file": "test/resources/activity.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ActivityClient.ts",
+          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "testFiles": [
+            "test/resources/activity.test.ts"
+          ],
+          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+        }
+      },
+      {
+        "id": "activities.getById",
+        "resource": "activities",
+        "operation": "getById",
+        "kind": "primitive",
+        "endpoint": "GET /api/activities/{id}",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Activity",
+          "drops": []
+        },
+        "examples": [
+          "await client.activities.getById(1)"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch activity.",
+          "usage": "Read path for activities. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "activities.getById.success",
+            "file": "test/resources/activity.test.ts",
+            "title": "returns the unwrapped activities record"
+          },
+          {
+            "id": "activities.getById.not-found",
+            "file": "test/resources/activity.test.ts",
+            "title": "normalises a 404 into NOT_FOUND"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ActivityClient.ts",
+          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "testFiles": [
+            "test/resources/activity.test.ts"
+          ],
+          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+        }
+      },
+      {
+        "id": "activities.getRates",
+        "resource": "activities",
+        "operation": "getRates",
+        "kind": "primitive",
+        "endpoint": "GET /api/activities/{id}/rates",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "ActivityRate[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.activities.getRates(1)"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch rates for activity.",
+          "usage": "Read path for activities. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "activities.getRates.success",
+            "file": "test/resources/activity.test.ts",
+            "title": "calls the activities.getRates endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ActivityClient.ts",
+          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "testFiles": [
+            "test/resources/activity.test.ts"
+          ],
+          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+        }
+      },
+      {
+        "id": "activities.list",
+        "resource": "activities",
+        "operation": "list",
+        "kind": "primitive",
+        "endpoint": "GET /api/activities",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": false,
+            "description": "ActivityListParams"
+          }
+        },
+        "outputSchema": {
+          "type": "Activity[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.activities.list()"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "page",
+          "vendorDefaultPageSize": 50,
+          "vendorMaxPageSize": 500
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch activities.",
+          "usage": "Read path for activities. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "activities.list.success",
+            "file": "test/resources/activity.test.ts",
+            "title": "returns the unwrapped activities list"
+          },
+          {
+            "id": "activities.list.pagination",
+            "file": "test/resources/activity.test.ts",
+            "title": "sends page/size and stops on a short page"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ActivityClient.ts",
+          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "testFiles": [
+            "test/resources/activity.test.ts"
+          ],
+          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+        }
+      },
+      {
+        "id": "activities.update",
+        "resource": "activities",
+        "operation": "update",
+        "kind": "primitive",
+        "endpoint": "PATCH /api/activities/{id}",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "ActivityEditForm"
+          }
+        },
+        "outputSchema": {
+          "type": "Activity",
+          "drops": []
+        },
+        "examples": [
+          "await client.activities.update(1, { project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Update activity.",
+          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "activities.update.success",
+            "file": "test/resources/activity.test.ts",
+            "title": "returns the updated activities record"
+          },
+          {
+            "id": "activities.update.dry-run",
+            "file": "test/resources/activity.test.ts",
+            "title": "dry-run issues no PATCH request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ActivityClient.ts",
+          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "testFiles": [
+            "test/resources/activity.test.ts"
+          ],
+          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+        }
+      },
+      {
+        "id": "activities.updateMeta",
+        "resource": "activities",
+        "operation": "updateMeta",
+        "kind": "primitive",
+        "endpoint": "PATCH /api/activities/{id}/meta",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "meta": {
+            "type": "object",
+            "required": true,
+            "description": "a string-keyed map — Record<string, unknown>"
+          }
+        },
+        "outputSchema": {
+          "type": "Activity",
+          "drops": []
+        },
+        "examples": [
+          "await client.activities.updateMeta(1, { cost: '10' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Update activity custom-field.",
+          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "activities.updateMeta.success",
+            "file": "test/resources/activity.test.ts",
+            "title": "calls the activities.updateMeta endpoint and normalises the result"
+          },
+          {
+            "id": "activities.updateMeta.dry-run",
+            "file": "test/resources/activity.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ActivityClient.ts",
+          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "testFiles": [
+            "test/resources/activity.test.ts"
+          ],
+          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+        }
+      }
+    ]
+  },
+  "approvalBundle": {
+    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+    "builtAt": "2026-10-07T11:11:59.888Z",
+    "records": [
+      {
+        "id": "approvalBundle.addToApprove",
+        "resource": "approvalBundle",
+        "operation": "addToApprove",
+        "kind": "primitive",
+        "endpoint": "POST /api/approval-bundle/add_to_approve",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": true,
+            "description": "{ user?: number; date: string }"
+          }
+        },
+        "outputSchema": {
+          "type": "string",
+          "drops": []
+        },
+        "examples": [
+          "await client.approvalBundle.addToApprove({ example: 'example' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "POST /api/approval-bundle/add_to_approve.",
+          "usage": "Mutating path for approvalBundle; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "approvalBundle.addToApprove.success",
+            "file": "test/resources/approval_bundle.test.ts",
+            "title": "calls the approvalBundle.addToApprove endpoint and normalises the result"
+          },
+          {
+            "id": "approvalBundle.addToApprove.dry-run",
+            "file": "test/resources/approval_bundle.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ApprovalBundleClient.ts",
+          "sourceHash": "59fa3edffd6cfffa82e7c765779d77f59da8c3a26dc9cddf205de42f49ed3712",
+          "testFiles": [
+            "test/resources/approval_bundle.test.ts"
+          ],
+          "testHash": "c849e9de1d565673be2995eaf4c39ec875bc121c1992e102dad009af4b96cef1"
+        }
+      },
+      {
+        "id": "approvalBundle.nextWeek",
+        "resource": "approvalBundle",
+        "operation": "nextWeek",
+        "kind": "primitive",
+        "endpoint": "GET /api/approval-bundle/next-week",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": false,
+            "description": "{ user?: number }"
+          }
+        },
+        "outputSchema": {
+          "type": "ApprovalWeekStatus",
+          "drops": []
+        },
+        "examples": [
+          "await client.approvalBundle.nextWeek()"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "GET /api/approval-bundle/next-week.",
+          "usage": "Read path for approvalBundle. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "approvalBundle.nextWeek.success",
+            "file": "test/resources/approval_bundle.test.ts",
+            "title": "calls the approvalBundle.nextWeek endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ApprovalBundleClient.ts",
+          "sourceHash": "59fa3edffd6cfffa82e7c765779d77f59da8c3a26dc9cddf205de42f49ed3712",
+          "testFiles": [
+            "test/resources/approval_bundle.test.ts"
+          ],
+          "testHash": "c849e9de1d565673be2995eaf4c39ec875bc121c1992e102dad009af4b96cef1"
+        }
+      },
+      {
+        "id": "approvalBundle.overtimeYear",
+        "resource": "approvalBundle",
+        "operation": "overtimeYear",
+        "kind": "primitive",
+        "endpoint": "GET /api/approval-bundle/overtime_year",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": true,
+            "description": "{ user?: number; date: string }"
+          }
+        },
+        "outputSchema": {
+          "type": "ApprovalOvertimeYear",
+          "drops": []
+        },
+        "examples": [
+          "await client.approvalBundle.overtimeYear({ example: 'example' })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "GET /api/approval-bundle/overtime_year.",
+          "usage": "Read path for approvalBundle. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "approvalBundle.overtimeYear.success",
+            "file": "test/resources/approval_bundle.test.ts",
+            "title": "calls the approvalBundle.overtimeYear endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ApprovalBundleClient.ts",
+          "sourceHash": "59fa3edffd6cfffa82e7c765779d77f59da8c3a26dc9cddf205de42f49ed3712",
+          "testFiles": [
+            "test/resources/approval_bundle.test.ts"
+          ],
+          "testHash": "c849e9de1d565673be2995eaf4c39ec875bc121c1992e102dad009af4b96cef1"
+        }
+      },
+      {
+        "id": "approvalBundle.weeklyOvertime",
+        "resource": "approvalBundle",
+        "operation": "weeklyOvertime",
+        "kind": "primitive",
+        "endpoint": "GET /api/approval-bundle/weekly_overtime",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": true,
+            "description": "{ user?: number; date: string }"
+          }
+        },
+        "outputSchema": {
+          "type": "ApprovalWeeklyOvertime[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.approvalBundle.weeklyOvertime({ example: 'example' })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "GET /api/approval-bundle/weekly_overtime.",
+          "usage": "Read path for approvalBundle. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "approvalBundle.weeklyOvertime.success",
+            "file": "test/resources/approval_bundle.test.ts",
+            "title": "calls the approvalBundle.weeklyOvertime endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ApprovalBundleClient.ts",
+          "sourceHash": "59fa3edffd6cfffa82e7c765779d77f59da8c3a26dc9cddf205de42f49ed3712",
+          "testFiles": [
+            "test/resources/approval_bundle.test.ts"
+          ],
+          "testHash": "c849e9de1d565673be2995eaf4c39ec875bc121c1992e102dad009af4b96cef1"
+        }
+      },
+      {
+        "id": "approvalBundle.weekStatus",
+        "resource": "approvalBundle",
+        "operation": "weekStatus",
+        "kind": "primitive",
+        "endpoint": "GET /api/approval-bundle/week-status",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": true,
+            "description": "{ user?: number; date: string }"
+          }
+        },
+        "outputSchema": {
+          "type": "ApprovalWeekStatus",
+          "drops": []
+        },
+        "examples": [
+          "await client.approvalBundle.weekStatus({ example: 'example' })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "GET /api/approval-bundle/week-status.",
+          "usage": "Read path for approvalBundle. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "approvalBundle.weekStatus.success",
+            "file": "test/resources/approval_bundle.test.ts",
+            "title": "calls the approvalBundle.weekStatus endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ApprovalBundleClient.ts",
+          "sourceHash": "59fa3edffd6cfffa82e7c765779d77f59da8c3a26dc9cddf205de42f49ed3712",
+          "testFiles": [
+            "test/resources/approval_bundle.test.ts"
+          ],
+          "testHash": "c849e9de1d565673be2995eaf4c39ec875bc121c1992e102dad009af4b96cef1"
+        }
+      }
+    ]
+  },
+  "config": {
+    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+    "builtAt": "2026-10-07T11:11:59.888Z",
+    "records": [
+      {
+        "id": "config.getColors",
+        "resource": "config",
+        "operation": "getColors",
+        "kind": "primitive",
+        "endpoint": "GET /api/config/colors",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {},
+        "outputSchema": {
+          "type": "Record<string, string>",
+          "drops": []
+        },
+        "examples": [
+          "await client.config.getColors()"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch configured color codes.",
+          "usage": "Read path for config. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "config.getColors.success",
+            "file": "test/resources/config.test.ts",
+            "title": "calls the config.getColors endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ConfigClient.ts",
+          "sourceHash": "adc0f6d6fb493cb57c878084d8ef592c5f48c21cdb6befcf6b46c2c4aa25cfa1",
+          "testFiles": [
+            "test/resources/config.test.ts"
+          ],
+          "testHash": "dcc01debfaabd92d84f2b807fbd9aadadb002292e8275c55a5f870574163545e"
+        }
+      },
+      {
+        "id": "config.getTimesheetConfig",
+        "resource": "config",
+        "operation": "getTimesheetConfig",
+        "kind": "primitive",
+        "endpoint": "GET /api/config/timesheet",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {},
+        "outputSchema": {
+          "type": "TimesheetConfig",
+          "drops": []
+        },
+        "examples": [
+          "await client.config.getTimesheetConfig()"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch timesheet configuration.",
+          "usage": "Read path for config. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "config.getTimesheetConfig.success",
+            "file": "test/resources/config.test.ts",
+            "title": "calls the config.getTimesheetConfig endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ConfigClient.ts",
+          "sourceHash": "adc0f6d6fb493cb57c878084d8ef592c5f48c21cdb6befcf6b46c2c4aa25cfa1",
+          "testFiles": [
+            "test/resources/config.test.ts"
+          ],
+          "testHash": "dcc01debfaabd92d84f2b807fbd9aadadb002292e8275c55a5f870574163545e"
+        }
+      }
+    ]
+  },
+  "customers": {
+    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+    "builtAt": "2026-10-07T11:11:59.888Z",
+    "records": [
+      {
+        "id": "customers.addToTeam",
+        "resource": "customers",
+        "operation": "addToTeam",
+        "kind": "primitive",
+        "endpoint": "POST /api/customers/{id}/team",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "{ teams?: number[] }"
+          }
+        },
+        "outputSchema": {
+          "type": "Team",
+          "drops": []
+        },
+        "examples": [
+          "await client.customers.addToTeam(1, { project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Create team for customer.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "customers.addToTeam.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "calls the customers.addToTeam endpoint and normalises the result"
+          },
+          {
+            "id": "customers.addToTeam.dry-run",
+            "file": "test/resources/customer.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+        }
+      },
+      {
+        "id": "customers.create",
+        "resource": "customers",
+        "operation": "create",
+        "kind": "primitive",
+        "endpoint": "POST /api/customers",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "CustomerEditForm"
+          }
+        },
+        "outputSchema": {
+          "type": "CustomerEntity",
+          "drops": []
+        },
+        "examples": [
+          "await client.customers.create({ project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Create customer.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "customers.create.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "returns the created customers record"
+          },
+          {
+            "id": "customers.create.dry-run",
+            "file": "test/resources/customer.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+        }
+      },
+      {
+        "id": "customers.createComment",
+        "resource": "customers",
+        "operation": "createComment",
+        "kind": "primitive",
+        "endpoint": "POST /api/customers/{id}/comments",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "CommentForm"
+          }
+        },
+        "outputSchema": {
+          "type": "Comment",
+          "drops": []
+        },
+        "examples": [
+          "await client.customers.createComment(1, { project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Add comment for customer.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "customers.createComment.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "calls the customers.createComment endpoint and normalises the result"
+          },
+          {
+            "id": "customers.createComment.dry-run",
+            "file": "test/resources/customer.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+        }
+      },
+      {
+        "id": "customers.createRate",
+        "resource": "customers",
+        "operation": "createRate",
+        "kind": "primitive",
+        "endpoint": "POST /api/customers/{id}/rates",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "CustomerRateForm"
+          }
+        },
+        "outputSchema": {
+          "type": "CustomerRate",
+          "drops": []
+        },
+        "examples": [
+          "await client.customers.createRate(1, { project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Add rate for customer.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "customers.createRate.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "calls the customers.createRate endpoint and normalises the result"
+          },
+          {
+            "id": "customers.createRate.dry-run",
+            "file": "test/resources/customer.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+        }
+      },
+      {
+        "id": "customers.delete",
+        "resource": "customers",
+        "operation": "delete",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/customers/{id}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.customers.delete(1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Delete customer.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "customers.delete.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "resolves void after a successful delete"
+          },
+          {
+            "id": "customers.delete.dry-run",
+            "file": "test/resources/customer.test.ts",
+            "title": "dry-run issues no DELETE request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+        }
+      },
+      {
+        "id": "customers.deleteComment",
+        "resource": "customers",
+        "operation": "deleteComment",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/customers/{id}/comments/{comment}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "commentId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.customers.deleteComment(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Delete customer comment.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "customers.deleteComment.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "calls the customers.deleteComment endpoint and normalises the result"
+          },
+          {
+            "id": "customers.deleteComment.dry-run",
+            "file": "test/resources/customer.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+        }
+      },
+      {
+        "id": "customers.deleteRate",
+        "resource": "customers",
+        "operation": "deleteRate",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/customers/{id}/rates/{rateId}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "rateId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.customers.deleteRate(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Delete rate for customer.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "customers.deleteRate.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "calls the customers.deleteRate endpoint and normalises the result"
+          },
+          {
+            "id": "customers.deleteRate.dry-run",
+            "file": "test/resources/customer.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+        }
+      },
+      {
+        "id": "customers.getById",
+        "resource": "customers",
+        "operation": "getById",
+        "kind": "primitive",
+        "endpoint": "GET /api/customers/{id}",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Customer",
+          "drops": []
+        },
+        "examples": [
+          "await client.customers.getById(1)"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch customer.",
+          "usage": "Read path for customers. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "customers.getById.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "returns the unwrapped customers record"
+          },
+          {
+            "id": "customers.getById.not-found",
+            "file": "test/resources/customer.test.ts",
+            "title": "normalises a 404 into NOT_FOUND"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+        }
+      },
+      {
+        "id": "customers.getRates",
+        "resource": "customers",
+        "operation": "getRates",
+        "kind": "primitive",
+        "endpoint": "GET /api/customers/{id}/rates",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "CustomerRate[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.customers.getRates(1)"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch rates for customer.",
+          "usage": "Read path for customers. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "customers.getRates.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "calls the customers.getRates endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+        }
+      },
+      {
+        "id": "customers.list",
+        "resource": "customers",
+        "operation": "list",
+        "kind": "primitive",
+        "endpoint": "GET /api/customers",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": false,
+            "description": "CustomerListParams"
+          }
+        },
+        "outputSchema": {
+          "type": "Customer[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.customers.list()"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "page",
+          "vendorDefaultPageSize": 50,
+          "vendorMaxPageSize": 500
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch customers.",
+          "usage": "Read path for customers. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "customers.list.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "returns the unwrapped customers list"
+          },
+          {
+            "id": "customers.list.pagination",
+            "file": "test/resources/customer.test.ts",
+            "title": "sends page/size and stops on a short page"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+        }
+      },
+      {
+        "id": "customers.listComments",
+        "resource": "customers",
+        "operation": "listComments",
+        "kind": "primitive",
+        "endpoint": "GET /api/customers/{id}/comments",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Comment[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.customers.listComments(1)"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch comments for customer.",
+          "usage": "Read path for customers. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "customers.listComments.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "calls the customers.listComments endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+        }
+      },
+      {
+        "id": "customers.pinComment",
+        "resource": "customers",
+        "operation": "pinComment",
+        "kind": "primitive",
+        "endpoint": "PATCH /api/customers/{id}/comments/{comment}/pin",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "commentId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Comment",
+          "drops": []
+        },
+        "examples": [
+          "await client.customers.pinComment(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Pin customer comment.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "customers.pinComment.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "calls the customers.pinComment endpoint and normalises the result"
+          },
+          {
+            "id": "customers.pinComment.dry-run",
+            "file": "test/resources/customer.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+        }
+      },
+      {
+        "id": "customers.update",
+        "resource": "customers",
+        "operation": "update",
+        "kind": "primitive",
+        "endpoint": "PATCH /api/customers/{id}",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "CustomerEditForm"
+          }
+        },
+        "outputSchema": {
+          "type": "Customer",
+          "drops": []
+        },
+        "examples": [
+          "await client.customers.update(1, { project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Update customer.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "customers.update.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "returns the updated customers record"
+          },
+          {
+            "id": "customers.update.dry-run",
+            "file": "test/resources/customer.test.ts",
+            "title": "dry-run issues no PATCH request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+        }
+      },
+      {
+        "id": "customers.updateMeta",
+        "resource": "customers",
+        "operation": "updateMeta",
+        "kind": "primitive",
+        "endpoint": "PATCH /api/customers/{id}/meta",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "meta": {
+            "type": "object",
+            "required": true,
+            "description": "a string-keyed map — Record<string, unknown>"
+          }
+        },
+        "outputSchema": {
+          "type": "Customer",
+          "drops": []
+        },
+        "examples": [
+          "await client.customers.updateMeta(1, { cost: '10' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Update customer custom-field.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "customers.updateMeta.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "calls the customers.updateMeta endpoint and normalises the result"
+          },
+          {
+            "id": "customers.updateMeta.dry-run",
+            "file": "test/resources/customer.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+        }
+      }
+    ]
+  },
+  "export": {
+    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+    "builtAt": "2026-10-07T11:11:59.888Z",
+    "records": [
+      {
+        "id": "export.deleteTemplate",
+        "resource": "export",
+        "operation": "deleteTemplate",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/export/{id}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "templateId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.export.deleteTemplate(1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Delete export template.",
+          "usage": "Mutating path for export; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "export.deleteTemplate.success",
+            "file": "test/resources/export.test.ts",
+            "title": "calls the export.deleteTemplate endpoint and normalises the result"
+          },
+          {
+            "id": "export.deleteTemplate.dry-run",
+            "file": "test/resources/export.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ExportClient.ts",
+          "sourceHash": "9071e62ec4456f50ed9e518b0e38d39f87d2f73038baa2b1b1056ec3222fcc68",
+          "testFiles": [
+            "test/resources/export.test.ts"
+          ],
+          "testHash": "d01eb737a8d9b364984ccf7f7e521a667dd499eb49ed2bc99e0675ccb7acd4d2"
+        }
+      }
+    ]
+  },
+  "invoices": {
+    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+    "builtAt": "2026-10-07T11:11:59.888Z",
+    "records": [
+      {
+        "id": "invoices.download",
+        "resource": "invoices",
+        "operation": "download",
+        "kind": "primitive",
+        "endpoint": "GET /api/invoices/{id}/download",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "ArrayBuffer",
+          "drops": []
+        },
+        "examples": [
+          "await client.invoices.download(1)"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Download invoice.",
+          "usage": "Read path for invoices. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "invoices.download.success",
+            "file": "test/resources/invoice.test.ts",
+            "title": "calls the invoices.download endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/InvoiceClient.ts",
+          "sourceHash": "a5df632c4e16b6e9541dae300518c53ec3eee9767c6abc4520176fee5f20fa6b",
+          "testFiles": [
+            "test/resources/invoice.test.ts"
+          ],
+          "testHash": "e4a4f7ebd751f9bc25e574c3d5211cda9e0622c131cbbf447b927f915808113c"
+        }
+      },
+      {
+        "id": "invoices.getById",
+        "resource": "invoices",
+        "operation": "getById",
+        "kind": "primitive",
+        "endpoint": "GET /api/invoices/{id}",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Invoice",
+          "drops": []
+        },
+        "examples": [
+          "await client.invoices.getById(1)"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch invoice.",
+          "usage": "Read path for invoices. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "invoices.getById.success",
+            "file": "test/resources/invoice.test.ts",
+            "title": "returns the unwrapped invoices record"
+          },
+          {
+            "id": "invoices.getById.not-found",
+            "file": "test/resources/invoice.test.ts",
+            "title": "normalises a 404 into NOT_FOUND"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/InvoiceClient.ts",
+          "sourceHash": "a5df632c4e16b6e9541dae300518c53ec3eee9767c6abc4520176fee5f20fa6b",
+          "testFiles": [
+            "test/resources/invoice.test.ts"
+          ],
+          "testHash": "e4a4f7ebd751f9bc25e574c3d5211cda9e0622c131cbbf447b927f915808113c"
+        }
+      },
+      {
+        "id": "invoices.list",
+        "resource": "invoices",
+        "operation": "list",
+        "kind": "primitive",
+        "endpoint": "GET /api/invoices",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": false,
+            "description": "InvoiceListParams"
+          }
+        },
+        "outputSchema": {
+          "type": "Invoice[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.invoices.list()"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "page",
+          "vendorDefaultPageSize": 50,
+          "vendorMaxPageSize": 500
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch invoices.",
+          "usage": "Read path for invoices. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "invoices.list.success",
+            "file": "test/resources/invoice.test.ts",
+            "title": "returns the unwrapped invoices list"
+          },
+          {
+            "id": "invoices.list.pagination",
+            "file": "test/resources/invoice.test.ts",
+            "title": "sends page/size and stops on a short page"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/InvoiceClient.ts",
+          "sourceHash": "a5df632c4e16b6e9541dae300518c53ec3eee9767c6abc4520176fee5f20fa6b",
+          "testFiles": [
+            "test/resources/invoice.test.ts"
+          ],
+          "testHash": "e4a4f7ebd751f9bc25e574c3d5211cda9e0622c131cbbf447b927f915808113c"
+        }
+      },
+      {
+        "id": "invoices.updateCustomFields",
+        "resource": "invoices",
+        "operation": "updateCustomFields",
+        "kind": "primitive",
+        "endpoint": "PATCH /api/invoices/{id}/custom-fields",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "fields": {
+            "type": "object",
+            "required": true,
+            "description": "InvoiceMeta[]"
+          }
+        },
+        "outputSchema": {
+          "type": "Invoice",
+          "drops": []
+        },
+        "examples": [
+          "await client.invoices.updateCustomFields(1, { example: 'example' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Update invoice custom-fields.",
+          "usage": "Mutating path for invoices; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "invoices.updateCustomFields.success",
+            "file": "test/resources/invoice.test.ts",
+            "title": "calls the invoices.updateCustomFields endpoint and normalises the result"
+          },
+          {
+            "id": "invoices.updateCustomFields.dry-run",
+            "file": "test/resources/invoice.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/InvoiceClient.ts",
+          "sourceHash": "a5df632c4e16b6e9541dae300518c53ec3eee9767c6abc4520176fee5f20fa6b",
+          "testFiles": [
+            "test/resources/invoice.test.ts"
+          ],
+          "testHash": "e4a4f7ebd751f9bc25e574c3d5211cda9e0622c131cbbf447b927f915808113c"
+        }
+      }
+    ]
+  },
+  "projects": {
+    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+    "builtAt": "2026-10-07T11:11:59.888Z",
+    "records": [
+      {
+        "id": "projects.addToTeam",
+        "resource": "projects",
+        "operation": "addToTeam",
+        "kind": "primitive",
+        "endpoint": "POST /api/projects/{id}/team",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "{ teams?: number[] }"
+          }
+        },
+        "outputSchema": {
+          "type": "Team",
+          "drops": []
+        },
+        "examples": [
+          "await client.projects.addToTeam(1, { project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Create team for project.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "projects.addToTeam.success",
+            "file": "test/resources/project.test.ts",
+            "title": "calls the projects.addToTeam endpoint and normalises the result"
+          },
+          {
+            "id": "projects.addToTeam.dry-run",
+            "file": "test/resources/project.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+        }
+      },
+      {
+        "id": "projects.create",
+        "resource": "projects",
+        "operation": "create",
+        "kind": "primitive",
+        "endpoint": "POST /api/projects",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "ProjectEditForm"
+          }
+        },
+        "outputSchema": {
+          "type": "ProjectEntity",
+          "drops": []
+        },
+        "examples": [
+          "await client.projects.create({ project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Create project.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "projects.create.success",
+            "file": "test/resources/project.test.ts",
+            "title": "returns the created projects record"
+          },
+          {
+            "id": "projects.create.dry-run",
+            "file": "test/resources/project.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+        }
+      },
+      {
+        "id": "projects.createComment",
+        "resource": "projects",
+        "operation": "createComment",
+        "kind": "primitive",
+        "endpoint": "POST /api/projects/{id}/comments",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "CommentForm"
+          }
+        },
+        "outputSchema": {
+          "type": "Comment",
+          "drops": []
+        },
+        "examples": [
+          "await client.projects.createComment(1, { project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Add comment for project.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "projects.createComment.success",
+            "file": "test/resources/project.test.ts",
+            "title": "calls the projects.createComment endpoint and normalises the result"
+          },
+          {
+            "id": "projects.createComment.dry-run",
+            "file": "test/resources/project.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+        }
+      },
+      {
+        "id": "projects.createRate",
+        "resource": "projects",
+        "operation": "createRate",
+        "kind": "primitive",
+        "endpoint": "POST /api/projects/{id}/rates",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "ProjectRateForm"
+          }
+        },
+        "outputSchema": {
+          "type": "ProjectRate",
+          "drops": []
+        },
+        "examples": [
+          "await client.projects.createRate(1, { project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Add rate for project.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "projects.createRate.success",
+            "file": "test/resources/project.test.ts",
+            "title": "calls the projects.createRate endpoint and normalises the result"
+          },
+          {
+            "id": "projects.createRate.dry-run",
+            "file": "test/resources/project.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+        }
+      },
+      {
+        "id": "projects.delete",
+        "resource": "projects",
+        "operation": "delete",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/projects/{id}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.projects.delete(1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Delete project.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "projects.delete.success",
+            "file": "test/resources/project.test.ts",
+            "title": "resolves void after a successful delete"
+          },
+          {
+            "id": "projects.delete.dry-run",
+            "file": "test/resources/project.test.ts",
+            "title": "dry-run issues no DELETE request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+        }
+      },
+      {
+        "id": "projects.deleteComment",
+        "resource": "projects",
+        "operation": "deleteComment",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/projects/{id}/comments/{comment}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "commentId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.projects.deleteComment(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Delete project comment.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "projects.deleteComment.success",
+            "file": "test/resources/project.test.ts",
+            "title": "calls the projects.deleteComment endpoint and normalises the result"
+          },
+          {
+            "id": "projects.deleteComment.dry-run",
+            "file": "test/resources/project.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+        }
+      },
+      {
+        "id": "projects.deleteRate",
+        "resource": "projects",
+        "operation": "deleteRate",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/projects/{id}/rates/{rateId}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "rateId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.projects.deleteRate(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Delete rate for project.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "projects.deleteRate.success",
+            "file": "test/resources/project.test.ts",
+            "title": "calls the projects.deleteRate endpoint and normalises the result"
+          },
+          {
+            "id": "projects.deleteRate.dry-run",
+            "file": "test/resources/project.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+        }
+      },
+      {
+        "id": "projects.getById",
+        "resource": "projects",
+        "operation": "getById",
+        "kind": "primitive",
+        "endpoint": "GET /api/projects/{id}",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Project",
+          "drops": []
+        },
+        "examples": [
+          "await client.projects.getById(1)"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch project.",
+          "usage": "Read path for projects. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "projects.getById.success",
+            "file": "test/resources/project.test.ts",
+            "title": "returns the unwrapped projects record"
+          },
+          {
+            "id": "projects.getById.not-found",
+            "file": "test/resources/project.test.ts",
+            "title": "normalises a 404 into NOT_FOUND"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+        }
+      },
+      {
+        "id": "projects.getRates",
+        "resource": "projects",
+        "operation": "getRates",
+        "kind": "primitive",
+        "endpoint": "GET /api/projects/{id}/rates",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "ProjectRate[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.projects.getRates(1)"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch rates for project.",
+          "usage": "Read path for projects. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "projects.getRates.success",
+            "file": "test/resources/project.test.ts",
+            "title": "calls the projects.getRates endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+        }
+      },
+      {
+        "id": "projects.list",
+        "resource": "projects",
+        "operation": "list",
+        "kind": "primitive",
+        "endpoint": "GET /api/projects",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": false,
+            "description": "ProjectListParams"
+          }
+        },
+        "outputSchema": {
+          "type": "Project[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.projects.list()"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "page",
+          "vendorDefaultPageSize": 50,
+          "vendorMaxPageSize": 500
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch projects.",
+          "usage": "Read path for projects. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "projects.list.success",
+            "file": "test/resources/project.test.ts",
+            "title": "returns the unwrapped projects list"
+          },
+          {
+            "id": "projects.list.pagination",
+            "file": "test/resources/project.test.ts",
+            "title": "sends page/size and stops on a short page"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+        }
+      },
+      {
+        "id": "projects.listComments",
+        "resource": "projects",
+        "operation": "listComments",
+        "kind": "primitive",
+        "endpoint": "GET /api/projects/{id}/comments",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Comment[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.projects.listComments(1)"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch comments for project.",
+          "usage": "Read path for projects. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "projects.listComments.success",
+            "file": "test/resources/project.test.ts",
+            "title": "calls the projects.listComments endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+        }
+      },
+      {
+        "id": "projects.pinComment",
+        "resource": "projects",
+        "operation": "pinComment",
+        "kind": "primitive",
+        "endpoint": "PATCH /api/projects/{id}/comments/{comment}/pin",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "commentId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Comment",
+          "drops": []
+        },
+        "examples": [
+          "await client.projects.pinComment(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Pin project comment.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "projects.pinComment.success",
+            "file": "test/resources/project.test.ts",
+            "title": "calls the projects.pinComment endpoint and normalises the result"
+          },
+          {
+            "id": "projects.pinComment.dry-run",
+            "file": "test/resources/project.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+        }
+      },
+      {
+        "id": "projects.update",
+        "resource": "projects",
+        "operation": "update",
+        "kind": "primitive",
+        "endpoint": "PATCH /api/projects/{id}",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "ProjectEditForm"
+          }
+        },
+        "outputSchema": {
+          "type": "Project",
+          "drops": []
+        },
+        "examples": [
+          "await client.projects.update(1, { project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Update project.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "projects.update.success",
+            "file": "test/resources/project.test.ts",
+            "title": "returns the updated projects record"
+          },
+          {
+            "id": "projects.update.dry-run",
+            "file": "test/resources/project.test.ts",
+            "title": "dry-run issues no PATCH request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+        }
+      },
+      {
+        "id": "projects.updateMeta",
+        "resource": "projects",
+        "operation": "updateMeta",
+        "kind": "primitive",
+        "endpoint": "PATCH /api/projects/{id}/meta",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "meta": {
+            "type": "object",
+            "required": true,
+            "description": "a string-keyed map — Record<string, unknown>"
+          }
+        },
+        "outputSchema": {
+          "type": "Project",
+          "drops": []
+        },
+        "examples": [
+          "await client.projects.updateMeta(1, { cost: '10' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Update project custom-field.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "projects.updateMeta.success",
+            "file": "test/resources/project.test.ts",
+            "title": "calls the projects.updateMeta endpoint and normalises the result"
+          },
+          {
+            "id": "projects.updateMeta.dry-run",
+            "file": "test/resources/project.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+        }
+      }
+    ]
+  },
+  "system": {
+    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+    "builtAt": "2026-10-07T11:11:59.888Z",
+    "records": [
+      {
+        "id": "system.getPlugins",
+        "resource": "system",
+        "operation": "getPlugins",
+        "kind": "primitive",
+        "endpoint": "GET /api/plugins",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {},
+        "outputSchema": {
+          "type": "Plugin[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.system.getPlugins()"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch installed Plugins.",
+          "usage": "Read path for system. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "system.getPlugins.success",
+            "file": "test/resources/system.test.ts",
+            "title": "calls the system.getPlugins endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/SystemClient.ts",
+          "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
+          "testFiles": [
+            "test/resources/system.test.ts"
+          ],
+          "testHash": "fd37499236d458b1ae02fa3f7252bd237da3eadd3a4b68e5a50db67d683ed105"
+        }
+      },
+      {
+        "id": "system.getVersion",
+        "resource": "system",
+        "operation": "getVersion",
+        "kind": "primitive",
+        "endpoint": "GET /api/version",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {},
+        "outputSchema": {
+          "type": "Version",
+          "drops": []
+        },
+        "examples": [
+          "await client.system.getVersion()"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch Kimai release.",
+          "usage": "Read path for system. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "system.getVersion.success",
+            "file": "test/resources/system.test.ts",
+            "title": "calls the system.getVersion endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/SystemClient.ts",
+          "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
+          "testFiles": [
+            "test/resources/system.test.ts"
+          ],
+          "testHash": "fd37499236d458b1ae02fa3f7252bd237da3eadd3a4b68e5a50db67d683ed105"
+        }
+      },
+      {
+        "id": "system.ping",
+        "resource": "system",
+        "operation": "ping",
+        "kind": "primitive",
+        "endpoint": "GET /api/ping",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {},
+        "outputSchema": {
+          "type": "boolean",
+          "drops": []
+        },
+        "examples": [
+          "await client.system.ping()"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Testing route for the API.",
+          "usage": "Read path for system. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "system.ping.success",
+            "file": "test/resources/system.test.ts",
+            "title": "calls the system.ping endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/SystemClient.ts",
+          "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
+          "testFiles": [
+            "test/resources/system.test.ts"
+          ],
+          "testHash": "fd37499236d458b1ae02fa3f7252bd237da3eadd3a4b68e5a50db67d683ed105"
+        }
+      }
+    ]
+  },
+  "tags": {
+    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+    "builtAt": "2026-10-07T11:11:59.888Z",
+    "records": [
+      {
+        "id": "tags.create",
+        "resource": "tags",
+        "operation": "create",
+        "kind": "primitive",
+        "endpoint": "POST /api/tags",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "TagEditForm"
+          }
+        },
+        "outputSchema": {
+          "type": "Tag",
+          "drops": []
+        },
+        "examples": [
+          "await client.tags.create({ project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Create tag.",
+          "usage": "Mutating path for tags; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "tags.create.success",
+            "file": "test/resources/tag.test.ts",
+            "title": "returns the created tags record"
+          },
+          {
+            "id": "tags.create.dry-run",
+            "file": "test/resources/tag.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TagClient.ts",
+          "sourceHash": "ba20a08f0725e5dfbef2e64c535aab94b924079a7bb0e34e2e91b48c50ef9864",
+          "testFiles": [
+            "test/resources/tag.test.ts"
+          ],
+          "testHash": "bc5d6e2453fbd1d6351c907a5dc141cb579e151ba6f74531a93fa53a6cecef9c"
+        }
+      },
+      {
+        "id": "tags.delete",
+        "resource": "tags",
+        "operation": "delete",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/tags/{id}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.tags.delete(1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Delete tag.",
+          "usage": "Mutating path for tags; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "tags.delete.success",
+            "file": "test/resources/tag.test.ts",
+            "title": "resolves void after a successful delete"
+          },
+          {
+            "id": "tags.delete.dry-run",
+            "file": "test/resources/tag.test.ts",
+            "title": "dry-run issues no DELETE request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TagClient.ts",
+          "sourceHash": "ba20a08f0725e5dfbef2e64c535aab94b924079a7bb0e34e2e91b48c50ef9864",
+          "testFiles": [
+            "test/resources/tag.test.ts"
+          ],
+          "testHash": "bc5d6e2453fbd1d6351c907a5dc141cb579e151ba6f74531a93fa53a6cecef9c"
+        }
+      },
+      {
+        "id": "tags.find",
+        "resource": "tags",
+        "operation": "find",
+        "kind": "primitive",
+        "endpoint": "GET /api/tags/find",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "name": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Tag[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.tags.find('example')"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch tags.",
+          "usage": "Read path for tags. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "tags.find.success",
+            "file": "test/resources/tag.test.ts",
+            "title": "calls the tags.find endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TagClient.ts",
+          "sourceHash": "ba20a08f0725e5dfbef2e64c535aab94b924079a7bb0e34e2e91b48c50ef9864",
+          "testFiles": [
+            "test/resources/tag.test.ts"
+          ],
+          "testHash": "bc5d6e2453fbd1d6351c907a5dc141cb579e151ba6f74531a93fa53a6cecef9c"
+        }
+      },
+      {
+        "id": "tags.list",
+        "resource": "tags",
+        "operation": "list",
+        "kind": "primitive",
+        "endpoint": "GET /api/tags/find",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {},
+        "outputSchema": {
+          "type": "Tag[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.tags.list()"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "page",
+          "vendorDefaultPageSize": 50,
+          "vendorMaxPageSize": 500
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch tags.",
+          "usage": "Read path for tags. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "tags.list.success",
+            "file": "test/resources/tag.test.ts",
+            "title": "returns the unwrapped tags list"
+          },
+          {
+            "id": "tags.list.pagination",
+            "file": "test/resources/tag.test.ts",
+            "title": "sends page/size and stops on a short page"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TagClient.ts",
+          "sourceHash": "ba20a08f0725e5dfbef2e64c535aab94b924079a7bb0e34e2e91b48c50ef9864",
+          "testFiles": [
+            "test/resources/tag.test.ts"
+          ],
+          "testHash": "bc5d6e2453fbd1d6351c907a5dc141cb579e151ba6f74531a93fa53a6cecef9c"
+        }
+      }
+    ]
+  },
+  "teams": {
+    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+    "builtAt": "2026-10-07T11:11:59.888Z",
+    "records": [
+      {
+        "id": "teams.addMember",
+        "resource": "teams",
+        "operation": "addMember",
+        "kind": "primitive",
+        "endpoint": "POST /api/teams/{id}/members/{userId}",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "teamId": {
+            "type": "number",
+            "required": true
+          },
+          "userId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Team",
+          "drops": []
+        },
+        "examples": [
+          "await client.teams.addMember(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Add team member.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "teams.addMember.success",
+            "file": "test/resources/team.test.ts",
+            "title": "calls the teams.addMember endpoint and normalises the result"
+          },
+          {
+            "id": "teams.addMember.dry-run",
+            "file": "test/resources/team.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TeamClient.ts",
+          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "testFiles": [
+            "test/resources/team.test.ts"
+          ],
+          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+        }
+      },
+      {
+        "id": "teams.create",
+        "resource": "teams",
+        "operation": "create",
+        "kind": "primitive",
+        "endpoint": "POST /api/teams",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "TeamEditForm"
+          }
+        },
+        "outputSchema": {
+          "type": "Team",
+          "drops": []
+        },
+        "examples": [
+          "await client.teams.create({ project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Create team.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "teams.create.success",
+            "file": "test/resources/team.test.ts",
+            "title": "returns the created teams record"
+          },
+          {
+            "id": "teams.create.dry-run",
+            "file": "test/resources/team.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TeamClient.ts",
+          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "testFiles": [
+            "test/resources/team.test.ts"
+          ],
+          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+        }
+      },
+      {
+        "id": "teams.delete",
+        "resource": "teams",
+        "operation": "delete",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/teams/{id}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.teams.delete(1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Delete team.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "teams.delete.success",
+            "file": "test/resources/team.test.ts",
+            "title": "resolves void after a successful delete"
+          },
+          {
+            "id": "teams.delete.dry-run",
+            "file": "test/resources/team.test.ts",
+            "title": "dry-run issues no DELETE request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TeamClient.ts",
+          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "testFiles": [
+            "test/resources/team.test.ts"
+          ],
+          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+        }
+      },
+      {
+        "id": "teams.getById",
+        "resource": "teams",
+        "operation": "getById",
+        "kind": "primitive",
+        "endpoint": "GET /api/teams/{id}",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Team",
+          "drops": []
+        },
+        "examples": [
+          "await client.teams.getById(1)"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch team.",
+          "usage": "Read path for teams. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "teams.getById.success",
+            "file": "test/resources/team.test.ts",
+            "title": "returns the unwrapped teams record"
+          },
+          {
+            "id": "teams.getById.not-found",
+            "file": "test/resources/team.test.ts",
+            "title": "normalises a 404 into NOT_FOUND"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TeamClient.ts",
+          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "testFiles": [
+            "test/resources/team.test.ts"
+          ],
+          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+        }
+      },
+      {
+        "id": "teams.grantActivityAccess",
+        "resource": "teams",
+        "operation": "grantActivityAccess",
+        "kind": "primitive",
+        "endpoint": "POST /api/teams/{id}/activities/{activityId}",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "teamId": {
+            "type": "number",
+            "required": true
+          },
+          "activityId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Team",
+          "drops": []
+        },
+        "examples": [
+          "await client.teams.grantActivityAccess(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Grant activity access.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "teams.grantActivityAccess.success",
+            "file": "test/resources/team.test.ts",
+            "title": "calls the teams.grantActivityAccess endpoint and normalises the result"
+          },
+          {
+            "id": "teams.grantActivityAccess.dry-run",
+            "file": "test/resources/team.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TeamClient.ts",
+          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "testFiles": [
+            "test/resources/team.test.ts"
+          ],
+          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+        }
+      },
+      {
+        "id": "teams.grantCustomerAccess",
+        "resource": "teams",
+        "operation": "grantCustomerAccess",
+        "kind": "primitive",
+        "endpoint": "POST /api/teams/{id}/customers/{customerId}",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "teamId": {
+            "type": "number",
+            "required": true
+          },
+          "customerId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Team",
+          "drops": []
+        },
+        "examples": [
+          "await client.teams.grantCustomerAccess(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Grant customer access.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "teams.grantCustomerAccess.success",
+            "file": "test/resources/team.test.ts",
+            "title": "calls the teams.grantCustomerAccess endpoint and normalises the result"
+          },
+          {
+            "id": "teams.grantCustomerAccess.dry-run",
+            "file": "test/resources/team.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TeamClient.ts",
+          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "testFiles": [
+            "test/resources/team.test.ts"
+          ],
+          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+        }
+      },
+      {
+        "id": "teams.grantProjectAccess",
+        "resource": "teams",
+        "operation": "grantProjectAccess",
+        "kind": "primitive",
+        "endpoint": "POST /api/teams/{id}/projects/{projectId}",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "teamId": {
+            "type": "number",
+            "required": true
+          },
+          "projectId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "Team",
+          "drops": []
+        },
+        "examples": [
+          "await client.teams.grantProjectAccess(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Grant project access.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "teams.grantProjectAccess.success",
+            "file": "test/resources/team.test.ts",
+            "title": "calls the teams.grantProjectAccess endpoint and normalises the result"
+          },
+          {
+            "id": "teams.grantProjectAccess.dry-run",
+            "file": "test/resources/team.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TeamClient.ts",
+          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "testFiles": [
+            "test/resources/team.test.ts"
+          ],
+          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+        }
+      },
+      {
+        "id": "teams.list",
+        "resource": "teams",
+        "operation": "list",
+        "kind": "primitive",
+        "endpoint": "GET /api/teams",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": false,
+            "description": "TeamListParams"
+          }
+        },
+        "outputSchema": {
+          "type": "Team[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.teams.list()"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "page",
+          "vendorDefaultPageSize": 50,
+          "vendorMaxPageSize": 500
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch teams.",
+          "usage": "Read path for teams. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "teams.list.success",
+            "file": "test/resources/team.test.ts",
+            "title": "returns the unwrapped teams list"
+          },
+          {
+            "id": "teams.list.pagination",
+            "file": "test/resources/team.test.ts",
+            "title": "sends page/size and stops on a short page"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TeamClient.ts",
+          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "testFiles": [
+            "test/resources/team.test.ts"
+          ],
+          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+        }
+      },
+      {
+        "id": "teams.removeMember",
+        "resource": "teams",
+        "operation": "removeMember",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/teams/{id}/members/{userId}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "teamId": {
+            "type": "number",
+            "required": true
+          },
+          "userId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.teams.removeMember(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Remove team member.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "teams.removeMember.success",
+            "file": "test/resources/team.test.ts",
+            "title": "calls the teams.removeMember endpoint and normalises the result"
+          },
+          {
+            "id": "teams.removeMember.dry-run",
+            "file": "test/resources/team.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TeamClient.ts",
+          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "testFiles": [
+            "test/resources/team.test.ts"
+          ],
+          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+        }
+      },
+      {
+        "id": "teams.revokeActivityAccess",
+        "resource": "teams",
+        "operation": "revokeActivityAccess",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/teams/{id}/activities/{activityId}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "teamId": {
+            "type": "number",
+            "required": true
+          },
+          "activityId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.teams.revokeActivityAccess(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Revoke activity access.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "teams.revokeActivityAccess.success",
+            "file": "test/resources/team.test.ts",
+            "title": "calls the teams.revokeActivityAccess endpoint and normalises the result"
+          },
+          {
+            "id": "teams.revokeActivityAccess.dry-run",
+            "file": "test/resources/team.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TeamClient.ts",
+          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "testFiles": [
+            "test/resources/team.test.ts"
+          ],
+          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+        }
+      },
+      {
+        "id": "teams.revokeCustomerAccess",
+        "resource": "teams",
+        "operation": "revokeCustomerAccess",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/teams/{id}/customers/{customerId}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "teamId": {
+            "type": "number",
+            "required": true
+          },
+          "customerId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.teams.revokeCustomerAccess(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Revoke customer access.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "teams.revokeCustomerAccess.success",
+            "file": "test/resources/team.test.ts",
+            "title": "calls the teams.revokeCustomerAccess endpoint and normalises the result"
+          },
+          {
+            "id": "teams.revokeCustomerAccess.dry-run",
+            "file": "test/resources/team.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TeamClient.ts",
+          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "testFiles": [
+            "test/resources/team.test.ts"
+          ],
+          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+        }
+      },
+      {
+        "id": "teams.revokeProjectAccess",
+        "resource": "teams",
+        "operation": "revokeProjectAccess",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/teams/{id}/projects/{projectId}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "teamId": {
+            "type": "number",
+            "required": true
+          },
+          "projectId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.teams.revokeProjectAccess(1, 1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Revoke project access.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "teams.revokeProjectAccess.success",
+            "file": "test/resources/team.test.ts",
+            "title": "calls the teams.revokeProjectAccess endpoint and normalises the result"
+          },
+          {
+            "id": "teams.revokeProjectAccess.dry-run",
+            "file": "test/resources/team.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TeamClient.ts",
+          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "testFiles": [
+            "test/resources/team.test.ts"
+          ],
+          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+        }
+      },
+      {
+        "id": "teams.update",
+        "resource": "teams",
+        "operation": "update",
+        "kind": "primitive",
+        "endpoint": "PATCH /api/teams/{id}",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "TeamEditForm"
+          }
+        },
+        "outputSchema": {
+          "type": "Team",
+          "drops": []
+        },
+        "examples": [
+          "await client.teams.update(1, { project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Update team.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "teams.update.success",
+            "file": "test/resources/team.test.ts",
+            "title": "returns the updated teams record"
+          },
+          {
+            "id": "teams.update.dry-run",
+            "file": "test/resources/team.test.ts",
+            "title": "dry-run issues no PATCH request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/TeamClient.ts",
+          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "testFiles": [
+            "test/resources/team.test.ts"
+          ],
+          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+        }
+      }
+    ]
+  },
   "timesheets": {
-    "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
-    "builtAt": "2026-10-07T10:11:29.471Z",
+    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+    "builtAt": "2026-10-07T11:11:59.888Z",
     "records": [
       {
         "id": "timesheets.create",
@@ -151,7 +5348,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -230,7 +5427,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -307,7 +5504,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -372,7 +5569,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -449,7 +5646,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -540,7 +5737,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -611,7 +5808,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -701,7 +5898,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -821,7 +6018,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -904,7 +6101,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -1011,7 +6208,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -1096,7 +6293,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -1179,7 +6376,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -1270,7 +6467,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -1360,13 +6557,523 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "234ff2f0237a65885af04473003be3e41c90266ed0c18f05a072ae26967af998",
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
           "testHash": "f0b8a5ac84b8319c1b410d28b7a13a471994d418c1e3c120f76f9f73b3fd3384"
+        }
+      }
+    ]
+  },
+  "users": {
+    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+    "builtAt": "2026-10-07T11:11:59.888Z",
+    "records": [
+      {
+        "id": "users.create",
+        "resource": "users",
+        "operation": "create",
+        "kind": "primitive",
+        "endpoint": "POST /api/users",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "UserCreateForm"
+          }
+        },
+        "outputSchema": {
+          "type": "UserEntity",
+          "drops": []
+        },
+        "examples": [
+          "await client.users.create({ project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Create user.",
+          "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "users.create.success",
+            "file": "test/resources/user.test.ts",
+            "title": "returns the created users record"
+          },
+          {
+            "id": "users.create.dry-run",
+            "file": "test/resources/user.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/UserClient.ts",
+          "sourceHash": "004fb31a9528f46f2a7c290de46326c71768b72606483f0290c7f4ce80696ab5",
+          "testFiles": [
+            "test/resources/user.test.ts"
+          ],
+          "testHash": "8d5bb9a5ca5c632034d44d603161e8c09faaf9fd561ada20b457dfbda9b20dbe"
+        }
+      },
+      {
+        "id": "users.deleteApiToken",
+        "resource": "users",
+        "operation": "deleteApiToken",
+        "kind": "primitive",
+        "endpoint": "DELETE /api/users/api-token/{id}",
+        "effect": "destructive",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "tokenId": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "void",
+          "drops": []
+        },
+        "examples": [
+          "await client.users.deleteApiToken(1, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Delete API token.",
+          "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "users.deleteApiToken.success",
+            "file": "test/resources/user.test.ts",
+            "title": "calls the users.deleteApiToken endpoint and normalises the result"
+          },
+          {
+            "id": "users.deleteApiToken.dry-run",
+            "file": "test/resources/user.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/UserClient.ts",
+          "sourceHash": "004fb31a9528f46f2a7c290de46326c71768b72606483f0290c7f4ce80696ab5",
+          "testFiles": [
+            "test/resources/user.test.ts"
+          ],
+          "testHash": "8d5bb9a5ca5c632034d44d603161e8c09faaf9fd561ada20b457dfbda9b20dbe"
+        }
+      },
+      {
+        "id": "users.getById",
+        "resource": "users",
+        "operation": "getById",
+        "kind": "primitive",
+        "endpoint": "GET /api/users/{id}",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "outputSchema": {
+          "type": "User",
+          "drops": []
+        },
+        "examples": [
+          "await client.users.getById(1)"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch user.",
+          "usage": "Read path for users. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "users.getById.success",
+            "file": "test/resources/user.test.ts",
+            "title": "returns the unwrapped users record"
+          },
+          {
+            "id": "users.getById.not-found",
+            "file": "test/resources/user.test.ts",
+            "title": "normalises a 404 into NOT_FOUND"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/UserClient.ts",
+          "sourceHash": "004fb31a9528f46f2a7c290de46326c71768b72606483f0290c7f4ce80696ab5",
+          "testFiles": [
+            "test/resources/user.test.ts"
+          ],
+          "testHash": "8d5bb9a5ca5c632034d44d603161e8c09faaf9fd561ada20b457dfbda9b20dbe"
+        }
+      },
+      {
+        "id": "users.getMe",
+        "resource": "users",
+        "operation": "getMe",
+        "kind": "primitive",
+        "endpoint": "GET /api/users/me",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {},
+        "outputSchema": {
+          "type": "UserEntity",
+          "drops": []
+        },
+        "examples": [
+          "await client.users.getMe()"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch current user.",
+          "usage": "Read path for users. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "users.getMe.success",
+            "file": "test/resources/user.test.ts",
+            "title": "calls the users.getMe endpoint and returns the documented shape"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/UserClient.ts",
+          "sourceHash": "004fb31a9528f46f2a7c290de46326c71768b72606483f0290c7f4ce80696ab5",
+          "testFiles": [
+            "test/resources/user.test.ts"
+          ],
+          "testHash": "8d5bb9a5ca5c632034d44d603161e8c09faaf9fd561ada20b457dfbda9b20dbe"
+        }
+      },
+      {
+        "id": "users.list",
+        "resource": "users",
+        "operation": "list",
+        "kind": "primitive",
+        "endpoint": "GET /api/users",
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": false,
+            "description": "UserListParams"
+          }
+        },
+        "outputSchema": {
+          "type": "User[]",
+          "drops": []
+        },
+        "examples": [
+          "await client.users.list()"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "page",
+          "vendorDefaultPageSize": 50,
+          "vendorMaxPageSize": 500
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch users.",
+          "usage": "Read path for users. Primitives return the full typed record.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "users.list.success",
+            "file": "test/resources/user.test.ts",
+            "title": "returns the unwrapped users list"
+          },
+          {
+            "id": "users.list.pagination",
+            "file": "test/resources/user.test.ts",
+            "title": "sends page/size and stops on a short page"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/UserClient.ts",
+          "sourceHash": "004fb31a9528f46f2a7c290de46326c71768b72606483f0290c7f4ce80696ab5",
+          "testFiles": [
+            "test/resources/user.test.ts"
+          ],
+          "testHash": "8d5bb9a5ca5c632034d44d603161e8c09faaf9fd561ada20b457dfbda9b20dbe"
+        }
+      },
+      {
+        "id": "users.update",
+        "resource": "users",
+        "operation": "update",
+        "kind": "primitive",
+        "endpoint": "PATCH /api/users/{id}",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "UserEditForm"
+          }
+        },
+        "outputSchema": {
+          "type": "User",
+          "drops": []
+        },
+        "examples": [
+          "await client.users.update(1, { project: 1, activity: 1, begin: '2026-01-01T09:00:00Z' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Update an existing user.",
+          "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "users.update.success",
+            "file": "test/resources/user.test.ts",
+            "title": "returns the updated users record"
+          },
+          {
+            "id": "users.update.dry-run",
+            "file": "test/resources/user.test.ts",
+            "title": "dry-run issues no PATCH request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/UserClient.ts",
+          "sourceHash": "004fb31a9528f46f2a7c290de46326c71768b72606483f0290c7f4ce80696ab5",
+          "testFiles": [
+            "test/resources/user.test.ts"
+          ],
+          "testHash": "8d5bb9a5ca5c632034d44d603161e8c09faaf9fd561ada20b457dfbda9b20dbe"
+        }
+      },
+      {
+        "id": "users.updatePreferences",
+        "resource": "users",
+        "operation": "updatePreferences",
+        "kind": "primitive",
+        "endpoint": "PATCH /api/users/{id}/preferences",
+        "effect": "write",
+        "flags": [],
+        "dryRun": true,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "prefs": {
+            "type": "object",
+            "required": true,
+            "description": "UserPreference[]"
+          }
+        },
+        "outputSchema": {
+          "type": "User",
+          "drops": []
+        },
+        "examples": [
+          "await client.users.updatePreferences(1, { example: 'example' }, { dryRun: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [],
+          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "BAD_REQUEST",
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR",
+          "VALIDATION_FAILED"
+        ],
+        "metadata": {
+          "purpose": "Update user preferences.",
+          "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
+          "preferredWhen": null,
+          "related": []
+        },
+        "compact": null,
+        "status": "implemented",
+        "tests": [
+          {
+            "id": "users.updatePreferences.success",
+            "file": "test/resources/user.test.ts",
+            "title": "calls the users.updatePreferences endpoint and normalises the result"
+          },
+          {
+            "id": "users.updatePreferences.dry-run",
+            "file": "test/resources/user.test.ts",
+            "title": "dry-run issues no mutating request and returns simulated: true"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "sourceFile": "src/resources/UserClient.ts",
+          "sourceHash": "004fb31a9528f46f2a7c290de46326c71768b72606483f0290c7f4ce80696ab5",
+          "testFiles": [
+            "test/resources/user.test.ts"
+          ],
+          "testHash": "8d5bb9a5ca5c632034d44d603161e8c09faaf9fd561ada20b457dfbda9b20dbe"
         }
       }
     ]
