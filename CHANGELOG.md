@@ -10,6 +10,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 The convergence release on the node-hudu / node-autotask line. It folds in everything that was
 staged as `1.1.0` (never published) and lands the breaking API convergence (user decision D2).
 
+### Developer-facing (still part of this unreleased 2.0.0)
+
+- **`npm run verify:pack`** — packs the tarball, asserts every declared entry point is inside it, agrees the
+  in-tarball registry hash with `capabilities.json`, installs the tarball into a clean project and imports
+  every value subpath in **ESM and CJS** (`./types` is type-only and asserted to resolve). Wired into
+  `prepublishOnly` and into CI, because only an install proves a consuming MCP server can import what shipped.
+- **Registry effect constants** — the generator now emits `CAPABILITY_NAMES`, `READ_OPERATIONS`,
+  `WRITE_OPERATIONS` and `DESTRUCTIVE_OPERATIONS` from the registry (frozen, never hand-written), so a
+  consuming server can group or filter operations without re-deriving them.
+- **A reference MCP server** (`examples/mcp-server.ts`) that consumes the published surface the way a separate
+  server package does: the root guards, `./capabilities`, the `./mcp` catalog plus effect-split dispatch, the
+  `./operations` governance path, and `./untrusted` **applied on the result path**.
+- **`mcp:project --check-example`** — the projection gate now type-checks that example under its own tsconfig
+  and fails if it references any tool name absent from the projection.
+- **Recorded deviation — no n8n projection.** `SCOPING.md` names an n8n consumer, but the node is a separate,
+  pre-existing package that consumes this SDK only through the injectable transport and never reads the
+  registry, so a projection here would have no reader. See `ARCHITECTURE.md` → "Secondary consumer: n8n".
+
 ### BREAKING
 
 - **Renamed read primitives.** `getById(id)` is now `get(id)` on every resource that has it.
