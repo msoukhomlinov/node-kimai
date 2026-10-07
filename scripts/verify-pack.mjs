@@ -19,13 +19,22 @@
  * Usage: node scripts/verify-pack.mjs           (exit 0 = shippable, 1 = not)
  */
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const run = (cmd, args, cwd = ROOT) => execFileSync(cmd, args, { cwd, encoding: 'utf8' });
+// A parent `npm publish --dry-run` exports npm_config_dry_run into lifecycle scripts, and the nested
+// `npm pack` below would then print its manifest and write NOTHING - the gate would die reading a
+// tarball that was never created. Strip the flag: this gate always packs for real, because its
+// subject is the artifact, not the mode the caller ran in.
+const run = (cmd, args, cwd = ROOT) => {
+  const env = { ...process.env };
+  delete env.npm_config_dry_run;
+  delete env.NPM_CONFIG_DRY_RUN;
+  return execFileSync(cmd, args, { cwd, encoding: 'utf8', env });
+};
 const failures = [];
 const ok = [];
 const check = (label, condition, detail = '') => {
@@ -42,8 +51,15 @@ console.log('ok');
 
 // 2. pack
 const tmp = mkdtempSync(join(tmpdir(), 'kimai-verify-pack-'));
-const packed = run('npm', ['pack', '--pack-destination', tmp]).trim().split('\n').pop().trim();
-const tarball = join(tmp, packed);
+run('npm', ['pack', '--pack-destination', tmp]);
+// Read the tarball from the destination rather than from pack's stdout: `npm pack` runs `prepack`
+// (npm run build), whose log shares that stream.
+const packedFiles = readdirSync(tmp).filter((f) => f.endsWith('.tgz'));
+if (packedFiles.length !== 1) {
+  console.error(`verify:pack - FAIL: npm pack produced ${packedFiles.length} tarball(s) in ${tmp} (expected exactly one)`);
+  process.exit(1);
+}
+const tarball = join(tmp, packedFiles[0]);
 check('tarball exists', existsSync(tarball), tarball);
 const listing = new Set(
   run('tar', ['-tzf', tarball]).split('\n').map((l) => l.replace(/^package\//, '').trim()).filter(Boolean),
@@ -155,4 +171,4 @@ if (failures.length > 0) {
   console.log(`\nNOT SHIPPABLE - ${failures.length} failure(s)`);
   process.exit(1);
 }
-console.log(`SHIPPABLE - ${packed} carries every declared entry point, agrees with capabilities.json, and imports from ESM and CJS`);
+console.log(`SHIPPABLE - ${packedFiles[0]} carries every declared entry point, agrees with capabilities.json, and imports from ESM and CJS`);
