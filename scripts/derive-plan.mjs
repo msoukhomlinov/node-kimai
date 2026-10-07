@@ -229,12 +229,15 @@ function errorsFor(method, path) {
  * 3. Tests skeleton — the normative rows of agent-execution-layer.md §11,
  *    expressed as {id, file, title}. Preserved verbatim once non-empty.
  * ------------------------------------------------------------------ */
-function testsSkeleton(resource, primitive, shape, file) {
+function testsSkeleton(resource, primitive, shape, file, paginated = false) {
   const t = (c, title) => ({ id: `${primitive}.${c}`, file, title });
   const out = [];
   if (shape === 'list') {
     out.push(t('success', `returns the unwrapped ${resource} list`));
-    out.push(t('pagination', 'sends page/size and stops on a short page'));
+    // A paginated endpoint walks pages; a non-paginated one must NOT be sent page/size.
+    out.push(paginated
+      ? t('pagination', 'sends page/size and stops on a short page')
+      : t('non-paginated', 'does not send page/size params for this non-paginated endpoint'));
   } else if (shape === 'get') {
     out.push(t('success', `returns the unwrapped ${resource} record`));
     out.push(t('not-found', 'normalises a 404 into NOT_FOUND'));
@@ -320,7 +323,7 @@ for (const [path, item] of Object.entries(spec.paths)) {
         staleCheck: null,
         redaction: null,
         errors: errorsFor(method, path),
-        tests: testsSkeleton(resource, `${resource}.${primitive}`, shape, file),
+        tests: testsSkeleton(resource, `${resource}.${primitive}`, shape, file, names.includes('page') || names.includes('size')),
         group: GROUP_OF[resource] ?? null,
         status: METHODS[resource].has(primitive) ? 'implemented' : 'planned',
         _resource: resource,

@@ -1,4 +1,5 @@
 import type { Team, TeamMembership } from './team';
+import type { UserListParams } from './common';
 
 // Generated types for user resource
 // DO NOT EDIT MANUALLY
@@ -90,3 +91,62 @@ export interface UserPreference {
   value?: string;
 }
 
+
+
+// ---------------------------------------------------------------------------
+// Phase F (agent execution layer) — users helper shapes.
+// ---------------------------------------------------------------------------
+
+/**
+ * The compact projection of a user record (policy §9). Kept: identity and
+ * contact fields, locale settings and account state. Dropped: the deprecated
+ * credential-shaped `apiToken` marker — the `expand: true` escape hatch returns
+ * the full record.
+ */
+export interface UserSummary {
+  id?: number;
+  username: string;
+  alias?: string;
+  title?: string;
+  email: string;
+  avatar?: string;
+  initials?: string;
+  language?: string;
+  locale?: string;
+  timezone?: string;
+  accountNumber?: string;
+  enabled?: boolean;
+  systemAccount?: boolean;
+  color?: string;
+}
+
+/**
+ * The identifier kinds `users.resolve` documents (policy §6): `{ id }` (or a
+ * bare number) is a direct fetch; `{ username }` (or a bare non-numeric string)
+ * is an exact match over a bounded client scan of the user list.
+ */
+export type UserIdentifier =
+  | { id: number }
+  | { username: string }
+  | number
+  | string;
+
+/**
+ * The server-driven filters of `users.search`: the filters the SDK types
+ * already declare (`role`/`team`) plus the ones the spec declares on
+ * `GET /api/users` (`visible`, `orderBy`, `order`, `term`, `full`). The
+ * vendor's user collection takes no `page`/`size`, so `search`'s `limit` is
+ * applied to the returned rows, not sent on the wire.
+ */
+export interface UserSearchParams extends UserListParams {
+  /** Visibility status: 1=visible, 2=hidden, 3=all. */
+  visible?: string | number;
+  /** Sort field: id | username | alias | email. */
+  orderBy?: string;
+  /** Sort direction: ASC | DESC. */
+  order?: string;
+  /** Free search term (the spec's `term` filter). */
+  term?: string;
+  /** Include the full expanded records (the spec's `full` flag). */
+  full?: boolean;
+}

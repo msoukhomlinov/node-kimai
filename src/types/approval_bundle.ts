@@ -26,3 +26,17 @@ export interface ApprovalWeeklyOvertime {
   date: string;
   overtime: number;
 }
+
+// ---------------------------------------------------------------------------
+// Phase F (agent execution layer) — approval-bundle helper shapes.
+// ---------------------------------------------------------------------------
+
+/**
+ * The parameters of `approvalBundle.addToApprove` — exactly the vendor filters
+ * the spec declares on `POST /api/approval-bundle/add_to_approve` (`user`,
+ * `date`). `date` is required; `user` defaults to the authenticated user.
+ */
+export type ApprovalApproveParams = {
+  user?: number;
+  date: string;
+};

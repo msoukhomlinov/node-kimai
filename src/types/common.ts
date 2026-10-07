@@ -48,6 +48,14 @@ export type InvoiceListParams = {
   page?: number;
   size?: number;
   customer?: number;
+  /** Only invoices created at or after this date-time (HTML5 datetime-local). */
+  begin?: string;
+  /** Only invoices created before or at this date-time (HTML5 datetime-local). */
+  end?: string;
+  /** Vendor filter `customers[]`: only invoices of these customer ids. */
+  customers?: number[];
+  /** Vendor filter `status[]`: pending, paid, canceled or new. */
+  status?: string[];
 };
 
 export type TeamListParams = {
@@ -124,4 +132,37 @@ export interface OperationMetadata {
   flags: { sensitive?: boolean; idempotent?: boolean; requiresApproval?: boolean };
   /** Whether the op accepts `{ dryRun: true }`. */
   dryRun: boolean;
+}
+
+
+/**
+ * Phase F (agent execution layer) — the shared compact shapes of the
+ * workflow helpers (policy §9). Declared once here so no resource
+ * re-invents them.
+ */
+
+/**
+ * Compact projection of a rate record (policy §9). Kept: the price fields an
+ * agent needs (`rate`, `internalRate`, `isFixed`); dropped: the embedded
+ * `user` object (the numeric id stays as `userId`) — the `expand: true`
+ * escape hatch returns the full rate records.
+ */
+export interface RateSummary {
+  id?: number;
+  userId?: number;
+  rate?: number;
+  internalRate?: number;
+  isFixed?: boolean;
+}
+
+/**
+ * Compact projection of a comment record (policy §9). Kept: the content and
+ * state (`message`, `pinned`, `createdAt`); dropped: the embedded `createdBy`
+ * user object — the `expand: true` escape hatch returns the full records.
+ */
+export interface CommentSummary {
+  id?: number;
+  message: string;
+  pinned?: boolean;
+  createdAt: string;
 }

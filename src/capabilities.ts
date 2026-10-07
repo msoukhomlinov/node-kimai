@@ -69,8 +69,8 @@ export interface CapabilityRecord {
 /** Grouped registry (one section per built group). */
 export const CAPABILITY_GROUPS = {
   "actions": {
-    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
-    "builtAt": "2026-10-07T11:11:59.887Z",
+    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+    "builtAt": "2026-10-07T12:21:59.268Z",
     "records": [
       {
         "id": "actions.getActions",
@@ -136,7 +136,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "actions.getActions.success",
@@ -145,20 +145,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ActionsClient.ts",
           "sourceHash": "8b17771dad5d7d7fff03abcde1c1d2095955fa2d924c1db4237fe5a07df2ff96",
           "testFiles": [
             "test/resources/actions.test.ts"
           ],
-          "testHash": "858c577ec97a661ad3217472daf54be651f5a828a317caad2752e53960dc30e4"
+          "testHash": "41657f774d9083271be835d90c00dfd31ec761f3c7686ddd6d81d158bfa7ad1e"
         }
       }
     ]
   },
   "activities": {
-    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
-    "builtAt": "2026-10-07T11:11:59.888Z",
+    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+    "builtAt": "2026-10-07T12:21:59.269Z",
     "records": [
       {
         "id": "activities.addToTeam",
@@ -167,7 +167,10 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "POST /api/activities/{id}/team",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent",
+          "sensitive"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -178,10 +181,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "{ teams?: number[] }"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Team",
+          "type": "Team | DryRunResult<{ teams?: number[] }>",
           "drops": []
         },
         "examples": [
@@ -193,8 +201,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -207,7 +221,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Create team for activity.",
-          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -226,13 +240,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
         }
       },
       {
@@ -249,10 +263,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "ActivityEditForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "ActivityEntity",
+          "type": "ActivityEntity | DryRunResult<ActivityEditForm>",
           "drops": []
         },
         "examples": [
@@ -278,9 +297,11 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Create activity.",
-          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Creates a activity; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+          "preferredWhen": "Preferred over activities.update for a new activity.",
+          "related": [
+            "activities.update"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -297,13 +318,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
         }
       },
       {
@@ -324,10 +345,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "ActivityRateForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "ActivityRate",
+          "type": "ActivityRate | DryRunResult<ActivityRateForm>",
           "drops": []
         },
         "examples": [
@@ -353,7 +379,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Add rate for activity.",
-          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -372,13 +398,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
         }
       },
       {
@@ -388,16 +414,23 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/activities/{id}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -423,9 +456,11 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Delete activity.",
-          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Irreversible — the vendor offers no archive for activities. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
-          "related": []
+          "related": [
+            "activities.getById"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -442,13 +477,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
         }
       },
       {
@@ -458,7 +493,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/activities/{id}/rates/{rateId}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -468,10 +505,15 @@ export const CAPABILITY_GROUPS = {
           "rateId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -497,7 +539,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Delete rate for activity.",
-          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -516,13 +558,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
         }
       },
       {
@@ -571,9 +613,11 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch activity.",
-          "usage": "Read path for activities. Primitives return the full typed record.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Use when the id is already known; otherwise call activities.resolve.",
+          "preferredWhen": "Preferred over activities.list + a client-side find when the id is known.",
+          "related": [
+            "activities.resolve"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -590,13 +634,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
         }
       },
       {
@@ -659,13 +703,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
         }
       },
       {
@@ -681,7 +725,7 @@ export const CAPABILITY_GROUPS = {
           "params": {
             "type": "object",
             "required": false,
-            "description": "ActivityListParams"
+            "description": "ActivitySearchParams"
           }
         },
         "outputSchema": {
@@ -716,9 +760,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch activities.",
-          "usage": "Read path for activities. Primitives return the full typed record.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and activities.search for the agent-facing compact read.",
+          "preferredWhen": "Preferred over activities.search only when the agent must walk pages; activities.search is the bounded default read.",
+          "related": [
+            "activities.search",
+            "activities.resolve"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -731,17 +778,17 @@ export const CAPABILITY_GROUPS = {
           {
             "id": "activities.list.pagination",
             "file": "test/resources/activity.test.ts",
-            "title": "sends page/size and stops on a short page"
+            "title": "does not send page/size params for this non-paginated endpoint"
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
         }
       },
       {
@@ -751,7 +798,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "PATCH /api/activities/{id}",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -762,10 +811,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "ActivityEditForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Activity",
+          "type": "Activity | DryRunResult<ActivityEditForm>",
           "drops": []
         },
         "examples": [
@@ -777,8 +831,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -791,9 +851,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Update activity.",
-          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Replaces the editable fields of an existing activity; supports { dryRun: true }. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+          "preferredWhen": "Preferred over activities.create for any change to an existing activity.",
+          "related": [
+            "activities.create",
+            "activities.updateMeta"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -810,13 +873,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
         }
       },
       {
@@ -826,7 +889,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "PATCH /api/activities/{id}/meta",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -837,10 +902,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "a string-keyed map — Record<string, unknown>"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Activity",
+          "type": "Activity | DryRunResult<Record<string, unknown>>",
           "drops": []
         },
         "examples": [
@@ -852,8 +922,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -866,7 +942,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Update activity custom-field.",
-          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -885,20 +961,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "60687c0b4ff3aeabfabbd01829504ac9ae53f52a7ae06f4a04f658ceacef95a3",
+          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
-          "testHash": "dc254a2630e8739849a7db0c849bfb1dc64f5d163797c56818ebfa8545082467"
+          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
         }
       }
     ]
   },
   "approvalBundle": {
-    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
-    "builtAt": "2026-10-07T11:11:59.888Z",
+    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+    "builtAt": "2026-10-07T12:21:59.269Z",
     "records": [
       {
         "id": "approvalBundle.addToApprove",
@@ -907,17 +983,24 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "POST /api/approval-bundle/add_to_approve",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "sensitive"
+        ],
         "dryRun": true,
         "inputSchema": {
           "params": {
             "type": "object",
             "required": true,
-            "description": "{ user?: number; date: string }"
+            "description": "ApprovalApproveParams"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "string",
+          "type": "string | DryRunResult<ApprovalApproveParams>",
           "drops": []
         },
         "examples": [
@@ -943,12 +1026,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "POST /api/approval-bundle/add_to_approve.",
-          "usage": "Mutating path for approvalBundle; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for approvalBundle; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "approvalBundle.addToApprove.success",
@@ -962,13 +1045,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
-          "sourceHash": "59fa3edffd6cfffa82e7c765779d77f59da8c3a26dc9cddf205de42f49ed3712",
+          "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
             "test/resources/approval_bundle.test.ts"
           ],
-          "testHash": "c849e9de1d565673be2995eaf4c39ec875bc121c1992e102dad009af4b96cef1"
+          "testHash": "f93a5b7e68d169b53ba95d75afe42145677fb1ced67781e301ee476299b059ea"
         }
       },
       {
@@ -1022,7 +1105,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "approvalBundle.nextWeek.success",
@@ -1031,13 +1114,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
-          "sourceHash": "59fa3edffd6cfffa82e7c765779d77f59da8c3a26dc9cddf205de42f49ed3712",
+          "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
             "test/resources/approval_bundle.test.ts"
           ],
-          "testHash": "c849e9de1d565673be2995eaf4c39ec875bc121c1992e102dad009af4b96cef1"
+          "testHash": "f93a5b7e68d169b53ba95d75afe42145677fb1ced67781e301ee476299b059ea"
         }
       },
       {
@@ -1091,7 +1174,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "approvalBundle.overtimeYear.success",
@@ -1100,13 +1183,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
-          "sourceHash": "59fa3edffd6cfffa82e7c765779d77f59da8c3a26dc9cddf205de42f49ed3712",
+          "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
             "test/resources/approval_bundle.test.ts"
           ],
-          "testHash": "c849e9de1d565673be2995eaf4c39ec875bc121c1992e102dad009af4b96cef1"
+          "testHash": "f93a5b7e68d169b53ba95d75afe42145677fb1ced67781e301ee476299b059ea"
         }
       },
       {
@@ -1160,7 +1243,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "approvalBundle.weeklyOvertime.success",
@@ -1169,13 +1252,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
-          "sourceHash": "59fa3edffd6cfffa82e7c765779d77f59da8c3a26dc9cddf205de42f49ed3712",
+          "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
             "test/resources/approval_bundle.test.ts"
           ],
-          "testHash": "c849e9de1d565673be2995eaf4c39ec875bc121c1992e102dad009af4b96cef1"
+          "testHash": "f93a5b7e68d169b53ba95d75afe42145677fb1ced67781e301ee476299b059ea"
         }
       },
       {
@@ -1229,7 +1312,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "approvalBundle.weekStatus.success",
@@ -1238,20 +1321,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
-          "sourceHash": "59fa3edffd6cfffa82e7c765779d77f59da8c3a26dc9cddf205de42f49ed3712",
+          "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
             "test/resources/approval_bundle.test.ts"
           ],
-          "testHash": "c849e9de1d565673be2995eaf4c39ec875bc121c1992e102dad009af4b96cef1"
+          "testHash": "f93a5b7e68d169b53ba95d75afe42145677fb1ced67781e301ee476299b059ea"
         }
       }
     ]
   },
   "config": {
-    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
-    "builtAt": "2026-10-07T11:11:59.888Z",
+    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+    "builtAt": "2026-10-07T12:21:59.269Z",
     "records": [
       {
         "id": "config.getColors",
@@ -1298,7 +1381,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "config.getColors.success",
@@ -1307,13 +1390,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ConfigClient.ts",
           "sourceHash": "adc0f6d6fb493cb57c878084d8ef592c5f48c21cdb6befcf6b46c2c4aa25cfa1",
           "testFiles": [
             "test/resources/config.test.ts"
           ],
-          "testHash": "dcc01debfaabd92d84f2b807fbd9aadadb002292e8275c55a5f870574163545e"
+          "testHash": "8d88e4bf66af937bab1126e76be4922d052e85831869b559428f0d34c2d0e8e9"
         }
       },
       {
@@ -1361,7 +1444,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "config.getTimesheetConfig.success",
@@ -1370,20 +1453,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ConfigClient.ts",
           "sourceHash": "adc0f6d6fb493cb57c878084d8ef592c5f48c21cdb6befcf6b46c2c4aa25cfa1",
           "testFiles": [
             "test/resources/config.test.ts"
           ],
-          "testHash": "dcc01debfaabd92d84f2b807fbd9aadadb002292e8275c55a5f870574163545e"
+          "testHash": "8d88e4bf66af937bab1126e76be4922d052e85831869b559428f0d34c2d0e8e9"
         }
       }
     ]
   },
   "customers": {
-    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
-    "builtAt": "2026-10-07T11:11:59.888Z",
+    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+    "builtAt": "2026-10-07T12:21:59.269Z",
     "records": [
       {
         "id": "customers.addToTeam",
@@ -1392,7 +1475,10 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "POST /api/customers/{id}/team",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent",
+          "sensitive"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -1403,10 +1489,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "{ teams?: number[] }"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Team",
+          "type": "Team | DryRunResult<{ teams?: number[] }>",
           "drops": []
         },
         "examples": [
@@ -1418,8 +1509,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -1432,7 +1529,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Create team for customer.",
-          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -1451,13 +1548,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
         }
       },
       {
@@ -1474,10 +1571,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "CustomerEditForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "CustomerEntity",
+          "type": "CustomerEntity | DryRunResult<CustomerEditForm>",
           "drops": []
         },
         "examples": [
@@ -1503,9 +1605,11 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Create customer.",
-          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Creates a customer; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+          "preferredWhen": "Preferred over customers.update for a new customer.",
+          "related": [
+            "customers.update"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -1522,13 +1626,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
         }
       },
       {
@@ -1549,10 +1653,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "CommentForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Comment",
+          "type": "Comment | DryRunResult<CommentForm>",
           "drops": []
         },
         "examples": [
@@ -1578,7 +1687,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Add comment for customer.",
-          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -1597,13 +1706,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
         }
       },
       {
@@ -1624,10 +1733,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "CustomerRateForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "CustomerRate",
+          "type": "CustomerRate | DryRunResult<CustomerRateForm>",
           "drops": []
         },
         "examples": [
@@ -1653,7 +1767,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Add rate for customer.",
-          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -1672,13 +1786,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
         }
       },
       {
@@ -1688,16 +1802,23 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/customers/{id}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -1723,9 +1844,11 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Delete customer.",
-          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Irreversible — the vendor offers no archive for customers. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
-          "related": []
+          "related": [
+            "customers.getById"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -1742,13 +1865,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
         }
       },
       {
@@ -1758,7 +1881,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/customers/{id}/comments/{comment}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -1768,10 +1893,15 @@ export const CAPABILITY_GROUPS = {
           "commentId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -1797,7 +1927,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Delete customer comment.",
-          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -1816,13 +1946,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
         }
       },
       {
@@ -1832,7 +1962,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/customers/{id}/rates/{rateId}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -1842,10 +1974,15 @@ export const CAPABILITY_GROUPS = {
           "rateId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -1871,7 +2008,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Delete rate for customer.",
-          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -1890,13 +2027,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
         }
       },
       {
@@ -1945,9 +2082,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch customer.",
-          "usage": "Read path for customers. Primitives return the full typed record.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Use when the id is already known; otherwise call customers.resolve.",
+          "preferredWhen": "Preferred over customers.list + a client-side find when the id is known.",
+          "related": [
+            "customers.resolve",
+            "customers.getContext"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -1964,13 +2104,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
         }
       },
       {
@@ -2033,13 +2173,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
         }
       },
       {
@@ -2055,7 +2195,7 @@ export const CAPABILITY_GROUPS = {
           "params": {
             "type": "object",
             "required": false,
-            "description": "CustomerListParams"
+            "description": "CustomerSearchParams"
           }
         },
         "outputSchema": {
@@ -2090,9 +2230,13 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch customers.",
-          "usage": "Read path for customers. Primitives return the full typed record.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and customers.search for the agent-facing compact read.",
+          "preferredWhen": "Preferred over customers.search only when the agent must walk pages; customers.search is the bounded default read.",
+          "related": [
+            "customers.search",
+            "customers.resolve",
+            "customers.getContext"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -2105,17 +2249,17 @@ export const CAPABILITY_GROUPS = {
           {
             "id": "customers.list.pagination",
             "file": "test/resources/customer.test.ts",
-            "title": "sends page/size and stops on a short page"
+            "title": "does not send page/size params for this non-paginated endpoint"
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
         }
       },
       {
@@ -2178,13 +2322,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
         }
       },
       {
@@ -2194,7 +2338,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "PATCH /api/customers/{id}/comments/{comment}/pin",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -2204,10 +2350,15 @@ export const CAPABILITY_GROUPS = {
           "commentId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Comment",
+          "type": "Comment | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -2219,8 +2370,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -2233,7 +2390,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Pin customer comment.",
-          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -2252,13 +2409,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
         }
       },
       {
@@ -2268,7 +2425,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "PATCH /api/customers/{id}",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -2279,10 +2438,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "CustomerEditForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Customer",
+          "type": "Customer | DryRunResult<CustomerEditForm>",
           "drops": []
         },
         "examples": [
@@ -2294,8 +2458,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -2308,9 +2478,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Update customer.",
-          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Replaces the editable fields of an existing customer; supports { dryRun: true }. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+          "preferredWhen": "Preferred over customers.create for any change to an existing customer.",
+          "related": [
+            "customers.create",
+            "customers.updateMeta"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -2327,13 +2500,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
         }
       },
       {
@@ -2343,7 +2516,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "PATCH /api/customers/{id}/meta",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -2354,10 +2529,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "a string-keyed map — Record<string, unknown>"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Customer",
+          "type": "Customer | DryRunResult<Record<string, unknown>>",
           "drops": []
         },
         "examples": [
@@ -2369,8 +2549,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -2383,7 +2569,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Update customer custom-field.",
-          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -2402,20 +2588,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "f3326597db6806e7f9c7f2ca95c70fb9f4aae27c0ab624e03ef9e24799f1181b",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
-          "testHash": "52d520591bc2597713355b633eb702da6a487d34358408a5c4d6512eaa1892c2"
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
         }
       }
     ]
   },
   "export": {
-    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
-    "builtAt": "2026-10-07T11:11:59.888Z",
+    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+    "builtAt": "2026-10-07T12:21:59.269Z",
     "records": [
       {
         "id": "export.deleteTemplate",
@@ -2424,16 +2610,23 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/export/{id}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "templateId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -2459,12 +2652,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Delete export template.",
-          "usage": "Mutating path for export; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for export; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "export.deleteTemplate.success",
@@ -2478,20 +2671,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ExportClient.ts",
-          "sourceHash": "9071e62ec4456f50ed9e518b0e38d39f87d2f73038baa2b1b1056ec3222fcc68",
+          "sourceHash": "9faf9f6222d6e47605cbd7d5a212614863cf340898546842ea4be2788d3012a8",
           "testFiles": [
             "test/resources/export.test.ts"
           ],
-          "testHash": "d01eb737a8d9b364984ccf7f7e521a667dd499eb49ed2bc99e0675ccb7acd4d2"
+          "testHash": "6944faa38755bbbea5c6c228305937696b8f5829ccc7b3cd542bdb76b2d2c663"
         }
       }
     ]
   },
   "invoices": {
-    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
-    "builtAt": "2026-10-07T11:11:59.888Z",
+    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+    "builtAt": "2026-10-07T12:21:59.269Z",
     "records": [
       {
         "id": "invoices.download",
@@ -2544,7 +2737,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "invoices.download.success",
@@ -2553,13 +2746,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "a5df632c4e16b6e9541dae300518c53ec3eee9767c6abc4520176fee5f20fa6b",
+          "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
-          "testHash": "e4a4f7ebd751f9bc25e574c3d5211cda9e0622c131cbbf447b927f915808113c"
+          "testHash": "687628080258372aac630f543cf2475d28f6c2b75d2b98f448280dfd520df986"
         }
       },
       {
@@ -2608,12 +2801,14 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch invoice.",
-          "usage": "Read path for invoices. Primitives return the full typed record.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Use when the id is already known; otherwise call invoices.resolve.",
+          "preferredWhen": "Preferred over invoices.list + a client-side find when the id is known.",
+          "related": [
+            "invoices.resolve"
+          ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "invoices.getById.success",
@@ -2627,13 +2822,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "a5df632c4e16b6e9541dae300518c53ec3eee9767c6abc4520176fee5f20fa6b",
+          "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
-          "testHash": "e4a4f7ebd751f9bc25e574c3d5211cda9e0622c131cbbf447b927f915808113c"
+          "testHash": "687628080258372aac630f543cf2475d28f6c2b75d2b98f448280dfd520df986"
         }
       },
       {
@@ -2684,12 +2879,15 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch invoices.",
-          "usage": "Read path for invoices. Primitives return the full typed record.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and invoices.search for the agent-facing compact read.",
+          "preferredWhen": "Preferred over invoices.search only when the agent must walk pages; invoices.search is the bounded default read.",
+          "related": [
+            "invoices.search",
+            "invoices.resolve"
+          ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "invoices.list.success",
@@ -2703,13 +2901,194 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "a5df632c4e16b6e9541dae300518c53ec3eee9767c6abc4520176fee5f20fa6b",
+          "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
-          "testHash": "e4a4f7ebd751f9bc25e574c3d5211cda9e0622c131cbbf447b927f915808113c"
+          "testHash": "687628080258372aac630f543cf2475d28f6c2b75d2b98f448280dfd520df986"
+        }
+      },
+      {
+        "id": "invoices.resolve",
+        "resource": "invoices",
+        "operation": "resolve",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "identifier": {
+            "type": "object",
+            "required": true,
+            "description": "InvoiceIdentifier"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ expand?: boolean; resolutionDetails?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "InvoiceSummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.invoices.resolve(1)",
+          "await client.invoices.resolve({ begin: '2026-01-01T10:00:00Z' })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": {
+          "basis": "server-filter",
+          "maxScanRecords": 500,
+          "maxScanPages": 1
+        },
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Resolve one invoice from an identifier.",
+          "usage": "Accepts { id } or a bare numeric id. Invoices have no vendor filter for a business key (invoice number), so no name/number resolution is offered; a miss throws NOT_FOUND rather than returning null.",
+          "preferredWhen": "Preferred over invoices.list when the id is already known.",
+          "related": [
+            "invoices.getById",
+            "invoices.list",
+            "invoices.search"
+          ]
+        },
+        "compact": "InvoiceSummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "invoices.resolve.id",
+            "file": "test/resources/invoice.test.ts",
+            "title": "resolves an invoice by numeric id"
+          },
+          {
+            "id": "invoices.resolve.id-miss",
+            "file": "test/resources/invoice.test.ts",
+            "title": "keeps NOT_FOUND for an unknown id"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "sourceFile": "src/resources/InvoiceClient.ts",
+          "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
+          "testFiles": [
+            "test/resources/invoice.test.ts"
+          ],
+          "testHash": "687628080258372aac630f543cf2475d28f6c2b75d2b98f448280dfd520df986"
+        }
+      },
+      {
+        "id": "invoices.search",
+        "resource": "invoices",
+        "operation": "search",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": false,
+            "description": "InvoiceSearchParams"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ limit?: number; expand?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "InvoiceSummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.invoices.search({ begin: '2026-01-01' }, { limit: 25 })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Search invoices with the spec filters, bounded by an explicit limit.",
+          "usage": "limit defaults to 25, hard max 100 (out-of-range throws KimaiConfigError). The endpoint is paginated: search reads at most ceil(limit/size) pages and returns compact InvoiceSummary rows by default; expand: true for the full records.",
+          "preferredWhen": "Preferred over invoices.list for any bounded filtered read (at most 100 rows).",
+          "related": [
+            "invoices.list",
+            "invoices.resolve"
+          ]
+        },
+        "compact": "InvoiceSummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "invoices.search.success",
+            "file": "test/resources/invoice.test.ts",
+            "title": "returns compact InvoiceSummary rows for the customer filter"
+          },
+          {
+            "id": "invoices.search.limit-reject",
+            "file": "test/resources/invoice.test.ts",
+            "title": "throws KimaiConfigError for a non-integer or out-of-range limit"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "sourceFile": "src/resources/InvoiceClient.ts",
+          "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
+          "testFiles": [
+            "test/resources/invoice.test.ts"
+          ],
+          "testHash": "687628080258372aac630f543cf2475d28f6c2b75d2b98f448280dfd520df986"
         }
       },
       {
@@ -2719,7 +3098,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "PATCH /api/invoices/{id}/custom-fields",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -2730,10 +3111,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "InvoiceMeta[]"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Invoice",
+          "type": "Invoice | DryRunResult<InvoiceMeta[]>",
           "drops": []
         },
         "examples": [
@@ -2745,8 +3131,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -2759,12 +3151,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Update invoice custom-fields.",
-          "usage": "Mutating path for invoices; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for invoices; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "invoices.updateCustomFields.success",
@@ -2778,20 +3170,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "a5df632c4e16b6e9541dae300518c53ec3eee9767c6abc4520176fee5f20fa6b",
+          "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
-          "testHash": "e4a4f7ebd751f9bc25e574c3d5211cda9e0622c131cbbf447b927f915808113c"
+          "testHash": "687628080258372aac630f543cf2475d28f6c2b75d2b98f448280dfd520df986"
         }
       }
     ]
   },
   "projects": {
-    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
-    "builtAt": "2026-10-07T11:11:59.888Z",
+    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+    "builtAt": "2026-10-07T12:21:59.269Z",
     "records": [
       {
         "id": "projects.addToTeam",
@@ -2800,7 +3192,10 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "POST /api/projects/{id}/team",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent",
+          "sensitive"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -2811,10 +3206,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "{ teams?: number[] }"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Team",
+          "type": "Team | DryRunResult<{ teams?: number[] }>",
           "drops": []
         },
         "examples": [
@@ -2826,8 +3226,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -2840,7 +3246,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Create team for project.",
-          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -2859,13 +3265,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
         }
       },
       {
@@ -2882,10 +3288,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "ProjectEditForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "ProjectEntity",
+          "type": "ProjectEntity | DryRunResult<ProjectEditForm>",
           "drops": []
         },
         "examples": [
@@ -2911,9 +3322,11 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Create project.",
-          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Creates a project; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+          "preferredWhen": "Preferred over projects.update for a new project.",
+          "related": [
+            "projects.update"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -2930,13 +3343,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
         }
       },
       {
@@ -2957,10 +3370,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "CommentForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Comment",
+          "type": "Comment | DryRunResult<CommentForm>",
           "drops": []
         },
         "examples": [
@@ -2986,7 +3404,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Add comment for project.",
-          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -3005,13 +3423,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
         }
       },
       {
@@ -3032,10 +3450,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "ProjectRateForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "ProjectRate",
+          "type": "ProjectRate | DryRunResult<ProjectRateForm>",
           "drops": []
         },
         "examples": [
@@ -3061,7 +3484,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Add rate for project.",
-          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -3080,13 +3503,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
         }
       },
       {
@@ -3096,16 +3519,23 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/projects/{id}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -3131,9 +3561,11 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Delete project.",
-          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Irreversible — the vendor offers no archive for projects. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
-          "related": []
+          "related": [
+            "projects.getById"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -3150,13 +3582,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
         }
       },
       {
@@ -3166,7 +3598,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/projects/{id}/comments/{comment}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -3176,10 +3610,15 @@ export const CAPABILITY_GROUPS = {
           "commentId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -3205,7 +3644,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Delete project comment.",
-          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -3224,13 +3663,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
         }
       },
       {
@@ -3240,7 +3679,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/projects/{id}/rates/{rateId}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -3250,10 +3691,15 @@ export const CAPABILITY_GROUPS = {
           "rateId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -3279,7 +3725,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Delete rate for project.",
-          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -3298,13 +3744,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
         }
       },
       {
@@ -3353,9 +3799,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch project.",
-          "usage": "Read path for projects. Primitives return the full typed record.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Use when the id is already known; otherwise call projects.resolve.",
+          "preferredWhen": "Preferred over projects.list + a client-side find when the id is known.",
+          "related": [
+            "projects.resolve",
+            "projects.getContext"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -3372,13 +3821,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
         }
       },
       {
@@ -3441,13 +3890,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
         }
       },
       {
@@ -3463,7 +3912,7 @@ export const CAPABILITY_GROUPS = {
           "params": {
             "type": "object",
             "required": false,
-            "description": "ProjectListParams"
+            "description": "ProjectSearchParams"
           }
         },
         "outputSchema": {
@@ -3498,9 +3947,13 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch projects.",
-          "usage": "Read path for projects. Primitives return the full typed record.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and projects.search for the agent-facing compact read.",
+          "preferredWhen": "Preferred over projects.search only when the agent must walk pages; projects.search is the bounded default read.",
+          "related": [
+            "projects.search",
+            "projects.resolve",
+            "projects.getContext"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -3513,17 +3966,17 @@ export const CAPABILITY_GROUPS = {
           {
             "id": "projects.list.pagination",
             "file": "test/resources/project.test.ts",
-            "title": "sends page/size and stops on a short page"
+            "title": "does not send page/size params for this non-paginated endpoint"
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
         }
       },
       {
@@ -3586,13 +4039,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
         }
       },
       {
@@ -3602,7 +4055,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "PATCH /api/projects/{id}/comments/{comment}/pin",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -3612,10 +4067,15 @@ export const CAPABILITY_GROUPS = {
           "commentId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Comment",
+          "type": "Comment | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -3627,8 +4087,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -3641,7 +4107,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Pin project comment.",
-          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -3660,13 +4126,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
         }
       },
       {
@@ -3676,7 +4142,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "PATCH /api/projects/{id}",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -3687,10 +4155,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "ProjectEditForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Project",
+          "type": "Project | DryRunResult<ProjectEditForm>",
           "drops": []
         },
         "examples": [
@@ -3702,8 +4175,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -3716,9 +4195,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Update project.",
-          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Replaces the editable fields of an existing project; supports { dryRun: true }. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+          "preferredWhen": "Preferred over projects.create for any change to an existing project.",
+          "related": [
+            "projects.create",
+            "projects.updateMeta"
+          ]
         },
         "compact": null,
         "status": "implemented",
@@ -3735,13 +4217,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
         }
       },
       {
@@ -3751,7 +4233,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "PATCH /api/projects/{id}/meta",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -3762,10 +4246,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "a string-keyed map — Record<string, unknown>"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Project",
+          "type": "Project | DryRunResult<Record<string, unknown>>",
           "drops": []
         },
         "examples": [
@@ -3777,8 +4266,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -3791,7 +4286,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Update project custom-field.",
-          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
@@ -3810,20 +4305,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "5922f9d86953d7dc173df9fb07c8daefc70057792999a4244238215664de3f37",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
-          "testHash": "b1678aa84776f041ab824168dedde8f13f7ebb21bec97dd75f3f7f0f5dec232f"
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
         }
       }
     ]
   },
   "system": {
-    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
-    "builtAt": "2026-10-07T11:11:59.888Z",
+    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+    "builtAt": "2026-10-07T12:21:59.269Z",
     "records": [
       {
         "id": "system.getPlugins",
@@ -3870,7 +4365,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "system.getPlugins.success",
@@ -3879,13 +4374,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/SystemClient.ts",
           "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
           "testFiles": [
             "test/resources/system.test.ts"
           ],
-          "testHash": "fd37499236d458b1ae02fa3f7252bd237da3eadd3a4b68e5a50db67d683ed105"
+          "testHash": "4d1b6d9b05466230bcade8b2d8929948f3b9c8459f466d3b3784f035626e5cb2"
         }
       },
       {
@@ -3933,7 +4428,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "system.getVersion.success",
@@ -3942,13 +4437,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/SystemClient.ts",
           "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
           "testFiles": [
             "test/resources/system.test.ts"
           ],
-          "testHash": "fd37499236d458b1ae02fa3f7252bd237da3eadd3a4b68e5a50db67d683ed105"
+          "testHash": "4d1b6d9b05466230bcade8b2d8929948f3b9c8459f466d3b3784f035626e5cb2"
         }
       },
       {
@@ -3996,7 +4491,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "system.ping.success",
@@ -4005,20 +4500,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/SystemClient.ts",
           "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
           "testFiles": [
             "test/resources/system.test.ts"
           ],
-          "testHash": "fd37499236d458b1ae02fa3f7252bd237da3eadd3a4b68e5a50db67d683ed105"
+          "testHash": "4d1b6d9b05466230bcade8b2d8929948f3b9c8459f466d3b3784f035626e5cb2"
         }
       }
     ]
   },
   "tags": {
-    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
-    "builtAt": "2026-10-07T11:11:59.888Z",
+    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+    "builtAt": "2026-10-07T12:21:59.269Z",
     "records": [
       {
         "id": "tags.create",
@@ -4034,10 +4529,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "TagEditForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Tag",
+          "type": "Tag | DryRunResult<TagEditForm>",
           "drops": []
         },
         "examples": [
@@ -4063,12 +4563,14 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Create tag.",
-          "usage": "Mutating path for tags; supports { dryRun: true }, which validates without issuing the write.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Creates a tag; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+          "preferredWhen": "Preferred over tags.update for a new tag.",
+          "related": [
+            "tags.update"
+          ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "tags.create.success",
@@ -4082,13 +4584,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "ba20a08f0725e5dfbef2e64c535aab94b924079a7bb0e34e2e91b48c50ef9864",
+          "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
-          "testHash": "bc5d6e2453fbd1d6351c907a5dc141cb579e151ba6f74531a93fa53a6cecef9c"
+          "testHash": "d2063bf590b584e5b28486186b38d9c4dfcbd0a85218d6f502323479401f199b"
         }
       },
       {
@@ -4098,16 +4600,23 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/tags/{id}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -4133,12 +4642,14 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Delete tag.",
-          "usage": "Mutating path for tags; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Irreversible — the vendor offers no archive for tags. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
-          "related": []
+          "related": [
+            "tags.getById"
+          ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "tags.delete.success",
@@ -4152,13 +4663,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "ba20a08f0725e5dfbef2e64c535aab94b924079a7bb0e34e2e91b48c50ef9864",
+          "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
-          "testHash": "bc5d6e2453fbd1d6351c907a5dc141cb579e151ba6f74531a93fa53a6cecef9c"
+          "testHash": "d2063bf590b584e5b28486186b38d9c4dfcbd0a85218d6f502323479401f199b"
         }
       },
       {
@@ -4211,7 +4722,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "tags.find.success",
@@ -4220,13 +4731,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "ba20a08f0725e5dfbef2e64c535aab94b924079a7bb0e34e2e91b48c50ef9864",
+          "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
-          "testHash": "bc5d6e2453fbd1d6351c907a5dc141cb579e151ba6f74531a93fa53a6cecef9c"
+          "testHash": "d2063bf590b584e5b28486186b38d9c4dfcbd0a85218d6f502323479401f199b"
         }
       },
       {
@@ -4271,12 +4782,15 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch tags.",
-          "usage": "Read path for tags. Primitives return the full typed record.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and tags.search for the agent-facing compact read.",
+          "preferredWhen": "Preferred over tags.search only when the agent must walk pages; tags.search is the bounded default read.",
+          "related": [
+            "tags.search",
+            "tags.resolve"
+          ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "tags.list.success",
@@ -4286,24 +4800,210 @@ export const CAPABILITY_GROUPS = {
           {
             "id": "tags.list.pagination",
             "file": "test/resources/tag.test.ts",
-            "title": "sends page/size and stops on a short page"
+            "title": "does not send page/size params for this non-paginated endpoint"
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "ba20a08f0725e5dfbef2e64c535aab94b924079a7bb0e34e2e91b48c50ef9864",
+          "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
-          "testHash": "bc5d6e2453fbd1d6351c907a5dc141cb579e151ba6f74531a93fa53a6cecef9c"
+          "testHash": "d2063bf590b584e5b28486186b38d9c4dfcbd0a85218d6f502323479401f199b"
+        }
+      },
+      {
+        "id": "tags.resolve",
+        "resource": "tags",
+        "operation": "resolve",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "identifier": {
+            "type": "object",
+            "required": true,
+            "description": "TagIdentifier"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ expand?: boolean; resolutionDetails?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "TagSummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.tags.resolve(1)",
+          "await client.tags.resolve({ begin: '2026-01-01T10:00:00Z' })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": {
+          "basis": "client-scan",
+          "maxScanRecords": 500,
+          "maxScanPages": 1
+        },
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "RESOLUTION_AMBIGUOUS",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Resolve one tag from an identifier.",
+          "usage": "Accepts { id }, { name } or a bare numeric id / exact name. Resolution reads the vendor tag list (no per-id endpoint exists); a complete scan with no match returns null, an ambiguous match throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
+          "preferredWhen": "Preferred over tags.list + a client-side find for any single-tag lookup.",
+          "related": [
+            "tags.list",
+            "tags.find"
+          ]
+        },
+        "compact": "TagSummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "tags.resolve.id",
+            "file": "test/resources/tag.test.ts",
+            "title": "resolves a tag by numeric id"
+          },
+          {
+            "id": "tags.resolve.name",
+            "file": "test/resources/tag.test.ts",
+            "title": "resolves a tag by exact name"
+          },
+          {
+            "id": "tags.resolve.miss",
+            "file": "test/resources/tag.test.ts",
+            "title": "returns null when no tag matches"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "sourceFile": "src/resources/TagClient.ts",
+          "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
+          "testFiles": [
+            "test/resources/tag.test.ts"
+          ],
+          "testHash": "d2063bf590b584e5b28486186b38d9c4dfcbd0a85218d6f502323479401f199b"
+        }
+      },
+      {
+        "id": "tags.search",
+        "resource": "tags",
+        "operation": "search",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": false,
+            "description": "TagSearchParams"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ limit?: number; expand?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "TagSummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.tags.search({ begin: '2026-01-01' }, { limit: 25 })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Search tags with the spec filters, bounded by an explicit limit.",
+          "usage": "limit defaults to 25, hard max 100 (out-of-range throws KimaiConfigError). Compact TagSummary rows by default; expand: true for the full records.",
+          "preferredWhen": "Preferred over tags.list for any bounded filtered read (at most 100 rows).",
+          "related": [
+            "tags.list",
+            "tags.resolve",
+            "tags.find"
+          ]
+        },
+        "compact": "TagSummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "tags.search.success",
+            "file": "test/resources/tag.test.ts",
+            "title": "returns compact TagSummary rows for a name filter"
+          },
+          {
+            "id": "tags.search.limit-reject",
+            "file": "test/resources/tag.test.ts",
+            "title": "throws KimaiConfigError for a non-integer or out-of-range limit"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "sourceFile": "src/resources/TagClient.ts",
+          "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
+          "testFiles": [
+            "test/resources/tag.test.ts"
+          ],
+          "testHash": "d2063bf590b584e5b28486186b38d9c4dfcbd0a85218d6f502323479401f199b"
         }
       }
     ]
   },
   "teams": {
-    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
-    "builtAt": "2026-10-07T11:11:59.888Z",
+    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+    "builtAt": "2026-10-07T12:21:59.269Z",
     "records": [
       {
         "id": "teams.addMember",
@@ -4312,7 +5012,11 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "POST /api/teams/{id}/members/{userId}",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent",
+          "sensitive",
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "teamId": {
@@ -4322,10 +5026,15 @@ export const CAPABILITY_GROUPS = {
           "userId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Team",
+          "type": "Team | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -4337,8 +5046,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -4351,12 +5066,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Add team member.",
-          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "teams.addMember.success",
@@ -4370,13 +5085,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
         }
       },
       {
@@ -4393,10 +5108,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "TeamEditForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Team",
+          "type": "Team | DryRunResult<TeamEditForm>",
           "drops": []
         },
         "examples": [
@@ -4422,12 +5142,14 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Create team.",
-          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Creates a team; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+          "preferredWhen": "Preferred over teams.update for a new team.",
+          "related": [
+            "teams.update"
+          ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "teams.create.success",
@@ -4441,13 +5163,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
         }
       },
       {
@@ -4457,16 +5179,23 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/teams/{id}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -4492,12 +5221,14 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Delete team.",
-          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Irreversible — the vendor offers no archive for teams. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
-          "related": []
+          "related": [
+            "teams.getById"
+          ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "teams.delete.success",
@@ -4511,13 +5242,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
         }
       },
       {
@@ -4566,12 +5297,14 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch team.",
-          "usage": "Read path for teams. Primitives return the full typed record.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Use when the id is already known; otherwise call teams.resolve.",
+          "preferredWhen": "Preferred over teams.list + a client-side find when the id is known.",
+          "related": [
+            "teams.resolve"
+          ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "teams.getById.success",
@@ -4585,13 +5318,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
         }
       },
       {
@@ -4601,7 +5334,11 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "POST /api/teams/{id}/activities/{activityId}",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent",
+          "sensitive",
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "teamId": {
@@ -4611,10 +5348,15 @@ export const CAPABILITY_GROUPS = {
           "activityId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Team",
+          "type": "Team | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -4626,8 +5368,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -4640,12 +5388,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Grant activity access.",
-          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "teams.grantActivityAccess.success",
@@ -4659,13 +5407,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
         }
       },
       {
@@ -4675,7 +5423,11 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "POST /api/teams/{id}/customers/{customerId}",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent",
+          "sensitive",
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "teamId": {
@@ -4685,10 +5437,15 @@ export const CAPABILITY_GROUPS = {
           "customerId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Team",
+          "type": "Team | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -4700,8 +5457,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -4714,12 +5477,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Grant customer access.",
-          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "teams.grantCustomerAccess.success",
@@ -4733,13 +5496,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
         }
       },
       {
@@ -4749,7 +5512,11 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "POST /api/teams/{id}/projects/{projectId}",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent",
+          "sensitive",
+          "requiresApproval"
+        ],
         "dryRun": true,
         "inputSchema": {
           "teamId": {
@@ -4759,10 +5526,15 @@ export const CAPABILITY_GROUPS = {
           "projectId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Team",
+          "type": "Team | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -4774,8 +5546,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -4788,12 +5566,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Grant project access.",
-          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "teams.grantProjectAccess.success",
@@ -4807,13 +5585,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
         }
       },
       {
@@ -4864,12 +5642,14 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch teams.",
-          "usage": "Read path for teams. Primitives return the full typed record.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages.",
+          "preferredWhen": "Preferred when the caller must walk pages; otherwise a bounded read is enough.",
+          "related": [
+            "teams.resolve"
+          ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "teams.list.success",
@@ -4879,17 +5659,17 @@ export const CAPABILITY_GROUPS = {
           {
             "id": "teams.list.pagination",
             "file": "test/resources/team.test.ts",
-            "title": "sends page/size and stops on a short page"
+            "title": "does not send page/size params for this non-paginated endpoint"
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
         }
       },
       {
@@ -4899,7 +5679,10 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/teams/{id}/members/{userId}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval",
+          "sensitive"
+        ],
         "dryRun": true,
         "inputSchema": {
           "teamId": {
@@ -4909,10 +5692,15 @@ export const CAPABILITY_GROUPS = {
           "userId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -4938,12 +5726,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Remove team member.",
-          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "teams.removeMember.success",
@@ -4957,13 +5745,112 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
+        }
+      },
+      {
+        "id": "teams.resolve",
+        "resource": "teams",
+        "operation": "resolve",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "identifier": {
+            "type": "object",
+            "required": true,
+            "description": "TeamIdentifier"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ expand?: boolean; resolutionDetails?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "TeamSummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.teams.resolve(1)",
+          "await client.teams.resolve({ begin: '2026-01-01T10:00:00Z' })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": {
+          "basis": "server-filter",
+          "maxScanRecords": 500,
+          "maxScanPages": 1
+        },
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "RESOLUTION_AMBIGUOUS",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Resolve one team from an identifier.",
+          "usage": "Accepts { id }, { name } or a bare numeric id / exact name. A miss returns null; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
+          "preferredWhen": "Preferred over teams.list + a client-side find for any single-team lookup.",
+          "related": [
+            "teams.getById",
+            "teams.list"
+          ]
+        },
+        "compact": "TeamSummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "teams.resolve.id",
+            "file": "test/resources/team.test.ts",
+            "title": "resolves a team by numeric id"
+          },
+          {
+            "id": "teams.resolve.name",
+            "file": "test/resources/team.test.ts",
+            "title": "resolves a team by exact name"
+          },
+          {
+            "id": "teams.resolve.miss",
+            "file": "test/resources/team.test.ts",
+            "title": "returns null after a complete match with no hit"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "sourceFile": "src/resources/TeamClient.ts",
+          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
+          "testFiles": [
+            "test/resources/team.test.ts"
+          ],
+          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
         }
       },
       {
@@ -4973,7 +5860,10 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/teams/{id}/activities/{activityId}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval",
+          "sensitive"
+        ],
         "dryRun": true,
         "inputSchema": {
           "teamId": {
@@ -4983,10 +5873,15 @@ export const CAPABILITY_GROUPS = {
           "activityId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -5012,12 +5907,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Revoke activity access.",
-          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "teams.revokeActivityAccess.success",
@@ -5031,13 +5926,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
         }
       },
       {
@@ -5047,7 +5942,10 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/teams/{id}/customers/{customerId}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval",
+          "sensitive"
+        ],
         "dryRun": true,
         "inputSchema": {
           "teamId": {
@@ -5057,10 +5955,15 @@ export const CAPABILITY_GROUPS = {
           "customerId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -5086,12 +5989,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Revoke customer access.",
-          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "teams.revokeCustomerAccess.success",
@@ -5105,13 +6008,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
         }
       },
       {
@@ -5121,7 +6024,10 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/teams/{id}/projects/{projectId}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval",
+          "sensitive"
+        ],
         "dryRun": true,
         "inputSchema": {
           "teamId": {
@@ -5131,10 +6037,15 @@ export const CAPABILITY_GROUPS = {
           "projectId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -5160,12 +6071,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Revoke project access.",
-          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "teams.revokeProjectAccess.success",
@@ -5179,13 +6090,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
         }
       },
       {
@@ -5195,7 +6106,10 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "PATCH /api/teams/{id}",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent",
+          "sensitive"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -5206,10 +6120,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "TeamEditForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "Team",
+          "type": "Team | DryRunResult<TeamEditForm>",
           "drops": []
         },
         "examples": [
@@ -5221,8 +6140,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -5235,12 +6160,15 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Update team.",
-          "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Replaces the editable fields of an existing team; supports { dryRun: true }. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+          "preferredWhen": "Preferred over teams.create for any change to an existing team.",
+          "related": [
+            "teams.create",
+            "teams.updateMeta"
+          ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "teams.update.success",
@@ -5254,20 +6182,20 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "44d7c98812cac20f9c770ad3ca9b85c3f240db5bf6cc61f40f12a170dc85183b",
+          "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
-          "testHash": "9f2606f8cb87f26098e6bd3a160ed33ea41a8748cc9fadc5d0782a5bb5626888"
+          "testHash": "b541de7e034a896e5de32fc478be56a2924c3122e78a26f294d39fa92ae9740a"
         }
       }
     ]
   },
   "timesheets": {
-    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
-    "builtAt": "2026-10-07T11:11:59.888Z",
+    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+    "builtAt": "2026-10-07T12:21:59.269Z",
     "records": [
       {
         "id": "timesheets.create",
@@ -5348,7 +6276,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -5427,7 +6355,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -5504,7 +6432,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -5569,7 +6497,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -5646,7 +6574,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -5737,7 +6665,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -5808,7 +6736,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -5898,7 +6826,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6018,7 +6946,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6101,7 +7029,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6208,7 +7136,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6293,7 +7221,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6376,7 +7304,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6467,7 +7395,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6557,7 +7485,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6569,8 +7497,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "users": {
-    "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
-    "builtAt": "2026-10-07T11:11:59.888Z",
+    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+    "builtAt": "2026-10-07T12:21:59.269Z",
     "records": [
       {
         "id": "users.create",
@@ -6579,17 +7507,24 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "POST /api/users",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "sensitive"
+        ],
         "dryRun": true,
         "inputSchema": {
           "input": {
             "type": "object",
             "required": true,
             "description": "UserCreateForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "UserEntity",
+          "type": "UserEntity | DryRunResult<UserCreateForm>",
           "drops": []
         },
         "examples": [
@@ -6615,12 +7550,14 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Create user.",
-          "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Creates a user; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+          "preferredWhen": "Preferred over users.update for a new user.",
+          "related": [
+            "users.update"
+          ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "users.create.success",
@@ -6634,13 +7571,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "004fb31a9528f46f2a7c290de46326c71768b72606483f0290c7f4ce80696ab5",
+          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "8d5bb9a5ca5c632034d44d603161e8c09faaf9fd561ada20b457dfbda9b20dbe"
+          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
         }
       },
       {
@@ -6650,16 +7587,24 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "DELETE /api/users/api-token/{id}",
         "effect": "destructive",
-        "flags": [],
+        "flags": [
+          "requiresApproval",
+          "sensitive"
+        ],
         "dryRun": true,
         "inputSchema": {
           "tokenId": {
             "type": "number",
             "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "void",
+          "type": "void | DryRunResult<void>",
           "drops": []
         },
         "examples": [
@@ -6685,12 +7630,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Delete API token.",
-          "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "users.deleteApiToken.success",
@@ -6704,13 +7649,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "004fb31a9528f46f2a7c290de46326c71768b72606483f0290c7f4ce80696ab5",
+          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "8d5bb9a5ca5c632034d44d603161e8c09faaf9fd561ada20b457dfbda9b20dbe"
+          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
         }
       },
       {
@@ -6759,12 +7704,14 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch user.",
-          "usage": "Read path for users. Primitives return the full typed record.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Use when the id is already known; otherwise call users.resolve.",
+          "preferredWhen": "Preferred over users.list + a client-side find when the id is known.",
+          "related": [
+            "users.resolve"
+          ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "users.getById.success",
@@ -6778,13 +7725,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "004fb31a9528f46f2a7c290de46326c71768b72606483f0290c7f4ce80696ab5",
+          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "8d5bb9a5ca5c632034d44d603161e8c09faaf9fd561ada20b457dfbda9b20dbe"
+          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
         }
       },
       {
@@ -6832,7 +7779,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "users.getMe.success",
@@ -6841,13 +7788,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "004fb31a9528f46f2a7c290de46326c71768b72606483f0290c7f4ce80696ab5",
+          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "8d5bb9a5ca5c632034d44d603161e8c09faaf9fd561ada20b457dfbda9b20dbe"
+          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
         }
       },
       {
@@ -6898,12 +7845,15 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Fetch users.",
-          "usage": "Read path for users. Primitives return the full typed record.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and users.search for the agent-facing compact read.",
+          "preferredWhen": "Preferred over users.search only when the agent must walk pages; users.search is the bounded default read.",
+          "related": [
+            "users.search",
+            "users.resolve"
+          ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "users.list.success",
@@ -6913,17 +7863,211 @@ export const CAPABILITY_GROUPS = {
           {
             "id": "users.list.pagination",
             "file": "test/resources/user.test.ts",
-            "title": "sends page/size and stops on a short page"
+            "title": "does not send page/size params for this non-paginated endpoint"
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "004fb31a9528f46f2a7c290de46326c71768b72606483f0290c7f4ce80696ab5",
+          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "8d5bb9a5ca5c632034d44d603161e8c09faaf9fd561ada20b457dfbda9b20dbe"
+          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
+        }
+      },
+      {
+        "id": "users.resolve",
+        "resource": "users",
+        "operation": "resolve",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "identifier": {
+            "type": "object",
+            "required": true,
+            "description": "UserIdentifier"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ expand?: boolean; resolutionDetails?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "UserSummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.users.resolve(1)",
+          "await client.users.resolve({ begin: '2026-01-01T10:00:00Z' })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": {
+          "basis": "client-scan",
+          "maxScanRecords": 500,
+          "maxScanPages": 1
+        },
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "RESOLUTION_AMBIGUOUS",
+          "RESOLUTION_TRUNCATED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Resolve one user from an identifier.",
+          "usage": "Accepts { id }, { username } or a bare numeric id / exact username. The username path scans the user list with a bounded cap (cap 500 records; the collection is unpaginated); a truncated scan throws RESOLUTION_TRUNCATED and an ambiguous match throws RESOLUTION_AMBIGUOUS with the candidate ids.",
+          "preferredWhen": "Preferred over users.list + a client-side find for any single-user lookup.",
+          "related": [
+            "users.getById",
+            "users.list",
+            "users.search",
+            "users.getMe"
+          ]
+        },
+        "compact": "UserSummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "users.resolve.id",
+            "file": "test/resources/user.test.ts",
+            "title": "resolves a user by numeric id"
+          },
+          {
+            "id": "users.resolve.username",
+            "file": "test/resources/user.test.ts",
+            "title": "resolves a user by exact username through the bounded scan"
+          },
+          {
+            "id": "users.resolve.miss",
+            "file": "test/resources/user.test.ts",
+            "title": "returns null after a complete scan with no hit"
+          },
+          {
+            "id": "users.resolve.truncated",
+            "file": "test/resources/user.test.ts",
+            "title": "throws RESOLUTION_TRUNCATED when the scan cap is reached"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "sourceFile": "src/resources/UserClient.ts",
+          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
+          "testFiles": [
+            "test/resources/user.test.ts"
+          ],
+          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
+        }
+      },
+      {
+        "id": "users.search",
+        "resource": "users",
+        "operation": "search",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": false,
+            "description": "UserSearchParams"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ limit?: number; expand?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "UserSummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.users.search({ begin: '2026-01-01' }, { limit: 25 })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Search users with the spec filters, bounded by an explicit limit.",
+          "usage": "limit defaults to 25, hard max 100 (out-of-range throws KimaiConfigError). Compact UserSummary rows by default (no credential fields); expand: true for the full records.",
+          "preferredWhen": "Preferred over users.list for any bounded filtered read (at most 100 rows).",
+          "related": [
+            "users.list",
+            "users.resolve"
+          ]
+        },
+        "compact": "UserSummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "users.search.success",
+            "file": "test/resources/user.test.ts",
+            "title": "returns compact UserSummary rows for the spec filters"
+          },
+          {
+            "id": "users.search.no-credentials",
+            "file": "test/resources/user.test.ts",
+            "title": "drops credential fields from the compact rows"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "sourceFile": "src/resources/UserClient.ts",
+          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
+          "testFiles": [
+            "test/resources/user.test.ts"
+          ],
+          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
         }
       },
       {
@@ -6933,7 +8077,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "PATCH /api/users/{id}",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -6944,10 +8090,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "UserEditForm"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "User",
+          "type": "User | DryRunResult<UserEditForm>",
           "drops": []
         },
         "examples": [
@@ -6959,8 +8110,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -6973,12 +8130,15 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Update an existing user.",
-          "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
-          "preferredWhen": null,
-          "related": []
+          "usage": "Replaces the editable fields of an existing user; supports { dryRun: true }. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+          "preferredWhen": "Preferred over users.create for any change to an existing user.",
+          "related": [
+            "users.create",
+            "users.updateMeta"
+          ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "users.update.success",
@@ -6992,13 +8152,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "004fb31a9528f46f2a7c290de46326c71768b72606483f0290c7f4ce80696ab5",
+          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "8d5bb9a5ca5c632034d44d603161e8c09faaf9fd561ada20b457dfbda9b20dbe"
+          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
         }
       },
       {
@@ -7008,7 +8168,9 @@ export const CAPABILITY_GROUPS = {
         "kind": "primitive",
         "endpoint": "PATCH /api/users/{id}/preferences",
         "effect": "write",
-        "flags": [],
+        "flags": [
+          "idempotent"
+        ],
         "dryRun": true,
         "inputSchema": {
           "id": {
@@ -7019,10 +8181,15 @@ export const CAPABILITY_GROUPS = {
             "type": "object",
             "required": true,
             "description": "UserPreference[]"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ dryRun?: boolean }"
           }
         },
         "outputSchema": {
-          "type": "User",
+          "type": "User | DryRunResult<UserPreference[]>",
           "drops": []
         },
         "examples": [
@@ -7034,8 +8201,14 @@ export const CAPABILITY_GROUPS = {
         },
         "resolution": null,
         "retry": {
-          "retryableStatuses": [],
-          "policy": "not retried: non-idempotent mutation (the transport retries nothing; a caller must not re-issue blindly)",
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
           "idempotencySupport": "none"
         },
         "errors": [
@@ -7048,12 +8221,12 @@ export const CAPABILITY_GROUPS = {
         ],
         "metadata": {
           "purpose": "Update user preferences.",
-          "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
+          "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
           "preferredWhen": null,
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "users.updatePreferences.success",
@@ -7067,13 +8240,13 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c910494e4fb4613e69ddc03b34775bf69045f031b18a429e75b3ebb7035f8897",
+          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "004fb31a9528f46f2a7c290de46326c71768b72606483f0290c7f4ce80696ab5",
+          "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
-          "testHash": "8d5bb9a5ca5c632034d44d603161e8c09faaf9fd561ada20b457dfbda9b20dbe"
+          "testHash": "9d9ff3184ec8fdb9bd11af31434ee37653c8bf1f7e92baca27259752dd42b13b"
         }
       }
     ]

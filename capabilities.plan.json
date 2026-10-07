@@ -93,7 +93,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "NOT_FOUND",
@@ -108,7 +108,7 @@
         }
       ],
       "group": "actions",
-      "status": "implemented",
+      "status": "tested",
       "_alsoServes": [
         "GET /api/actions/activity/{id}/{view}/{locale}",
         "GET /api/actions/project/{id}/{view}/{locale}",
@@ -125,18 +125,22 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Delete activity.",
-        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Irreversible — the vendor offers no archive for activities. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
-        "related": []
+        "related": [
+          "activities.getById"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -170,18 +174,20 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Delete rate for activity.",
-        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -227,14 +233,17 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch activities.",
-        "usage": "Read path for activities. Primitives return the full typed record.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and activities.search for the agent-facing compact read.",
+        "preferredWhen": "Preferred over activities.search only when the agent must walk pages; activities.search is the bounded default read.",
+        "related": [
+          "activities.search",
+          "activities.resolve"
+        ]
       },
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -249,7 +258,7 @@
         {
           "id": "activities.list.pagination",
           "file": "test/resources/activity.test.ts",
-          "title": "sends page/size and stops on a short page"
+          "title": "does not send page/size params for this non-paginated endpoint"
         }
       ],
       "group": "activities",
@@ -269,14 +278,16 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch activity.",
-        "usage": "Read path for activities. Primitives return the full typed record.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Use when the id is already known; otherwise call activities.resolve.",
+        "preferredWhen": "Preferred over activities.list + a client-side find when the id is known.",
+        "related": [
+          "activities.resolve"
+        ]
       },
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "NOT_FOUND",
@@ -319,7 +330,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "NOT_FOUND",
@@ -346,18 +357,23 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Update activity.",
-        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Replaces the editable fields of an existing activity; supports { dryRun: true }. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+        "preferredWhen": "Preferred over activities.create for any change to an existing activity.",
+        "related": [
+          "activities.create",
+          "activities.updateMeta"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -391,18 +407,20 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Update activity custom-field.",
-        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -440,14 +458,16 @@
       "dryRun": true,
       "metadata": {
         "purpose": "Create activity.",
-        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Creates a activity; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+        "preferredWhen": "Preferred over activities.update for a new activity.",
+        "related": [
+          "activities.update"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -485,14 +505,14 @@
       "dryRun": true,
       "metadata": {
         "purpose": "Add rate for activity.",
-        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -526,18 +546,21 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent",
+        "sensitive"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Create team for activity.",
-        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for activities; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -701,7 +724,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -715,7 +738,7 @@
         }
       ],
       "group": "approvalBundle",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/approval-bundle/overtime_year",
@@ -741,7 +764,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -755,7 +778,7 @@
         }
       ],
       "group": "approvalBundle",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/approval-bundle/week-status",
@@ -781,7 +804,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -795,7 +818,7 @@
         }
       ],
       "group": "approvalBundle",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/approval-bundle/weekly_overtime",
@@ -821,7 +844,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -835,7 +858,7 @@
         }
       ],
       "group": "approvalBundle",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "POST /api/approval-bundle/add_to_approve",
@@ -850,18 +873,20 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "sensitive"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "POST /api/approval-bundle/add_to_approve.",
-        "usage": "Mutating path for approvalBundle; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for approvalBundle; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -883,7 +908,7 @@
         }
       ],
       "group": "approvalBundle",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/config/colors",
@@ -906,7 +931,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -920,7 +945,7 @@
         }
       ],
       "group": "config",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/config/timesheet",
@@ -943,7 +968,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -957,7 +982,7 @@
         }
       ],
       "group": "config",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "DELETE /api/customers/{id}",
@@ -969,18 +994,22 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Delete customer.",
-        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Irreversible — the vendor offers no archive for customers. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
-        "related": []
+        "related": [
+          "customers.getById"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -1014,18 +1043,20 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Delete customer comment.",
-        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -1059,18 +1090,20 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Delete rate for customer.",
-        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -1114,14 +1147,18 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch customers.",
-        "usage": "Read path for customers. Primitives return the full typed record.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and customers.search for the agent-facing compact read.",
+        "preferredWhen": "Preferred over customers.search only when the agent must walk pages; customers.search is the bounded default read.",
+        "related": [
+          "customers.search",
+          "customers.resolve",
+          "customers.getContext"
+        ]
       },
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -1136,7 +1173,7 @@
         {
           "id": "customers.list.pagination",
           "file": "test/resources/customer.test.ts",
-          "title": "sends page/size and stops on a short page"
+          "title": "does not send page/size params for this non-paginated endpoint"
         }
       ],
       "group": "customers",
@@ -1156,14 +1193,17 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch customer.",
-        "usage": "Read path for customers. Primitives return the full typed record.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Use when the id is already known; otherwise call customers.resolve.",
+        "preferredWhen": "Preferred over customers.list + a client-side find when the id is known.",
+        "related": [
+          "customers.resolve",
+          "customers.getContext"
+        ]
       },
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "NOT_FOUND",
@@ -1206,7 +1246,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "NOT_FOUND",
@@ -1244,7 +1284,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "NOT_FOUND",
@@ -1271,18 +1311,23 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Update customer.",
-        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Replaces the editable fields of an existing customer; supports { dryRun: true }. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+        "preferredWhen": "Preferred over customers.create for any change to an existing customer.",
+        "related": [
+          "customers.create",
+          "customers.updateMeta"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -1316,18 +1361,20 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Pin customer comment.",
-        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -1361,18 +1408,20 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Update customer custom-field.",
-        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -1410,14 +1459,16 @@
       "dryRun": true,
       "metadata": {
         "purpose": "Create customer.",
-        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Creates a customer; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+        "preferredWhen": "Preferred over customers.update for a new customer.",
+        "related": [
+          "customers.update"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -1455,14 +1506,14 @@
       "dryRun": true,
       "metadata": {
         "purpose": "Add comment for customer.",
-        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -1500,14 +1551,14 @@
       "dryRun": true,
       "metadata": {
         "purpose": "Add rate for customer.",
-        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -1541,18 +1592,21 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent",
+        "sensitive"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Create team for customer.",
-        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for customers; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -1741,18 +1795,20 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Delete export template.",
-        "usage": "Mutating path for export; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for export; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -1774,7 +1830,7 @@
         }
       ],
       "group": "export",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/invoices",
@@ -1795,14 +1851,17 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch invoices.",
-        "usage": "Read path for invoices. Primitives return the full typed record.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and invoices.search for the agent-facing compact read.",
+        "preferredWhen": "Preferred over invoices.search only when the agent must walk pages; invoices.search is the bounded default read.",
+        "related": [
+          "invoices.search",
+          "invoices.resolve"
+        ]
       },
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -1821,7 +1880,7 @@
         }
       ],
       "group": "invoices",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/invoices/{id}",
@@ -1837,14 +1896,16 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch invoice.",
-        "usage": "Read path for invoices. Primitives return the full typed record.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Use when the id is already known; otherwise call invoices.resolve.",
+        "preferredWhen": "Preferred over invoices.list + a client-side find when the id is known.",
+        "related": [
+          "invoices.resolve"
+        ]
       },
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "NOT_FOUND",
@@ -1864,7 +1925,7 @@
         }
       ],
       "group": "invoices",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/invoices/{id}/download",
@@ -1887,7 +1948,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "NOT_FOUND",
@@ -1902,7 +1963,7 @@
         }
       ],
       "group": "invoices",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "PATCH /api/invoices/{id}/custom-fields",
@@ -1914,18 +1975,20 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Update invoice custom-fields.",
-        "usage": "Mutating path for invoices; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for invoices; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -1947,7 +2010,7 @@
         }
       ],
       "group": "invoices",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": null,
@@ -1998,7 +2061,7 @@
         }
       ],
       "group": "invoices",
-      "status": "planned"
+      "status": "tested"
     },
     {
       "endpoint": null,
@@ -2043,7 +2106,7 @@
         }
       ],
       "group": "invoices",
-      "status": "planned"
+      "status": "tested"
     },
     {
       "endpoint": "DELETE /api/projects/{id}",
@@ -2055,18 +2118,22 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Delete project.",
-        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Irreversible — the vendor offers no archive for projects. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
-        "related": []
+        "related": [
+          "projects.getById"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -2100,18 +2167,20 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Delete project comment.",
-        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -2145,18 +2214,20 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Delete rate for project.",
-        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -2205,14 +2276,18 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch projects.",
-        "usage": "Read path for projects. Primitives return the full typed record.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and projects.search for the agent-facing compact read.",
+        "preferredWhen": "Preferred over projects.search only when the agent must walk pages; projects.search is the bounded default read.",
+        "related": [
+          "projects.search",
+          "projects.resolve",
+          "projects.getContext"
+        ]
       },
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -2227,7 +2302,7 @@
         {
           "id": "projects.list.pagination",
           "file": "test/resources/project.test.ts",
-          "title": "sends page/size and stops on a short page"
+          "title": "does not send page/size params for this non-paginated endpoint"
         }
       ],
       "group": "projects",
@@ -2247,14 +2322,17 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch project.",
-        "usage": "Read path for projects. Primitives return the full typed record.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Use when the id is already known; otherwise call projects.resolve.",
+        "preferredWhen": "Preferred over projects.list + a client-side find when the id is known.",
+        "related": [
+          "projects.resolve",
+          "projects.getContext"
+        ]
       },
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "NOT_FOUND",
@@ -2297,7 +2375,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "NOT_FOUND",
@@ -2335,7 +2413,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "NOT_FOUND",
@@ -2362,18 +2440,23 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Update project.",
-        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Replaces the editable fields of an existing project; supports { dryRun: true }. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+        "preferredWhen": "Preferred over projects.create for any change to an existing project.",
+        "related": [
+          "projects.create",
+          "projects.updateMeta"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -2407,18 +2490,20 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Pin project comment.",
-        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -2452,18 +2537,20 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Update project custom-field.",
-        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -2501,14 +2588,16 @@
       "dryRun": true,
       "metadata": {
         "purpose": "Create project.",
-        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Creates a project; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+        "preferredWhen": "Preferred over projects.update for a new project.",
+        "related": [
+          "projects.update"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -2546,14 +2635,14 @@
       "dryRun": true,
       "metadata": {
         "purpose": "Add comment for project.",
-        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -2591,14 +2680,14 @@
       "dryRun": true,
       "metadata": {
         "purpose": "Add rate for project.",
-        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -2632,18 +2721,21 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent",
+        "sensitive"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Create team for project.",
-        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for projects; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -2842,7 +2934,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -2856,7 +2948,7 @@
         }
       ],
       "group": "system",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/plugins",
@@ -2879,7 +2971,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -2893,7 +2985,7 @@
         }
       ],
       "group": "system",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/version",
@@ -2916,7 +3008,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -2930,7 +3022,7 @@
         }
       ],
       "group": "system",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "DELETE /api/tags/{id}",
@@ -2942,18 +3034,22 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Delete tag.",
-        "usage": "Mutating path for tags; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Irreversible — the vendor offers no archive for tags. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
-        "related": []
+        "related": [
+          "tags.getById"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -2975,7 +3071,7 @@
         }
       ],
       "group": "tags",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/tags/find",
@@ -2993,14 +3089,17 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch tags.",
-        "usage": "Read path for tags. Primitives return the full typed record.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and tags.search for the agent-facing compact read.",
+        "preferredWhen": "Preferred over tags.search only when the agent must walk pages; tags.search is the bounded default read.",
+        "related": [
+          "tags.search",
+          "tags.resolve"
+        ]
       },
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -3015,11 +3114,11 @@
         {
           "id": "tags.list.pagination",
           "file": "test/resources/tag.test.ts",
-          "title": "sends page/size and stops on a short page"
+          "title": "does not send page/size params for this non-paginated endpoint"
         }
       ],
       "group": "tags",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/tags/find",
@@ -3044,7 +3143,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -3058,7 +3157,7 @@
         }
       ],
       "group": "tags",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "POST /api/tags",
@@ -3074,14 +3173,16 @@
       "dryRun": true,
       "metadata": {
         "purpose": "Create tag.",
-        "usage": "Mutating path for tags; supports { dryRun: true }, which validates without issuing the write.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Creates a tag; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+        "preferredWhen": "Preferred over tags.update for a new tag.",
+        "related": [
+          "tags.update"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -3103,7 +3204,7 @@
         }
       ],
       "group": "tags",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": null,
@@ -3112,14 +3213,14 @@
       "vendorFilters": [],
       "search": null,
       "helper": "tags.resolve",
-      "helperBasis": "server-filter",
-      "helperRationale": "One bounded server-side read: { id } matches over the vendor's tag list (/api/tags/find) and a name goes to its `name` filter, compared exactly afterwards. A miss returns null; several exact matches throw RESOLUTION_AMBIGUOUS with the candidate ids.",
+      "helperBasis": "composite",
+      "helperRationale": "Two bounded paths over the vendor's tag list (GET /api/tags/find — the vendor exposes no GET /api/tags/{id}): { id } matches exactly over one complete unfiltered list read; a name goes to the vendor's `name` filter and is compared exactly afterwards. A miss returns null (a complete scan proves absence); several exact matches throw RESOLUTION_AMBIGUOUS with the candidate ids; an inexact filter returning no exact match throws RESOLUTION_AMBIGUOUS (an inexact filter cannot prove absence).",
       "effect": "read",
       "flags": [],
       "dryRun": false,
       "metadata": {
         "purpose": "Resolve one tag from an identifier.",
-        "usage": "Accepts { id }, { name } or a bare numeric id / exact name. Resolves through the vendor's tag list (GET /api/tags/find); a miss returns null, an ambiguous name throws RESOLUTION_AMBIGUOUS.",
+        "usage": "Accepts { id }, { name } or a bare numeric id / exact name. Resolution reads the vendor tag list (no per-id endpoint exists); a complete scan with no match returns null, an ambiguous match throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
         "preferredWhen": "Preferred over tags.list + a client-side find for any single-tag lookup.",
         "related": [
           "tags.list",
@@ -3128,7 +3229,7 @@
       },
       "compact": "TagSummary",
       "resolution": {
-        "basis": "server-filter",
+        "basis": "client-scan",
         "maxScanRecords": 500,
         "maxScanPages": 1
       },
@@ -3136,7 +3237,6 @@
       "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
-        "NOT_FOUND",
         "RATE_LIMITED",
         "RESOLUTION_AMBIGUOUS",
         "SERVER_ERROR"
@@ -3159,7 +3259,7 @@
         }
       ],
       "group": "tags",
-      "status": "planned"
+      "status": "tested"
     },
     {
       "endpoint": null,
@@ -3205,7 +3305,7 @@
         }
       ],
       "group": "tags",
-      "status": "planned"
+      "status": "tested"
     },
     {
       "endpoint": "DELETE /api/teams/{id}",
@@ -3217,18 +3317,22 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Delete team.",
-        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Irreversible — the vendor offers no archive for teams. Always dry-run first. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
-        "related": []
+        "related": [
+          "teams.getById"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -3250,7 +3354,7 @@
         }
       ],
       "group": "teams",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "DELETE /api/teams/{id}/activities/{activityId}",
@@ -3262,18 +3366,21 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval",
+        "sensitive"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Revoke activity access.",
-        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -3295,7 +3402,7 @@
         }
       ],
       "group": "teams",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "DELETE /api/teams/{id}/customers/{customerId}",
@@ -3307,18 +3414,21 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval",
+        "sensitive"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Revoke customer access.",
-        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -3340,7 +3450,7 @@
         }
       ],
       "group": "teams",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "DELETE /api/teams/{id}/members/{userId}",
@@ -3352,18 +3462,21 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval",
+        "sensitive"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Remove team member.",
-        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -3385,7 +3498,7 @@
         }
       ],
       "group": "teams",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "DELETE /api/teams/{id}/projects/{projectId}",
@@ -3397,18 +3510,21 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval",
+        "sensitive"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Revoke project access.",
-        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -3430,7 +3546,7 @@
         }
       ],
       "group": "teams",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/teams",
@@ -3446,14 +3562,16 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch teams.",
-        "usage": "Read path for teams. Primitives return the full typed record.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages.",
+        "preferredWhen": "Preferred when the caller must walk pages; otherwise a bounded read is enough.",
+        "related": [
+          "teams.resolve"
+        ]
       },
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -3468,11 +3586,11 @@
         {
           "id": "teams.list.pagination",
           "file": "test/resources/team.test.ts",
-          "title": "sends page/size and stops on a short page"
+          "title": "does not send page/size params for this non-paginated endpoint"
         }
       ],
       "group": "teams",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/teams/{id}",
@@ -3488,14 +3606,16 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch team.",
-        "usage": "Read path for teams. Primitives return the full typed record.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Use when the id is already known; otherwise call teams.resolve.",
+        "preferredWhen": "Preferred over teams.list + a client-side find when the id is known.",
+        "related": [
+          "teams.resolve"
+        ]
       },
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "none",
       "errors": [
         "CONFIG_ERROR",
         "NOT_FOUND",
@@ -3515,7 +3635,7 @@
         }
       ],
       "group": "teams",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "PATCH /api/teams/{id}",
@@ -3527,18 +3647,24 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent",
+        "sensitive"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Update team.",
-        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Replaces the editable fields of an existing team; supports { dryRun: true }. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+        "preferredWhen": "Preferred over teams.create for any change to an existing team.",
+        "related": [
+          "teams.create",
+          "teams.updateMeta"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -3560,7 +3686,7 @@
         }
       ],
       "group": "teams",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "POST /api/teams",
@@ -3576,14 +3702,16 @@
       "dryRun": true,
       "metadata": {
         "purpose": "Create team.",
-        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Creates a team; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+        "preferredWhen": "Preferred over teams.update for a new team.",
+        "related": [
+          "teams.update"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -3605,7 +3733,7 @@
         }
       ],
       "group": "teams",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "POST /api/teams/{id}/activities/{activityId}",
@@ -3617,18 +3745,22 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent",
+        "sensitive",
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Grant activity access.",
-        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -3650,7 +3782,7 @@
         }
       ],
       "group": "teams",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "POST /api/teams/{id}/customers/{customerId}",
@@ -3662,18 +3794,22 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent",
+        "sensitive",
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Grant customer access.",
-        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -3695,7 +3831,7 @@
         }
       ],
       "group": "teams",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "POST /api/teams/{id}/members/{userId}",
@@ -3707,18 +3843,22 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent",
+        "sensitive",
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Add team member.",
-        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -3740,7 +3880,7 @@
         }
       ],
       "group": "teams",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "POST /api/teams/{id}/projects/{projectId}",
@@ -3752,18 +3892,22 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent",
+        "sensitive",
+        "requiresApproval"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Grant project access.",
-        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for teams; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -3785,7 +3929,7 @@
         }
       ],
       "group": "teams",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": null,
@@ -3841,7 +3985,7 @@
         }
       ],
       "group": "teams",
-      "status": "planned"
+      "status": "tested"
     },
     {
       "endpoint": "DELETE /api/timesheets/{id}",
@@ -4645,18 +4789,21 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "destructive",
-      "flags": [],
+      "flags": [
+        "requiresApproval",
+        "sensitive"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Delete API token.",
-        "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -4678,7 +4825,7 @@
         }
       ],
       "group": "users",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/users",
@@ -4700,14 +4847,17 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch users.",
-        "usage": "Read path for users. Primitives return the full typed record.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Bounded single-page read with the spec filters; use getAll/listPages to walk pages and users.search for the agent-facing compact read.",
+        "preferredWhen": "Preferred over users.search only when the agent must walk pages; users.search is the bounded default read.",
+        "related": [
+          "users.search",
+          "users.resolve"
+        ]
       },
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "credentials",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -4722,11 +4872,11 @@
         {
           "id": "users.list.pagination",
           "file": "test/resources/user.test.ts",
-          "title": "sends page/size and stops on a short page"
+          "title": "does not send page/size params for this non-paginated endpoint"
         }
       ],
       "group": "users",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/users/{id}",
@@ -4742,14 +4892,16 @@
       "dryRun": false,
       "metadata": {
         "purpose": "Fetch user.",
-        "usage": "Read path for users. Primitives return the full typed record.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Use when the id is already known; otherwise call users.resolve.",
+        "preferredWhen": "Preferred over users.list + a client-side find when the id is known.",
+        "related": [
+          "users.resolve"
+        ]
       },
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "credentials",
       "errors": [
         "CONFIG_ERROR",
         "NOT_FOUND",
@@ -4769,7 +4921,7 @@
         }
       ],
       "group": "users",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "GET /api/users/me",
@@ -4792,7 +4944,7 @@
       "compact": null,
       "resolution": null,
       "staleCheck": null,
-      "redaction": null,
+      "redaction": "credentials",
       "errors": [
         "CONFIG_ERROR",
         "RATE_LIMITED",
@@ -4806,7 +4958,7 @@
         }
       ],
       "group": "users",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "PATCH /api/users/{id}",
@@ -4818,18 +4970,23 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Update an existing user.",
-        "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Replaces the editable fields of an existing user; supports { dryRun: true }. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+        "preferredWhen": "Preferred over users.create for any change to an existing user.",
+        "related": [
+          "users.create",
+          "users.updateMeta"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "credentials",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -4851,7 +5008,7 @@
         }
       ],
       "group": "users",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "PATCH /api/users/{id}/preferences",
@@ -4863,18 +5020,20 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "idempotent"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Update user preferences.",
-        "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
+        "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
         "preferredWhen": null,
         "related": []
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "none",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -4896,7 +5055,7 @@
         }
       ],
       "group": "users",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": "POST /api/users",
@@ -4908,18 +5067,22 @@
       "helperBasis": null,
       "helperRationale": null,
       "effect": "write",
-      "flags": [],
+      "flags": [
+        "sensitive"
+      ],
       "dryRun": true,
       "metadata": {
         "purpose": "Create user.",
-        "usage": "Mutating path for users; supports { dryRun: true }, which validates without issuing the write.",
-        "preferredWhen": null,
-        "related": []
+        "usage": "Creates a user; supports { dryRun: true }, which validates without issuing the write. The vendor exposes no version field, so a stale write cannot be guarded (staleCheck: unavailable).",
+        "preferredWhen": "Preferred over users.update for a new user.",
+        "related": [
+          "users.update"
+        ]
       },
       "compact": null,
       "resolution": null,
-      "staleCheck": null,
-      "redaction": null,
+      "staleCheck": "unavailable",
+      "redaction": "credentials",
       "errors": [
         "BAD_REQUEST",
         "CONFIG_ERROR",
@@ -4941,7 +5104,7 @@
         }
       ],
       "group": "users",
-      "status": "implemented"
+      "status": "tested"
     },
     {
       "endpoint": null,
@@ -4951,13 +5114,13 @@
       "search": null,
       "helper": "users.resolve",
       "helperBasis": "composite",
-      "helperRationale": "Two paths, both bounded: { id } fetches directly (server-side); a username has no vendor filter, so it is matched exactly over a bounded client scan of the user list (cap 500 records / 5 pages). A miss after a complete scan returns null; a truncated scan throws RESOLUTION_TRUNCATED (never null); several exact matches throw RESOLUTION_AMBIGUOUS.",
+      "helperRationale": "Two paths, both bounded: { id } fetches directly (server-side); a username has no vendor filter, so it is matched exactly over a bounded client scan of the user list (cap 500 records; the vendor users collection is unpaginated, so the record cap is the effective bound). A miss after a complete scan returns null; a truncated scan throws RESOLUTION_TRUNCATED (never null); several exact matches throw RESOLUTION_AMBIGUOUS.",
       "effect": "read",
       "flags": [],
       "dryRun": false,
       "metadata": {
         "purpose": "Resolve one user from an identifier.",
-        "usage": "Accepts { id }, { username } or a bare numeric id / exact username. The username path scans the user list with a bounded cap (500 records, 5 pages); a truncated scan throws RESOLUTION_TRUNCATED and an ambiguous match throws RESOLUTION_AMBIGUOUS with the candidate ids.",
+        "usage": "Accepts { id }, { username } or a bare numeric id / exact username. The username path scans the user list with a bounded cap (cap 500 records; the collection is unpaginated); a truncated scan throws RESOLUTION_TRUNCATED and an ambiguous match throws RESOLUTION_AMBIGUOUS with the candidate ids.",
         "preferredWhen": "Preferred over users.list + a client-side find for any single-user lookup.",
         "related": [
           "users.getById",
@@ -4970,7 +5133,7 @@
       "resolution": {
         "basis": "client-scan",
         "maxScanRecords": 500,
-        "maxScanPages": 5
+        "maxScanPages": 1
       },
       "staleCheck": null,
       "redaction": "none",
@@ -5005,7 +5168,7 @@
         }
       ],
       "group": "users",
-      "status": "planned"
+      "status": "tested"
     },
     {
       "endpoint": null,
@@ -5050,7 +5213,7 @@
         }
       ],
       "group": "users",
-      "status": "planned"
+      "status": "tested"
     }
   ]
 }

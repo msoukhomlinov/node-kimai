@@ -2,6 +2,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ApiClient } from '../../src/client';
+import { createApiError, KimaiConfigError, NotFoundError } from '../../src/errors';
 
 const BASE_URL = 'https://api.kimai.test';
 const TOKEN = 'test-token';
@@ -169,6 +170,274 @@ describe('InvoiceClient', () => {
   describe('no delete method', () => {
     it('should NOT have a delete(id) method', () => {
       expect('delete' in client.invoices).toBe(false);
+    });
+  });
+});
+
+
+// ---------------------------------------------------------------------------
+// Phase F (agent execution layer) — invoices.
+// Pinned test rows — the titles below are asserted verbatim by
+// scripts/check-capabilities.mjs against capabilities.plan.json; do not
+// rename them without updating the plan rows (group: invoices).
+// ---------------------------------------------------------------------------
+
+/** An invoice with numeric references and an embedded customer/user object. */
+const PHASE_F_INVOICE = {
+  id: 7,
+  createdAt: '2026-01-01T00:00:00Z',
+  invoiceNumber: 'INV-2026-007',
+  comment: 'phase f',
+  customer: { id: 3, name: 'Acme Corp' },
+  user: { id: 1, username: 'admin' },
+  total: 100,
+  tax: 19,
+  currency: 'EUR',
+  dueDays: 14,
+  vat: 19,
+  status: 'paid',
+  invoiceFilename: 'invoice-7.pdf',
+  paymentDate: '2026-01-15',
+  overdue: false,
+  metaFields: [{ name: 'po_number', value: 'PO-1' }],
+};
+
+describe('InvoiceClient — Phase F agent execution layer', () => {
+  let client: ApiClient;
+  let transport: { request: ReturnType<typeof vi.fn> };
+
+  beforeEach(() => {
+    transport = { request: vi.fn().mockResolvedValue({}) };
+    client = new ApiClient({
+      baseUrl: BASE_URL,
+      token: TOKEN,
+      transport: transport as any,
+    });
+  });
+
+  describe('invoices.list (pinned rows)', () => {
+    it('returns the unwrapped invoices list', async () => {
+      const rows = [PHASE_F_INVOICE];
+      transport.request.mockResolvedValueOnce(rows);
+
+      const res = await client.invoices.list({
+        begin: '2026-01-01T00:00:00',
+        end: '2026-01-31T23:59:59',
+        customers: [3],
+        status: ['paid'],
+      });
+
+      expect(res).toEqual(rows);
+      expect(transport.request).toHaveBeenCalledWith({
+        method: 'GET',
+        path: '/api/invoices',
+        query: {
+          begin: '2026-01-01T00:00:00',
+          end: '2026-01-31T23:59:59',
+          customers: [3],
+          status: ['paid'],
+        },
+      });
+    });
+
+    it('sends page/size and stops on a short page', async () => {
+      const page1 = [PHASE_F_INVOICE];
+      transport.request
+        .mockResolvedValueOnce(page1)
+        .mockResolvedValueOnce([]);
+
+      const result = await client.invoices.getAll({ size: 1 });
+
+      expect(transport.request).toHaveBeenNthCalledWith(1, {
+        method: 'GET',
+        path: '/api/invoices',
+        query: { page: 1, size: 1 },
+      });
+      expect(transport.request).toHaveBeenNthCalledWith(2, {
+        method: 'GET',
+        path: '/api/invoices',
+        query: { page: 2, size: 1 },
+      });
+      expect(transport.request).toHaveBeenCalledTimes(2);
+      expect(result).toEqual(page1);
+    });
+  });
+
+  describe('invoices.getById (pinned rows)', () => {
+    it('returns the unwrapped invoices record', async () => {
+      transport.request.mockResolvedValueOnce(PHASE_F_INVOICE);
+
+      const invoice = await client.invoices.getById(7);
+
+      expect(invoice).toEqual(PHASE_F_INVOICE);
+      expect(transport.request).toHaveBeenCalledWith({
+        method: 'GET',
+        path: '/api/invoices/7',
+      });
+    });
+
+    it('normalises a 404 into NOT_FOUND', async () => {
+      transport.request.mockRejectedValueOnce(
+        createApiError({ status: 404, message: 'Not Found', data: { title: 'Not Found' } }),
+      );
+
+      const err = await client.invoices.getById(404).catch((e: unknown) => e);
+
+      expect(err).toBeInstanceOf(NotFoundError);
+      expect((err as NotFoundError).code).toBe('NOT_FOUND');
+      expect((err as NotFoundError).category).toBe('not_found');
+      expect((err as NotFoundError).retryable).toBe(false);
+    });
+  });
+
+  describe('invoices.download (pinned rows)', () => {
+    it('calls the invoices.download endpoint and returns the documented shape', async () => {
+      const buffer = new ArrayBuffer(8);
+      transport.request.mockResolvedValueOnce(buffer);
+
+      const res = await client.invoices.download(7);
+
+      expect(res).toBe(buffer);
+      expect(transport.request).toHaveBeenCalledWith({
+        method: 'GET',
+        path: '/api/invoices/7/download',
+        responseType: 'arraybuffer',
+      });
+    });
+  });
+
+  describe('invoices.updateCustomFields (pinned rows)', () => {
+    it('calls the invoices.updateCustomFields endpoint and normalises the result', async () => {
+      const fixture = loadFixture('invoice_single');
+      transport.request.mockResolvedValueOnce(fixture);
+
+      const fields = [{ name: 'po_number', value: 'PO-1' }];
+      const res = await client.invoices.updateCustomFields(1, fields);
+
+      expect(res).toEqual(fixture);
+      expect(transport.request).toHaveBeenCalledWith({
+        method: 'PATCH',
+        path: '/api/invoices/1/custom-fields',
+        body: fields,
+      });
+    });
+
+    it('dry-run issues no mutating request and returns simulated: true', async () => {
+      const fields = [{ name: 'po_number', value: 'PO-1' }];
+      const res = await client.invoices.updateCustomFields(1, fields, { dryRun: true });
+
+      expect(res.simulated).toBe(true);
+      expect(res.wouldApply).toBe(true);
+      expect(res.operation).toBe('invoices.updateCustomFields');
+      expect(res.target).toEqual({ resource: 'invoices', ids: [1] });
+      expect(res.request).toEqual({ method: 'PATCH', path: '/api/invoices/1/custom-fields' });
+      expect(res.checks).toEqual([
+        { name: 'target-id', ok: true },
+        { name: 'custom-fields', ok: true },
+      ]);
+      expect(res.impact).toEqual({ affected: 1, scope: 'single', reversible: true });
+      expect(res.data).toEqual(fields);
+      expect(transport.request).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('invoices.resolve (pinned rows)', () => {
+    it('resolves an invoice by numeric id', async () => {
+      transport.request.mockResolvedValueOnce(PHASE_F_INVOICE);
+
+      const res = await client.invoices.resolve(7);
+
+      expect(transport.request).toHaveBeenCalledWith({
+        method: 'GET',
+        path: '/api/invoices/7',
+      });
+      expect(res).toMatchObject({
+        id: 7,
+        invoiceNumber: 'INV-2026-007',
+        currency: 'EUR',
+        status: 'paid',
+        customerId: 3,
+        userId: 1,
+      });
+      // the embedded objects and the child collection are dropped
+      expect(res).not.toHaveProperty('customer');
+      expect(res).not.toHaveProperty('user');
+      expect(res).not.toHaveProperty('metaFields');
+
+      // { id } and a bare numeric string take the same direct-fetch path
+      transport.request.mockResolvedValueOnce(PHASE_F_INVOICE);
+      await expect(client.invoices.resolve({ id: 7 })).resolves.toMatchObject({ id: 7 });
+      transport.request.mockResolvedValueOnce(PHASE_F_INVOICE);
+      await expect(client.invoices.resolve('7')).resolves.toMatchObject({ id: 7 });
+
+      // expand: true returns the full record
+      transport.request.mockResolvedValueOnce(PHASE_F_INVOICE);
+      await expect(client.invoices.resolve(7, { expand: true })).resolves.toEqual(PHASE_F_INVOICE);
+
+      // resolutionDetails: true returns the Resolution wrapper (direct fetch)
+      transport.request.mockResolvedValueOnce(PHASE_F_INVOICE);
+      const wrapped = await client.invoices.resolve(7, { resolutionDetails: true });
+      expect(wrapped).toMatchObject({ value: { id: 7 }, resolutionCost: 'direct', scanned: 1, scanTruncated: false });
+    });
+
+    it('keeps NOT_FOUND for an unknown id', async () => {
+      transport.request.mockRejectedValueOnce(
+        createApiError({ status: 404, message: 'Not Found', data: { title: 'Not Found' } }),
+      );
+
+      const err = await client.invoices.resolve(404).catch((e: unknown) => e);
+
+      expect(err).toBeInstanceOf(NotFoundError);
+      expect((err as NotFoundError).code).toBe('NOT_FOUND');
+
+      // a bare numeric string is an id, never a name
+      transport.request.mockRejectedValueOnce(createApiError({ status: 404, message: 'Not Found' }));
+      await expect(client.invoices.resolve('404')).rejects.toMatchObject({ code: 'NOT_FOUND' });
+
+      // invoices have no business-key filter: non-id text is rejected
+      await expect(client.invoices.resolve('INV-2026-007')).rejects.toBeInstanceOf(KimaiConfigError);
+      // the identifier contract rejects an object that carries no id
+      await expect(client.invoices.resolve({} as never)).rejects.toBeInstanceOf(KimaiConfigError);
+      expect(transport.request).toHaveBeenCalledTimes(2);
+    });
+  });
+
+  describe('invoices.search (pinned rows)', () => {
+    it('returns compact InvoiceSummary rows for the customer filter', async () => {
+      transport.request.mockResolvedValueOnce([PHASE_F_INVOICE]);
+
+      const rows = await client.invoices.search({ customers: [3] });
+      const row = rows[0]!;
+
+      expect(transport.request).toHaveBeenCalledWith({
+        method: 'GET',
+        path: '/api/invoices',
+        query: { customers: [3], size: 25 },
+      });
+      expect(rows).toHaveLength(1);
+      expect(row).toMatchObject({ id: 7, customerId: 3, userId: 1, currency: 'EUR' });
+      expect(row).not.toHaveProperty('customer');
+      expect(row).not.toHaveProperty('user');
+      expect(row).not.toHaveProperty('metaFields');
+
+      // expand: true returns the full records
+      transport.request.mockResolvedValueOnce([PHASE_F_INVOICE]);
+      await expect(client.invoices.search({ customers: [3] }, { limit: 100, expand: true })).resolves.toEqual([
+        PHASE_F_INVOICE,
+      ]);
+    });
+
+    it('throws KimaiConfigError for a non-integer or out-of-range limit', async () => {
+      await expect(client.invoices.search({}, { limit: 101 })).rejects.toBeInstanceOf(KimaiConfigError);
+      await expect(client.invoices.search({}, { limit: 2.5 })).rejects.toBeInstanceOf(KimaiConfigError);
+      await expect(client.invoices.search({}, { limit: 0 })).rejects.toBeInstanceOf(KimaiConfigError);
+      await expect(client.invoices.search({}, { limit: -1 })).rejects.toBeInstanceOf(KimaiConfigError);
+      expect(transport.request).not.toHaveBeenCalled();
+
+      const err = await client.invoices.search({}, { limit: 101 }).catch((e: unknown) => e);
+      expect((err as KimaiConfigError).code).toBe('CONFIG_ERROR');
+      expect((err as KimaiConfigError).category).toBe('validation');
+      expect((err as KimaiConfigError).retryable).toBe(false);
     });
   });
 });

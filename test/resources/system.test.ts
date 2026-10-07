@@ -91,3 +91,69 @@ describe('SystemClient', () => {
     });
   });
 });
+
+
+// ---------------------------------------------------------------------------
+// Phase F (agent execution layer) — system.
+// Pinned test rows — the titles below are asserted verbatim by
+// scripts/check-capabilities.mjs against capabilities.plan.json; do not
+// rename them without updating the plan rows (group: system).
+// ---------------------------------------------------------------------------
+
+describe('SystemClient — Phase F agent execution layer', () => {
+  let client: ApiClient;
+  let transport: { request: ReturnType<typeof vi.fn> };
+
+  beforeEach(() => {
+    transport = { request: vi.fn().mockResolvedValue({}) };
+    client = new ApiClient({
+      baseUrl: BASE_URL,
+      token: TOKEN,
+      transport: transport as any,
+    });
+  });
+
+  describe('system.ping (pinned rows)', () => {
+    it('calls the system.ping endpoint and returns the documented shape', async () => {
+      transport.request.mockResolvedValueOnce([]);
+
+      const res = await client.system.ping();
+
+      expect(res).toBe(true);
+      expect(transport.request).toHaveBeenCalledWith({
+        method: 'GET',
+        path: '/api/ping',
+      });
+    });
+  });
+
+  describe('system.getVersion (pinned rows)', () => {
+    it('calls the system.getVersion endpoint and returns the documented shape', async () => {
+      const fixture = loadFixture('version');
+      transport.request.mockResolvedValueOnce(fixture);
+
+      const res = await client.system.getVersion();
+
+      expect(res).toEqual(fixture);
+      expect(transport.request).toHaveBeenCalledWith({
+        method: 'GET',
+        path: '/api/version',
+      });
+    });
+  });
+
+  describe('system.getPlugins (pinned rows)', () => {
+    it('calls the system.getPlugins endpoint and returns the documented shape', async () => {
+      const fixture = loadFixture('plugins');
+      transport.request.mockResolvedValueOnce(fixture);
+
+      const res = await client.system.getPlugins();
+
+      expect(res).toEqual(fixture);
+      expect(transport.request).toHaveBeenCalledWith({
+        method: 'GET',
+        path: '/api/plugins',
+      });
+    });
+  });
+});
