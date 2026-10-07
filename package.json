@@ -87,13 +87,14 @@
     "coverage": "vitest run --coverage",
     "lint": "eslint src test",
     "lint:fix": "eslint src test --fix",
-    "verify": "npm run typecheck && npm run lint && npm run build && npm run capabilities:check -- --group timesheets && npm run coverage",
+    "verify": "npm run typecheck && npm run lint && npm run build && npm run capabilities:check && npm run capabilities:check:fixture && npm run coverage",
     "plan:derive": "node scripts/derive-plan.mjs",
     "capabilities:build": "node scripts/generate-capabilities.mjs",
     "capabilities:check": "node scripts/check-capabilities.mjs",
     "capabilities:check:fixture": "node scripts/check-negative-fixture.mjs",
     "clean": "rimraf dist coverage",
-    "prepublishOnly": "npm run clean && npm run verify"
+    "prepublishOnly": "npm run clean && npm run verify && npm run capabilities:check:ship",
+    "capabilities:check:ship": "node scripts/check-capabilities.mjs --ship"
   },
   "engines": {
     "node": ">=20.0.0"

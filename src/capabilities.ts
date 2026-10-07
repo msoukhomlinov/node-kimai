@@ -69,8 +69,8 @@ export interface CapabilityRecord {
 /** Grouped registry (one section per built group). */
 export const CAPABILITY_GROUPS = {
   "actions": {
-    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
-    "builtAt": "2026-10-07T12:21:59.268Z",
+    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+    "builtAt": "2026-10-07T12:22:14.107Z",
     "records": [
       {
         "id": "actions.getActions",
@@ -145,7 +145,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ActionsClient.ts",
           "sourceHash": "8b17771dad5d7d7fff03abcde1c1d2095955fa2d924c1db4237fe5a07df2ff96",
           "testFiles": [
@@ -157,8 +157,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "activities": {
-    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
-    "builtAt": "2026-10-07T12:21:59.269Z",
+    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+    "builtAt": "2026-10-07T12:22:14.107Z",
     "records": [
       {
         "id": "activities.addToTeam",
@@ -226,7 +226,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "activities.addToTeam.success",
@@ -240,7 +240,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
@@ -304,7 +304,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "activities.create.success",
@@ -318,7 +318,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
@@ -384,7 +384,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "activities.createRate.success",
@@ -398,7 +398,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
@@ -463,7 +463,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "activities.delete.success",
@@ -477,7 +477,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
@@ -544,7 +544,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "activities.deleteRate.success",
@@ -558,7 +558,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
@@ -620,7 +620,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "activities.getById.success",
@@ -634,7 +634,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
@@ -694,7 +694,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "activities.getRates.success",
@@ -703,7 +703,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
@@ -768,7 +768,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "activities.list.success",
@@ -782,7 +782,210 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "sourceFile": "src/resources/ActivityClient.ts",
+          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
+          "testFiles": [
+            "test/resources/activity.test.ts"
+          ],
+          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
+        }
+      },
+      {
+        "id": "activities.resolve",
+        "resource": "activities",
+        "operation": "resolve",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "identifier": {
+            "type": "object",
+            "required": true,
+            "description": "ActivityIdentifier"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ expand?: boolean; resolutionDetails?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "ActivitySummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.activities.resolve(1)",
+          "await client.activities.resolve({ begin: '2026-01-01T10:00:00Z' })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": {
+          "basis": "server-filter",
+          "maxScanRecords": 500,
+          "maxScanPages": 1
+        },
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "RESOLUTION_AMBIGUOUS",
+          "RESOLUTION_TRUNCATED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Resolve one activity from an identifier.",
+          "usage": "Accepts { id }, { name } or a bare numeric id / exact name. activities have no other business key. A complete filtered read with no exact match returns null; a filtered page that filled its 500-record cap with no exact match throws RESOLUTION_TRUNCATED; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
+          "preferredWhen": "Preferred over activities.list + a client-side find for any single-activity lookup.",
+          "related": [
+            "activities.getById",
+            "activities.list",
+            "activities.search"
+          ]
+        },
+        "compact": "ActivitySummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "activities.resolve.id",
+            "file": "test/resources/activity.test.ts",
+            "title": "resolves an activity by numeric id"
+          },
+          {
+            "id": "activities.resolve.name",
+            "file": "test/resources/activity.test.ts",
+            "title": "resolves an activity by exact name"
+          },
+          {
+            "id": "activities.resolve.miss",
+            "file": "test/resources/activity.test.ts",
+            "title": "returns null after a complete match with no hit"
+          },
+          {
+            "id": "activities.resolve.ambiguous",
+            "file": "test/resources/activity.test.ts",
+            "title": "throws RESOLUTION_AMBIGUOUS when a name matches several activities"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "sourceFile": "src/resources/ActivityClient.ts",
+          "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
+          "testFiles": [
+            "test/resources/activity.test.ts"
+          ],
+          "testHash": "47399a87b878a7ffcf0072786eadd1ea4058311fcbca71a1243c2d2f9ac54ecb"
+        }
+      },
+      {
+        "id": "activities.search",
+        "resource": "activities",
+        "operation": "search",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": false,
+            "description": "ActivitySearchParams"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ limit?: number; expand?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "ActivitySummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.activities.search({ begin: '2026-01-01' }, { limit: 25 })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Search activities with the spec filters, bounded by an explicit limit.",
+          "usage": "limit defaults to 25, hard max 100 (a non-integer or out-of-range value throws KimaiConfigError — never silently clamped). Compact ActivitySummary rows by default; expand: true for the full records.",
+          "preferredWhen": "Preferred over activities.list for any bounded filtered read (at most 100 rows).",
+          "related": [
+            "activities.list",
+            "activities.resolve"
+          ]
+        },
+        "compact": "ActivitySummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "activities.search.success",
+            "file": "test/resources/activity.test.ts",
+            "title": "returns compact ActivitySummary rows for the spec filters"
+          },
+          {
+            "id": "activities.search.limit-default",
+            "file": "test/resources/activity.test.ts",
+            "title": "sends a default limit of 25"
+          },
+          {
+            "id": "activities.search.limit-max",
+            "file": "test/resources/activity.test.ts",
+            "title": "caps the limit at 100"
+          },
+          {
+            "id": "activities.search.limit-reject",
+            "file": "test/resources/activity.test.ts",
+            "title": "throws KimaiConfigError for a non-integer or out-of-range limit"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
@@ -859,7 +1062,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "activities.update.success",
@@ -873,7 +1076,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
@@ -947,7 +1150,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "activities.updateMeta.success",
@@ -961,7 +1164,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "4ee2583a7869ef370ee27865166d5e5af0f461d4a0358a3f5413ab1ae13dc2f7",
           "testFiles": [
@@ -973,8 +1176,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "approvalBundle": {
-    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
-    "builtAt": "2026-10-07T12:21:59.269Z",
+    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+    "builtAt": "2026-10-07T12:22:14.107Z",
     "records": [
       {
         "id": "approvalBundle.addToApprove",
@@ -1045,7 +1248,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1114,7 +1317,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1183,7 +1386,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1252,7 +1455,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1321,7 +1524,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1333,8 +1536,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "config": {
-    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
-    "builtAt": "2026-10-07T12:21:59.269Z",
+    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+    "builtAt": "2026-10-07T12:22:14.107Z",
     "records": [
       {
         "id": "config.getColors",
@@ -1390,7 +1593,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ConfigClient.ts",
           "sourceHash": "adc0f6d6fb493cb57c878084d8ef592c5f48c21cdb6befcf6b46c2c4aa25cfa1",
           "testFiles": [
@@ -1453,7 +1656,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ConfigClient.ts",
           "sourceHash": "adc0f6d6fb493cb57c878084d8ef592c5f48c21cdb6befcf6b46c2c4aa25cfa1",
           "testFiles": [
@@ -1465,8 +1668,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "customers": {
-    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
-    "builtAt": "2026-10-07T12:21:59.269Z",
+    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+    "builtAt": "2026-10-07T12:22:14.107Z",
     "records": [
       {
         "id": "customers.addToTeam",
@@ -1534,7 +1737,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "customers.addToTeam.success",
@@ -1548,7 +1751,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
@@ -1612,7 +1815,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "customers.create.success",
@@ -1626,7 +1829,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
@@ -1692,7 +1895,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "customers.createComment.success",
@@ -1706,7 +1909,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
@@ -1772,7 +1975,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "customers.createRate.success",
@@ -1786,7 +1989,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
@@ -1851,7 +2054,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "customers.delete.success",
@@ -1865,7 +2068,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
@@ -1932,7 +2135,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "customers.deleteComment.success",
@@ -1946,7 +2149,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
@@ -2013,7 +2216,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "customers.deleteRate.success",
@@ -2027,7 +2230,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
@@ -2090,7 +2293,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "customers.getById.success",
@@ -2104,7 +2307,95 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+        }
+      },
+      {
+        "id": "customers.getContext",
+        "resource": "customers",
+        "operation": "getContext",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ expand?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "CustomerSummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.customers.getContext(1, { expand: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch the working context of one customer.",
+          "usage": "Returns the customer together with its rates, comments and meta fields. Compact by default; expand: true for the full child records. Fetches run concurrently with a bounded pool.",
+          "preferredWhen": "Preferred over separate customers.getById + getRates + listComments calls when the agent needs the customer's working context.",
+          "related": [
+            "customers.getById",
+            "customers.getRates",
+            "customers.listComments"
+          ]
+        },
+        "compact": "CustomerSummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "customers.getContext.full",
+            "file": "test/resources/customer.test.ts",
+            "title": "returns the customer with its rates, comments and meta"
+          },
+          {
+            "id": "customers.getContext.expand",
+            "file": "test/resources/customer.test.ts",
+            "title": "returns the full child records when expand is set"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
@@ -2164,7 +2455,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "customers.getRates.success",
@@ -2173,7 +2464,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
@@ -2239,7 +2530,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "customers.list.success",
@@ -2253,7 +2544,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
@@ -2313,7 +2604,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "customers.listComments.success",
@@ -2322,7 +2613,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
@@ -2395,7 +2686,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "customers.pinComment.success",
@@ -2409,7 +2700,201 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+        }
+      },
+      {
+        "id": "customers.resolve",
+        "resource": "customers",
+        "operation": "resolve",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "identifier": {
+            "type": "object",
+            "required": true,
+            "description": "CustomerIdentifier"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ expand?: boolean; resolutionDetails?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "CustomerSummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.customers.resolve(1)",
+          "await client.customers.resolve({ begin: '2026-01-01T10:00:00Z' })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": {
+          "basis": "server-filter",
+          "maxScanRecords": 500,
+          "maxScanPages": 1
+        },
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "RESOLUTION_AMBIGUOUS",
+          "RESOLUTION_TRUNCATED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Resolve one customer from an identifier.",
+          "usage": "Accepts { id }, { name } or a bare numeric id / exact name. A complete filtered read with no exact match returns null; a filtered page that filled its 500-record cap with no exact match throws RESOLUTION_TRUNCATED; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
+          "preferredWhen": "Preferred over customers.list + a client-side find for any single-customer lookup.",
+          "related": [
+            "customers.getById",
+            "customers.list",
+            "customers.search",
+            "customers.getContext"
+          ]
+        },
+        "compact": "CustomerSummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "customers.resolve.id",
+            "file": "test/resources/customer.test.ts",
+            "title": "resolves a customer by numeric id"
+          },
+          {
+            "id": "customers.resolve.name",
+            "file": "test/resources/customer.test.ts",
+            "title": "resolves a customer by exact name"
+          },
+          {
+            "id": "customers.resolve.miss",
+            "file": "test/resources/customer.test.ts",
+            "title": "returns null after a complete match with no hit"
+          },
+          {
+            "id": "customers.resolve.ambiguous",
+            "file": "test/resources/customer.test.ts",
+            "title": "throws RESOLUTION_AMBIGUOUS when a name matches several customers"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "sourceFile": "src/resources/CustomerClient.ts",
+          "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
+          "testFiles": [
+            "test/resources/customer.test.ts"
+          ],
+          "testHash": "b6b92fceaf487d69d53de2804abb80016905d0d887e1b8c4b58c7a6a9fc0eb43"
+        }
+      },
+      {
+        "id": "customers.search",
+        "resource": "customers",
+        "operation": "search",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": false,
+            "description": "CustomerSearchParams"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ limit?: number; expand?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "CustomerSummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.customers.search({ begin: '2026-01-01' }, { limit: 25 })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Search customers with the spec filters, bounded by an explicit limit.",
+          "usage": "limit defaults to 25, hard max 100 (out-of-range throws KimaiConfigError — never silently clamped). Compact CustomerSummary rows by default; expand: true for the full records.",
+          "preferredWhen": "Preferred over customers.list for any bounded filtered read (at most 100 rows).",
+          "related": [
+            "customers.list",
+            "customers.resolve"
+          ]
+        },
+        "compact": "CustomerSummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "customers.search.success",
+            "file": "test/resources/customer.test.ts",
+            "title": "returns compact CustomerSummary rows for the spec filters"
+          },
+          {
+            "id": "customers.search.limit-reject",
+            "file": "test/resources/customer.test.ts",
+            "title": "throws KimaiConfigError for a non-integer or out-of-range limit"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
@@ -2486,7 +2971,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "customers.update.success",
@@ -2500,7 +2985,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
@@ -2574,7 +3059,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "customers.updateMeta.success",
@@ -2588,7 +3073,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "c96c5917742267535da3766ee5a75c468387d86c2bbdbf057d2b7992e01dc12c",
           "testFiles": [
@@ -2600,8 +3085,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "export": {
-    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
-    "builtAt": "2026-10-07T12:21:59.269Z",
+    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+    "builtAt": "2026-10-07T12:22:14.107Z",
     "records": [
       {
         "id": "export.deleteTemplate",
@@ -2671,7 +3156,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ExportClient.ts",
           "sourceHash": "9faf9f6222d6e47605cbd7d5a212614863cf340898546842ea4be2788d3012a8",
           "testFiles": [
@@ -2683,8 +3168,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "invoices": {
-    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
-    "builtAt": "2026-10-07T12:21:59.269Z",
+    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+    "builtAt": "2026-10-07T12:22:14.107Z",
     "records": [
       {
         "id": "invoices.download",
@@ -2746,7 +3231,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/InvoiceClient.ts",
           "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
           "testFiles": [
@@ -2822,7 +3307,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/InvoiceClient.ts",
           "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
           "testFiles": [
@@ -2901,7 +3386,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/InvoiceClient.ts",
           "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
           "testFiles": [
@@ -2995,7 +3480,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/InvoiceClient.ts",
           "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
           "testFiles": [
@@ -3082,7 +3567,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/InvoiceClient.ts",
           "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
           "testFiles": [
@@ -3170,7 +3655,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/InvoiceClient.ts",
           "sourceHash": "8797a19380b35b94a452e02804b6fef4e7065e9b3167d858ad0ef99af45b52cb",
           "testFiles": [
@@ -3182,8 +3667,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "projects": {
-    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
-    "builtAt": "2026-10-07T12:21:59.269Z",
+    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+    "builtAt": "2026-10-07T12:22:14.107Z",
     "records": [
       {
         "id": "projects.addToTeam",
@@ -3251,7 +3736,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "projects.addToTeam.success",
@@ -3265,7 +3750,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
@@ -3329,7 +3814,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "projects.create.success",
@@ -3343,7 +3828,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
@@ -3409,7 +3894,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "projects.createComment.success",
@@ -3423,7 +3908,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
@@ -3489,7 +3974,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "projects.createRate.success",
@@ -3503,7 +3988,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
@@ -3568,7 +4053,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "projects.delete.success",
@@ -3582,7 +4067,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
@@ -3649,7 +4134,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "projects.deleteComment.success",
@@ -3663,7 +4148,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
@@ -3730,7 +4215,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "projects.deleteRate.success",
@@ -3744,7 +4229,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
@@ -3807,7 +4292,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "projects.getById.success",
@@ -3821,7 +4306,94 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+        }
+      },
+      {
+        "id": "projects.getContext",
+        "resource": "projects",
+        "operation": "getContext",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "id": {
+            "type": "number",
+            "required": true
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ expand?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "ProjectSummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.projects.getContext(1, { expand: true })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Fetch the working context of one project.",
+          "usage": "Returns the project together with its customer, rates and meta fields. Compact by default; expand: true for the full child records. Fetches run concurrently with a bounded pool.",
+          "preferredWhen": "Preferred over separate projects.getById + getRates calls when the agent needs the project's working context.",
+          "related": [
+            "projects.getById",
+            "projects.getRates"
+          ]
+        },
+        "compact": "ProjectSummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "projects.getContext.full",
+            "file": "test/resources/project.test.ts",
+            "title": "returns the project with its customer, rates and meta"
+          },
+          {
+            "id": "projects.getContext.expand",
+            "file": "test/resources/project.test.ts",
+            "title": "returns the full child records when expand is set"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
@@ -3881,7 +4453,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "projects.getRates.success",
@@ -3890,7 +4462,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
@@ -3956,7 +4528,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "projects.list.success",
@@ -3970,7 +4542,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
@@ -4030,7 +4602,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "projects.listComments.success",
@@ -4039,7 +4611,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
@@ -4112,7 +4684,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "projects.pinComment.success",
@@ -4126,7 +4698,201 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+        }
+      },
+      {
+        "id": "projects.resolve",
+        "resource": "projects",
+        "operation": "resolve",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "identifier": {
+            "type": "object",
+            "required": true,
+            "description": "ProjectIdentifier"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ expand?: boolean; resolutionDetails?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "ProjectSummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.projects.resolve(1)",
+          "await client.projects.resolve({ begin: '2026-01-01T10:00:00Z' })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": {
+          "basis": "server-filter",
+          "maxScanRecords": 500,
+          "maxScanPages": 1
+        },
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "RESOLUTION_AMBIGUOUS",
+          "RESOLUTION_TRUNCATED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Resolve one project from an identifier.",
+          "usage": "Accepts { id }, { name } or a bare numeric id / exact name. A complete filtered read with no exact match returns null; a filtered page that filled its 500-record cap with no exact match throws RESOLUTION_TRUNCATED; an ambiguous name throws RESOLUTION_AMBIGUOUS carrying the candidate ids.",
+          "preferredWhen": "Preferred over projects.list + a client-side find for any single-project lookup.",
+          "related": [
+            "projects.getById",
+            "projects.list",
+            "projects.search",
+            "projects.getContext"
+          ]
+        },
+        "compact": "ProjectSummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "projects.resolve.id",
+            "file": "test/resources/project.test.ts",
+            "title": "resolves a project by numeric id"
+          },
+          {
+            "id": "projects.resolve.name",
+            "file": "test/resources/project.test.ts",
+            "title": "resolves a project by exact name"
+          },
+          {
+            "id": "projects.resolve.miss",
+            "file": "test/resources/project.test.ts",
+            "title": "returns null after a complete match with no hit"
+          },
+          {
+            "id": "projects.resolve.ambiguous",
+            "file": "test/resources/project.test.ts",
+            "title": "throws RESOLUTION_AMBIGUOUS when a name matches several projects"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+          "sourceFile": "src/resources/ProjectClient.ts",
+          "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
+          "testFiles": [
+            "test/resources/project.test.ts"
+          ],
+          "testHash": "95d044f1673a55642471ea91f86feedfe2b19fe463a496f2b1387905ccabd17c"
+        }
+      },
+      {
+        "id": "projects.search",
+        "resource": "projects",
+        "operation": "search",
+        "kind": "helper",
+        "endpoint": null,
+        "effect": "read",
+        "flags": [],
+        "dryRun": false,
+        "inputSchema": {
+          "params": {
+            "type": "object",
+            "required": false,
+            "description": "ProjectSearchParams"
+          },
+          "opts": {
+            "type": "object",
+            "required": false,
+            "description": "{ limit?: number; expand?: boolean }"
+          }
+        },
+        "outputSchema": {
+          "type": "ProjectSummary",
+          "drops": [
+            "internalRate",
+            "fixedRate",
+            "hourlyRate",
+            "metaFields"
+          ]
+        },
+        "examples": [
+          "await client.projects.search({ begin: '2026-01-01' }, { limit: 25 })"
+        ],
+        "permissions": "unknown",
+        "pagination": {
+          "mode": "none"
+        },
+        "resolution": null,
+        "retry": {
+          "retryableStatuses": [
+            429,
+            500,
+            502,
+            503,
+            504
+          ],
+          "policy": "the transport does not retry; these statuses are safe for a caller to re-issue the same request",
+          "idempotencySupport": "none"
+        },
+        "errors": [
+          "CONFIG_ERROR",
+          "RATE_LIMITED",
+          "SERVER_ERROR"
+        ],
+        "metadata": {
+          "purpose": "Search projects with the spec filters, bounded by an explicit limit.",
+          "usage": "limit defaults to 25, hard max 100 (out-of-range throws KimaiConfigError — never silently clamped). Compact ProjectSummary rows by default; expand: true for the full records.",
+          "preferredWhen": "Preferred over projects.list for any bounded filtered read (at most 100 rows).",
+          "related": [
+            "projects.list",
+            "projects.resolve"
+          ]
+        },
+        "compact": "ProjectSummary",
+        "status": "tested",
+        "tests": [
+          {
+            "id": "projects.search.success",
+            "file": "test/resources/project.test.ts",
+            "title": "returns compact ProjectSummary rows for the spec filters"
+          },
+          {
+            "id": "projects.search.limit-reject",
+            "file": "test/resources/project.test.ts",
+            "title": "throws KimaiConfigError for a non-integer or out-of-range limit"
+          }
+        ],
+        "staleCheck": {
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
@@ -4203,7 +4969,7 @@ export const CAPABILITY_GROUPS = {
           ]
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "projects.update.success",
@@ -4217,7 +4983,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
@@ -4291,7 +5057,7 @@ export const CAPABILITY_GROUPS = {
           "related": []
         },
         "compact": null,
-        "status": "implemented",
+        "status": "tested",
         "tests": [
           {
             "id": "projects.updateMeta.success",
@@ -4305,7 +5071,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "b25fc5fc3ee84bd9a1828c5bbea1d82d1d7c17bb298a72f9ee3cd2e8f7bb3414",
           "testFiles": [
@@ -4317,8 +5083,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "system": {
-    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
-    "builtAt": "2026-10-07T12:21:59.269Z",
+    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+    "builtAt": "2026-10-07T12:22:14.107Z",
     "records": [
       {
         "id": "system.getPlugins",
@@ -4374,7 +5140,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/SystemClient.ts",
           "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
           "testFiles": [
@@ -4437,7 +5203,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/SystemClient.ts",
           "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
           "testFiles": [
@@ -4500,7 +5266,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/SystemClient.ts",
           "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
           "testFiles": [
@@ -4512,8 +5278,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "tags": {
-    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
-    "builtAt": "2026-10-07T12:21:59.269Z",
+    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+    "builtAt": "2026-10-07T12:22:14.107Z",
     "records": [
       {
         "id": "tags.create",
@@ -4584,7 +5350,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TagClient.ts",
           "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
           "testFiles": [
@@ -4663,7 +5429,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TagClient.ts",
           "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
           "testFiles": [
@@ -4731,7 +5497,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TagClient.ts",
           "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
           "testFiles": [
@@ -4804,7 +5570,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TagClient.ts",
           "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
           "testFiles": [
@@ -4902,7 +5668,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TagClient.ts",
           "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
           "testFiles": [
@@ -4990,7 +5756,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TagClient.ts",
           "sourceHash": "2ea106168d7cbf173304cf5ae9be7192ccab10eddeed35e1cc72fd6c33381914",
           "testFiles": [
@@ -5002,8 +5768,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "teams": {
-    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
-    "builtAt": "2026-10-07T12:21:59.269Z",
+    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+    "builtAt": "2026-10-07T12:22:14.107Z",
     "records": [
       {
         "id": "teams.addMember",
@@ -5085,7 +5851,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
@@ -5163,7 +5929,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
@@ -5242,7 +6008,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
@@ -5318,7 +6084,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
@@ -5407,7 +6173,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
@@ -5496,7 +6262,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
@@ -5585,7 +6351,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
@@ -5663,7 +6429,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
@@ -5745,7 +6511,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
@@ -5844,7 +6610,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
@@ -5926,7 +6692,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
@@ -6008,7 +6774,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
@@ -6090,7 +6856,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
@@ -6182,7 +6948,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "f106480f351c8292a4377304c86736374d37ceb09514f213fcbf668e416f4b59",
           "testFiles": [
@@ -6194,8 +6960,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "timesheets": {
-    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
-    "builtAt": "2026-10-07T12:21:59.269Z",
+    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+    "builtAt": "2026-10-07T12:22:14.107Z",
     "records": [
       {
         "id": "timesheets.create",
@@ -6276,7 +7042,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6355,7 +7121,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6432,7 +7198,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6497,7 +7263,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6574,7 +7340,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6665,7 +7431,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6736,7 +7502,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6826,7 +7592,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -6946,7 +7712,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -7029,7 +7795,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -7136,7 +7902,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -7221,7 +7987,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -7304,7 +8070,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -7395,7 +8161,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -7485,7 +8251,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "9b4a6cfff9946e813c7add79ab199ec95160dfd69d84ec9549ba80e8869873fc",
           "testFiles": [
@@ -7497,8 +8263,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "users": {
-    "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
-    "builtAt": "2026-10-07T12:21:59.269Z",
+    "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
+    "builtAt": "2026-10-07T12:22:14.107Z",
     "records": [
       {
         "id": "users.create",
@@ -7571,7 +8337,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
@@ -7649,7 +8415,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
@@ -7725,7 +8491,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
@@ -7788,7 +8554,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
@@ -7867,7 +8633,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
@@ -7974,7 +8740,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
@@ -8061,7 +8827,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
@@ -8152,7 +8918,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
@@ -8240,7 +9006,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "fd593f880b821579ba2937a5400560b83daaf6f5a967fdd50ddddbd82e4820bc",
+          "planHash": "72f432d3b5a4da7ced80edabe39a0176269f852a8b23047b8f2a01aa89e177d7",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "5fa8f57bc7b33305104de9b10ce5e38f6cf287158e997b60712b9338fde303bd",
           "testFiles": [
