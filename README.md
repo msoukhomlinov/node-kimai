@@ -9,6 +9,8 @@ TypeScript API client SDK for [Kimai](https://www.kimai.org/) time-tracking soft
 
 Full coverage of the Kimai Pro API v1.1 (66 paths, 52 schemas, 13 resources) with zero runtime dependencies.
 
+Known gaps and open upstream issues are tracked in the [SDK gap register](docs/sdk-gaps.md).
+
 ## Features
 
 - **Full API coverage** — All 66 API paths / 90 endpoint operations across 13 resources
