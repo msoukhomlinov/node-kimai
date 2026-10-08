@@ -4,7 +4,7 @@
 import type { PageAction } from '../types';
 
 import type { ApiClient } from '../client';
-import { KimaiConfigError } from '../errors';
+import { KimaiConfigError } from 'node-kimai/errors';
 import { pathId, pathToken } from '../guards';
 
 export type ActionResource = 'activity' | 'customer' | 'project' | 'timesheet';

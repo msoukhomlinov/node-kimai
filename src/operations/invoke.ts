@@ -39,7 +39,7 @@
  */
 import { getCapability, type CapabilityRecord } from '../capabilities.js';
 import { EXPOSED, INPUT_CONTRACTS, REFUSALS, nearestKeys, type InputJsonSchema } from '../mcp/catalog.generated.js';
-import { KimaiConfigError } from '../errors.js';
+import { KimaiConfigError } from 'node-kimai/errors';
 import type { ApiClient } from '../client.js';
 
 // ---------------------------------------------------------------------------

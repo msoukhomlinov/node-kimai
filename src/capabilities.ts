@@ -70,7 +70,7 @@ export interface CapabilityRecord {
 export const CAPABILITY_GROUPS = {
   "actions": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T14:46:30.967Z",
+    "builtAt": "2026-10-08T11:56:56.080Z",
     "records": [
       {
         "id": "actions.getActions",
@@ -147,7 +147,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActionsClient.ts",
-          "sourceHash": "5836e1f099ff2f634ac170847842292e4c0f9d782321b41e40e5eb1aa4fc3cea",
+          "sourceHash": "df285edce9bbe1bde5a12631fe672ae6b7da6e3da667885189519f2742683a93",
           "testFiles": [
             "test/resources/actions.test.ts"
           ],
@@ -158,7 +158,7 @@ export const CAPABILITY_GROUPS = {
   },
   "activities": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T14:46:30.968Z",
+    "builtAt": "2026-10-08T11:56:56.081Z",
     "records": [
       {
         "id": "activities.addToTeam",
@@ -242,7 +242,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "fd0a82cdbcf707823f9d1853055508aad87b0423028d91916c172731fe40cda8",
+          "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
@@ -320,7 +320,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "fd0a82cdbcf707823f9d1853055508aad87b0423028d91916c172731fe40cda8",
+          "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
@@ -400,7 +400,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "fd0a82cdbcf707823f9d1853055508aad87b0423028d91916c172731fe40cda8",
+          "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
@@ -479,7 +479,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "fd0a82cdbcf707823f9d1853055508aad87b0423028d91916c172731fe40cda8",
+          "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
@@ -560,7 +560,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "fd0a82cdbcf707823f9d1853055508aad87b0423028d91916c172731fe40cda8",
+          "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
@@ -636,7 +636,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "fd0a82cdbcf707823f9d1853055508aad87b0423028d91916c172731fe40cda8",
+          "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
@@ -705,7 +705,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "fd0a82cdbcf707823f9d1853055508aad87b0423028d91916c172731fe40cda8",
+          "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
@@ -789,7 +789,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "fd0a82cdbcf707823f9d1853055508aad87b0423028d91916c172731fe40cda8",
+          "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
@@ -895,7 +895,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "fd0a82cdbcf707823f9d1853055508aad87b0423028d91916c172731fe40cda8",
+          "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
@@ -992,7 +992,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "fd0a82cdbcf707823f9d1853055508aad87b0423028d91916c172731fe40cda8",
+          "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
@@ -1083,7 +1083,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "fd0a82cdbcf707823f9d1853055508aad87b0423028d91916c172731fe40cda8",
+          "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
@@ -1171,7 +1171,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ActivityClient.ts",
-          "sourceHash": "fd0a82cdbcf707823f9d1853055508aad87b0423028d91916c172731fe40cda8",
+          "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
             "test/resources/activity.test.ts"
           ],
@@ -1182,7 +1182,7 @@ export const CAPABILITY_GROUPS = {
   },
   "approvalBundle": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T14:46:30.968Z",
+    "builtAt": "2026-10-08T11:56:56.081Z",
     "records": [
       {
         "id": "approvalBundle.addToApprove",
@@ -1542,7 +1542,7 @@ export const CAPABILITY_GROUPS = {
   },
   "config": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T14:46:30.968Z",
+    "builtAt": "2026-10-08T11:56:56.081Z",
     "records": [
       {
         "id": "config.getColors",
@@ -1674,7 +1674,7 @@ export const CAPABILITY_GROUPS = {
   },
   "customers": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T14:46:30.968Z",
+    "builtAt": "2026-10-08T11:56:56.081Z",
     "records": [
       {
         "id": "customers.addToTeam",
@@ -1758,7 +1758,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -1836,7 +1836,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -1916,7 +1916,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -1996,7 +1996,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -2075,7 +2075,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -2156,7 +2156,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -2237,7 +2237,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -2314,7 +2314,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -2402,7 +2402,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -2471,7 +2471,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -2556,7 +2556,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -2625,7 +2625,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -2712,7 +2712,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -2819,7 +2819,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -2906,7 +2906,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -2997,7 +2997,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -3085,7 +3085,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/CustomerClient.ts",
-          "sourceHash": "e4503ba96eeeb9fc659707a8dc5330abd70efe512c76ade93efd1bb817d52909",
+          "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
             "test/resources/customer.test.ts"
           ],
@@ -3096,7 +3096,7 @@ export const CAPABILITY_GROUPS = {
   },
   "export": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T14:46:30.968Z",
+    "builtAt": "2026-10-08T11:56:56.081Z",
     "records": [
       {
         "id": "export.deleteTemplate",
@@ -3179,7 +3179,7 @@ export const CAPABILITY_GROUPS = {
   },
   "invoices": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T14:46:30.968Z",
+    "builtAt": "2026-10-08T11:56:56.081Z",
     "records": [
       {
         "id": "invoices.download",
@@ -3243,7 +3243,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "162f083e93998216660dbd776125e5ba5ef478d5211f5fc528265dce9fdcd64f",
+          "sourceHash": "0378a152312a62f810606891ed6dd6f44ea03a833410261088973d3deef1d8f7",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
@@ -3319,7 +3319,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "162f083e93998216660dbd776125e5ba5ef478d5211f5fc528265dce9fdcd64f",
+          "sourceHash": "0378a152312a62f810606891ed6dd6f44ea03a833410261088973d3deef1d8f7",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
@@ -3403,7 +3403,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "162f083e93998216660dbd776125e5ba5ef478d5211f5fc528265dce9fdcd64f",
+          "sourceHash": "0378a152312a62f810606891ed6dd6f44ea03a833410261088973d3deef1d8f7",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
@@ -3497,7 +3497,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "162f083e93998216660dbd776125e5ba5ef478d5211f5fc528265dce9fdcd64f",
+          "sourceHash": "0378a152312a62f810606891ed6dd6f44ea03a833410261088973d3deef1d8f7",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
@@ -3584,7 +3584,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "162f083e93998216660dbd776125e5ba5ef478d5211f5fc528265dce9fdcd64f",
+          "sourceHash": "0378a152312a62f810606891ed6dd6f44ea03a833410261088973d3deef1d8f7",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
@@ -3672,7 +3672,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/InvoiceClient.ts",
-          "sourceHash": "162f083e93998216660dbd776125e5ba5ef478d5211f5fc528265dce9fdcd64f",
+          "sourceHash": "0378a152312a62f810606891ed6dd6f44ea03a833410261088973d3deef1d8f7",
           "testFiles": [
             "test/resources/invoice.test.ts"
           ],
@@ -3683,7 +3683,7 @@ export const CAPABILITY_GROUPS = {
   },
   "projects": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T14:46:30.968Z",
+    "builtAt": "2026-10-08T11:56:56.081Z",
     "records": [
       {
         "id": "projects.addToTeam",
@@ -3767,7 +3767,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -3845,7 +3845,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -3925,7 +3925,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -4005,7 +4005,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -4084,7 +4084,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -4165,7 +4165,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -4246,7 +4246,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -4323,7 +4323,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -4410,7 +4410,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -4479,7 +4479,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -4564,7 +4564,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -4633,7 +4633,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -4720,7 +4720,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -4827,7 +4827,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -4914,7 +4914,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -5005,7 +5005,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -5093,7 +5093,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/ProjectClient.ts",
-          "sourceHash": "11953bf74a387138daec73fbfc9408d47df5463bcef45aeda86c8afc3906a3ad",
+          "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
             "test/resources/project.test.ts"
           ],
@@ -5104,7 +5104,7 @@ export const CAPABILITY_GROUPS = {
   },
   "system": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T14:46:30.968Z",
+    "builtAt": "2026-10-08T11:56:56.081Z",
     "records": [
       {
         "id": "system.getPlugins",
@@ -5299,7 +5299,7 @@ export const CAPABILITY_GROUPS = {
   },
   "tags": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T14:46:30.968Z",
+    "builtAt": "2026-10-08T11:56:56.081Z",
     "records": [
       {
         "id": "tags.create",
@@ -5370,7 +5370,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "ba028b5ee8aeb4f7c54c6b5f0d8e6a69c9b70df60ce4cdfb0be1c431726f389e",
+          "sourceHash": "e943ddbc8ad979622010126a0fc4b292afbc179832d961a3aba37be1007cdcfe",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
@@ -5449,7 +5449,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "ba028b5ee8aeb4f7c54c6b5f0d8e6a69c9b70df60ce4cdfb0be1c431726f389e",
+          "sourceHash": "e943ddbc8ad979622010126a0fc4b292afbc179832d961a3aba37be1007cdcfe",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
@@ -5517,7 +5517,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "ba028b5ee8aeb4f7c54c6b5f0d8e6a69c9b70df60ce4cdfb0be1c431726f389e",
+          "sourceHash": "e943ddbc8ad979622010126a0fc4b292afbc179832d961a3aba37be1007cdcfe",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
@@ -5595,7 +5595,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "ba028b5ee8aeb4f7c54c6b5f0d8e6a69c9b70df60ce4cdfb0be1c431726f389e",
+          "sourceHash": "e943ddbc8ad979622010126a0fc4b292afbc179832d961a3aba37be1007cdcfe",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
@@ -5693,7 +5693,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "ba028b5ee8aeb4f7c54c6b5f0d8e6a69c9b70df60ce4cdfb0be1c431726f389e",
+          "sourceHash": "e943ddbc8ad979622010126a0fc4b292afbc179832d961a3aba37be1007cdcfe",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
@@ -5781,7 +5781,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TagClient.ts",
-          "sourceHash": "ba028b5ee8aeb4f7c54c6b5f0d8e6a69c9b70df60ce4cdfb0be1c431726f389e",
+          "sourceHash": "e943ddbc8ad979622010126a0fc4b292afbc179832d961a3aba37be1007cdcfe",
           "testFiles": [
             "test/resources/tag.test.ts"
           ],
@@ -5792,7 +5792,7 @@ export const CAPABILITY_GROUPS = {
   },
   "teams": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T14:46:30.968Z",
+    "builtAt": "2026-10-08T11:56:56.081Z",
     "records": [
       {
         "id": "teams.addMember",
@@ -5876,7 +5876,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "ccae80bfaf7716f7d559d582f748d3381e31662fe3c2376d9e7dae0c5b3ae315",
+          "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
@@ -5954,7 +5954,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "ccae80bfaf7716f7d559d582f748d3381e31662fe3c2376d9e7dae0c5b3ae315",
+          "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
@@ -6033,7 +6033,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "ccae80bfaf7716f7d559d582f748d3381e31662fe3c2376d9e7dae0c5b3ae315",
+          "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
@@ -6109,7 +6109,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "ccae80bfaf7716f7d559d582f748d3381e31662fe3c2376d9e7dae0c5b3ae315",
+          "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
@@ -6198,7 +6198,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "ccae80bfaf7716f7d559d582f748d3381e31662fe3c2376d9e7dae0c5b3ae315",
+          "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
@@ -6287,7 +6287,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "ccae80bfaf7716f7d559d582f748d3381e31662fe3c2376d9e7dae0c5b3ae315",
+          "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
@@ -6376,7 +6376,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "ccae80bfaf7716f7d559d582f748d3381e31662fe3c2376d9e7dae0c5b3ae315",
+          "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
@@ -6459,7 +6459,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "ccae80bfaf7716f7d559d582f748d3381e31662fe3c2376d9e7dae0c5b3ae315",
+          "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
@@ -6541,7 +6541,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "ccae80bfaf7716f7d559d582f748d3381e31662fe3c2376d9e7dae0c5b3ae315",
+          "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
@@ -6640,7 +6640,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "ccae80bfaf7716f7d559d582f748d3381e31662fe3c2376d9e7dae0c5b3ae315",
+          "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
@@ -6722,7 +6722,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "ccae80bfaf7716f7d559d582f748d3381e31662fe3c2376d9e7dae0c5b3ae315",
+          "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
@@ -6804,7 +6804,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "ccae80bfaf7716f7d559d582f748d3381e31662fe3c2376d9e7dae0c5b3ae315",
+          "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
@@ -6886,7 +6886,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "ccae80bfaf7716f7d559d582f748d3381e31662fe3c2376d9e7dae0c5b3ae315",
+          "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
@@ -6977,7 +6977,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TeamClient.ts",
-          "sourceHash": "ccae80bfaf7716f7d559d582f748d3381e31662fe3c2376d9e7dae0c5b3ae315",
+          "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
             "test/resources/team.test.ts"
           ],
@@ -6988,7 +6988,7 @@ export const CAPABILITY_GROUPS = {
   },
   "timesheets": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T14:46:30.968Z",
+    "builtAt": "2026-10-08T11:56:56.081Z",
     "records": [
       {
         "id": "timesheets.create",
@@ -7071,7 +7071,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7150,7 +7150,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7227,7 +7227,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7304,7 +7304,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7369,7 +7369,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7460,7 +7460,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7531,7 +7531,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7626,7 +7626,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7746,7 +7746,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7829,7 +7829,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7936,7 +7936,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -8021,7 +8021,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -8104,7 +8104,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -8195,7 +8195,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -8285,7 +8285,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "4d1bb100780c1604afcbb49d1f93d7b9ebbf785fcc4f066def8afbb7c6b33961",
+          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -8296,7 +8296,7 @@ export const CAPABILITY_GROUPS = {
   },
   "users": {
     "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-07T14:46:30.968Z",
+    "builtAt": "2026-10-08T11:56:56.081Z",
     "records": [
       {
         "id": "users.create",
@@ -8371,7 +8371,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "c28bb51b902676b2202bc27be70b78658bc2ea247fd786fea8faa1e7738aaad7",
+          "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
@@ -8449,7 +8449,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "c28bb51b902676b2202bc27be70b78658bc2ea247fd786fea8faa1e7738aaad7",
+          "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
@@ -8525,7 +8525,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "c28bb51b902676b2202bc27be70b78658bc2ea247fd786fea8faa1e7738aaad7",
+          "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
@@ -8588,7 +8588,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "c28bb51b902676b2202bc27be70b78658bc2ea247fd786fea8faa1e7738aaad7",
+          "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
@@ -8672,7 +8672,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "c28bb51b902676b2202bc27be70b78658bc2ea247fd786fea8faa1e7738aaad7",
+          "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
@@ -8779,7 +8779,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "c28bb51b902676b2202bc27be70b78658bc2ea247fd786fea8faa1e7738aaad7",
+          "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
@@ -8866,7 +8866,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "c28bb51b902676b2202bc27be70b78658bc2ea247fd786fea8faa1e7738aaad7",
+          "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
@@ -8957,7 +8957,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "c28bb51b902676b2202bc27be70b78658bc2ea247fd786fea8faa1e7738aaad7",
+          "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
             "test/resources/user.test.ts"
           ],
@@ -9045,7 +9045,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
           "sourceFile": "src/resources/UserClient.ts",
-          "sourceHash": "c28bb51b902676b2202bc27be70b78658bc2ea247fd786fea8faa1e7738aaad7",
+          "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
             "test/resources/user.test.ts"
           ],

@@ -9,7 +9,7 @@
  *
  * Both are VALUE-FREE by construction: the returned string names the artifact, never the value.
  */
-import { ApiError, KimaiConfigError } from './errors.js';
+import { ApiError, KimaiConfigError } from 'node-kimai/errors';
 
 /**
  * True when `err` is one of this SDK's typed errors (`ApiError` and its subclasses:

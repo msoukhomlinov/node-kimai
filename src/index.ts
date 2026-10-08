@@ -17,7 +17,7 @@ export {
   KimaiConfigError,
   ResolutionError,
   type ErrorCategory,
-} from './errors';
+} from 'node-kimai/errors';
 
 // Resource clients
 export {

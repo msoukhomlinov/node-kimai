@@ -4,7 +4,7 @@
 // `hasMore` is derived from the requested size: hasMore = items.length === size.
 // No total/totalPages is invented (the vendor does not provide one).
 import type { Page } from '../types/common';
-import { KimaiConfigError } from '../errors';
+import { KimaiConfigError } from 'node-kimai/errors';
 
 /** Fetch one page of records; Kimai returns a bare array. */
 export type PageFetcher<T> = (page: number, size: number) => Promise<T[]>;

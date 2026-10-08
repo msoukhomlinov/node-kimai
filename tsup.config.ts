@@ -12,6 +12,11 @@ export default defineConfig({
     "mcp/index": "src/mcp/index.ts",
   },
   format: ["esm", "cjs"],
+  // One ApiError identity across all entries (issue #11): every entry imports the errors
+  // module by the package's own name and we keep that specifier external, so each emitted
+  // bundle re-exports the single physical dist/errors.{js,cjs} at runtime instead of
+  // inlining its own copy (splitting:false would otherwise give each entry its own class).
+  external: ["node-kimai/errors"],
   dts: true,
   sourcemap: true,
   clean: true,
