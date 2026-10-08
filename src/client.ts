@@ -106,10 +106,18 @@ function transportFailure(
   });
 }
 
+/** True for a `timeoutMs` that is a positive finite number of milliseconds. */
+function assertPositiveTimeout(timeoutMs: number): void {
+  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
+    throw new KimaiConfigError('timeoutMs must be a positive finite number of milliseconds.');
+  }
+}
+
 /**
- * True when a signal's abort reason is the one `AbortSignal.timeout` sets (a
- * `TimeoutError`). `AbortSignal.any` copies the first-firing parent's reason, so the
- * combined signal the transport receives still carries it.
+ * True when a signal's abort reason is the one that marks a deadline expiry (a
+ * `TimeoutError`). The composed deadline signal carries an explicit `TimeoutError`
+ * reason set by `composeSignal`; a caller abort carries the caller's own reason (or
+ * its signal), which never classifies as a deadline.
  */
 function isTimeoutReason(reason: unknown): boolean {
   if (reason === null || typeof reason !== 'object') return false;
@@ -387,23 +395,44 @@ export class ApiClient {
    * constructor value — with an external per-request signal into the single
    * `AbortSignal` passed on `TransportRequest.signal` (issue #7). Returns `undefined`
    * when neither is set: the request then runs with no deadline, exactly as before.
-   * Uses `AbortSignal.any` (Node floor >= 24); no manual timers are involved, so an
-   * aborted or completed request leaves nothing behind.
+   *
+   * A single active input is returned as-is (a bare `AbortSignal.timeout` or the
+   * caller signal), so the fast paths behave exactly as before. With both a deadline
+   * and a caller signal present, a composed `AbortController` is used instead: each
+   * input forwards its abort into the controller, and the deadline is armed as an
+   * owned `AbortSignal.timeout` whose abort carries an explicit `TimeoutError`
+   * reason, so the deadline always classifies as a timeout even on runtimes where
+   * `AbortSignal.timeout` leaves `reason` unset. The combined signal therefore
+   * aborts on the EARLIEST of the inputs — a caller abort at t < deadline rejects
+   * immediately, never later — and `isTimeoutReason` can tell the two apart.
    */
   private composeSignal(per: ClientRequestOptions | undefined): AbortSignal | undefined {
     const timeoutMs = per?.timeoutMs ?? this.timeoutMs;
-    const signals: AbortSignal[] = [];
-    if (timeoutMs !== undefined) {
-      if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
-        throw new KimaiConfigError('timeoutMs must be a positive finite number of milliseconds.');
-      }
-      signals.push(AbortSignal.timeout(timeoutMs));
+    const callerSignal = per?.signal;
+    if (timeoutMs === undefined && callerSignal === undefined) return undefined;
+    if (timeoutMs === undefined) return callerSignal; // caller signal only: pass through untouched
+    if (callerSignal === undefined) {
+      // deadline only: bare AbortSignal.timeout, exactly as before
+      assertPositiveTimeout(timeoutMs);
+      return AbortSignal.timeout(timeoutMs);
     }
-    if (per?.signal !== undefined) {
-      signals.push(per.signal);
+
+    // Combined flow: deadline + caller signal -> one composed controller.
+    assertPositiveTimeout(timeoutMs);
+    const controller = new AbortController();
+    if (callerSignal.aborted) {
+      controller.abort(callerSignal.reason ?? callerSignal);
+    } else {
+      callerSignal.addEventListener('abort', () => controller.abort(callerSignal.reason ?? callerSignal), { once: true });
     }
-    if (signals.length === 0) return undefined;
-    if (signals.length === 1) return signals[0];
-    return AbortSignal.any(signals);
+    const deadline = AbortSignal.timeout(timeoutMs);
+    const onDeadline = () =>
+      controller.abort(new DOMException(`The Kimai request timed out after ${timeoutMs}ms`, 'TimeoutError'));
+    if (deadline.aborted) {
+      onDeadline();
+    } else {
+      deadline.addEventListener('abort', onDeadline, { once: true });
+    }
+    return controller.signal;
   }
 }

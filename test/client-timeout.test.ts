@@ -306,4 +306,92 @@ describe('ApiClient timeout / abort wiring (issue #7)', () => {
       expect(request).not.toHaveBeenCalled();
     });
   });
+
+  describe('combined deadline + caller signal', () => {
+    afterEach(() => {
+      vi.restoreAllMocks();
+    });
+
+    it('a caller abort before the deadline rejects immediately with the caller-abort classification', async () => {
+      const stub = hungFetchStub();
+      vi.stubGlobal('fetch', stub);
+      const client = new ApiClient({ baseUrl: BASE_URL, token: TOKEN, timeoutMs: 30_000 });
+
+      const controller = new AbortController();
+      const started = Date.now();
+      const p = client.get('/api/activities', { signal: controller.signal });
+      setTimeout(() => controller.abort(), 10);
+      const err = (await rejection(p)) as ApiError;
+      // the caller abort (10 ms), not the 30 s deadline, ended the request
+      expect(Date.now() - started).toBeLessThan(5_000);
+
+      expect(err).toBeInstanceOf(ApiError);
+      expect(isKimaiError(err)).toBe(true);
+      expect(err.category).toBe('timeout');
+      expect(err.code).toBe('TIMEOUT');
+      expect(err.status).toBe(0);
+      expect(err.retryable).toBe(true);
+      expect(err.request).toBe(`${BASE_URL}/api/activities`);
+      expect(err.message).toBe('The request was aborted before the Kimai instance responded.');
+      expect(stub).toHaveBeenCalledOnce();
+    });
+
+    it('a combined deadline (no caller abort) still classifies TIMEOUT with the deadline wording', async () => {
+      const stub = hungFetchStub();
+      vi.stubGlobal('fetch', stub);
+      const client = new ApiClient({ baseUrl: BASE_URL, token: TOKEN, timeoutMs: 20 });
+
+      const controller = new AbortController(); // never aborts
+      const started = Date.now();
+      const err = (await rejection(client.get('/api/activities', { signal: controller.signal }))) as ApiError;
+      expect(Date.now() - started).toBeLessThan(5_000);
+
+      expect(err.category).toBe('timeout');
+      expect(err.code).toBe('TIMEOUT');
+      expect(err.message).toBe('The request to the Kimai instance timed out.');
+    });
+
+    it('an already-aborted caller signal with a deadline rejects before the deadline, with the caller wording', async () => {
+      const stub = hungFetchStub();
+      vi.stubGlobal('fetch', stub);
+      const client = new ApiClient({ baseUrl: BASE_URL, token: TOKEN, timeoutMs: 30_000 });
+
+      const controller = new AbortController();
+      controller.abort();
+      const started = Date.now();
+      const err = (await rejection(client.get('/api/activities', { signal: controller.signal }))) as ApiError;
+      expect(Date.now() - started).toBeLessThan(5_000);
+
+      expect(err.category).toBe('timeout');
+      expect(err.code).toBe('TIMEOUT');
+      expect(err.message).toBe('The request was aborted before the Kimai instance responded.');
+    });
+
+    it('the composed signal carried to a custom transport fires on either input, with the matching reason', async () => {
+      const request = vi.fn().mockResolvedValue({});
+      const client = new ApiClient({ baseUrl: BASE_URL, token: TOKEN, timeoutMs: 20, transport: { request } as HttpTransport });
+
+      const controller = new AbortController();
+      await client.get('/api/activities', { signal: controller.signal });
+      const received: TransportRequest = request.mock.calls[0]![0];
+      expect(received.signal).toBeDefined();
+      expect(received.signal).not.toBe(controller.signal);
+      expect(received.signal?.aborted).toBe(false);
+
+      // deadline expiry -> the explicit TimeoutError reason
+      await new Promise((r) => setTimeout(r, 30));
+      expect(received.signal?.aborted).toBe(true);
+      expect((received.signal?.reason as { name?: string } | undefined)?.name).toBe('TimeoutError');
+
+      // caller abort -> the caller's own reason, never the deadline classification
+      const client2 = new ApiClient({ baseUrl: BASE_URL, token: TOKEN, timeoutMs: 30_000, transport: { request } as HttpTransport });
+      const controller2 = new AbortController();
+      await client2.get('/api/activities', { signal: controller2.signal });
+      const received2: TransportRequest = request.mock.calls[1]![0];
+      expect(received2.signal).toBeDefined();
+      controller2.abort();
+      expect(received2.signal?.aborted).toBe(true);
+      expect((received2.signal?.reason as { name?: string } | undefined)?.name).not.toBe('TimeoutError');
+    });
+  });
 });
