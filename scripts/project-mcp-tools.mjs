@@ -31,7 +31,12 @@
  *
  * Curation lives ONLY in MCP_TOOL_OVERRIDES.json (repo root): an array of
  * { tool, field, newValue, reason } records. `field: "exclude"` with `newValue: true` drops a
- * projected tool (reported, never silent). An override naming an unknown tool/field, or a
+ * projected tool (reported, never silent); `field: "description"` replaces a tool's
+ * description (the curated text is the SINGLE source of the served string - no mechanical
+ * bounds sentence is re-appended); `field: "paramDescription"` (newValue { param,
+ * description }), `field: "summary"` and `field: "when"` curate a closed-contract field
+ * description and the catalog-row text, and may key off an operation id (dispatch-only
+ * operations have no tool of their own). An override naming an unknown tool/field, or a
  * registry operation in neither the core nor the catalog, exits non-zero.
  *
  * Usage:
@@ -273,6 +278,15 @@ function coreRule(records, plan) {
   return core;
 }
 
+/**
+ * The served-text composition rule (SDK issue I-7): ONE rule, stated in the manifest and
+ * mirrored machine-readably in the generated module (`SERVED_TEXT_RULE` in `node-kimai/mcp`),
+ * so a server compiling the surface from this SDK cannot drift from it or from a sibling
+ * server's compile of the same registry + curation input.
+ */
+export const SERVED_TEXT_RULE =
+  'Served description of a dedicated tool: a curated description override (MCP_TOOL_OVERRIDES.json, mirrored in TOOL_TEXT_OVERRIDES) is the SINGLE source - serve it verbatim; the generator appends no mechanical bounds sentence on top of a curated text. A tool without an override serves the registry metadata.purpose, then metadata.usage when present and different, then the mechanical bounds sentence derived from effect, flags, pagination, resolution and compact. Catalog rows: summary = a curated summary override else the registry purpose; when = a curated when override else the registry preferredWhen. Closed input contracts: a curated paramDescription override else the registry field description.';
+
 // ---------------------------------------------------------------------------- projection
 
 function project(registry, overrides) {
@@ -328,15 +342,25 @@ function project(registry, overrides) {
   }
   const byName = new Map(tools.map((t) => [t.name, t]));
 
-  // ---- curation overrides (the only place a name/description/tier may change)
+  // ---- curation overrides (the only place a tool name/description/tier or a served text may change)
   const applied = [];
   const unresolved = [];
   const curationExcluded = [];
+  // Catalog-row text curation (opId -> { summary?, when? }): a row's summary/when is registry
+  // text unless a curation entry replaces it.
+  const catalogTextOverrides = {};
+  // Operations whose inputSchema a `paramDescription` override patched (re-derive their tools'
+  // input fields below, so the manifest field tables carry the curated descriptions).
+  const paramPatchedOps = new Set();
   for (const ov of overrides) {
     if (!ov || typeof ov.tool !== 'string' || typeof ov.field !== 'string') { unresolved.push({ ov, why: 'override needs { tool, field, newValue, reason }' }); continue; }
     const tool = byName.get(ov.tool);
-    if (!tool) { unresolved.push({ ov, why: `no projected tool named "${ov.tool}"` }); continue; }
+    // The contract-parameter and catalog-row texts may key off a tool name or an operation id:
+    // dispatch-only operations have no tool of their own but still serve a contract and a row.
+    const opId = tool ? tool.backingOperation : (byId.has(ov.tool) ? ov.tool : null);
+    if (opId === null) { unresolved.push({ ov, why: `no projected tool named "${ov.tool}" and no registry operation by that key` }); continue; }
     if (ov.field === 'exclude') {
+      if (!tool) { unresolved.push({ ov, why: 'exclude needs a projected tool name' }); continue; }
       if (ov.newValue !== true) { unresolved.push({ ov, why: 'exclude expects newValue: true' }); continue; }
       curationExcluded.push({ name: tool.name, backingOperation: tool.backingOperation, effect: tool.effect, reason: ov.reason ?? '' });
       tools.splice(tools.indexOf(tool), 1);
@@ -344,13 +368,52 @@ function project(registry, overrides) {
       applied.push(ov);
       continue;
     }
-    if (ov.field === 'description') tool.description = ov.newValue;
-    else if (ov.field === 'title') tool.title = ov.newValue;
-    else if (ov.field === 'name') { byName.delete(tool.name); tool.name = ov.newValue; byName.set(tool.name, tool); }
-    else { unresolved.push({ ov, why: `field "${ov.field}" is not one of name|title|description|exclude` }); continue; }
-    tool.overridden.push(ov.field);
-    applied.push(ov);
+    if (ov.field === 'description') {
+      if (!tool) { unresolved.push({ ov, why: 'description needs a projected tool name' }); continue; }
+      tool.description = ov.newValue;
+      // The curated text is the SINGLE source of the served string: the mechanical bounds
+      // sentence is not re-appended on top of it (a re-appended sentence is how a curated text
+      // ended up duplicated verbatim in the served string).
+      tool.bounds = '';
+      tool.overridden.push(ov.field);
+      applied.push(ov);
+      continue;
+    }
+    if (ov.field === 'title' || ov.field === 'name') {
+      if (!tool) { unresolved.push({ ov, why: `${ov.field} needs a projected tool name` }); continue; }
+      if (ov.field === 'title') tool.title = ov.newValue;
+      else { byName.delete(tool.name); tool.name = ov.newValue; byName.set(tool.name, tool); }
+      tool.overridden.push(ov.field);
+      applied.push(ov);
+      continue;
+    }
+    if (ov.field === 'paramDescription') {
+      const nv = ov.newValue;
+      if (!nv || typeof nv.param !== 'string' || typeof nv.description !== 'string' || nv.description.length === 0) { unresolved.push({ ov, why: 'paramDescription expects newValue: { param, description }' }); continue; }
+      const rec = byId.get(opId);
+      if (!rec.inputSchema?.[nv.param]) { unresolved.push({ ov, why: `operation "${opId}" declares no input field "${nv.param}"` }); continue; }
+      rec.inputSchema[nv.param].description = nv.description;
+      paramPatchedOps.add(opId);
+      if (tool) tool.overridden.push(ov.field);
+      applied.push(ov);
+      continue;
+    }
+    if (ov.field === 'summary' || ov.field === 'when') {
+      if (typeof ov.newValue !== 'string' || ov.newValue.length === 0) { unresolved.push({ ov, why: `${ov.field} expects a non-empty string` }); continue; }
+      const entry = catalogTextOverrides[opId] ?? (catalogTextOverrides[opId] = {});
+      entry[ov.field === 'summary' ? 'summary' : 'when'] = ov.newValue;
+      if (tool) tool.overridden.push(ov.field);
+      applied.push(ov);
+      continue;
+    }
+    unresolved.push({ ov, why: `field "${ov.field}" is not one of name|title|description|exclude|paramDescription|summary|when` });
   }
+  // A patched parameter description changes what the tools backing those operations declare.
+  for (const t of tools) if (paramPatchedOps.has(t.backingOperation)) t.input = inputFields(byId.get(t.backingOperation));
+  // The curated served text of every overridden tool, core and non-core: the mcp subpath
+  // exports it (TOOL_TEXT_OVERRIDES) so a server needs no server-side override table.
+  const toolTextOverrides = {};
+  for (const t of tools) if (t.overridden.includes('description')) toolTextOverrides[t.name] = t.description;
 
   const core = coreRule(records, planRaw);
   const coreNames = new Set(core.map((c) => c.name));
@@ -361,13 +424,14 @@ function project(registry, overrides) {
     .filter((r) => !coreOps.has(r.id))
     .map((r) => {
       const tool = byName.get(toolNameFor(r));
+      const textOv = catalogTextOverrides[r.id] ?? {};
       return {
         operation: r.id,
         tool: tool ? tool.name : null,
         effect: r.effect,
         kind: r.kind,
-        purpose: (r.metadata?.purpose ?? '').trim() || '<MISSING purpose>',
-        preferredWhen: (r.metadata?.preferredWhen ?? null),
+        purpose: textOv.summary ?? ((r.metadata?.purpose ?? '').trim() || '<MISSING purpose>'),
+        preferredWhen: textOv.when ?? (r.metadata?.preferredWhen ?? null),
         reachableVia: tool ? tool.name : dispatchTool(r.effect),
       };
     });
@@ -381,7 +445,7 @@ function project(registry, overrides) {
   const coreRows = core.map((c) => ({ ...c, tool: c.op ? byName.get(c.name) ?? null : null }));
   const extended = tools.filter((t) => !coreNames.has(t.name)).sort((a, b) => (a.name < b.name ? -1 : 1));
 
-  return { records, tools, core: coreRows, coreNames, extended, catalog, excluded, subsumed, curationExcluded, applied, unresolved, planHash, plan: planRaw };
+  return { records, tools, core: coreRows, coreNames, extended, catalog, excluded, subsumed, curationExcluded, applied, unresolved, planHash, plan: planRaw, catalogTextOverrides, toolTextOverrides };
 }
 
 const dispatchTool = (effect) => (effect === 'read' ? 'kimai_read' : effect === 'write' ? 'kimai_write' : 'kimai_delete');
@@ -442,6 +506,28 @@ function render(data) {
   md.push('for the data-layer patterns). The dispatch safety rules in property 1 are requirements on that');
   md.push('server, not claims about code in this repository. A host MAY also load any extended tool');
   md.push('on demand in addition to the always-on core.');
+  nl();
+  md.push('## Served text - the composition rule');
+  nl();
+  md.push('One rule, mirrored machine-readably in the generated module (`SERVED_TEXT_RULE` in');
+  md.push('`node-kimai/mcp`), so a server compiling this surface cannot drift from it:');
+  nl();
+  md.push('1. A dedicated tool with a curated `description` in `MCP_TOOL_OVERRIDES.json` serves');
+  md.push('   that text **verbatim - it is the single source**. The generator appends no');
+  md.push('   mechanical bounds sentence on top of a curated text (a re-appended sentence is how');
+  md.push('   a curated string ended up duplicated verbatim in the served text).');
+  md.push('2. A tool without an override serves the registry `metadata.purpose`, then');
+  md.push('   `metadata.usage` when present and different, then the mechanical bounds sentence');
+  md.push('   derived from effect, flags, pagination, resolution and compact.');
+  md.push('3. Catalog rows: `summary` = a curated `summary` override else the registry purpose;');
+  md.push('   `when` = a curated `when` override else the registry `preferredWhen`.');
+  md.push('4. Closed input contracts: a curated `paramDescription` override else the registry');
+  md.push('   field description.');
+  nl();
+  md.push(`The curated texts of every overridden tool (${Object.keys(data.toolTextOverrides).length} of them, core and non-core)`);
+  md.push('are exported by the generated module as `TOOL_TEXT_OVERRIDES` (`node-kimai/mcp`) and');
+  md.push('mirrored in `MCP_TOOL_CATALOG.json`, so a server serves the curated text from the');
+  md.push('subpath alone - no server-side override table is needed.');
   nl();
   md.push('### CORE_RULE');
   nl();

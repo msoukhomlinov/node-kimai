@@ -295,6 +295,12 @@ export class TimesheetClient {
     return this.client.patch<Timesheet>(`/api/timesheets/${pathId(id)}/meta`, { body: meta });
   }
 
+  /**
+   * GET /api/timesheets/active. The vendor endpoint is caller-scoped: it serves the API
+   * key's own active (running) timesheets only - it takes no user parameter. For one
+   * specific user's active timesheets use `list` (or `search`) with the `user` filter
+   * plus `active: true`; this endpoint cannot answer the per-user question.
+   */
   async getActive(): Promise<Timesheet[]> {
     return this.client.get<Timesheet[]>('/api/timesheets/active');
   }
