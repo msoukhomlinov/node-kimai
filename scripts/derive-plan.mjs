@@ -424,6 +424,23 @@ else {
 }
 operations = sortRows(operations);
 
+/* Per-resource pagination — a derivable spec fact (not a judgement column):
+ * a `list` endpoint paginates in vendor page mode (default 50, max 500) only
+ * when the spec declares `page`/`size` query params; every other list endpoint
+ * returns a single non-paginated batch. Consumed by generate-capabilities.mjs. */
+const listPaginationFor = (r) => {
+  const row = derived.find((row) => row.primitive === `${r}.list`);
+  if (!row) return { mode: 'none' };
+  const [method, path] = row.endpoint.split(' ');
+  const names = ((spec.paths[path]?.[method.toLowerCase()]?.parameters) ?? [])
+    .filter((p) => p.in === 'query')
+    .map((p) => p.name);
+  const paginated = names.includes('page') || names.includes('size');
+  return paginated
+    ? { mode: 'page', vendorDefaultPageSize: 50, vendorMaxPageSize: 500 }
+    : { mode: 'none' };
+};
+
 const resources = {};
 for (const r of only.length > 0 ? only : RES_ORDER) {
   if (!SOURCE_FILES[r]) continue;
@@ -432,6 +449,7 @@ for (const r of only.length > 0 ? only : RES_ORDER) {
     helperCap: prev?.helperCap ?? 4,
     compact: prev?.compact ?? null,
     workflowResource: prev?.workflowResource ?? false,
+    pagination: listPaginationFor(r),
   };
 }
 

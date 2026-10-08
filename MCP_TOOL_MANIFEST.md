@@ -1,7 +1,7 @@
 # MCP Tool Manifest — node-kimai
 
 > **Machine-generated** by `scripts/project-mcp-tools.mjs` (`npm run mcp:project`) from
-> `capabilities.json` (planHash `c7a8a71fbd684b17…`). Do not hand-edit.
+> `capabilities.json` (planHash `0a9ecbf5c82bb9bf…`). Do not hand-edit.
 > Curation is recorded in `MCP_TOOL_OVERRIDES.json` and re-applied by the script.
 
 ## Projection summary
@@ -14,7 +14,7 @@
 - subsumed read primitives: 15 (covered by a helper — see below)
 - excluded by curation: 2
 - overrides applied: 16
-- projected at: 2026-10-08T11:56:56.265Z
+- projected at: 2026-10-08T18:56:38.173Z
 
 ## Progressive disclosure — the decision
 
@@ -541,9 +541,11 @@ where one exists; every mutation carries the `dry_run` affordance.
 - `sensitive` and `requiresApproval` records say so in their description; the SDK does
   not enforce approval policy — the manifest advertises the need so the gateway can gate it.
 - Errors surface the SDK `ApiError` fields `code`, `category`, `status`/`httpStatus`,
-  `retryable`, `suggestedAction`, `operation`, `request` (the request PATH only) and
-  `retryAfter`. A tool NEVER returns the request headers, the API token, or the raw vendor
-  error body, so a credential cannot leak through an error block.
+  `retryable`, `suggestedAction`, `operation`, `request` (the FULL absolute request URL —
+  origin + path + query string; the query can carry user filter text, which is why the MCP
+  server strips origin + query before serving) and `retryAfter`. A tool NEVER returns the
+  request headers, the API token, or the raw vendor error body, so a credential cannot leak
+  through an error block.
 - Reads are search-first: `kimai_catalog`/`kimai_describe` name the bounded helper for a
   resource; `limit` is capped at 100 on every read tool.
 
@@ -570,7 +572,7 @@ where one exists; every mutation carries the `dry_run` affordance.
 
 ## Meta
 
-- planHash: `c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629`
+- planHash: `0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8`
 - registry records: 108
 - projected tools: 90
 - core tier: 10

@@ -69,8 +69,8 @@ export interface CapabilityRecord {
 /** Grouped registry (one section per built group). */
 export const CAPABILITY_GROUPS = {
   "actions": {
-    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-08T11:56:56.080Z",
+    "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
+    "builtAt": "2026-10-08T18:56:37.832Z",
     "records": [
       {
         "id": "actions.getActions",
@@ -145,7 +145,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ActionsClient.ts",
           "sourceHash": "df285edce9bbe1bde5a12631fe672ae6b7da6e3da667885189519f2742683a93",
           "testFiles": [
@@ -157,8 +157,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "activities": {
-    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-08T11:56:56.081Z",
+    "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
+    "builtAt": "2026-10-08T18:56:37.832Z",
     "records": [
       {
         "id": "activities.addToTeam",
@@ -240,7 +240,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
@@ -318,7 +318,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
@@ -398,7 +398,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
@@ -477,7 +477,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
@@ -558,7 +558,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
@@ -634,7 +634,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
@@ -703,7 +703,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
@@ -737,9 +737,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "permissions": "unknown",
         "pagination": {
-          "mode": "page",
-          "vendorDefaultPageSize": 50,
-          "vendorMaxPageSize": 500
+          "mode": "none"
         },
         "resolution": null,
         "retry": {
@@ -787,7 +785,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
@@ -893,7 +891,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
@@ -990,7 +988,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
@@ -1081,7 +1079,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
@@ -1169,7 +1167,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ActivityClient.ts",
           "sourceHash": "2846e792af249dab26840161e54b53879121626dff84cb707496e76e60c162e5",
           "testFiles": [
@@ -1181,8 +1179,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "approvalBundle": {
-    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-08T11:56:56.081Z",
+    "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
+    "builtAt": "2026-10-08T18:56:37.832Z",
     "records": [
       {
         "id": "approvalBundle.addToApprove",
@@ -1253,7 +1251,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1322,7 +1320,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1391,7 +1389,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1460,7 +1458,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1529,7 +1527,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ApprovalBundleClient.ts",
           "sourceHash": "a237f007f8caccbf3a351f11649084c10ac99116b27e001d472473b5d541b50f",
           "testFiles": [
@@ -1541,8 +1539,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "config": {
-    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-08T11:56:56.081Z",
+    "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
+    "builtAt": "2026-10-08T18:56:37.832Z",
     "records": [
       {
         "id": "config.getColors",
@@ -1598,7 +1596,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ConfigClient.ts",
           "sourceHash": "adc0f6d6fb493cb57c878084d8ef592c5f48c21cdb6befcf6b46c2c4aa25cfa1",
           "testFiles": [
@@ -1661,7 +1659,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ConfigClient.ts",
           "sourceHash": "adc0f6d6fb493cb57c878084d8ef592c5f48c21cdb6befcf6b46c2c4aa25cfa1",
           "testFiles": [
@@ -1673,8 +1671,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "customers": {
-    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-08T11:56:56.081Z",
+    "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
+    "builtAt": "2026-10-08T18:56:37.832Z",
     "records": [
       {
         "id": "customers.addToTeam",
@@ -1756,7 +1754,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -1834,7 +1832,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -1914,7 +1912,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -1994,7 +1992,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -2073,7 +2071,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -2154,7 +2152,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -2235,7 +2233,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -2312,7 +2310,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -2400,7 +2398,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -2469,7 +2467,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -2503,9 +2501,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "permissions": "unknown",
         "pagination": {
-          "mode": "page",
-          "vendorDefaultPageSize": 50,
-          "vendorMaxPageSize": 500
+          "mode": "none"
         },
         "resolution": null,
         "retry": {
@@ -2554,7 +2550,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -2623,7 +2619,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -2710,7 +2706,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -2817,7 +2813,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -2904,7 +2900,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -2995,7 +2991,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -3083,7 +3079,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/CustomerClient.ts",
           "sourceHash": "79bdb75f639539b9e2516d91e59e5e2a57edb17751c4de0573b624c78e259da7",
           "testFiles": [
@@ -3095,8 +3091,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "export": {
-    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-08T11:56:56.081Z",
+    "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
+    "builtAt": "2026-10-08T18:56:37.832Z",
     "records": [
       {
         "id": "export.deleteTemplate",
@@ -3166,7 +3162,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ExportClient.ts",
           "sourceHash": "34d82e2bbb359d239a12b27cd71f09cd2e7a5d2ae467863afa0628f05be2b852",
           "testFiles": [
@@ -3178,8 +3174,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "invoices": {
-    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-08T11:56:56.081Z",
+    "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
+    "builtAt": "2026-10-08T18:56:37.832Z",
     "records": [
       {
         "id": "invoices.download",
@@ -3241,7 +3237,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/InvoiceClient.ts",
           "sourceHash": "0378a152312a62f810606891ed6dd6f44ea03a833410261088973d3deef1d8f7",
           "testFiles": [
@@ -3317,7 +3313,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/InvoiceClient.ts",
           "sourceHash": "0378a152312a62f810606891ed6dd6f44ea03a833410261088973d3deef1d8f7",
           "testFiles": [
@@ -3401,7 +3397,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/InvoiceClient.ts",
           "sourceHash": "0378a152312a62f810606891ed6dd6f44ea03a833410261088973d3deef1d8f7",
           "testFiles": [
@@ -3495,7 +3491,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/InvoiceClient.ts",
           "sourceHash": "0378a152312a62f810606891ed6dd6f44ea03a833410261088973d3deef1d8f7",
           "testFiles": [
@@ -3582,7 +3578,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/InvoiceClient.ts",
           "sourceHash": "0378a152312a62f810606891ed6dd6f44ea03a833410261088973d3deef1d8f7",
           "testFiles": [
@@ -3670,7 +3666,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/InvoiceClient.ts",
           "sourceHash": "0378a152312a62f810606891ed6dd6f44ea03a833410261088973d3deef1d8f7",
           "testFiles": [
@@ -3682,8 +3678,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "projects": {
-    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-08T11:56:56.081Z",
+    "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
+    "builtAt": "2026-10-08T18:56:37.832Z",
     "records": [
       {
         "id": "projects.addToTeam",
@@ -3765,7 +3761,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -3843,7 +3839,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -3923,7 +3919,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -4003,7 +3999,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -4082,7 +4078,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -4163,7 +4159,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -4244,7 +4240,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -4321,7 +4317,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -4408,7 +4404,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -4477,7 +4473,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -4511,9 +4507,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "permissions": "unknown",
         "pagination": {
-          "mode": "page",
-          "vendorDefaultPageSize": 50,
-          "vendorMaxPageSize": 500
+          "mode": "none"
         },
         "resolution": null,
         "retry": {
@@ -4562,7 +4556,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -4631,7 +4625,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -4718,7 +4712,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -4825,7 +4819,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -4912,7 +4906,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -5003,7 +4997,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -5091,7 +5085,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/ProjectClient.ts",
           "sourceHash": "a62c642b264e09bd4bd1d14ba48c62a26e5bfbd5ada4e81382dbe985667f778b",
           "testFiles": [
@@ -5103,8 +5097,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "system": {
-    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-08T11:56:56.081Z",
+    "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
+    "builtAt": "2026-10-08T18:56:37.832Z",
     "records": [
       {
         "id": "system.getPlugins",
@@ -5160,7 +5154,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/SystemClient.ts",
           "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
           "testFiles": [
@@ -5223,7 +5217,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/SystemClient.ts",
           "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
           "testFiles": [
@@ -5286,7 +5280,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/SystemClient.ts",
           "sourceHash": "1007705e89e500f123292a4d559e332eddec304ba5151a8e257edbb76500d145",
           "testFiles": [
@@ -5298,8 +5292,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "tags": {
-    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-08T11:56:56.081Z",
+    "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
+    "builtAt": "2026-10-08T18:56:37.832Z",
     "records": [
       {
         "id": "tags.create",
@@ -5368,7 +5362,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TagClient.ts",
           "sourceHash": "e943ddbc8ad979622010126a0fc4b292afbc179832d961a3aba37be1007cdcfe",
           "testFiles": [
@@ -5447,7 +5441,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TagClient.ts",
           "sourceHash": "e943ddbc8ad979622010126a0fc4b292afbc179832d961a3aba37be1007cdcfe",
           "testFiles": [
@@ -5515,7 +5509,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TagClient.ts",
           "sourceHash": "e943ddbc8ad979622010126a0fc4b292afbc179832d961a3aba37be1007cdcfe",
           "testFiles": [
@@ -5543,9 +5537,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "permissions": "unknown",
         "pagination": {
-          "mode": "page",
-          "vendorDefaultPageSize": 50,
-          "vendorMaxPageSize": 500
+          "mode": "none"
         },
         "resolution": null,
         "retry": {
@@ -5593,7 +5585,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TagClient.ts",
           "sourceHash": "e943ddbc8ad979622010126a0fc4b292afbc179832d961a3aba37be1007cdcfe",
           "testFiles": [
@@ -5691,7 +5683,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TagClient.ts",
           "sourceHash": "e943ddbc8ad979622010126a0fc4b292afbc179832d961a3aba37be1007cdcfe",
           "testFiles": [
@@ -5779,7 +5771,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TagClient.ts",
           "sourceHash": "e943ddbc8ad979622010126a0fc4b292afbc179832d961a3aba37be1007cdcfe",
           "testFiles": [
@@ -5791,8 +5783,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "teams": {
-    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-08T11:56:56.081Z",
+    "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
+    "builtAt": "2026-10-08T18:56:37.832Z",
     "records": [
       {
         "id": "teams.addMember",
@@ -5874,7 +5866,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
@@ -5952,7 +5944,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
@@ -6031,7 +6023,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
@@ -6107,7 +6099,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
@@ -6196,7 +6188,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
@@ -6285,7 +6277,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
@@ -6374,7 +6366,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
@@ -6408,9 +6400,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "permissions": "unknown",
         "pagination": {
-          "mode": "page",
-          "vendorDefaultPageSize": 50,
-          "vendorMaxPageSize": 500
+          "mode": "none"
         },
         "resolution": null,
         "retry": {
@@ -6457,7 +6447,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
@@ -6539,7 +6529,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
@@ -6638,7 +6628,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
@@ -6720,7 +6710,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
@@ -6802,7 +6792,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
@@ -6884,7 +6874,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
@@ -6975,7 +6965,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TeamClient.ts",
           "sourceHash": "08745f6eab35a344af598d148cbc4142c12123bba6f6747178e2b3dd9b3974cd",
           "testFiles": [
@@ -6987,8 +6977,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "timesheets": {
-    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-08T11:56:56.081Z",
+    "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
+    "builtAt": "2026-10-08T18:56:37.832Z",
     "records": [
       {
         "id": "timesheets.create",
@@ -7069,7 +7059,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -7148,7 +7138,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -7225,7 +7215,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -7302,7 +7292,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -7367,7 +7357,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -7458,7 +7448,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -7529,7 +7519,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -7624,7 +7614,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -7744,7 +7734,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -7827,7 +7817,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -7934,7 +7924,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -8019,7 +8009,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -8102,7 +8092,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -8193,7 +8183,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -8283,7 +8273,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
           "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
           "testFiles": [
@@ -8295,8 +8285,8 @@ export const CAPABILITY_GROUPS = {
     ]
   },
   "users": {
-    "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
-    "builtAt": "2026-10-08T11:56:56.081Z",
+    "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
+    "builtAt": "2026-10-08T18:56:37.832Z",
     "records": [
       {
         "id": "users.create",
@@ -8369,7 +8359,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
@@ -8447,7 +8437,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
@@ -8523,7 +8513,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
@@ -8586,7 +8576,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
@@ -8620,9 +8610,7 @@ export const CAPABILITY_GROUPS = {
         ],
         "permissions": "unknown",
         "pagination": {
-          "mode": "page",
-          "vendorDefaultPageSize": 50,
-          "vendorMaxPageSize": 500
+          "mode": "none"
         },
         "resolution": null,
         "retry": {
@@ -8670,7 +8658,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
@@ -8777,7 +8765,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
@@ -8864,7 +8852,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
@@ -8955,7 +8943,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
@@ -9043,7 +9031,7 @@ export const CAPABILITY_GROUPS = {
           }
         ],
         "staleCheck": {
-          "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+          "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/UserClient.ts",
           "sourceHash": "c03c377cacd2befb9818eeb9c833546953edb5ff7ec3057eaf6aef69cbbca349",
           "testFiles": [
