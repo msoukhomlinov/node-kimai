@@ -3,72 +3,115 @@
     "source": "api-docs.json",
     "version": "1.1"
   },
-  "generatedAt": "2026-10-07T11:11:18.719Z",
+  "generatedAt": "2026-10-08T18:56:37.571Z",
   "resources": {
     "timesheets": {
       "helperCap": 4,
       "compact": "TimesheetSummary",
-      "workflowResource": true
+      "workflowResource": true,
+      "pagination": {
+        "mode": "page",
+        "vendorDefaultPageSize": 50,
+        "vendorMaxPageSize": 500
+      }
     },
     "activities": {
       "helperCap": 4,
       "compact": "ActivitySummary",
-      "workflowResource": false
+      "workflowResource": false,
+      "pagination": {
+        "mode": "none"
+      }
     },
     "customers": {
       "helperCap": 4,
       "compact": "CustomerSummary",
-      "workflowResource": true
+      "workflowResource": true,
+      "pagination": {
+        "mode": "none"
+      }
     },
     "projects": {
       "helperCap": 4,
       "compact": "ProjectSummary",
-      "workflowResource": true
+      "workflowResource": true,
+      "pagination": {
+        "mode": "none"
+      }
     },
     "users": {
       "helperCap": 4,
       "compact": "UserSummary",
-      "workflowResource": false
+      "workflowResource": false,
+      "pagination": {
+        "mode": "none"
+      }
     },
     "tags": {
       "helperCap": 4,
       "compact": "TagSummary",
-      "workflowResource": false
+      "workflowResource": false,
+      "pagination": {
+        "mode": "none"
+      }
     },
     "teams": {
       "helperCap": 4,
       "compact": "TeamSummary",
-      "workflowResource": false
+      "workflowResource": false,
+      "pagination": {
+        "mode": "none"
+      }
     },
     "invoices": {
       "helperCap": 4,
       "compact": "InvoiceSummary",
-      "workflowResource": false
+      "workflowResource": false,
+      "pagination": {
+        "mode": "page",
+        "vendorDefaultPageSize": 50,
+        "vendorMaxPageSize": 500
+      }
     },
     "approvalBundle": {
       "helperCap": 4,
       "compact": null,
-      "workflowResource": true
+      "workflowResource": true,
+      "pagination": {
+        "mode": "none"
+      }
     },
     "config": {
       "helperCap": 4,
       "compact": null,
-      "workflowResource": false
+      "workflowResource": false,
+      "pagination": {
+        "mode": "none"
+      }
     },
     "system": {
       "helperCap": 4,
       "compact": null,
-      "workflowResource": false
+      "workflowResource": false,
+      "pagination": {
+        "mode": "none"
+      }
     },
     "export": {
       "helperCap": 4,
       "compact": null,
-      "workflowResource": false
+      "workflowResource": false,
+      "pagination": {
+        "mode": "none"
+      }
     },
     "actions": {
       "helperCap": 4,
       "compact": null,
-      "workflowResource": false
+      "workflowResource": false,
+      "pagination": {
+        "mode": "none"
+      }
     }
   },
   "operations": [

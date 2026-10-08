@@ -559,9 +559,11 @@ function render(data) {
   md.push('- `sensitive` and `requiresApproval` records say so in their description; the SDK does');
   md.push('  not enforce approval policy — the manifest advertises the need so the gateway can gate it.');
   md.push('- Errors surface the SDK `ApiError` fields `code`, `category`, `status`/`httpStatus`,');
-  md.push('  `retryable`, `suggestedAction`, `operation`, `request` (the request PATH only) and');
-  md.push('  `retryAfter`. A tool NEVER returns the request headers, the API token, or the raw vendor');
-  md.push('  error body, so a credential cannot leak through an error block.');
+  md.push('  `retryable`, `suggestedAction`, `operation`, `request` (the FULL absolute request URL —');
+  md.push('  origin + path + query string; the query can carry user filter text, which is why the MCP');
+  md.push('  server strips origin + query before serving) and `retryAfter`. A tool NEVER returns the');
+  md.push('  request headers, the API token, or the raw vendor error body, so a credential cannot leak');
+  md.push('  through an error block.');
   md.push('- Reads are search-first: `kimai_catalog`/`kimai_describe` name the bounded helper for a');
   md.push('  resource; `limit` is capped at 100 on every read tool.');
   nl();

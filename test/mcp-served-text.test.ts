@@ -135,6 +135,30 @@ describe('served contracts against the vendored spec (source of truth)', () => {
       expect((node.items?.properties ?? {}).name, `${op}.${field} items`).toBeTruthy();
     }
   });
+
+  it('pins every list op registry pagination mode to the vendored spec', () => {
+    // The #8 failure class: the registry (and every text projected from it) may
+    // claim vendor paging only where the spec declares page/size params.
+    const listRecords = records.filter((r) => r.id.endsWith('.list') && r.endpoint !== null);
+    expect(listRecords.length, 'eight *.list ops on the SDK surface').toBe(8);
+    let paginated = 0;
+    for (const rec of listRecords) {
+      const specOp = specByEndpoint.get(rec.endpoint as string);
+      const names = (((specOp?.parameters ?? []) as Array<{ name?: string; in?: string }>) ?? [])
+        .filter((p) => p.in === 'query')
+        .map((p) => p.name ?? '');
+      const specPaginated = names.includes('page') || names.includes('size');
+      const pg = (rec as { pagination?: { mode?: string; vendorDefaultPageSize?: number; vendorMaxPageSize?: number } }).pagination;
+      expect(pg?.mode, `${rec.id}: the registry pagination mode must match the spec`).toBe(specPaginated ? 'page' : 'none');
+      if (specPaginated) {
+        paginated += 1;
+        expect(pg?.vendorDefaultPageSize, `${rec.id} default page size`).toBe(50);
+        expect(pg?.vendorMaxPageSize, `${rec.id} max page size`).toBe(500);
+      }
+    }
+    // invoices + timesheets paginate in the spec; the six single-batch resources must be 'none'.
+    expect(paginated, 'spec-paginated list resources').toBe(2);
+  });
 });
 
 describe('served surfaces agree about confirmation', () => {

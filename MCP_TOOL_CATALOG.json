@@ -1,7 +1,7 @@
 {
   "sdk": "node-kimai",
   "generatedBy": "scripts/build-tool-catalog.mjs",
-  "planHash": "c7a8a71fbd684b171075bcd09d361748f4c9b32bb42dcd47f6ee220215fc4629",
+  "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
   "counts": {
     "registryOperations": 108,
     "exposedTools": 90,

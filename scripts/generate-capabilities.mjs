@@ -388,13 +388,17 @@ function main() {
   }
 
   /**
-   * Pagination: the Kimai list endpoint is page/size (spec: default 50, max
-   * 500); every other op is non-paginated.
+   * Pagination: derived per resource from the vendor spec
+   * (plan.resources[r].pagination). A `list` op paginates in vendor page mode
+   * (default 50, max 500) only when the spec declares page/size params; list
+   * endpoints the spec declares without them return a single non-paginated
+   * batch. Every non-list op is non-paginated.
    */
   function paginationFor(resourceEntry, op) {
     if (op === 'list') {
-      const pg = resourceEntry?.pagination ?? {};
-      return { mode: 'page', vendorDefaultPageSize: pg.vendorDefaultPageSize ?? 50, vendorMaxPageSize: pg.vendorMaxPageSize ?? 500 };
+      const pg = resourceEntry?.pagination;
+      if (pg && pg.mode === 'none') return { mode: 'none' };
+      return { mode: 'page', vendorDefaultPageSize: pg?.vendorDefaultPageSize ?? 50, vendorMaxPageSize: pg?.vendorMaxPageSize ?? 500 };
     }
     return { mode: 'none' };
   }
