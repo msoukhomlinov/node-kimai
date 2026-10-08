@@ -13,8 +13,8 @@
 - excluded by rule: 1 (binary/download)
 - subsumed read primitives: 15 (covered by a helper — see below)
 - excluded by curation: 2
-- overrides applied: 16
-- projected at: 2026-10-08T18:56:38.173Z
+- overrides applied: 75
+- projected at: 2026-10-08T19:35:41.817Z
 
 ## Progressive disclosure — the decision
 
@@ -48,6 +48,28 @@ for the data-layer patterns). The dispatch safety rules in property 1 are requir
 server, not claims about code in this repository. A host MAY also load any extended tool
 on demand in addition to the always-on core.
 
+## Served text - the composition rule
+
+One rule, mirrored machine-readably in the generated module (`SERVED_TEXT_RULE` in
+`node-kimai/mcp`), so a server compiling this surface cannot drift from it:
+
+1. A dedicated tool with a curated `description` in `MCP_TOOL_OVERRIDES.json` serves
+   that text **verbatim - it is the single source**. The generator appends no
+   mechanical bounds sentence on top of a curated text (a re-appended sentence is how
+   a curated string ended up duplicated verbatim in the served text).
+2. A tool without an override serves the registry `metadata.purpose`, then
+   `metadata.usage` when present and different, then the mechanical bounds sentence
+   derived from effect, flags, pagination, resolution and compact.
+3. Catalog rows: `summary` = a curated `summary` override else the registry purpose;
+   `when` = a curated `when` override else the registry `preferredWhen`.
+4. Closed input contracts: a curated `paramDescription` override else the registry
+   field description.
+
+The curated texts of every overridden tool (66 of them, core and non-core)
+are exported by the generated module as `TOOL_TEXT_OVERRIDES` (`node-kimai/mcp`) and
+mirrored in `MCP_TOOL_CATALOG.json`, so a server serves the curated text from the
+subpath alone - no server-side override table is needed.
+
 ### CORE_RULE
 
 - **R1** the five META tools (catalog / describe / read / write / delete) — the mechanism.
@@ -69,10 +91,10 @@ on demand in addition to the always-on core.
 | 3 | `kimai_read` | — (serves every operation) | R1 | meta | Execute only effect "read" operations by canonical registry key. Prefer the dedicated bounded search/resolve tools where they exist; use this dispatch for a read with no dedicated tool. `input` is a CLOSED per-operation contract: exactly the operation's declared fields — an unknown field is refused with a typed CONFIG_ERROR before any request. Reads have no dry run and never mutate. |
 | 4 | `kimai_write` | — (serves every operation) | R1 | meta | Execute only effect "write" operations by canonical registry key. Mutations default to a dry-run preview (dry_run: true returns the plan; the request is never issued); dry_run: false executes. `input` is a CLOSED per-operation contract — an unknown field is refused before any request. A destructive operation is REFUSED here; use kimai_delete. |
 | 5 | `kimai_delete` | — (serves every operation) | R1 | meta | Execute only effect "destructive" operations by canonical registry key. Destructive calls are irreversible and REFUSED without `confirm` equal to the operation key. `input` is a CLOSED per-operation contract. Neither the preview nor the confirmation string is human consent: the host must enforce its own approval policy. |
-| 6 | `kimai_get_current_user` | users.getMe | R2 | read | Fetch current user. Read path for users. Primitives return the full typed record. |
-| 7 | `kimai_search_timesheets` | timesheets.search | R4 | read | Search timesheets with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100 (out of range throws KimaiConfigError — never silently clamped). Without a user filter the SDK passes user=all (requires the vendor view_other_timesheet permission). Find activity/project/customer ids with kimai_search_activities / kimai_search_projects / kimai_search_customers. Compact TimesheetSummary rows by default; expand: true for the full records. Bounded: limit default 25, hard max 100. Compact TimesheetSummary by default; expand: true returns the full record. |
-| 8 | `kimai_search_customers` | customers.search | R4 | read | Search customers with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100. Compact CustomerSummary rows by default; expand: true for the full records. Use kimai_resolve_customer to turn a name into one id. Bounded: limit default 25, hard max 100. Compact CustomerSummary by default; expand: true returns the full record. |
-| 9 | `kimai_search_projects` | projects.search | R4 | read | Search projects with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100. Filter by customer/activity ids from kimai_search_customers / kimai_search_activities. Compact ProjectSummary rows by default; expand: true for the full records. Bounded: limit default 25, hard max 100. Compact ProjectSummary by default; expand: true returns the full record. |
+| 6 | `kimai_get_current_user` | users.getMe | R2 | read | Get the user record of the API key this request was made with (the "current user": id, name, department, preferences). Use when you need "my" user id — e.g. as the user filter of a search, or the owner default for week tools — without searching users. Read-only; returns the full typed record. |
+| 7 | `kimai_search_timesheets` | timesheets.search | R4 | read | Search timesheets with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100 (out of range throws KimaiConfigError — never silently clamped). Without a user filter the SDK passes user=all (requires the vendor view_other_timesheet permission). Find activity/project/customer ids with kimai_search_activities / kimai_search_projects / kimai_search_customers. Compact TimesheetSummary rows by default; expand: true for the full records. |
+| 8 | `kimai_search_customers` | customers.search | R4 | read | Search customers with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100. Compact CustomerSummary rows by default; expand: true for the full records. Use kimai_resolve_customer to turn a name into one id. |
+| 9 | `kimai_search_projects` | projects.search | R4 | read | Search projects with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100. Filter by customer/activity ids from kimai_search_customers / kimai_search_activities. Compact ProjectSummary rows by default; expand: true for the full records. |
 | 10 | `kimai_get_week_status` | approvalBundle.weekStatus | R4 | read | Get the approval status of one calendar week for a user: whether it is approved plus its timesheets and total duration. Pass the ISO date (YYYY-MM-DD) that identifies the week; omit `user` for the API-key owner. |
 
 ### Core tool detail
@@ -171,7 +193,7 @@ on demand in addition to the always-on core.
 
 **Backing operation:** `users.getMe`
 
-**Description:** Fetch current user. Read path for users. Primitives return the full typed record.
+**Description:** Get the user record of the API key this request was made with (the "current user": id, name, department, preferences). Use when you need "my" user id — e.g. as the user filter of a search, or the owner default for week tools — without searching users. Read-only; returns the full typed record.
 
 **Input:**
 
@@ -193,7 +215,7 @@ on demand in addition to the always-on core.
 
 **Backing operation:** `timesheets.search`
 
-**Description:** Search timesheets with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100 (out of range throws KimaiConfigError — never silently clamped). Without a user filter the SDK passes user=all (requires the vendor view_other_timesheet permission). Find activity/project/customer ids with kimai_search_activities / kimai_search_projects / kimai_search_customers. Compact TimesheetSummary rows by default; expand: true for the full records. Bounded: limit default 25, hard max 100. Compact TimesheetSummary by default; expand: true returns the full record.
+**Description:** Search timesheets with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100 (out of range throws KimaiConfigError — never silently clamped). Without a user filter the SDK passes user=all (requires the vendor view_other_timesheet permission). Find activity/project/customer ids with kimai_search_activities / kimai_search_projects / kimai_search_customers. Compact TimesheetSummary rows by default; expand: true for the full records.
 
 **Input:**
 
@@ -217,7 +239,7 @@ on demand in addition to the always-on core.
 
 **Backing operation:** `customers.search`
 
-**Description:** Search customers with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100. Compact CustomerSummary rows by default; expand: true for the full records. Use kimai_resolve_customer to turn a name into one id. Bounded: limit default 25, hard max 100. Compact CustomerSummary by default; expand: true returns the full record.
+**Description:** Search customers with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100. Compact CustomerSummary rows by default; expand: true for the full records. Use kimai_resolve_customer to turn a name into one id.
 
 **Input:**
 
@@ -241,7 +263,7 @@ on demand in addition to the always-on core.
 
 **Backing operation:** `projects.search`
 
-**Description:** Search projects with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100. Filter by customer/activity ids from kimai_search_customers / kimai_search_activities. Compact ProjectSummary rows by default; expand: true for the full records. Bounded: limit default 25, hard max 100. Compact ProjectSummary by default; expand: true returns the full record.
+**Description:** Search projects with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100. Filter by customer/activity ids from kimai_search_customers / kimai_search_activities. Compact ProjectSummary rows by default; expand: true for the full records.
 
 **Input:**
 
@@ -271,7 +293,7 @@ on demand in addition to the always-on core.
 
 | field | type | required | notes |
 |-------|------|----------|-------|
-| `params` | `object` | yes | { user?: number; date: string } |
+| `params` | `object` | yes | `{ date: string — REQUIRED, any ISO date (YYYY-MM-DD) identifying the week (the vendor treats the date as the week selector); user?: number — omit for the API-key owner }` |
 
 **Output:** `ApprovalWeekStatus`
 
@@ -354,8 +376,8 @@ exists; otherwise the operation is reachable through the dispatch tool named in
 | `system.ping` | `kimai_ping` | read | Testing route for the API. | — | `kimai_ping` |
 | `tags.create` | `kimai_create_tag` | write | Create tag. | Preferred for creating a new tag; the vendor exposes no tag update, so a rename is a create + delete pair. | `kimai_create_tag` |
 | `tags.delete` | `kimai_delete_tag` | destructive | Delete tag. | — | `kimai_delete_tag` |
-| `tags.find` | — | read | Fetch tags. | — | `kimai_read` |
-| `tags.list` | — | read | Fetch tags. | Preferred over tags.search only when the agent must walk pages; tags.search is the bounded default read. | `kimai_read` |
+| `tags.find` | — | read | Fetch tags (the canonical tag endpoint; the deprecated GET /api/tags is not wrapped — G3). | — | `kimai_read` |
+| `tags.list` | — | read | Fetch all tags in a single unpaginated batch (prefer kimai_search_tags for filtered reads). | Preferred over tags.search only when the agent must walk pages; tags.search is the bounded default read. | `kimai_read` |
 | `tags.resolve` | `kimai_resolve_tag` | read | Resolve one tag from an identifier. | Preferred over tags.list + a client-side find for any single-tag lookup. | `kimai_resolve_tag` |
 | `tags.search` | `kimai_search_tags` | read | Search tags with the spec filters, bounded by an explicit limit. | Preferred over tags.list for any bounded filtered read (at most 100 rows). | `kimai_search_tags` |
 | `teams.addMember` | `kimai_add_team_member` | write | Add team member. | — | `kimai_add_team_member` |
@@ -365,7 +387,7 @@ exists; otherwise the operation is reachable through the dispatch tool named in
 | `teams.grantActivityAccess` | `kimai_grant_team_activity_access` | write | Grant activity access. | — | `kimai_grant_team_activity_access` |
 | `teams.grantCustomerAccess` | `kimai_grant_team_customer_access` | write | Grant customer access. | — | `kimai_grant_team_customer_access` |
 | `teams.grantProjectAccess` | `kimai_grant_team_project_access` | write | Grant project access. | — | `kimai_grant_team_project_access` |
-| `teams.list` | `kimai_list_teams` | read | Fetch teams. | Preferred when the caller must walk pages; otherwise a bounded read is enough. | `kimai_list_teams` |
+| `teams.list` | `kimai_list_teams` | read | Fetch teams. | Teams have no search helper and no paging: this is the only read tool for teams; use kimai_resolve_team for one id. | `kimai_list_teams` |
 | `teams.removeMember` | `kimai_remove_team_member` | destructive | Remove team member. | — | `kimai_remove_team_member` |
 | `teams.resolve` | `kimai_resolve_team` | read | Resolve one team from an identifier. | Preferred over teams.list + a client-side find for any single-team lookup. | `kimai_resolve_team` |
 | `teams.revokeActivityAccess` | `kimai_revoke_team_activity_access` | destructive | Revoke activity access. | — | `kimai_revoke_team_activity_access` |
@@ -555,7 +577,6 @@ where one exists; every mutation carries the `dry_run` affordance.
 |------|-------|--------|
 | `kimai_get_actions` | exclude (drop) | UI-only view rendering (GET /api/actions/{resource}/{id}/{view}/{locale}): the payload is pre-rendered HTML fragments for the Kimai web UI, not agent-usable data. Still reachable through kimai_read when a host deliberately needs it. |
 | `kimai_delete_user_api_token` | exclude (drop) | Credential-lifecycle operation: a model must not be handed the API-key deletion path as a first-class tool. Registry flags: destructive + requiresApproval. Still reachable, confirmation-gated, through kimai_delete for a host that deliberately enables it. |
-| `kimai_update_user_preferences` | description | Registry purpose was not LLM-directed (a bare label) and the shared usage string said nothing about the preference semantics. |
 | `kimai_get_week_status` | description | Registry purpose was the raw route string 'GET /api/approval-bundle/week-status.' — not LLM-directed. |
 | `kimai_get_next_approval_week` | description | Registry purpose was the raw route string 'GET /api/approval-bundle/next-week.' — not LLM-directed. |
 | `kimai_get_overtime_year` | description | Registry purpose was the raw route string 'GET /api/approval-bundle/overtime_year.' — not LLM-directed. |
@@ -568,7 +589,67 @@ where one exists; every mutation carries the `dry_run` affordance.
 | `kimai_create_timesheet` | description | Curation adds the cross-tool look-up hints the MCP standard requires on required id fields. |
 | `kimai_search_customers` | description | Curation adds the cross-tool look-up hint to the resolver; the registry usage stated the bound and the compact/expand behaviour only. |
 | `kimai_search_projects` | description | Curation adds the cross-tool look-up hints the MCP standard requires on id filters. |
-| `kimai_list_teams` | description | Registry usage told the caller to use the SDK's getAll/listPages iterators, which are deliberately not MCP tools; the served text must not recommend an unsupported path. Adds the vendor page bound and the resolver hint. |
+| `kimai_list_teams` | description | I-3 (F3/G4): the old text claimed vendor paging (default 50, max 500) for a resource the vendor returns as a single unpaginated batch; prescribed replacement (the pagination metadata itself is corrected in the companion issue). |
+| `kimai_update_user_preferences` | description | I-4 (F5): the old text leaked a curation meta-comment ("Registry purpose was ...") into the served string; prescribed replacement keeps the guidance and drops the note. |
+| `kimai_get_colors` | description | I-9 (F10): thin read with no when-to-use, bound or scope note; prescribed replacement. |
+| `kimai_get_recent_timesheets` | description | I-9 (F10): thin read with no when-to-use, bound or scope note; prescribed replacement. |
+| `kimai_get_timesheet_config` | description | I-9 (F10): thin read with no when-to-use, bound or scope note; prescribed replacement. |
+| `kimai_search_activities` | description | I-10 (F12): missing cross-tool id-sourcing hint on the non-core search quartet; prescribed replacement. |
+| `kimai_search_invoices` | description | I-10 (F12): missing cross-tool id-sourcing hint on the non-core search quartet; prescribed replacement. |
+| `kimai_search_tags` | description | I-10 (F12): missing cross-tool id-sourcing hint on the non-core search quartet; prescribed replacement. |
+| `kimai_search_users` | description | I-10 (F12): missing cross-tool id-sourcing hint on the non-core search quartet; prescribed replacement. |
+| `kimai_get_current_user` | description | I-2 (F2): raw registry text on an always-on identity anchor; prescribed replacement. |
+| `kimai_add_activity_to_team` | description | I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies. |
+| `kimai_add_customer_to_team` | description | I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies. |
+| `kimai_add_project_to_team` | description | I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies. |
+| `kimai_add_team_member` | description | I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies. |
+| `kimai_grant_team_activity_access` | description | I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies. |
+| `kimai_grant_team_customer_access` | description | I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies. |
+| `kimai_grant_team_project_access` | description | I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies. |
+| `kimai_remove_team_member` | description | I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies. |
+| `kimai_revoke_team_activity_access` | description | I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies. |
+| `kimai_revoke_team_customer_access` | description | I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies. |
+| `kimai_revoke_team_project_access` | description | I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies. |
+| `kimai_create_activity` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_create_activity_rate` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_create_customer` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_create_customer_comment` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_create_customer_rate` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_create_project` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_create_project_comment` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_create_project_rate` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_create_tag` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_create_team` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_create_user` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_delete_activity_rate` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_delete_customer_comment` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_delete_customer_rate` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_delete_export_template` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_delete_project_comment` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_delete_project_rate` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_pin_customer_comment` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_pin_project_comment` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_update_activity` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_update_activity_meta` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_update_customer` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_update_customer_meta` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_update_invoice_custom_fields` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_update_project` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_update_project_meta` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_update_team` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_update_user` | description | I-5 (F7): terse vendor label plus generator boilerplate (incl. the "a activity" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate. |
+| `kimai_get_activity_rates` | description | I-7 (F8): generator boilerplate ("Read path for X. Primitives return the full typed record."); prescribed replacement names what the read returns and the one-call context helper. |
+| `kimai_get_customer_rates` | description | I-7 (F8): generator boilerplate ("Read path for X. Primitives return the full typed record."); prescribed replacement names what the read returns and the one-call context helper. |
+| `kimai_get_project_rates` | description | I-7 (F8): generator boilerplate ("Read path for X. Primitives return the full typed record."); prescribed replacement names what the read returns and the one-call context helper. |
+| `kimai_list_customer_comments` | description | I-7 (F8): generator boilerplate ("Read path for X. Primitives return the full typed record."); prescribed replacement names what the read returns and the one-call context helper. |
+| `kimai_list_project_comments` | description | I-7 (F8): generator boilerplate ("Read path for X. Primitives return the full typed record."); prescribed replacement names what the read returns and the one-call context helper. |
+| `kimai_get_week_status` | paramDescription | I-6 (F9): the registry served the TS type name as the parameter description; prescribed replacement states the G10 contract (date required, week selector; user optional = API-key owner). |
+| `kimai_get_weekly_overtime` | paramDescription | I-6 (F9): the registry served the TS type name as the parameter description; prescribed replacement (date required; user optional = API-key owner). |
+| `kimai_submit_for_approval` | paramDescription | I-6 (F9): the registry served the TS type name (ApprovalApproveParams) as the parameter description; prescribed replacement (date required = week to submit; user optional = API-key owner). |
+| `timesheets.list` | paramDescription | I-6 (F9): the registry served the TS type name (TimesheetListParams) as the parameter description; prescribed replacement names the filters, the paging bound, and the bounded-read steering (the operation is dispatch-only, so the entry keys off the operation id). |
+| `tags.find` | summary | I-8 (F11): tags.find and tags.list served byte-identical catalog summaries ("Fetch tags."); prescribed replacement disambiguates the two dispatch-only rows. |
+| `tags.list` | summary | I-8 (F11): tags.find and tags.list served byte-identical catalog summaries ("Fetch tags."); prescribed replacement disambiguates the two dispatch-only rows. |
+| `kimai_list_teams` | when | I-3 (F4/G4): the catalog row claimed paging for teams; prescribed replacement (the pagination metadata itself is corrected in the companion issue). |
 
 ## Meta
 

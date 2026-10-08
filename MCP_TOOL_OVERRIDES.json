@@ -12,12 +12,6 @@
     "reason": "Credential-lifecycle operation: a model must not be handed the API-key deletion path as a first-class tool. Registry flags: destructive + requiresApproval. Still reachable, confirmation-gated, through kimai_delete for a host that deliberately enables it."
   },
   {
-    "tool": "kimai_update_user_preferences",
-    "field": "description",
-    "newValue": "Update the UI preferences (language, timezone, theme, rows per page) of one user. Admin or self only. Registry purpose was the terse vendor label 'Update user preferences'; this states what the preference bag changes and who may change it.",
-    "reason": "Registry purpose was not LLM-directed (a bare label) and the shared usage string said nothing about the preference semantics."
-  },
-  {
     "tool": "kimai_get_week_status",
     "field": "description",
     "newValue": "Get the approval status of one calendar week for a user: whether it is approved plus its timesheets and total duration. Pass the ISO date (YYYY-MM-DD) that identifies the week; omit `user` for the API-key owner.",
@@ -92,7 +86,379 @@
   {
     "tool": "kimai_list_teams",
     "field": "description",
-    "newValue": "List teams, bounded by vendor paging (default page size 50, max 500). Teams have no text-search helper, so this is the read tool for the resource; use kimai_resolve_team to turn a name into one id. Output is the full Team[] records, including members and the customers/projects/activities access lists.",
-    "reason": "Registry usage told the caller to use the SDK's getAll/listPages iterators, which are deliberately not MCP tools; the served text must not recommend an unsupported path. Adds the vendor page bound and the resolver hint."
+    "newValue": "List all teams. The vendor returns the complete unpaginated batch in one call \u2014 teams have no paging and no text search, so this is the read tool for the resource. Output is the full Team records, including members and the customers/projects/activities access lists. Use kimai_resolve_team to turn a name into one id.",
+    "reason": "I-3 (F3/G4): the old text claimed vendor paging (default 50, max 500) for a resource the vendor returns as a single unpaginated batch; prescribed replacement (the pagination metadata itself is corrected in the companion issue)."
+  },
+  {
+    "tool": "kimai_update_user_preferences",
+    "field": "description",
+    "newValue": "Update the UI preferences (language, timezone, theme, rows per page) of one user. Admin or self only. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-4 (F5): the old text leaked a curation meta-comment (\"Registry purpose was ...\") into the served string; prescribed replacement keeps the guidance and drops the note."
+  },
+  {
+    "tool": "kimai_get_colors",
+    "field": "description",
+    "newValue": "Get the instance's configured colour codes (UI configuration). Call only if the user explicitly asks for instance configuration; not part of the time-tracking workflows.",
+    "reason": "I-9 (F10): thin read with no when-to-use, bound or scope note; prescribed replacement."
+  },
+  {
+    "tool": "kimai_get_recent_timesheets",
+    "field": "description",
+    "newValue": "Get the most recent timesheets from the dedicated vendor endpoint: a fixed small unfiltered batch, no paging parameters, caller-scoped to what the API key can see. Use for a quick \"what was logged lately\" glance; for any filter, a date range or a larger set use kimai_search_timesheets.",
+    "reason": "I-9 (F10): thin read with no when-to-use, bound or scope note; prescribed replacement."
+  },
+  {
+    "tool": "kimai_get_timesheet_config",
+    "field": "description",
+    "newValue": "Get the instance's timesheet configuration (UI defaults such as the default activity). Call only if the user explicitly asks for instance configuration; not part of the time-tracking workflows.",
+    "reason": "I-9 (F10): thin read with no when-to-use, bound or scope note; prescribed replacement."
+  },
+  {
+    "tool": "kimai_search_activities",
+    "field": "description",
+    "newValue": "Search activities with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100 (a non-integer or out-of-range value throws KimaiConfigError \u2014 never silently clamped). Compact ActivitySummary rows by default; expand: true for the full records. Activity ids from these rows feed the activity filter of kimai_search_timesheets and kimai_create_timesheet.",
+    "reason": "I-10 (F12): missing cross-tool id-sourcing hint on the non-core search quartet; prescribed replacement."
+  },
+  {
+    "tool": "kimai_search_invoices",
+    "field": "description",
+    "newValue": "Search invoices with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100 (out-of-range throws KimaiConfigError). The endpoint is paginated: search reads at most ceil(limit/size) pages and returns compact InvoiceSummary rows by default; expand: true for the full records. Invoice ids from these rows feed kimai_resolve_invoice.",
+    "reason": "I-10 (F12): missing cross-tool id-sourcing hint on the non-core search quartet; prescribed replacement."
+  },
+  {
+    "tool": "kimai_search_tags",
+    "field": "description",
+    "newValue": "Search tags with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100 (out-of-range throws KimaiConfigError). Compact TagSummary rows by default; expand: true for the full records. Tag names/ids from these rows feed the tags filter of kimai_search_timesheets.",
+    "reason": "I-10 (F12): missing cross-tool id-sourcing hint on the non-core search quartet; prescribed replacement."
+  },
+  {
+    "tool": "kimai_search_users",
+    "field": "description",
+    "newValue": "Search users with the spec filters, bounded by an explicit limit. limit defaults to 25, hard max 100 (out-of-range throws KimaiConfigError). Compact UserSummary rows by default (no credential fields); expand: true for the full records. User ids from these rows feed the user filter of kimai_search_timesheets / kimai_get_week_status and the users list of kimai_team_week.",
+    "reason": "I-10 (F12): missing cross-tool id-sourcing hint on the non-core search quartet; prescribed replacement."
+  },
+  {
+    "tool": "kimai_get_current_user",
+    "field": "description",
+    "newValue": "Get the user record of the API key this request was made with (the \"current user\": id, name, department, preferences). Use when you need \"my\" user id \u2014 e.g. as the user filter of a search, or the owner default for week tools \u2014 without searching users. Read-only; returns the full typed record.",
+    "reason": "I-2 (F2): raw registry text on an always-on identity anchor; prescribed replacement."
+  },
+  {
+    "tool": "kimai_add_activity_to_team",
+    "field": "description",
+    "newValue": "Add one activity to a team's activity list (the activity becomes available to the team's members). Not to be confused with kimai_grant_team_activity_access, which grants the team access rights to the activity. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies."
+  },
+  {
+    "tool": "kimai_add_customer_to_team",
+    "field": "description",
+    "newValue": "Add one customer to a team's customer list (the customer becomes available to the team's members). Not to be confused with kimai_grant_team_customer_access, which grants the team access rights to the customer. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies."
+  },
+  {
+    "tool": "kimai_add_project_to_team",
+    "field": "description",
+    "newValue": "Add one project to a team's project list (the project becomes available to the team's members). Not to be confused with kimai_grant_team_project_access, which grants the team access rights to the project. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies."
+  },
+  {
+    "tool": "kimai_add_team_member",
+    "field": "description",
+    "newValue": "Add a user as a member of a team (membership only \u2014 it does not grant the member access to specific customers/projects/activities). Use kimai_remove_team_member to take a member off. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies."
+  },
+  {
+    "tool": "kimai_grant_team_activity_access",
+    "field": "description",
+    "newValue": "Grant a team access rights to one activity (the team's members may log against it). Inverse: kimai_revoke_team_activity_access. Do not confuse with kimai_add_activity_to_team, which only lists the activity under the team. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies."
+  },
+  {
+    "tool": "kimai_grant_team_customer_access",
+    "field": "description",
+    "newValue": "Grant a team access rights to one customer. Inverse: kimai_revoke_team_customer_access. Do not confuse with kimai_add_customer_to_team, which only lists the customer under the team. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies."
+  },
+  {
+    "tool": "kimai_grant_team_project_access",
+    "field": "description",
+    "newValue": "Grant a team access rights to one project. Inverse: kimai_revoke_team_project_access. Do not confuse with kimai_add_project_to_team, which only lists the project under the team. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies."
+  },
+  {
+    "tool": "kimai_remove_team_member",
+    "field": "description",
+    "newValue": "Remove a user from a team (team membership only; the user's individual access grants to customers/projects/activities are untouched). Destructive and confirm-gated: confirm must equal the operation key. Inverse of kimai_add_team_member.",
+    "reason": "I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies."
+  },
+  {
+    "tool": "kimai_revoke_team_activity_access",
+    "field": "description",
+    "newValue": "Revoke a team's access rights to one activity (its members can no longer log against it). Destructive and confirm-gated: confirm must equal the operation key. Inverse of kimai_grant_team_activity_access.",
+    "reason": "I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies."
+  },
+  {
+    "tool": "kimai_revoke_team_customer_access",
+    "field": "description",
+    "newValue": "Revoke a team's access rights to one customer. Destructive and confirm-gated: confirm must equal the operation key. Inverse of kimai_grant_team_customer_access.",
+    "reason": "I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies."
+  },
+  {
+    "tool": "kimai_revoke_team_project_access",
+    "field": "description",
+    "newValue": "Revoke a team's access rights to one project. Destructive and confirm-gated: confirm must equal the operation key. Inverse of kimai_grant_team_project_access.",
+    "reason": "I-5 (F6): inverted/underspecified vendor label in the team cluster; prescribed replacement states the direction, the boundary vs the access grants, and the confirm gate where one applies."
+  },
+  {
+    "tool": "kimai_create_activity",
+    "field": "description",
+    "newValue": "Create a new activity. Use for a genuinely new activity; for any change to an existing one use kimai_update_activity. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_create_activity_rate",
+    "field": "description",
+    "newValue": "Add one billing rate to an activity (rates drive timesheet billing). Distinct from kimai_delete_activity_rate (removal) and kimai_get_activity_rates (read). Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_create_customer",
+    "field": "description",
+    "newValue": "Create a new customer. Use for a genuinely new customer; for any change to an existing one use kimai_update_customer. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_create_customer_comment",
+    "field": "description",
+    "newValue": "Add a comment to a customer (free-text note visible in the Kimai UI; pin with kimai_pin_customer_comment). Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_create_customer_rate",
+    "field": "description",
+    "newValue": "Add one billing rate to a customer. Distinct from kimai_delete_customer_rate (removal) and kimai_get_customer_rates (read). Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_create_project",
+    "field": "description",
+    "newValue": "Create a new project (optionally for an existing customer). Use for a genuinely new project; for any change to an existing one use kimai_update_project. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_create_project_comment",
+    "field": "description",
+    "newValue": "Add a comment to a project (free-text note visible in the Kimai UI; pin with kimai_pin_project_comment). Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_create_project_rate",
+    "field": "description",
+    "newValue": "Add one billing rate to a project. Distinct from kimai_delete_project_rate (removal) and kimai_get_project_rates (read). Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_create_tag",
+    "field": "description",
+    "newValue": "Create a new tag. The vendor exposes no tag update, so renaming a tag is a create + delete pair (kimai_create_tag then kimai_delete_tag). Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_create_team",
+    "field": "description",
+    "newValue": "Create a new team. Use for a genuinely new team; for any change to an existing one use kimai_update_team. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_create_user",
+    "field": "description",
+    "newValue": "Create a new user (admin only). Use for a genuinely new user; for any change to an existing one use kimai_update_user. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_delete_activity_rate",
+    "field": "description",
+    "newValue": "Delete a billing rate from an activity. Destructive and confirm-gated: confirm must equal the operation key. Inverse of kimai_create_activity_rate.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_delete_customer_comment",
+    "field": "description",
+    "newValue": "Delete a comment from a customer. Destructive and confirm-gated: confirm must equal the operation key.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_delete_customer_rate",
+    "field": "description",
+    "newValue": "Delete a billing rate from a customer. Destructive and confirm-gated: confirm must equal the operation key. Inverse of kimai_create_customer_rate.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_delete_export_template",
+    "field": "description",
+    "newValue": "Delete an export template from the Kimai instance. Destructive and confirm-gated: confirm must equal the operation key; removing a template breaks anything that exports by its name.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_delete_project_comment",
+    "field": "description",
+    "newValue": "Delete a comment from a project. Destructive and confirm-gated: confirm must equal the operation key.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_delete_project_rate",
+    "field": "description",
+    "newValue": "Delete a billing rate from a project. Destructive and confirm-gated: confirm must equal the operation key. Inverse of kimai_create_project_rate.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_pin_customer_comment",
+    "field": "description",
+    "newValue": "Pin (or unpin) a customer comment so it stays visible in the Kimai UI comment list. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_pin_project_comment",
+    "field": "description",
+    "newValue": "Pin (or unpin) a project comment so it stays visible in the Kimai UI comment list. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_update_activity",
+    "field": "description",
+    "newValue": "Update an existing activity: replaces its editable fields (name, customer reference, colour, active state). For a new activity use kimai_create_activity. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_update_activity_meta",
+    "field": "description",
+    "newValue": "Replace the custom meta fields of one activity (the meta map is replaced wholesale, not merged). Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_update_customer",
+    "field": "description",
+    "newValue": "Update an existing customer: replaces its editable fields (name, number, currency, colour, active state). For a new customer use kimai_create_customer. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_update_customer_meta",
+    "field": "description",
+    "newValue": "Replace the custom meta fields of one customer (the meta map is replaced wholesale, not merged). Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_update_invoice_custom_fields",
+    "field": "description",
+    "newValue": "Update the custom fields of one invoice (free-form key/value map, replaced wholesale). Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_update_project",
+    "field": "description",
+    "newValue": "Update an existing project: replaces its editable fields (name, customer, team, colour, active state). For a new project use kimai_create_project. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_update_project_meta",
+    "field": "description",
+    "newValue": "Replace the custom meta fields of one project (the meta map is replaced wholesale, not merged). Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_update_team",
+    "field": "description",
+    "newValue": "Update an existing team: replaces its editable fields (name, description, membership is managed via add/remove member, not here). For a new team use kimai_create_team. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_update_user",
+    "field": "description",
+    "newValue": "Update an existing user (admin, or self for own editable fields): replaces the editable fields. For a new user use kimai_create_user. Dry-run first: dry_run: true returns the plan without writing.",
+    "reason": "I-5 (F7): terse vendor label plus generator boilerplate (incl. the \"a activity\" grammar); prescribed replacement states what/when, the create-vs-update steering, and the dry-run/confirm gate."
+  },
+  {
+    "tool": "kimai_get_activity_rates",
+    "field": "description",
+    "newValue": "Get the billing rates of one activity (by activity id). Read-only; returns the full rate records. For the activity plus its rates, comments and meta in one call use the kimai_read dispatch on activities.get (or the customer/project context helpers when available).",
+    "reason": "I-7 (F8): generator boilerplate (\"Read path for X. Primitives return the full typed record.\"); prescribed replacement names what the read returns and the one-call context helper."
+  },
+  {
+    "tool": "kimai_get_customer_rates",
+    "field": "description",
+    "newValue": "Get the billing rates of one customer (by customer id). Read-only; returns the full rate records. For the customer with rates + comments + meta in one call use kimai_get_customer_context.",
+    "reason": "I-7 (F8): generator boilerplate (\"Read path for X. Primitives return the full typed record.\"); prescribed replacement names what the read returns and the one-call context helper."
+  },
+  {
+    "tool": "kimai_get_project_rates",
+    "field": "description",
+    "newValue": "Get the billing rates of one project (by project id). Read-only; returns the full rate records. For the project with customer + rates + meta in one call use kimai_get_project_context.",
+    "reason": "I-7 (F8): generator boilerplate (\"Read path for X. Primitives return the full typed record.\"); prescribed replacement names what the read returns and the one-call context helper."
+  },
+  {
+    "tool": "kimai_list_customer_comments",
+    "field": "description",
+    "newValue": "List the comments on one customer (by customer id). Read-only. For a customer with comments + rates + meta in one call use kimai_get_customer_context.",
+    "reason": "I-7 (F8): generator boilerplate (\"Read path for X. Primitives return the full typed record.\"); prescribed replacement names what the read returns and the one-call context helper."
+  },
+  {
+    "tool": "kimai_list_project_comments",
+    "field": "description",
+    "newValue": "List the comments on one project (by project id). Read-only. For a project with comments + rates + meta in one call use kimai_get_project_context.",
+    "reason": "I-7 (F8): generator boilerplate (\"Read path for X. Primitives return the full typed record.\"); prescribed replacement names what the read returns and the one-call context helper."
+  },
+  {
+    "tool": "kimai_get_week_status",
+    "field": "paramDescription",
+    "newValue": {
+      "param": "params",
+      "description": "`{ date: string \u2014 REQUIRED, any ISO date (YYYY-MM-DD) identifying the week (the vendor treats the date as the week selector); user?: number \u2014 omit for the API-key owner }`"
+    },
+    "reason": "I-6 (F9): the registry served the TS type name as the parameter description; prescribed replacement states the G10 contract (date required, week selector; user optional = API-key owner)."
+  },
+  {
+    "tool": "kimai_get_weekly_overtime",
+    "field": "paramDescription",
+    "newValue": {
+      "param": "params",
+      "description": "`{ date: string \u2014 REQUIRED, any ISO date (YYYY-MM-DD) identifying the week; user?: number \u2014 omit for the API-key owner }`"
+    },
+    "reason": "I-6 (F9): the registry served the TS type name as the parameter description; prescribed replacement (date required; user optional = API-key owner)."
+  },
+  {
+    "tool": "kimai_submit_for_approval",
+    "field": "paramDescription",
+    "newValue": {
+      "param": "params",
+      "description": "`{ date: string \u2014 REQUIRED, any ISO date (YYYY-MM-DD) identifying the week to submit for approval; user?: number \u2014 omit for the API-key owner }`"
+    },
+    "reason": "I-6 (F9): the registry served the TS type name (ApprovalApproveParams) as the parameter description; prescribed replacement (date required = week to submit; user optional = API-key owner)."
+  },
+  {
+    "tool": "timesheets.list",
+    "field": "paramDescription",
+    "newValue": {
+      "param": "params",
+      "description": "`Timesheet filters (user/customers/projects/activities/tags/begin/end/active/exported/billable/full/modified_after) plus page/size paging (size max 500). For bounded reads prefer timesheets.search; use this only when walking pages (e.g. the kimai_project_summary pattern).`"
+    },
+    "reason": "I-6 (F9): the registry served the TS type name (TimesheetListParams) as the parameter description; prescribed replacement names the filters, the paging bound, and the bounded-read steering (the operation is dispatch-only, so the entry keys off the operation id)."
+  },
+  {
+    "tool": "tags.find",
+    "field": "summary",
+    "newValue": "Fetch tags (the canonical tag endpoint; the deprecated GET /api/tags is not wrapped \u2014 G3).",
+    "reason": "I-8 (F11): tags.find and tags.list served byte-identical catalog summaries (\"Fetch tags.\"); prescribed replacement disambiguates the two dispatch-only rows."
+  },
+  {
+    "tool": "tags.list",
+    "field": "summary",
+    "newValue": "Fetch all tags in a single unpaginated batch (prefer kimai_search_tags for filtered reads).",
+    "reason": "I-8 (F11): tags.find and tags.list served byte-identical catalog summaries (\"Fetch tags.\"); prescribed replacement disambiguates the two dispatch-only rows."
+  },
+  {
+    "tool": "kimai_list_teams",
+    "field": "when",
+    "newValue": "Teams have no search helper and no paging: this is the only read tool for teams; use kimai_resolve_team for one id.",
+    "reason": "I-3 (F4/G4): the catalog row claimed paging for teams; prescribed replacement (the pagination metadata itself is corrected in the companion issue)."
   }
 ]

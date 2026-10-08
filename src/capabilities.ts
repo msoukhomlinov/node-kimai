@@ -6978,7 +6978,7 @@ export const CAPABILITY_GROUPS = {
   },
   "timesheets": {
     "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
-    "builtAt": "2026-10-08T18:56:37.832Z",
+    "builtAt": "2026-10-08T19:35:41.765Z",
     "records": [
       {
         "id": "timesheets.create",
@@ -7061,7 +7061,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7140,7 +7140,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7217,7 +7217,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7294,7 +7294,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7359,7 +7359,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7450,7 +7450,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7521,7 +7521,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7616,7 +7616,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7736,7 +7736,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7819,7 +7819,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -7926,7 +7926,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -8011,7 +8011,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -8094,7 +8094,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -8185,7 +8185,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],
@@ -8275,7 +8275,7 @@ export const CAPABILITY_GROUPS = {
         "staleCheck": {
           "planHash": "0a9ecbf5c82bb9bf3a815b1302cef982b94d2712330f83b8a4ca93adfa8aa0f8",
           "sourceFile": "src/resources/TimesheetClient.ts",
-          "sourceHash": "fea876e9ca85cab0b2e1a0b86d74ca7a0446124544bd0befdf9e9403e7c88836",
+          "sourceHash": "9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56",
           "testFiles": [
             "test/resources/timesheet.test.ts"
           ],

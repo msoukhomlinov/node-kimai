@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Stricter validation of identifiers used when building request paths.
+- MCP projection text surface (#12, #13): the curated override text is now the single source of
+  the served tool description (the duplicated mechanical bounds suffix is gone), the curated text
+  of every overridden tool (core and non-core) is exported by the `mcp` subpath
+  (`TOOL_TEXT_OVERRIDES`) together with the served-text composition rule (`SERVED_TEXT_RULE`),
+  the audited catalog-row texts and parameter descriptions are served through the curation
+  pipeline, and `timesheets.getActive` documents its caller scope (the vendor endpoint takes no
+  user parameter; per-user "active now" goes through `list`/`search` with the `user` filter).
 
 ## [2.0.0] - 2026-10-02
 
