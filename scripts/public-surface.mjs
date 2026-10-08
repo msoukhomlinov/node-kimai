@@ -19,7 +19,8 @@
  *                      A resolvable-but-broken build fails here.
  *   4. Runtime deps  — the runtime dependency set is empty (native fetch only):
  *                      no `dependencies` in package.json, and no bare-specifier
- *                      import/require in dist outside Node builtins.
+ *                      import/require in dist outside Node builtins and the
+ *                      package's own name (self-referencing, issue #11).
  *
  * The expected subpath list is DERIVED from this package.json + tsup.config.ts
  * (never hardcoded), so adding an entry point or an export is picked up
@@ -106,8 +107,8 @@ function declaredTargets(exportsMap) {
 
 const builtins = new Set([...builtinModules, ...builtinModules.map((m) => `node:${m}`)]);
 
-/** Bare (non-relative, non-builtin) specifiers imported anywhere in dist. */
-function bareSpecifiers(files) {
+/** Bare (non-relative, non-builtin, non-self) specifiers imported anywhere in dist. */
+function bareSpecifiers(files, selfSpecs = new Set()) {
   const found = new Set();
   for (const rel of files) {
     if (!/\.(mjs|cjs|js)$/.test(rel)) continue;
@@ -120,7 +121,7 @@ function bareSpecifiers(files) {
     for (const re of patterns) {
       for (const m of src.matchAll(re)) {
         const spec = m[1];
-        if (spec.startsWith('.') || spec.startsWith('/') || builtins.has(spec)) continue;
+        if (spec.startsWith('.') || spec.startsWith('/') || builtins.has(spec) || selfSpecs.has(spec)) continue;
         found.add(`${rel}: ${spec}`);
       }
     }
@@ -199,7 +200,15 @@ async function main() {
   if (Object.keys(deps).length > 0) {
     fail('dependencies', `package.json declares runtime dependencies (${Object.keys(deps).join(', ')}) — the SDK must be dependency-free (native fetch only)`);
   }
-  const bare = bareSpecifiers(emitted);
+  // The package's own name (and its export subpaths) is a self-reference, not a
+  // runtime dependency: issue #11 shares one errors module across entries by
+  // importing `node-kimai/errors` from inside dist (Node self-referencing).
+  // `dependencies` in package.json is still empty and stays the real gate.
+  const selfSpecs = new Set([pkg.name]);
+  for (const sub of Object.keys(exportsMap)) {
+    if (sub !== '.' && sub !== './package.json') selfSpecs.add(`${pkg.name}${sub.replace(/^\./, '')}`);
+  }
+  const bare = bareSpecifiers(emitted, selfSpecs);
   if (bare.length > 0) {
     fail('dependencies', `dist imports non-builtin bare specifiers: ${bare.join('; ')}`);
   }

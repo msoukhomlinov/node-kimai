@@ -29,7 +29,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noUncheckedIndexedAccess": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "baseUrl": ".",
+    "paths": {
+      "node-kimai/errors": [
+        "src/errors.ts"
+      ]
+    }
   },
   "include": [
     "src"

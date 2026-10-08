@@ -1,7 +1,7 @@
 // Base ApiClient with injectable transport
 // DO NOT EDIT MANUALLY
 
-import { createApiError } from './errors';
+import { createApiError } from 'node-kimai/errors';
 import { assertSafeRequestPath } from './guards';
 import { ActivityClient } from './resources/ActivityClient';
 import { CustomerClient } from './resources/CustomerClient';

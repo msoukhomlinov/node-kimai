@@ -22,7 +22,7 @@ import type {
   Team,
 } from '../types';
 import type { DryRunResult, HelperOptions, MutationOptions, Resolution, ResolutionCandidate } from '../types/common';
-import { KimaiConfigError, ResolutionError } from '../errors';
+import { KimaiConfigError, ResolutionError } from 'node-kimai/errors';
 
 import type { ApiClient } from '../client';
 import { pathId } from '../guards';

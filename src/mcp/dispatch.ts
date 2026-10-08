@@ -16,7 +16,7 @@
 // target-shaped hole was the gap this boundary used to leave open.
 import type { ApiClient } from '../client.js';
 import { getCapability } from '../capabilities.js';
-import { KimaiConfigError } from '../errors.js';
+import { KimaiConfigError } from 'node-kimai/errors';
 import { invokeOperation, type InvokeOptions } from '../operations/invoke.js';
 
 /** The three dispatch effects, split one per dispatcher tool. */
