@@ -1,7 +1,7 @@
 // node-kimai - Kimai API Client SDK
 // Main entry point
 
-export { ApiClient, type ApiClientOptions, type HttpTransport, type TransportRequest, FetchTransport, parseRetryAfter } from './client';
+export { ApiClient, type ApiClientOptions, type ClientRequestOptions, type HttpTransport, type TransportRequest, FetchTransport, parseRetryAfter } from './client';
 
 // Errors
 export {

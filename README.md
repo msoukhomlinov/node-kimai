@@ -556,6 +556,51 @@ const client = new ApiClient({
 });
 ```
 
+## Timeouts and Cancellation
+
+By default a request has no deadline (historical behaviour). Set a deadline on the client,
+pass an `AbortSignal` per request, or both:
+
+```typescript
+// Default deadline for every request this client issues (ms). Omit to keep the
+// unbounded default.
+const client = new ApiClient({
+  baseUrl: 'https://kimai.example.com',
+  token: 'your-api-token',
+  timeoutMs: 30_000,
+});
+
+// Per-request control on the transport verbs: a per-request `timeoutMs` REPLACES the
+// client default; `signal` is combined with the effective deadline.
+const controller = new AbortController();
+try {
+  const activities = await client.get('/api/activities', { timeoutMs: 10_000, signal: controller.signal });
+} catch (err) {
+  if (err instanceof ApiError) {
+    // deadline or caller abort -> category 'timeout', code 'TIMEOUT'
+    // network failure (no response) -> category 'network', code 'NETWORK'
+    // both: status 0 (no HTTP status), retryable true
+    console.warn(err.category, err.code, err.correlationId);
+  }
+}
+
+// caller-side cancellation mid-request
+controller.abort();
+```
+
+- The deadline and the signal are combined (`AbortSignal.any`) and handed to the transport as
+  a single `TransportRequest.signal` — a custom `HttpTransport` can honour it; the built-in
+  `FetchTransport` always does.
+- On an abort (deadline or caller signal) the request rejects with a **typed** `ApiError`:
+  category `timeout`, code `TIMEOUT`, `status: 0`, `retryable: true`.
+- On a network failure (fetch rejects without a response) the request rejects with a **typed**
+  `ApiError`: category `network`, code `NETWORK`, `status: 0`, `retryable: true`, original
+  error preserved under `data` — raw fetch/undici `TypeError`s no longer escape.
+- With neither configured, requests run unbounded, exactly as before; the deadline timer is
+  `unref`'d, so it never keeps the process alive.
+- A non-positive or non-finite `timeoutMs` is refused up front (`KimaiConfigError`), with
+  zero wire activity.
+
 ## Deep Imports
 
 The SDK supports subpath imports for tree-shaking and reduced bundle size. Every subpath is
@@ -634,7 +679,10 @@ const preview = await client.timesheets.create(
 `rate_limit`, `server`, `network`, `timeout`, `resolution`, `policy`) and, when known,
 `operation`, `retryable`, `httpStatus`, `vendorError`, `resourceIds`, `suggestedAction`,
 `correlationId` and `retryAfter` (parsed from `Retry-After` on a 429). `KimaiConfigError` marks
-an argument the SDK refused locally — zero fetch, non-retryable.
+an argument the SDK refused locally — zero fetch, non-retryable. The `network` and `timeout`
+categories are raised by the transport itself: a network failure that produced no response is a
+typed `network` error, a deadline or caller abort a typed `timeout` error — both `status: 0`
+(no HTTP status) and `retryable: true` (see Timeouts and Cancellation).
 
 ```typescript
 catch (err) {
