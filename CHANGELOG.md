@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   cross-subpath `instanceof` and the root `isKimaiError` guard hold in ESM and CJS. The fix (#17) shipped in the
   published 2.0.1 (verified 2026-10-12 against the published tarball; published 2.0.0 remains affected), and the
   guarantee is pinned by `test/errors-identity.test.ts` (#11).
+- Regression pin for the served-text single-source rule (#21): `test/mcp-served-text-single-source.test.ts`
+  re-runs the projection's own composition (the generator's `project` + `boundsSentence`) in a real
+  `node` process and asserts, for a named sample of overridden tools spanning the core and non-core
+  tiers, that the served text contains the curated override line exactly once and no re-appended
+  mechanical bounds line — the duplication #20 fixed (#13) can no longer regress silently (before,
+  only `mcp:project --check` reacted, via the stale manifest).
 
 ## [2.0.1] - 2026-10-08
 
