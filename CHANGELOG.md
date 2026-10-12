@@ -22,6 +22,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   tiers, that the served text contains the curated override line exactly once and no re-appended
   mechanical bounds line — the duplication #20 fixed (#13) can no longer regress silently (before,
   only `mcp:project --check` reacted, via the stale manifest).
+- `docs/sdk-gaps.md` now reflects the 2.0.1 publish (2026-10-09): G1, G4, G5, G11 and I-1…I-11 move
+  from FIXED-PENDING-PUBLISH to FIXED (published 2.0.1; published 2.0.0 remains affected), G8 moves
+  from OPEN to FIXED (published 2.0.1), and the consumer-workaround rows drop their "until 2.0.1 is
+  published" temporality (retiring a workaround remains the server's call).
 
 ## [2.0.1] - 2026-10-08
 
