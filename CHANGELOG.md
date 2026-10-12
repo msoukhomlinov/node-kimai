@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [2.0.2] - 2026-10-12
+
+### Added
+
+- Recorded the T-8 `ApiError` identity guarantee as fixed and pinned (`docs/sdk-gaps.md`): every entry re-exports the
+  single physical `dist/errors` module via the self-referencing `node-kimai/errors` external, so class identity,
+  cross-subpath `instanceof` and the root `isKimaiError` guard hold in ESM and CJS. The fix (#17) shipped in the
+  published 2.0.1 (verified 2026-10-12 against the published tarball; published 2.0.0 remains affected), and the
+  guarantee is pinned by `test/errors-identity.test.ts` (#11).
+
 ## [2.0.1] - 2026-10-08
 
 ### Fixed
