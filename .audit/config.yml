@@ -11,7 +11,7 @@ publish:
 reviewers:
   bots: [y-pragent]
   # merged before the bot-review rule existed or without a formal y-pragent review object
-  exempt_prs: []
+  exempt_prs: [16]  # deps bump (js-yaml, brace-expansion) merged 2026-10-08, predates this config
 
 thresholds:
   stale_stash_days: 30
