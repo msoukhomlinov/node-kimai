@@ -1,0 +1,21 @@
+# Repo-audit configuration for the intellectit-repo-audit skill.
+# version_surfaces: regex with one capture group; every surface must equal the package.json version.
+version_surfaces:
+  - file: package.json
+    pattern: '"version":\s*"([^"]+)"'
+
+publish:
+  registry: npm
+  package: node-kimai
+
+reviewers:
+  bots: [y-pragent]
+  # merged before the bot-review rule existed or without a formal y-pragent review object
+  exempt_prs: []
+
+thresholds:
+  stale_stash_days: 30
+  stale_issue_days: 14
+  publish_pending_warn_days: 7
+
+parity_releases: 2
