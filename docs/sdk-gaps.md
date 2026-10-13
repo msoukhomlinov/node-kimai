@@ -1,6 +1,6 @@
 # SDK Gap Register
 
-Known gaps, vendor limitations, and open upstream issues against `node-kimai`, recorded during the
+Known gaps, vendor limitations, and filed upstream issues against `node-kimai`, recorded during the
 **iit-mcp-kimai** MCP server build (consumer of `^2.0.0`; evidence verified against the 2.0.1 checkout, 2026-10-02).
 
 Rules for this register:
@@ -9,7 +9,7 @@ Rules for this register:
   at the server boundary only (documented shells: timeout decorator, strict pre-dispatch validation, error serializer).
 - **OPEN** rows carry an issue link; **non-gap** rows are recorded vendor/contract observations that need no SDK change.
 
-## Filed issues (OPEN)
+## Filed issues (all resolved as of 2.0.2)
 
 | ID | Title | Issue | Severity / impact | Server-side mitigation | Status |
 |----|-------|-------|-------------------|------------------------|--------|
