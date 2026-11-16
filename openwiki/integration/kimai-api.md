@@ -343,7 +343,7 @@ Every CRUD resource except `approvalBundle`, `config`, `system`, `export`, and `
 
 ### Search Helpers
 
-Eight resources provide `search()` helpers:
+Seven resources provide `search()` helpers:
 - `activities.search(params, { limit })`
 - `customers.search(params, { limit })`
 - `projects.search(params, { limit })`
