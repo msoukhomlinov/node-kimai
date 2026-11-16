@@ -160,11 +160,11 @@ The [search helper](repo://src/resources/TimesheetClient.ts) returns one filtere
 
 Available on **timesheets, customers, and projects** only. Fetches the target record plus its references in a single helper call:
 
-- Timesheets: returns the timesheet, its project, activity, and user
-- Customers: returns the customer and its projects
-- Projects: returns the project, its customer, and activities
+- Timesheets: returns `timesheet`, `user`, `activity`, `project`, and `customer` (each related record is `null` when the timesheet or project carries no reference)
+- Customers: returns `customer`, `rates`, `comments`, and `meta`
+- Projects: returns `project`, `customer` (or `null`), `rates`, and `meta`
 
-Compact by default; `{ expand: true }` returns full records.
+Compact by default; `{ expand: true }` returns full records. See [Workflow Context Helpers](../features/agent-execution.md#workflow-context-helpers) for the full shapes.
 
 ## CRUD Operations and Dry-Run
 

@@ -357,9 +357,11 @@ Seven resources provide `search()` helpers:
 ### Workflow Context Helpers
 
 Three workflow resources provide `getContext()` helpers:
-- `timesheets.getContext(id)` — timesheet + user + project + activity
-- `customers.getContext(id)` — customer + projects + comments
-- `projects.getContext(id)` — project + customer + activities + comments
+- `timesheets.getContext(id)` — timesheet + user + activity + project + customer
+- `customers.getContext(id)` — customer + rates + comments + meta
+- `projects.getContext(id)` — project + customer (or `null`) + rates + meta
+
+See [Workflow Context Helpers](../features/agent-execution.md#workflow-context-helpers) for the full shapes.
 
 ## Capability Registry
 
