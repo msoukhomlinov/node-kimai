@@ -588,4 +588,4 @@ The entire test suite runs without making a single real API call:
 - Response envelope contract: ARCHITECTURE.md §8
 - Pagination strategy: ARCHITECTURE.md §6
 - Test configuration: `vitest.config.ts`
-- Coverage gates: 90% lines/statements, 80% functions
+- Coverage gates: 90% lines/functions/statements, 80% branches

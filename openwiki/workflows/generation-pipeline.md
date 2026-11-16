@@ -65,7 +65,7 @@ The registry serves as the single source of truth for operation metadata, consum
 
 Projects the registry into MCP tool documentation using progressive disclosure:
 
-- Implements the CORE_RULE with requirements R1-R4 to determine core tier inclusion (threshold: 10 tools)
+- Implements the CORE_RULE with requirements R1-R5 to determine core tier inclusion (threshold: 10 tools)
 - Applies curation from `MCP_TOOL_OVERRIDES.json` for per-tool description overrides
 - Generates the catalog table with one row per registry operation
 - Documents exposed tools, dispatch operations by effect, and input contracts
