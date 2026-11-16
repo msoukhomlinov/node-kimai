@@ -84,7 +84,7 @@ The `/package.json` subpath allows consumers to read the package metadata withou
 
 ## Verification Script
 
-The [public-surface.mjs script](repo://scripts/public-surface.mjs) runs during `npm run verify` to prove the declared exports map matches the built `dist/` tree. It:
+The [public-surface.mjs script](repo://scripts/public-surface.mjs) runs as a separate step in `npm run verify` to prove the declared exports map matches the built `dist/` tree. It:
 
 1. Loads each subpath using both `import` and `require`
 2. Verifies the main entry point re-exports `ApiClient` and resource clients

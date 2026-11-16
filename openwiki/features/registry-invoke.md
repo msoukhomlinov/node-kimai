@@ -74,7 +74,7 @@ This check runs twice: once during planning based on method name (`list`, `listP
 
 The MCP layer adds `dispatchOperation(client, effect, operation, input, options)`, which enforces one additional constraint before delegating to `invokeOperation`: the caller-specified `effect` must match the operation's registry effect. Mismatches (e.g., calling a write through the read dispatcher) are refused with `DISPATCHER_EFFECT`.
 
-This boundary ensures the effect-based tool split (kimai_read_operations, kimai_write_operations, kimai_destructive_operations) cannot be bypassed by naming an operation of the wrong effect.
+This boundary ensures the effect-based tool split (kimai_read, kimai_write, kimai_delete) cannot be bypassed by naming an operation of the wrong effect.
 
 ## Planning Without Execution
 

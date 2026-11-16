@@ -18,7 +18,7 @@ The ApiClient base class provides the foundation for all Kimai API interactions.
 
 ## ApiClient Construction and Configuration
 
-The [ApiClient class](repo://src/client.ts#L304-L347) accepts three configuration options:
+The [ApiClient class](repo://src/client.ts#L304-L347) accepts four configuration options:
 
 - **`baseUrl`** (required): The Kimai instance URL, with trailing slashes automatically stripped
 - **`token`** (required): The API token for Bearer authentication

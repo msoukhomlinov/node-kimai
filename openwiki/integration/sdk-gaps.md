@@ -175,7 +175,7 @@ These are recorded vendor or contract observations that require no SDK changes.
 
 **Observation:** The SDK transport never retries requests.
 
-**Disposition:** Accepted by design. The transport never retries; the caller re-issues on 429/5xx. The registry documents `idempotencySupport: "none"` (the vendor has no idempotency keys). Only 76 of 108 operations are flagged `idempotent` and safe to re-issue. Surfaced `retryAfter` (parsed from `Retry-After` header) is honored by callers.
+**Disposition:** Accepted by design. The transport never retries; the caller re-issues on 429/5xx. The registry documents `idempotencySupport: "none"` (the vendor has no idempotency keys). Only 23 of 108 operations carry the `idempotent` flag in their registry record—these are write operations safe to re-issue without side effects. The total count of safe-to-retry operations is higher when including all read operations (76 total: 53 reads + 23 idempotent writes). Surfaced `retryAfter` (parsed from `Retry-After` header) is honored by callers.
 
 **Server/gateway decision:** Server or gateway layer decides the retry policy. File an SDK issue only if a retry helper is wanted SDK-side.
 

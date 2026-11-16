@@ -70,7 +70,7 @@ Projects the registry into MCP tool documentation using progressive disclosure:
 - Generates the catalog table with one row per registry operation
 - Documents exposed tools, dispatch operations by effect, and input contracts
 
-The CORE_RULE ensures that high-value operations (`search`, `list`, `create`, `stop`, etc.) and their dependencies are always available, while keeping the core surface under the threshold to avoid overwhelming model context windows.
+The CORE_RULE implements requirements R1-R5 to determine core tier inclusion: R1 (the five META tools for catalog/describe/read/write/delete), R2 (identify the API-key owner via users.getMe), R3 (discovery via catalog + describe), R4 (one bounded helper-tier read per workflow resource), and R5 (writes are NOT in the core—they are reachable through kimai_write/kimai_delete, dry-run first, destructive calls confirmation-gated). This keeps the core surface under the threshold while ensuring common read workflows complete without dispatch.
 
 ### Stage 4: build-tool-catalog
 

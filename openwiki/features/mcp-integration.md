@@ -57,14 +57,13 @@ Every registry operation is either in the core or listed in the catalog with its
 
 ### 3. Core Set by Evidence
 
-The written `CORE_RULE` (R1–R4) below, computed by the projection, produces the core list deterministically. Two people applying the rule get the same core:
+The written `CORE_RULE` (R1–R5) below, computed by the projection, produces the core list deterministically. Two people applying the rule get the same core:
 
 - **R1**: The five META tools (catalog/describe/read/write/delete) — the discovery and dispatch mechanism
 - **R2**: Identify the API-key owner (`users.getMe`)
 - **R3**: Discovery tools are R1 (catalog + describe). The Kimai registry has no cross-resource resolve/searchAcrossResources operation.
 - **R4**: One bounded helper-tier read per workflow resource (`timesheets.search`, `customers.search`, `projects.search`; `approvalBundle.weekStatus` for approval workflows)
-
-Writes are NOT in the core—they're reachable through `kimai_write`/`kimai_delete`, dry-run first, destructive calls confirmation-gated.
+- **R5**: Writes are NOT in the core—they're reachable through `kimai_write`/`kimai_delete`, dry-run first, destructive calls confirmation-gated
 
 ### 4. No God-Tool
 
