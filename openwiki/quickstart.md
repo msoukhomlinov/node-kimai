@@ -26,85 +26,57 @@ This wiki documents the **node-kimai** TypeScript SDK for the Kimai time-trackin
 
 ### Using the SDK
 
-<!-- openwiki: broken internal link [/openwiki/architecture/client-core.md] link "/openwiki/architecture/client-core.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Client Core](/openwiki/architecture/client-core.md)** — `ApiClient`, transport injection, HTTP verbs, timeout/cancellation
-<!-- openwiki: broken internal link [/openwiki/architecture/resource-clients.md] link "/openwiki/architecture/resource-clients.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Resource Clients](/openwiki/architecture/resource-clients.md)** — 13 resource clients (activities, customers, projects, timesheets, users, tags, teams, invoices, approval bundles, config, system, export, actions)
-<!-- openwiki: broken internal link [/openwiki/features/error-handling.md] link "/openwiki/features/error-handling.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Error Handling](/openwiki/features/error-handling.md)** — Typed error hierarchy, structured error contract, retryability, `KimaiConfigError`, `ResolutionError`
-<!-- openwiki: broken internal link [/openwiki/features/pagination.md] link "/openwiki/features/pagination.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Pagination](/openwiki/features/pagination.md)** — `list()` streams, `listAll()` collections, `listPages()` for paginated resources, page detection
-<!-- openwiki: broken internal link [/openwiki/features/timeout-cancellation.md] link "/openwiki/features/timeout-cancellation.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Timeout and Cancellation](/openwiki/features/timeout-cancellation.md)** — Client-level and per-request deadlines, `AbortSignal` composition, typed timeout/network errors
+- **[Client Core](architecture/client-core.md)** — `ApiClient`, transport injection, HTTP verbs, timeout/cancellation
+- **[Resource Clients](architecture/resource-clients.md)** — 13 resource clients (activities, customers, projects, timesheets, users, tags, teams, invoices, approval bundles, config, system, export, actions)
+- **[Error Handling](architecture/error-handling.md)** — Typed error hierarchy, structured error contract, retryability, `KimaiConfigError`, `ResolutionError`
+- **[Pagination](features/pagination.md)** — `list()` streams, `listAll()` collections, `listPages()` for paginated resources, page detection
+- **[Timeout and Cancellation](features/timeout-cancellation.md)** — Client-level and per-request deadlines, `AbortSignal` composition, typed timeout/network errors
 
 ### Building MCP Tools or Agents
 
-<!-- openwiki: broken internal link [/openwiki/features/capability-registry.md] link "/openwiki/features/capability-registry.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Capability Registry](/openwiki/features/capability-registry.md)** — Generated operation metadata (`node-kimai/capabilities`), effect classification, dry-run, helper records
-<!-- openwiki: broken internal link [/openwiki/features/mcp-integration.md] link "/openwiki/features/mcp-integration.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[MCP Integration](/openwiki/features/mcp-integration.md)** — Progressive disclosure (CORE tier + catalog), META tools, dispatch operations, closed input contracts
-<!-- openwiki: broken internal link [/openwiki/features/agent-execution.md] link "/openwiki/features/agent-execution.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Agent Execution Layer](/openwiki/features/agent-execution.md)** — `resolve` / `search` / `getContext` helpers, dry-run on mutations, structured errors, registry-validated invoke
-<!-- openwiki: broken internal link [/openwiki/features/untrusted-content.md] link "/openwiki/features/untrusted-content.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Untrusted Content Marking](/openwiki/features/untrusted-content.md)** — `wrapUntrusted`, `markUntrusted`, `deepMarkUntrusted` for prompt boundaries
+- **[Capability Registry](features/capability-registry.md)** — Generated operation metadata (`node-kimai/capabilities`), effect classification, dry-run, helper records
+- **[MCP Integration](features/mcp-integration.md)** — Progressive disclosure (CORE tier + catalog), META tools, dispatch operations, closed input contracts
+- **[Agent Execution Layer](features/agent-execution.md)** — `resolve` / `search` / `getContext` helpers, dry-run on mutations, structured errors, registry-validated invoke
+- **Untrusted Content Marking** — `wrapUntrusted`, `markUntrusted`, `deepMarkUntrusted` for prompt boundaries
 
 ### Contributing or Generating
 
-<!-- openwiki: broken internal link [/openwiki/workflows/generation-pipeline.md] link "/openwiki/workflows/generation-pipeline.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Code Generation Pipeline](/openwiki/workflows/generation-pipeline.md)** — Four-stage pipeline: derive-plan, generate-capabilities, project-mcp-tools, build-tool-catalog
-<!-- openwiki: broken internal link [/openwiki/operations/verification.md] link "/openwiki/operations/verification.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Verification Gates](/openwiki/operations/verification.md)** — Capability checks, staleness detection, MCP surface checks, public surface guard
-<!-- openwiki: broken internal link [/openwiki/testing/unit-tests.md] link "/openwiki/testing/unit-tests.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Unit Test Strategy](/openwiki/testing/unit-tests.md)** — Vitest setup, fixture-based mocking, served-text single-source rule, error identity tests
-<!-- openwiki: broken internal link [/openwiki/workflows/transport-injection.md] link "/openwiki/workflows/transport-injection.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Transport Injection Pattern](/openwiki/workflows/transport-injection.md)** — `HttpTransport` interface, `FetchTransport`, n8n integration, signal handling
+- **[Code Generation Pipeline](workflows/generation-pipeline.md)** — Four-stage pipeline: derive-plan, generate-capabilities, project-mcp-tools, build-tool-catalog
+- **[Verification Gates](operations/verification.md)** — Capability checks, staleness detection, MCP surface checks, public surface guard
+- **[Unit Test Strategy](testing/unit-tests.md)** — Vitest setup, fixture-based mocking, served-text single-source rule, error identity tests
+- **[Transport Injection Pattern](workflows/transport-injection.md)** — `HttpTransport` interface, `FetchTransport`, n8n integration, signal handling
 
 ## By Topic
 
 ### Architecture
 
-<!-- openwiki: broken internal link [/openwiki/architecture/client-core.md] link "/openwiki/architecture/client-core.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Client Core](/openwiki/architecture/client-core.md)** — `ApiClient`, `FetchTransport`, HTTP verbs, error wrapping
-<!-- openwiki: broken internal link [/openwiki/architecture/resource-clients.md] link "/openwiki/architecture/resource-clients.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Resource Clients](/openwiki/architecture/resource-clients.md)** — 13 resource clients, CRUD operations, special endpoints
-<!-- openwiki: broken internal link [/openwiki/features/error-handling.md] link "/openwiki/features/error-handling.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Error Hierarchy](/openwiki/features/error-handling.md)** — Base `ApiError`, status-specific errors, structured contract
-<!-- openwiki: broken internal link [/openwiki/operations/sdk-gaps.md] link "/openwiki/operations/sdk-gaps.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[SDK Gaps Register](/openwiki/operations/sdk-gaps.md)** — Known gaps, vendor limitations, upstream issues
+- **[Client Core](architecture/client-core.md)** — `ApiClient`, `FetchTransport`, HTTP verbs, error wrapping
+- **[Resource Clients](architecture/resource-clients.md)** — 13 resource clients, CRUD operations, special endpoints
+- **[Error Hierarchy](architecture/error-handling.md)** — Base `ApiError`, status-specific errors, structured contract
+- **[SDK Gaps Register](integration/sdk-gaps.md)** — Known gaps, vendor limitations, upstream issues
 
 ### Features
 
-<!-- openwiki: broken internal link [/openwiki/features/capability-registry.md] link "/openwiki/features/capability-registry.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Capability Registry](/openwiki/features/capability-registry.md)** — Operation metadata, effect classification, helper records
-<!-- openwiki: broken internal link [/openwiki/features/mcp-integration.md] link "/openwiki/features/mcp-integration.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[MCP Integration](/openwiki/features/mcp-integration.md)** — Progressive disclosure, catalog, dispatch operations
-<!-- openwiki: broken internal link [/openwiki/features/agent-execution.md] link "/openwiki/features/agent-execution.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Agent Execution Layer](/openwiki/features/agent-execution.md)** — Helpers, dry-run, structured errors, invoke
-<!-- openwiki: broken internal link [/openwiki/features/pagination.md] link "/openwiki/features/pagination.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Pagination](/openwiki/features/pagination.md)** — Streaming lists, page detection, `listPages()`
-<!-- openwiki: broken internal link [/openwiki/features/timeout-cancellation.md] link "/openwiki/features/timeout-cancellation.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Timeout and Cancellation](/openwiki/features/timeout-cancellation.md)** — Deadlines, signal composition, typed errors
-<!-- openwiki: broken internal link [/openwiki/features/untrusted-content.md] link "/openwiki/features/untrusted-content.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Untrusted Content Marking](/openwiki/features/untrusted-content.md)** — Prompt boundary safety
+- **[Capability Registry](features/capability-registry.md)** — Operation metadata, effect classification, helper records
+- **[MCP Integration](features/mcp-integration.md)** — Progressive disclosure, catalog, dispatch operations
+- **[Agent Execution Layer](features/agent-execution.md)** — Helpers, dry-run, structured errors, invoke
+- **[Pagination](features/pagination.md)** — Streaming lists, page detection, `listPages()`
+- **[Timeout and Cancellation](features/timeout-cancellation.md)** — Deadlines, signal composition, typed errors
+- **Untrusted Content Marking** — Prompt boundary safety
 
 ### Workflows
 
-<!-- openwiki: broken internal link [/openwiki/workflows/generation-pipeline.md] link "/openwiki/workflows/generation-pipeline.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Code Generation Pipeline](/openwiki/workflows/generation-pipeline.md)** — Four-stage pipeline from vendor spec to SDK artifacts
-<!-- openwiki: broken internal link [/openwiki/workflows/transport-injection.md] link "/openwiki/workflows/transport-injection.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Transport Injection Pattern](/openwiki/workflows/transport-injection.md)** — `HttpTransport` interface, n8n integration, signal handling
+- **[Code Generation Pipeline](workflows/generation-pipeline.md)** — Four-stage pipeline from vendor spec to SDK artifacts
+- **[Transport Injection Pattern](workflows/transport-injection.md)** — `HttpTransport` interface, n8n integration, signal handling
 
 ### Operations
 
-<!-- openwiki: broken internal link [/openwiki/operations/verification.md] link "/openwiki/operations/verification.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Verification Gates](/openwiki/operations/verification.md)** — Capability checks, MCP surface checks, public surface guard
-<!-- openwiki: broken internal link [/openwiki/operations/sdk-gaps.md] link "/openwiki/operations/sdk-gaps.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[SDK Gaps Register](/openwiki/operations/sdk-gaps.md)** — Known gaps, vendor limitations, tracked issues
+- **[Verification Gates](operations/verification.md)** — Capability checks, MCP surface checks, public surface guard
+- **[SDK Gaps Register](integration/sdk-gaps.md)** — Known gaps, vendor limitations, tracked issues
 
 ### Testing
 
-<!-- openwiki: broken internal link [/openwiki/testing/unit-tests.md] link "/openwiki/testing/unit-tests.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **[Unit Test Strategy](/openwiki/testing/unit-tests.md)** — Vitest setup, fixture-based mocking, served-text rule, coverage
+- **[Unit Test Strategy](testing/unit-tests.md)** — Vitest setup, fixture-based mocking, served-text rule, coverage
 
 ## Package Information
 
