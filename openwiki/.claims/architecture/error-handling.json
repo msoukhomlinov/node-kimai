@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:782d04a0dbfaf922fee09a57d527e6fead5d96c1e54e0d1fc9d1a3796b069fee",
+  "claims": [
+    {
+      "id": "claim_3e664df5e0254797b35881bc4db5fd53",
+      "statement": "The error hierarchy extends from ApiError with seven HTTP status-based subclasses (BadRequestError 400, UnauthorizedError 401, ForbiddenError 403, NotFoundError 404, UnprocessableEntityError 422, RateLimitError 429, ServerError 5xx) plus KimaiConfigError and ResolutionError using status 0",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L50-L262",
+          "version": "repo-lines-v1:sha256:e208abbf53e11e544138cb781bd79d8cc48d70c24c90e7d6aa337b4d6166ee2c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI4YzY2NmIzMWQ4OWMwZjAyYzFkZWQ0YmI1Mzk0YmRlMjg0MTBkN2VmMTJkYTMxNjZkZDI0NThmODgzNDkxZjA1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI0NGNiZGE1OGY5ZjI1M2ViYzI2YTVmYjY2MDgxNzQxYzJhNWQxYTdiMTc2YzM5ZDZkZTIwMTVhZmQ5NmMwNTEzIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJhZjRiMmZiZmQ2ODgzYzY4YjUyZTlhYjQyMjBhYTc4ZGE1YTdiZDM1OTRjNjM0NmJlZjM4MGIzYjNmMzU3NDUxIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_1e3caec89be7453db91661f29b55e0cc",
+      "statement": "ApiError exposes 14 structured contract fields: status, message, data, request, code, category, operation, httpStatus, retryable, vendorError, resourceIds, suggestedAction, correlationId, and retryAfter",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L50-L64",
+          "version": "repo-lines-v1:sha256:96e52251b3ab1f7f37d2a3c88cb8f5a5c41912c3c2c8a92dedd4483f5b6ed05c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhjNjY2YjMxZDg5YzBmMDJjMWRlZDRiYjUzOTRiZGUyODQxMGQ3ZWYxMmRhMzE2NmRkMjQ1OGY4ODM0OTFmMDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxNzRkZjUyZTZjMjZkOTUxODVlMDliMDBkZTU2YmEwNGQ5YTcxMzM4MjdhZDM1ZWM5ZDFkNjhmOWY5YzIwZDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ0Y2JkYTU4ZjlmMjUzZWJjMjZhNWZiNjYwODE3NDFjMmE1ZDFhN2IxNzZjMzlkNmRlMjAxNWFmZDk2YzA1MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQxYTg0Y2EwMmE2MGZiMzAzYWZhMzE2N2YwZTI5N2JhMGNmMmIwNWVlY2M3ZmYyMzNiMmM3Njg5MjRjM2YyOTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6bab7424d2e64a10935cd37a64541a95",
+      "statement": "ErrorCategory is a closed vocabulary of 10 categories: auth, not_found, validation, conflict, rate_limit, server, network, timeout, resolution, and policy",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L11-L21",
+          "version": "repo-lines-v1:sha256:1e49486693cbdf84d1881c0c19e10887257b07d6fed7aaea6e989cbb8148a19c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY4OTA4Y2MzNDgyYzRiOTg1OTlmNjExOTFiZjJjZWM0NjkyODk5ODI3YTIyNDAyNmQzZjU4ZWY0YmZhZTAxODgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNlODc5ZDM2OGNlYjM3ZjFjYzRjYWZlMzQ3ZDM2ZTgzZmY1MmZkNzZiZWJiNWFlMTA2NTM4MzFhZTJiOTE4OGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgyMDQzNzJlZWRkODI1NjZkNTNiNGNhNjE5N2VmNDBmMzNkNTFjZmYyNTk1OWRhZWVkNjhhZWI4OTMyMzhhYTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4NjNiMjcxZjFjNGEwZDEzNGUxOWVlMDk5M2VmZWY4M2U3N2YyNTVkZjkzNGE2NzQ5N2JhYWFjYmMyNTczYTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8293b8329302452a8543942e85d26750",
+      "statement": "Errors are retryable when status is 429, 5xx, or 0 with network/timeout category; non-retryable for 400, 401, 403, 404, 409, 412, 422, KimaiConfigError, and ResolutionError",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L107-L109",
+          "version": "repo-lines-v1:sha256:0da0980d994e0a1fde7f3c6b689fa82714d8d38e3617efc27d2f40bfe36b2cca:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWQ2NGE5YzRkMzY4Y2Q2Y2NkODk0MmYwYzNmMjFiYmYyZmQ1OTQxMWY4MTZkYjg2NDlkZDc3MmEzZDFhYjA1NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDI5NGY1ZTZlMzMzNWVmOWJmZGJkMzg4NjE0NTM1YzQ0NjZhNzIzMjg0NmJjOGNkY2QzNzRkN2VmZDhmNjM0YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzIwOWM2YmEwMzljYjlmNTgxM2NiZmQxMWFhMDdkZTY2MzRiM2I0MmVjNDM4ZDkwN2Y1MTExOTc5MjU5ODZlNiJ9"
+        },
+        {
+          "resource": "repo://src/errors.ts#L211-L223",
+          "version": "repo-lines-v1:sha256:24f1296e34b5c4b9c23a8fdb48f11e0fd00214af715cdbaaf5eca95b9d628121:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0MGE3Yzg0YTJkMDI2MjhiNWIwN2IxOTY0MjI4MjhkOGFlYmM2OTE0MDRlN2UzZmIzMzkzMjY3ZmVlODdlMDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdiYzA3ZWEyZWQ3MjMwYTdlZDk1Njg5NjkxZGFhNGE0ZTMwMmVkZjNlODQ0YWE5YmY3YmNmMGU2MjZlNzUzZDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxMTYyYjdlNTUxOTk1ODNiMGYyZTlkMzIyOTgyMDE2ODBkYzFjOGQ5Mjg0YWRiMjE2MGRiYTU5YTk4M2YxNjgifQ"
+        },
+        {
+          "resource": "repo://src/errors.ts#L232-L262",
+          "version": "repo-lines-v1:sha256:b1351728f2e2545a27e8b606c497cea1880ff7b39db5577b5eeb9a016f666be7:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkNjNkZjgxNjU1OGY1Zjg4NmI2YTUyZmViY2RkMGQ4NjQ5NDhhMTlkNWQwZWY1ZjhhNjI2ZTFjNTNhNDJkNGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY4ZmY3OWI5YzE1NzE4MTJmNDJjY2M1M2UzYzA4YmVhMGRmY2UxZjJlZTE0ZTg0YTI0MDE2YWY5ZDUwNDgyMTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmNGIyZmJmZDY4ODNjNjhiNTJlOWFiNDIyMGFhNzhkYTVhN2JkMzU5NGM2MzQ2YmVmMzgwYjNiM2YzNTc0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ea5f2eabaf2a4a34a99e20206bdc572f",
+      "statement": "Default error codes follow SCREAMING_SNAKE format including BAD_REQUEST, UNAUTHORIZED, FORBIDDEN, NOT_FOUND, CONFLICT, VALIDATION_FAILED, RATE_LIMITED, SERVER_ERROR, TIMEOUT, NETWORK, CONFIG_ERROR, RESOLUTION_AMBIGUOUS, and RESOLUTION_TRUNCATED",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L112-L132",
+          "version": "repo-lines-v1:sha256:147d3de67e0da010914d4f69eb825cd3413b1c68d52a42213b3ac9b06b5a0c54:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJlYTJlNWFjY2MyYjdhMzhjMGM4ZWRmNDgyZjI5MDk1NDEyZGRhNjQ5ODlmNGRlN2I1NDgwNGY5OWIxMzMzNTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk1NmYyZGFiN2Q4ZWI5MzY0NTYzNGZmOTJmZWYxYTBlODRkZDEzYTViNDdiYTBlZjZlNGJlYmM1Zjk1NjgwOTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQxODQyNjczZGVkZmFiYTUwZDk3ZWYxZGE4NzRhMzVkMDUyOTU3MTFmODMxMDI0Y2QxNDlkOGUwMDBlNGJkM2QifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_088407f295f643e6a293dbc02a2f6f40",
+      "statement": "KimaiConfigError is thrown for local argument refusals before any wire activity, using status 0, category validation, code CONFIG_ERROR, and retryable false",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L211-L223",
+          "version": "repo-lines-v1:sha256:24f1296e34b5c4b9c23a8fdb48f11e0fd00214af715cdbaaf5eca95b9d628121:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0MGE3Yzg0YTJkMDI2MjhiNWIwN2IxOTY0MjI4MjhkOGFlYmM2OTE0MDRlN2UzZmIzMzkzMjY3ZmVlODdlMDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdiYzA3ZWEyZWQ3MjMwYTdlZDk1Njg5NjkxZGFhNGE0ZTMwMmVkZjNlODQ0YWE5YmY3YmNmMGU2MjZlNzUzZDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxMTYyYjdlNTUxOTk1ODNiMGYyZTlkMzIyOTgyMDE2ODBkYzFjOGQ5Mjg0YWRiMjE2MGRiYTU5YTk4M2YxNjgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_11bb042616d448ecbe553135f4606f4b",
+      "statement": "ResolutionError has two factory methods: ambiguous (several exact matches with candidate IDs in resourceIds) and truncated (bounded scan stopped at 500-record cap)",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L246-L261",
+          "version": "repo-lines-v1:sha256:c5a09ac6125da5d687ff11402dd772ed5efb9a28b7f1a4b951169c9e734f5ed5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExYWI0MTliNzIzZmMwMWNiMzkzZTgxMGYyNmU0YjM2OTZiNmJhMTI4MmYyZjBiODM1MjQ0ZDA2NWE3NmE0NjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM5OTg3NTMxNDgxMWY1YjBhYzg0MzQwZmU2YjFhZTBlY2U2ZDBlMTM1NmM4MDNmMDUwZjhjZmM2YjQyMzYyNzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZlMmFiYzRiYTM0MjBiNGM1Yzc5ZTMzZDBiZDUzZGFiNDY1NTYyOTUwMmM1YmI3YWNmNmI2NjQ4MGE3MzcyMDcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ec59de08ac564f5981d8c4f44a3c188b",
+      "statement": "Status 0 convention distinguishes local SDK refusals (KimaiConfigError, ResolutionError, network failures, timeouts) from HTTP errors, with httpStatus absent for local refusals",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L211-L262",
+          "version": "repo-lines-v1:sha256:7c8fff0b4252dcb20163cc4c0027c0c38770755e52c448cad950257341ddbf22:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0MGE3Yzg0YTJkMDI2MjhiNWIwN2IxOTY0MjI4MjhkOGFlYmM2OTE0MDRlN2UzZmIzMzkzMjY3ZmVlODdlMDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdiYzA3ZWEyZWQ3MjMwYTdlZDk1Njg5NjkxZGFhNGE0ZTMwMmVkZjNlODQ0YWE5YmY3YmNmMGU2MjZlNzUzZDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmNGIyZmJmZDY4ODNjNjhiNTJlOWFiNDIyMGFhNzhkYTVhN2JkMzU5NGM2MzQ2YmVmMzgwYjNiM2YzNTc0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6287ec0c806b48e189016bf4eb837e87",
+      "statement": "createApiError factory applies default code, httpStatus, vendorError, retryable, and suggestedAction, then instantiates the appropriate subclass based on status",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L264-L297",
+          "version": "repo-lines-v1:sha256:65c759a28db4657c3871aee0b93ad12b5dd57aa29ae0c251826cdeaa600ca8fb:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI0ZDJiNTU5NDQ0MjRkNjE1YWYxY2NiZDMxNTc3M2JiNjE2ZjEyMDc0OWQ5OGI5MTVmNGYzODU0MzAwMzM3ZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

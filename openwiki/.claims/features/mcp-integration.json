@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:bc460f2460a3c5bdb96052ffaf97e54ca92b07eed5833fc6dc094ef885b31c19",
+  "claims": [
+    {
+      "id": "claim_cc6f40e07c7344e69a303ce9b81a08d5",
+      "statement": "The MCP projection produces 92 tools (90 after curation exclusions) from 108 registry operations, with a progressive disclosure strategy: 10 always-on core tools (5 registry-backed + 5 META) and 103 catalog entries.",
+      "evidence": [
+        {
+          "resource": "repo://MCP_TOOL_MANIFEST.md#L7-L17",
+          "version": "repo-lines-v1:sha256:ca25a7f2671b328afaeaccbeef39a43315741c436b845b24a57ffd761f6fe0e4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdjN2QzZmQyMDE0MDk2ZDY1NDFlZjAyYTIxOTYwNDc1NGQ4ODg3ZjAwNTgzYzcyYjdmNzRlZmUzYjljYWJiM2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyZWI0MGY3MGJmMDYwMzk5OTNkNjlhMzBmMmJjODg0MTljMGZlY2ZkMjBlNzVjZGRiNjUyODBmMzczOGFhNjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVkNGI3NThmM2E2NzhhNzUzMzM2ZDNkZmJlZDdmYjlkM2I1YmRkYTdjZGViYjFmZWQyNTU2ODFiZmUyMGVhNzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ0OTQ2YTVlODlmNzg0ZDQ0OWU2YzA3NTU3MDIzNTc0NWEwMDU0ZTNmZDI5MGNjMWEwNTgwYmQ1NWY2ZGJmMDAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_775d2bb8823848d88380426620f5a53a",
+      "statement": "The CORE_RULE (R1-R4) deterministically selects the core: R1 (5 META tools: catalog/describe/read/write/delete), R2 (users.getMe for API-key owner identity), R3 (discovery is R1), R4 (one bounded helper-tier read per workflow resource: timesheets.search, customers.search, projects.search, approvalBundle.weekStatus).",
+      "evidence": [
+        {
+          "resource": "repo://MCP_TOOL_MANIFEST.md#L73-L83",
+          "version": "repo-lines-v1:sha256:ca4bea7d3ae6127d1cdd4397cffb723d91ab2821dd36a1a7ddf647689a5bce3d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVhOTk1ZGI0YmMyMzA5ZTQ0MTVmNmRmZGM4NjljNjBhNmY2NzA5ZGYxODY2ZDgwOWJkYWZlYmU3Njk2NWRkOTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkMGZiMjFhZDgyMmIwMGM4Zjg3MTVjYTU3MmEzNzk3ZDVmZTkyYjAyMmI5NWYzMGY4MTkyM2VhOTVlODhiNTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU3MTdkNGNhZDY2MmMwOTVlZGJiODQ5NzM1YzRhZGRlMjgzYmM3MzZlMTU4MWU0MjgzYTZiNjYwOWMxYzE1ZWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxYjA0OThlYzY3NWI2ZTUwYTBhOTkwNTJjM2Q4ZDM5NDFjYTQ5MTJiMzVjNDBhYjdiZjRmNDA2NjE2NTI3NjgifQ"
+        },
+        {
+          "resource": "repo://MCP_TOOL_MANIFEST.md#L86-L98",
+          "version": "repo-lines-v1:sha256:1849891ab6e9320ac1e2d9ac5dd80f98752c0e329b9342853419e41ca417640f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0ZmI0ZTM2ODE3NmVjY2UyNWQ4YmZjYTM0ZTJjM2JkZjU4YTkwNjVkN2I2MTNlZDM3NTA4ZDZjNTAxNGExZDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJkMWRkZWJhYTIzNWU2N2M1ZTg4ZTRlYzM0YzI5YjZjY2E1NTI5NjU0MWY5ZjI2ZGQ0YzVhNTQ3YWIyNjZhMGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFjMTdkZmRhMjdiNWM2ZTJiODZmNDQ3ODg5MTIzZTliYTFmNDExZjdmOTk4MDdlNjg1YWQ1ODk3OWQ5YWJlZjUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ff0104ad91324e2cb44ea35861e43e7c",
+      "statement": "The projection excludes 18 operations: 1 binary/download (GET /api/invoices/{id}/download), 15 subsumed read primitives (get/list/listAll covered by resolve/search helpers), and 2 manually curated exclusions.",
+      "evidence": [
+        {
+          "resource": "repo://MCP_TOOL_MANIFEST.md#L7-L17",
+          "version": "repo-lines-v1:sha256:ca25a7f2671b328afaeaccbeef39a43315741c436b845b24a57ffd761f6fe0e4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdjN2QzZmQyMDE0MDk2ZDY1NDFlZjAyYTIxOTYwNDc1NGQ4ODg3ZjAwNTgzYzcyYjdmNzRlZmUzYjljYWJiM2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyZWI0MGY3MGJmMDYwMzk5OTNkNjlhMzBmMmJjODg0MTljMGZlY2ZkMjBlNzVjZGRiNjUyODBmMzczOGFhNjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVkNGI3NThmM2E2NzhhNzUzMzM2ZDNkZmJlZDdmYjlkM2I1YmRkYTdjZGViYjFmZWQyNTU2ODFiZmUyMGVhNzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ0OTQ2YTVlODlmNzg0ZDQ0OWU2YzA3NTU3MDIzNTc0NWEwMDU0ZTNmZDI5MGNjMWEwNTgwYmQ1NWY2ZGJmMDAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9a7394e655a94799b4e038f0f5aa4c17",
+      "statement": "dispatchOperation enforces an exact effect boundary (read/write/destructive), refusing with CONFIG_ERROR (zero wire activity) when effect is invalid or operation effect differs from requested effect, then delegates all other validation to invokeOperation from node-kimai/operations.",
+      "evidence": [
+        {
+          "resource": "repo://src/mcp/dispatch.ts#L1-L60",
+          "version": "repo-lines-v1:sha256:f7fc7fb819f220ba81b8dd52b5ab05702f21013ee654ddbaa9cc318c58713619:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI5MTE3NTBlNTdlZGZkNWQxNmE2YTQ4N2I5NThkYTdiNmIwYmYxZDA5MzljMjA4NTc0MTk3MjA2NzQ4ZWY4ZjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/mcp/dispatch.ts#L34-L60",
+          "version": "repo-lines-v1:sha256:26ea413a1ee5305569a43399a8fb9674154a467957d86d890ad35f28f799c39f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYzYjExZGE5ZDdiZDdhMzlkOWYxYzI3ZmY2ZjA2NmY3OTk3OTMzYzA1Zjc1ODM5NDc4YzdkYTNhMjZlN2RlNjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d075c1f216c241419eae437acf4abb74",
+      "statement": "The ./mcp subpath exports CATALOG (CatalogRow[]), CORE_TOOLS and META_TOOLS (MetaToolSpec[]), DISPATCH_OPERATIONS, INPUT_CONTRACTS, TOOL_DESCRIPTIONS, TOOL_TEXT_OVERRIDES, DEFAULT_CATALOG_LIMIT: 40, MAX_CATALOG_LIMIT: 100, plus catalog helpers (catalogPage, describeOperation, inputFields, nearestKeys, requireCatalogRow) and dispatchOperation.",
+      "evidence": [
+        {
+          "resource": "repo://src/mcp/index.ts#L22-L58",
+          "version": "repo-lines-v1:sha256:9d742b7475d1e7709b89b1112273e582fe7fb403971713386f400f03a9a0a927:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExNzQ0MjkwOTg3MDNlNjM0Y2M2NjRlNDk3NWQxNGFjNDkxMjc0OWU1MTYyNGFiMWEzNTNiZTI0NzNmOWMxMGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjllNDVkOWY2MGQ3Mzk2N2Y4M2ZmMjczYjg0Zjg1NzJkYzM1NDRjZmNkODAxMTdkOTQ3YThhYzUyYTIzZGFiNmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZlMDllZTI5MDhjNmIwM2U5MmQ2NTFiODIyZWNhY2ExMmUyMzFiMGUzNzI0NzQ1MmMyNGJlYTRiNjk4YTc3Y2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_717e786bf0d44b2e98119846e9286240",
+      "statement": "CatalogRow structure includes operation (string), resource, kind, effect, flags, dryRun, tool (dedicated tool name or null), summary (one-line purpose), when (preferredWhen guidance or null), requiredArgs, and optionalArgs.",
+      "evidence": [
+        {
+          "resource": "repo://MCP_TOOL_MANIFEST.md#L86-L150",
+          "version": "repo-lines-v1:sha256:1cbe8600219ffca8b99115413696c9f7b8593aeb424c24d7c05ad745d0808269:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJkMWRkZWJhYTIzNWU2N2M1ZTg4ZTRlYzM0YzI5YjZjY2E1NTI5NjU0MWY5ZjI2ZGQ0YzVhNTQ3YWIyNjZhMGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRmYmRlNDhlZjZiYTFkYTE2MTZhZGMwMTU3MzgyZmZmNjRkNDhlMGY5MzBjYTYzNzY2YmRhNjY1NWNmYzZkNjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_703cb3d833954c16956c91f0e6391236",
+      "statement": "Served text follows composition rules: curated descriptions from MCP_TOOL_OVERRIDES.json are served verbatim (single source), generated descriptions use registry metadata.purpose + metadata.usage + mechanical bounds sentence, with 66 tools having curated overrides exported as TOOL_TEXT_OVERRIDES.",
+      "evidence": [
+        {
+          "resource": "repo://MCP_TOOL_MANIFEST.md#L51-L71",
+          "version": "repo-lines-v1:sha256:ba5c7799aae169f6decef7e385d86b9450b240cb4c568b6c3e4f3460b1e060a7:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhZDUxYjUwODRjZDBiNTUwODJmYzk4ZmQzMGE2NTAzZTJiMDhmYjA0YzY3NTY3NTEzNjM0YzRhNTc0N2I4OTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY1YWRiZjJiN2NkNzU3NzI3MjE3ZTBhY2JhYzU3MWQ1M2VlMWJhOWM4ODJmYjMzNmM1NWI3YTIwNDJjMzI2ZGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA4OTJjMzBlNGI0ODkyMWJkYjg3YjM5NDdlY2QyNWI1ZTg4YTY4OGM1OWU4ZjU2MjczZGFkYzUwNjc1NzYyNDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFlY2FkYmVjYTQzMzk4MTJlZjg3YTE5OGU3ZDNkMGJkYTI4YTEyNTU3NjQ4YWY0MTY3M2I2MGM2Y2QwNWE2NGMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f31e74dfaeea4bb29774fbf98cd0522e",
+      "statement": "INPUT_CONTRACTS enforce closed per-operation input schemas with exactly the declared fields, refusing unknown fields with CONFIG_ERROR before any SDK call to prevent typos and malformed requests.",
+      "evidence": [
+        {
+          "resource": "repo://MCP_TOOL_MANIFEST.md#L29-L32",
+          "version": "repo-lines-v1:sha256:9851bd162936c24cc04fa93254328e36c906f1b44c2934cf4f8587654493cf40:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjg1MTk2NTU0MDE5MmJlMzIxNGE2ZDRkZmU0ZDBkMTAyMjExN2MwNzY4NzViMDk0ZDA1OWE5Mjk2MjE2N2RiNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTNiOTM5OGY2ODAyYTgwYmI4M2NlOTdkZjZmOTI3ZTYzZGMwZmFmNzUyMzVhOWViNzUzMzhjOTRkNWU2MDJkZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTVmNTM5NDE4MTNkN2Q5YjcwNDI2OWY5MWU5MmYzMmI3MWQxOGQ4MmIyZDhlZDA3NGNmNTIwMjkzZjgxYjg0ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTFiNzkwMGIzMDA1YjBlYzhhYTgyNjgzZjNiNjA1YmYxNGMyOWQ1Y2Y1OTRjMTFiOTEyNTU1M2M1ZTE0ODAyNiJ9"
+        },
+        {
+          "resource": "repo://src/mcp/dispatch.ts#L7-L12",
+          "version": "repo-lines-v1:sha256:a8a27045a8a1ffbd67a63f21d5889aadedb1a3c778ea563232863aa489204282:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTAxZWFkOTM2YTIyODFkNTNkY2MwNjRiN2UyYTJhYjBkNTNiOTJlZjNlZjdiMzRiNjY4NjczMDA3ODk1Yzg2MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2I3OTI4YmE0ZWI3OWRlMmNlMWQ1NWZlNDY2Yzk3OWY0NTM1NTJmN2E3YjkwOTgxNTM2ZWQ1ZDE4ZDlmNmU3NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGRmZmI5ZGE4NDAyNWQyZDQyYmYxZmJkMTZhZTU2MjVmZWQ2MmY4Njg0MmQxODU5MzU2ZTEzZWUzZTEyYjM5NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTRhYjRhYTM0MjlmOGQwOGFlYjA5MjlkNmIxNjk4ODNjNTNjOGFjMmI2YTA5NDNiYWM4NThjNjRlMDQ2Y2I0MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_dc946f833b4e46e18265bd0150dcf881",
+      "statement": "Three drift protection gates run in verify: mcp:project:check (manifest differs from fresh projection or unreachable operations), catalog:check (stale MCP_TOOL_CATALOG.json or catalog.generated.ts), and mcp:check-surface (served tool surface requirements).",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L981-L984",
+          "version": "repo-lines-v1:sha256:32b60db6973ed6b88c9b61fcc17b62f1709c01e996f645e33d2b8ec0e0e8ffce:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmRiNGI3MTU0Yzk1MDllNTNiZDU0Y2MwNjA3OWI3NzZkMjg0N2FjMzRmYjgzNzYzYzBhYjEzZGQ5YTg2ZWMxYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWRhYWE1MzljZTRmODIxNjczZjgxOTFhNGQ2ZTI5OGRiMWEzNmU5NzU5ZWE0ZjQ0NjcwZWQ0ODFhM2YxYzM1MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://MCP_TOOL_MANIFEST.md#L40-L43",
+          "version": "repo-lines-v1:sha256:35c2f118f8444069a0db7d3a1cc2fa344c32ca59293a1d99f2afa73a5cb9dca0:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzFlYWM4ODg3ODgzYzdhYWY5NDRhOWNmN2YwZDc1ODRmZWU2NGM4YTIzYjg3NDg2YjE2YzhjYmRmOTQyNjViMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjhmNWZmMTY4ZmMyNGQyMzRhODBlNGJmNTkzNWRmZDc2NWRjOTI1OTNiMGZkZjQ4ZTE4M2U2OTFiYzQwZDc2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGVmYjFlY2UyMGZjYWQyMjhmMjMzYTZjYmI0N2FkZGQ2MTFiZDhjMmMzZGNkMDBmYTc2Y2RiNmY1NjFhZWQ4YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmYyNGZhZjYwMDZmZDU1NTQ1MGNhNjBhZjQ4NmQ0ZWNhNjgzNDA5ZmE0MWNiNjY5ZTMyMmJlOWJhNWU0ZDJjZCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

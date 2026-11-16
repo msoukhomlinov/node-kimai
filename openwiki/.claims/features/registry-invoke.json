@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:b0fa7f28720dfcb9178bd18a9ebfef16e47ef29d6a977a0c62adb7210dec8dae",
+  "claims": [
+    {
+      "id": "claim_06f6f9fa5d4f4701919b0b126318fbce",
+      "statement": "invokeOperation follows a deterministic sequence: RESOLVE (registry lookup), VALIDATE (closed contract), GOVERN (dry-run and confirmation), DISPATCH (typed method call)",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L1-L39",
+          "version": "repo-lines-v1:sha256:a18b07b9a7faec9747953479934753c6e79a186bdb825963028ddd92fea0174b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEzZTkxNDE2NWIzZTNlNjNjODZmZTRjNTMyZTVjZDY0MDk1MmI0YWVhNzZlMmVlM2E5ZmU0NWU5Mzk4NDllNTcifQ"
+        },
+        {
+          "resource": "repo://src/operations/invoke.ts#L450-L453",
+          "version": "repo-lines-v1:sha256:258761184ec6b92ed3a984eb07e0f525c1d9c37fab925fceb2a99f2d23887753:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWUzMjMwZWIwM2FmZTBiY2NhZTFiMTVhNDVkMjM4YjgxNzU0MDg0ODM4ZDU5OWY2ZjNhNWJhMTU2NDFiZjZhZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcyYTQyOTM4MmIyZTE0NzE4ZTBlMzdiMDU3MGE4YTE3MDI5OTFmY2Q4NDk4Y2Q4NDA2MGE4YmY0ZjA1MDE3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDRjNmNiYzEyYTYzNTU1N2UwN2M2YmVjM2JmYWE0ODhiZGU0ZjUwMzI2MmJkOTBiNzg1NjA1ZDUwZjAyMzg0YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTZhOGQxYzI1MTI2MDQ5NzgxYjk5MGZmMTBhY2FkODFiMzBhNmQ4ODVhOTAxZmQ0YmFjYjU5MWFiYzg2MzNjOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e3da0f515994486295430fcc6068d092",
+      "statement": "Every refusal throws KimaiConfigError with structured code (UNKNOWN_OPERATION, UNREACHABLE_OPERATION, INVALID_INPUT, DISPATCHER_EFFECT) and suggested action before any request",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L140-L146",
+          "version": "repo-lines-v1:sha256:06e2910133e2c247c3d3684f6056bb0c0357f81f8493ad197a91245daa06c8fd:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTYzZDBlZWM0OTYyMjg0N2IyMTllZThlODI0MDY4ODRjZmYwYzhjZjAyNGM0NGMzNmU0YTg4YzJhYWJhZDE0MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjJiMWVjNWE0MWE4ODRkZTY2OGY0YzQ3ZTIxNWU0ZTA3N2ZiNzg2Yjg1YTU0Mjk2MDk4YjUyOWUxYzQ2YTk5OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTRhNzU1OTAxYTA2MjM0MDkxYjQ5MGIyZjdmNWJlYjlmNWIwNGY4NWUwNjc0MjgwM2I5Y2Q2NTNmOTAzMmE1NSJ9"
+        },
+        {
+          "resource": "repo://src/operations/invoke.ts#L86-L94",
+          "version": "repo-lines-v1:sha256:0704b9f85e1b56fbeb717a5c0a2c5cf500a534ee4e7e6a26818f50a336ba65e8:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcyYTQyOTM4MmIyZTE0NzE4ZTBlMzdiMDU3MGE4YTE3MDI5OTFmY2Q4NDk4Y2Q4NDA2MGE4YmY0ZjA1MDE3YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTRjNjQ5NGQ0NzgwYzMwODQ5Zjg5OWJiOWY4OTIzZjQ4YjBjNTZhN2YxNzU5NWFjMWQzY2MxNTgyNGU5NjQ3ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2I4MDMyNjlmNjgwMjliYzA5MzYwNjJkMWZhMTM5MDEzZWU4MmU5NWMzOTUyYzA5ZTg0MjBiNTFmYmEwNDZiMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTRlYjcyYzQwZjdhYTlhNjExOTBlOGJlZTc3ZTY2YjMxZDFmNzZiODNhNDljZjM3ZjdjNzIwYTVhYzhlNjI0ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1036985bc69042d7a30268be68127750",
+      "statement": "Closed input contracts are served from INPUT_CONTRACTS in the generated catalog and enforce required fields, closed key set, and safe positive integer record IDs",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L126-L138",
+          "version": "repo-lines-v1:sha256:2d902a52b69ecad013a646c42c2edc24f1d766eb548a315806bd96d9e696a772:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkN2VjMjk5MDExNzU1Y2Y4N2ZjYzYyZDM1M2E4M2MyMTBjNTA3ZWFjZWE2ZTAwZWMyZWQ5YjJlNDU4NTFjNTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxOThjMWY4MjhjZDlkZjg0NDRmZmYwNmM2MGM1MjdiMzU4YjU5ZDk5ZDExNDM2NmI4NGU5NGRhYjJjY2E2NzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg5Zjg2ODk4N2I0YzA3MzZiNjM4ZWI1YzdkMGY5NGE4MWJmMTljMjRlNmVlZDI4OWVlNDU1N2IxZDMwMGVkYjcifQ"
+        },
+        {
+          "resource": "repo://src/operations/invoke.ts#L231-L287",
+          "version": "repo-lines-v1:sha256:742bef83c18309bed75ab24c2b0a66edfff9b3a1d2ec8c4e4b3998f0905c6a72:eyJzZWxlY3RlZExpbmVDb3VudCI6NTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBiZjRjYjU4ZGRlYWU1MzE1OTI5NDYyYTMzMGMwM2I5Y2ZiNWViM2VlNTUxMjAzZGIxNzUxYmY5MzU2NmNlNDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiZDRiNTBmMjg0ZGIxMzMwMDFlYjIwNWMyODBjMDlhNGVlOGNmY2RjYTY2NTg0NjYzYjU2MzQ2YTYyZjM4ZGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU5MWRjODFmNGIzMGQwOTdjOWY0ZWZjMjU0YmUwMjUwN2QzNThlZTZjMWE0YjQ5M2FkZmUxMmI3NTZkNjRhYWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d91135cba3f543c4bb6fb5d42332d6f6",
+      "statement": "Unknown keys cause immediate refusal with nearest-match suggestions using string similarity scoring",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L160-L178",
+          "version": "repo-lines-v1:sha256:2a5892874ddb145be287118286d24ab9712af3ad4c66fb6ccbb3fc698fbb29ba:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFlMjIyYzg0YmEyZDA3YzQxZmJkYmZiNzlmYzFjOTdiMjBjMzQ1ZWM0MjU5ODhlZTFhYmQ2OWFhNGQ0OGM0MGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQwZGVhOTRmNWJiMmJjYWIzMWRmNGRiZDZmN2YyYWY5NmI3MWYwOWFmNDE0NTkxMGRkYzlmOGEyNTMxZDNiY2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyNTMxYjkyYzlkOTIyYzQwZjM0NDIzZjg5ZjgyYzI3ZmM4NGJjMGFkYWI3NjdhMzVmZGRmNDE0NTNjZTEyMDYifQ"
+        },
+        {
+          "resource": "repo://src/operations/invoke.ts#L180-L197",
+          "version": "repo-lines-v1:sha256:40091dc7bc2cee8c586a2164741ca6148ca89bfff4ad4ddcbaca71ee7928a9ea:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZmN2NhMWE1MjA5NjU0NGI2OGQ0ZWFhNTAzYjlkMzlkNmU1ODJlYWRmNmI0ZmRiZDc2OGRlODY4YzQxMmQ0ZjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVmZDIxNzljNDc5ZjA3NzkyYzZjODFjMDFhZWI0NDE1ZjY5OWQ2MGJhMGRjNDlmOTA3MDMxZmYzZDhiNjBiYWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cc34ae5bfdcc4c638090c4574992f6e7",
+      "statement": "All writes run dry by default: omitting dryRun or passing true invokes SDK dry-run path with zero wire calls; only explicit dryRun: false executes the write",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L486-L504",
+          "version": "repo-lines-v1:sha256:022baef68fca437904f97861a73698f9fb95c39d790e24002d94da5b5ff26337:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2OWRlMTE2YWExOTRlZDE0Y2ZhNzE4OGEwYmYyMGE4ZWU5YjA2OGM0ZmZjOWQ1M2M5MGVhZjU1ZTI5NTM5MDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1YzUxZDFlYWRlNmVhNTI4OTM1ZWRmZDI0OGI5ZTY4ZDJmOWY1NzY4YzIyOTZhZmRhMWU0N2FhMDZhNDU3ZjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM5MzA4MzM5ZWJkN2E2MGEwMThhY2JkOWZhMzU3ZjU3NGU3ZDM1YzMyYTc5MWJjYjE4NjAxYzJjM2E5ODBiMDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlmMTk4MmQzYjMwMzliYWZiYzk5YTAzMmMxZWMyNmQ5MGU5YWEyZmVkNTBkZjE4ZjNmNDM3ODM5NzUwNWY5Y2QifQ"
+        },
+        {
+          "resource": "repo://src/operations/invoke.ts#L49-L58",
+          "version": "repo-lines-v1:sha256:19049bbc61c1b251f2ef540a2668364e8f7d3a68fd635427d1ed687588810462:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNkYzYxM2ZiOGViNjIxYWQwNWZhNDNlOTg5ZmI3MTY0ZTk3MGVhMzJhYTYyZjQxOWRmYmYwNTMzM2QxZjg0NTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlZmFjYTBhOGIwMjA3MWM4MDI3NDllZjBlNGYxM2U4NzJhMGYwN2NlYzNkYmI5ZTE4NDVmMTA2ZDNhYjg3OGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMzOWZhMjFlN2U3YWZkMmY0Y2U4OWM0OGQ4NmYwNDBlMmQ3ZGE3ZTMwY2M3YWZlNGFlMmQwMjE5YTJjYjRlZjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNhYjc5MmFmYmJkODYyMGYzZjc2MzFlN2JkZGU0MDNkZmVmZjA1ODZmNjE1YWViM2RlMWY2NWI4NDU4NDYxZDMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ff802edd6891439e8f1b2a886696ea69",
+      "statement": "Reads refuse dryRun: true because a read has no dry run to run",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L478-L485",
+          "version": "repo-lines-v1:sha256:84f3d64566e05a257faf5ca2bd18d5196dd7db0ea7c239e74dd81ec093a45032:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmVhYzE2MDA4MDBiZjMzMTc0OGJmMzhhMDQ2ZGZmODUyNDY3ODkyOGIwMGY2YjVkZmM2Y2Q0NThkOTg4NmJmMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDc3YWM2MTEzYmFhMzUxNzQ5ZDk5YWNjYmRhMGMwNjFkMGMwZWI3OGNjYzVlYWNiMzE4NDU5M2NkNDYwN2U0YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTFkNDlhYjBhN2M0NGExMjNiNmE1ZGJhOTJjMWM4MmQ1NGYzMDJjMzU4NzBmMzlkOWNiNTgyYTIyNDcyZjJiZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e06de7dea6ca48b7a438197bea2d7fff",
+      "statement": "Destructive operations or those flagged requiresApproval require exact confirmation string matching operation key; without it the operation is refused before any request",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L407-L410",
+          "version": "repo-lines-v1:sha256:dfd5deb9e85ffe80573c93c514a26da9f2ed7853c13500b424c575da96bfedf9:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmYxYjk3OGZjNmQ3ZTUwMzNmMDRjMTY0YzFmYzQ2ZjI1NGM2MTY5ZGJlYzUwYTc2NWU2MTU5YzI0MTZlMTk4YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmE1ZDFiMmE4ZDM2MWRiNGVlMzZkYmI0NzA4Y2U1MWRjNjdkZDg2MmYxNjA2Y2ZjMDY1M2Y0ZmY4ZDlhY2E2ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2JhODNjY2YyYTI1ZTRmZWFkNDEyYjBlN2VkZTgzZjU2MDU2MTVmMGU5ZWJlZGU2MWQ5NjllZDY2ZGViYWU1NCJ9"
+        },
+        {
+          "resource": "repo://src/operations/invoke.ts#L468-L494",
+          "version": "repo-lines-v1:sha256:e55d1975de2f50219f02c959ddb3985a2a99223459cb6e76644986c43d1e700c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2YjRiZmE3NjgzZjcyNThiODk0NjkzYWQ0NzczZmRlZTg5YmMwOTM3YjE0MjA5ZjQ4MmVkYTI0MGRhNzYzMGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2YjlmMTEwZTRhMGU0ZDFjY2ZjMzIxYTQ4ZjQ5MGE1MDc0NzE0ODEzYmU3NWNkOWU5NDViMDI3ZTY0NDY4Y2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY0MDk5ZTQ1NDM1OWE3ZTQ2MWEwOWU0NjZiOWEyYjU0ZWNiYjcxMTIxZjIzNmFiMTc1YzUzOWEzMWM0YzUxYjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_dce9cec6aa3845d690085dbb28e388d5",
+      "statement": "Operations returning AsyncIterable (list/listPages) are refused before dispatch because the dispatcher is request-scoped and owns no pagination",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L349-L401",
+          "version": "repo-lines-v1:sha256:65328c5fbf78bd99d940f97c58abfc596b5af359cf7cd9d5b2b32741b7f2f925:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ2ZTI2YmZlN2M5NjI2MzA4MGUyOTFlODYzZjhlOGYzOGRhMzE1ZjJhN2JjYjRiNDM3N2M2MDE4ZWVhM2FjOTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMWU4ODYzNzM0YWMxM2Q0MWZhZDdlM2NmNzgzMDYxODkxNGIwY2I4M2EwYTg3NDliMTA0ZTBhYjMyMDc0NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2037c662ef0642d2a1fc4b66ef6b9563",
+      "statement": "dispatchOperation enforces effect boundary: caller-specified effect must match operation's registry effect, mismatches refused with DISPATCHER_EFFECT",
+      "evidence": [
+        {
+          "resource": "repo://src/mcp/dispatch.ts#L1-L16",
+          "version": "repo-lines-v1:sha256:4c0f041103ab61d9626a8f1a49593afd3ca8885408d12cb860693b6f0657d71d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI5MTE3NTBlNTdlZGZkNWQxNmE2YTQ4N2I5NThkYTdiNmIwYmYxZDA5MzljMjA4NTc0MTk3MjA2NzQ4ZWY4ZjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM2MTZmOGY4NmJkZDdmNzA1MmRiOWIzOTExYTg3YmZhYTVmMzgwOTZmOTdhMjA4YTVkZWJhOGI1YmJkYmMwY2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk0OGU3MzNmZTdhMTIyNzNjZGMwZGZkN2Q5M2NjNDQ1MGVjYWQ3MmYwN2FjMGU5YzAyZjE5ODA4ZGU3MDViYTgifQ"
+        },
+        {
+          "resource": "repo://src/mcp/dispatch.ts#L45-L60",
+          "version": "repo-lines-v1:sha256:4ffb70b276135778f112ba07f2b4fbda5dfdefcef2dd9f85845ce36aa6ef4359:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3ZTkyNDk4OTY5MDc3ZmJhMTg3NDU1ZWYxMDQxNDFmMjkxNzFlZTU2OTgxYjU1MjQ4NGEwOGU0YWU5YjdiMzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI5M2ZlYjZlZGM0ZThkY2IyZjZjYjYwNDEyZDliZGZkYTIxYTUyZDM5MzhkMWUwM2VjOWFkNDdkNjkzZTY0YTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3f9304f1ad95404ab6c1043fa96d117d",
+      "statement": "planInvoke runs validation and governance pipeline but stops before dispatch, returning InvokePlan with operation metadata and resolved arguments",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L444-L526",
+          "version": "repo-lines-v1:sha256:38beb617523527f76a12fa8ec3bb098dbd9502357b2318609c06e9137266e798:eyJzZWxlY3RlZExpbmVDb3VudCI6ODMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJkMjhkOTRhZDUzOWYyNDZmNTNlN2E3ZDlhZjcwZTEyZWQyNTRjMzA0MDQ0NTQyNWJmYzkxYzU4OGJmZjJmYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdjOTA3MGFhOTVmNDgyNmNlZTAxYzIwNTBlZTUzNTE3YjEwNjliNzUxZTg4ZTFlYzVlZWVlMzNmYmM2NTQ3NTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d851ec0d63e9442fb6d25ed19a7a6a7f",
+      "statement": "Validation and governance live in exactly one place: src/operations/invoke.ts; MCP dispatch layer adds only effect boundary and delegates to invokeOperation",
+      "evidence": [
+        {
+          "resource": "repo://src/mcp/dispatch.ts#L1-L16",
+          "version": "repo-lines-v1:sha256:4c0f041103ab61d9626a8f1a49593afd3ca8885408d12cb860693b6f0657d71d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI5MTE3NTBlNTdlZGZkNWQxNmE2YTQ4N2I5NThkYTdiNmIwYmYxZDA5MzljMjA4NTc0MTk3MjA2NzQ4ZWY4ZjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM2MTZmOGY4NmJkZDdmNzA1MmRiOWIzOTExYTg3YmZhYTVmMzgwOTZmOTdhMjA4YTVkZWJhOGI1YmJkYmMwY2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk0OGU3MzNmZTdhMTIyNzNjZGMwZGZkN2Q5M2NjNDQ1MGVjYWQ3MmYwN2FjMGU5YzAyZjE5ODA4ZGU3MDViYTgifQ"
+        },
+        {
+          "resource": "repo://src/operations/index.ts#L1-L11",
+          "version": "repo-lines-v1:sha256:f62c686b9132b2ac1e915a4110e86cc43176699ca86ac420de5ef35ddbeaea12:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYyODFmMTAzNGRmMzNhZGQ0ZDdkYTJhZjI5ODEzMWQ1YzQ4NmFjZDFiZGM1Y2RmYTQ0ZGQ3ZTZlZjkzMjlmZTgifQ"
+        },
+        {
+          "resource": "repo://src/operations/invoke.ts#L19-L32",
+          "version": "repo-lines-v1:sha256:16214f984b3d5917c1462d5d9ff22deb61bc881c407b986073a18cbf3dcc4007:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzNTIxMDllYTQwMWQ0NzcyZTkwMzExNTNjNjNkOWY1MDQ1NGViZWM1ZDVmOGEyZGI5NzVmMDE3YTM4NDAwM2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZDQyOGU3ZTAwZDFjNTM4OTcyY2E1ZDU5NzNkNTU2YzkwZDIxOWNmYjVjMWQxMDZjMmZkYTZkYTdlNDZlNTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2NzM0MWMwMzBhYmFkNTRmZDU1MGEzYzJjODE5ZDg5MGZhODUyMjFhZmQ2N2Q0ZWI2NzE2NzFiMmRlYTdjNDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ5ZDU4Mzc4ZWViMmMwZTBiOWNkMTM1ZDBiZmJiNmY1YzhiNWEzNzI3MDA4YTNlMTZhODUyZGZiMTdjYzk1YWMifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:0faf980836bd07c5f93849b1b920659cb22db17214c17465684e7e861f89e1ac",
+  "claims": [
+    {
+      "id": "claim_7ba6db78ac904a9699f3f93b5c7db716",
+      "statement": "The HttpTransport interface defines request<T>(options: TransportRequest): Promise<T> with TransportRequest containing method, path, query, body, headers, and responseType fields",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L1-L50",
+          "version": "repo-lines-v1:sha256:948660b567fabaa6bd4b599e53269b2589d7086f1096ad8daf3bf2a5d7ff21fc:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJhZjY1MWY2YjgxN2NmY2E1OTNmNjNmYTUyOTllOTMxMWQ3MzMwZDhmYzUzYWRlYjZjZmYyMmYyYzRlNzNiYzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhOTExNzliYTlkZjJlNDAwNjhiOWFjYmQyNjQxZGQzMTAwOTA5OTZhODliZmUyNmE5YWZjMjc4YTVlZmFkZmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYzNzQxZjg2NjkzOTc0MDRiYzkxMTdmZDFjMDg1ODczMmVjMTZmMDM5N2M1MjNkNDZmMWQzMWEwOTllNjdhMDcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_115a6cc93df349c88810e94a0c557813",
+      "statement": "Production code uses FetchTransport (native fetch wrapper) while tests inject a mock transport using Vitest's vi.fn().mockResolvedValue()",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L1-L100",
+          "version": "repo-lines-v1:sha256:4502aeec84c1c79c4bf1337a83a19081be353dce680e05f02eb0c3b90c4f47cc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJiYWY2NTFmNmI4MTdjZmNhNTkzZjYzZmE1Mjk5ZTkzMTFkNzMzMGQ4ZmM1M2FkZWI2Y2ZmMjJmMmM0ZTczYmM4IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJhYjA1NTNjYzEyOTQ3OGQ3ZGNmM2NiYTM4YjEzNDBhNjQ1N2Y2NTEwOTYwYzlhYTkyMzE2Zjc1YTNlZjcwMDVlIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIxOWQ1NzlhMjY2MWNjNGUwYmI2MTlmMmY4YWRiMmM3ZmRkMWEyYzA0YmUxMTcxOWY2MzcwYzk0OTE2YjJmNzVmIn0"
+        },
+        {
+          "resource": "repo://test/resources/activity.test.ts#L1-L50",
+          "version": "repo-lines-v1:sha256:0e78bff1ecb06651deb3cf8ea95a19abf3e3f728def75b760d58ff5a60ce5c1f:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcyMGYxNWZhMmQwNDk3MWViNDIwMDZlN2EwZTg2NzJhYTYzOTJmMTZkMTM4MmY2YzJkODUyYzBhYzUyYTVjODkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRlZWQ1ZTY5ZjFlNDc5N2Q2ZWNjNTRkZGY4ZGY4N2Y5NDI4Y2FmZWFiZThjNDJlYmMzZmQ3MDVlYjcxOThiZDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyY2ViYzE0Yzk5Njk0MzNiNDBhYmJiMTY4MjA3Y2U3MDQ5NTFkMjVjNmQ0Y2I1ZTM0MjJhMTAxNWIwYmIzMTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fb27828b81ae455e94a3bbcb58e9c69c",
+      "statement": "Test fixtures are organized in test/__fixtures__/ with naming conventions: {resource}.json for lists, {resource}_single.json for single objects, {resource}_created.json for create responses, and error_{code}.json for error shapes",
+      "evidence": [
+        {
+          "resource": "repo://test/__fixtures__/activity_single.json#L1-L14",
+          "version": "repo-lines-v1:sha256:f276b43a6e328879ac7de0efbe4f013bc0053896815d56336fc5a35574f1f084:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2ZmIwOGZkYTFhY2I5NTdiNjExNmJkMzc4MTFhMWZlNDFhMDE2MTFjMDYzMWVkYmY3ODZkNjg4OWEyN2E1NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://test/__fixtures__/timesheet_created.json#L1-L16",
+          "version": "repo-lines-v1:sha256:bc662f808aca91f7a5d7f560572411de09f0fb7f247939c40fcf895e36bfa203:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2ZmIwOGZkYTFhY2I5NTdiNjExNmJkMzc4MTFhMWZlNDFhMDE2MTFjMDYzMWVkYmY3ODZkNjg4OWEyN2E1NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5e66e9f2342847f088a267e0c5fe7763",
+      "statement": "The Kimai API returns bare arrays for lists and bare objects for single items with NO wrapper envelopes",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L801-L896",
+          "version": "repo-lines-v1:sha256:251ef3f3541fb70901182267660c699513094e4cafe73a5f2cfd3d9bfc85def1:eyJzZWxlY3RlZExpbmVDb3VudCI6OTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5ZDUyOTgwMTc2ZjYyMmUxZGM5NGU4ZGU4MTE0YTU0ZGFkMGEyOTkwNzJkZWI1NDE3ZjZhOWY5YWE0MjRjZGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQyMjAxZjM1ODgyMDZjNDEyMmE0YWRmY2VkZTk1MzQ1M2U3NzkxNzAwZGU5Mjc0NDI4MzFlMWExMjc1NWY4NzIifQ"
+        },
+        {
+          "resource": "repo://test/__fixtures__/activity_single.json#L1-L14",
+          "version": "repo-lines-v1:sha256:f276b43a6e328879ac7de0efbe4f013bc0053896815d56336fc5a35574f1f084:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2ZmIwOGZkYTFhY2I5NTdiNjExNmJkMzc4MTFhMWZlNDFhMDE2MTFjMDYzMWVkYmY3ODZkNjg4OWEyN2E1NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6f21aa36b7654ca6b28216f36b71505f",
+      "statement": "Fixtures are loaded using readFileSync with import.meta.url to resolve paths relative to the test file",
+      "evidence": [
+        {
+          "resource": "repo://test/resources/activity.test.ts#L1-L20",
+          "version": "repo-lines-v1:sha256:d23f0cab0aba3dcbe991114f21705609a84ed08ea9c542267d9c1fc921c1b02d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcyMGYxNWZhMmQwNDk3MWViNDIwMDZlN2EwZTg2NzJhYTYzOTJmMTZkMTM4MmY2YzJkODUyYzBhYzUyYTVjODkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyYzc3ZGRjMzcyNGM2OWFjNTZiNzJkMjQ5NjIxMzc3Y2ExZmIyZWQ1OTgxOWY5OGQxNTcwNmU4ODA5NTkzNWYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE0OWJmYmU4ZmEyMmViZjFiODFmYTFmMTE0MjMxZjYwN2Y2OWEzYWU1MmNmYzgyNWY5ZGZhZjUzOWRiN2QzZDMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_eb90c09302a94a2eaaeee97d8ff39cac",
+      "statement": "FetchTransport tests mock global.fetch using Vitest's vi.stubGlobal() and verify URL construction, query parameter encoding, and authentication headers",
+      "evidence": [
+        {
+          "resource": "repo://test/client.test.ts#L1-L150",
+          "version": "repo-lines-v1:sha256:2836c16d9d08e29d66553428ecdb07e26c0a73f262814cfaa9b62230dcfdb69a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI1NGVlNTZiYTc0ZmUzYmNmY2FkMTY3MTA4ZWIyYzRkZmExNTU3Y2Q2ODIzYWU2YTQyZDVlNWM0MjNjYzExNDYyIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI3MTdhZjExMDFjOTdiN2MyZjUyNTQwNzgyZTYzNGNjNDQ0MGYwZTk3MDM0MWU1MmY5NzUyMzExZDc4YjdkN2QwIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJjMmJhZDliMzY5Y2RiODE1ZGYyYzNjZDJmNDU3NTRiM2RjOWNjYzdiYTEzNGMwOGVkZDIwMTI4ZWU5ZTdhODRkIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_4524fcb95f8c41639751c036e1cb6f2e",
+      "statement": "Resource client tests follow a standard structure covering list/listAll, get, create, update, delete, special operations, and helper methods",
+      "evidence": [
+        {
+          "resource": "repo://test/resources/activity.test.ts#L1-L446",
+          "version": "repo-lines-v1:sha256:0579352d3efa917cc43f0a938cf8e8eb57e417044536f2141d8dbbfa06a6677e:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQ2LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI3MjBmMTVmYTJkMDQ5NzFlYjQyMDA2ZTdhMGU4NjcyYWE2MzkyZjE2ZDEzODJmNmMyZDg1MmMwYWM1MmE1Yzg5IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyMmQxMWNhZjQzZTk3ZWYzNjllNmJlZWQxYTI2OGJkMDU4MzhmMjliOWRkMjU0YmY2OWJhNjQ4ODQxNDcyMzRhIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIzZjhhMGNhYTI3NDhmYzU3Y2NiMTU1M2RkYzE2NTgxYjNlZjIxZjhhNmU2MDhkMWY4YjQzZTNlMTExMzQ5M2RiIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_0fb6f13db3424eee9e38c234186af7aa",
+      "statement": "Non-paginated resources (activities, customers, projects, users, teams, tags) must NOT send page/size params while paginated resources (timesheets, invoices) accept page/size parameters",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L341-L341",
+          "version": "repo-lines-v1:sha256:75871c5d44fa2b66ae99b3369b2174fc29c265a1eb079a89e1d26c2a4c0daf8e:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzU4NzFjNWQ0NGZhMmI2NmFlOTliMzM2OWIyMTc0ZmMyOWMyNjVhMWViMDc5YTg5ZTFkMjZjMmE0YzBkYWY4ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzU4NzFjNWQ0NGZhMmI2NmFlOTliMzM2OWIyMTc0ZmMyOWMyNjVhMWViMDc5YTg5ZTFkMjZjMmE0YzBkYWY4ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWQzZjdjNDM5YjljYmUwY2FlOTdhNmVmNGIyNTFhMzcxNWE3YmE1YWNjM2QwMjk2OGZkOGM0Zjc2MDExNjU1YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTRjOWQ1MTUwYWM2YjdlYWI5YmM0NWNkZTA2NGE4OWMzNTQyYjNmM2IwMzMyOTI2OWY2ZTBiMDFkNjdjMzM5MiJ9"
+        },
+        {
+          "resource": "repo://test/resources/activity.test.ts#L455-L464",
+          "version": "repo-lines-v1:sha256:9c27ca9440a1626f035f3ce9b7e3216901332575272d190d050bec1ca719bb58:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc5YjlkYjRmN2E1Yzg3ZGRlZTk0YzhlMmU5ODY2NzMwZGY5MGViZjFlMjZiOWFiZDAyYTRhNGM3MzMyOTNhOGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzMTgwODU1ZDI2NzNkOWVlM2Y0YzM5YjlkYzYyZjIyOTYwNzcyNmU3M2VkZTg1NjU0NjgwNzc2MjRjYTAwZDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlODBkNjgxNmVjNWM4YjYyYWMwNzU3NmJmOGIxNjU4YWMyMmUyMDY1NjgwMTNiZTM2YjljYTMwZTc0NzBlYTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmZjJhMTVhYTFmNzJmNjRkOGI2YWYzNTE5NWM2NDJkYTc2MDZhMzNiYWI3YzNmMzFiYTZmMWYzMGFkOWU3ZTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b537ccf077e54681aa1167aba84280e7",
+      "statement": "Error tests verify that HTTP status codes map to typed error classes (BadRequestError for 400, NotFoundError for 404, RateLimitError for 429)",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L1-L100",
+          "version": "repo-lines-v1:sha256:19dce83ad990451055f63c2cceba0f107b7370ecbcea862dbaf75712501a8720:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI3ZGViM2UyNThkNTI1MzFlZDQ0YzQ2YTE3MzlkZWY2Y2ZlMGU4ODM5YjhhOWY4ZGFiYmY4MmFhNjcxN2JjOGEyIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIxNDc4MTVlM2E2OGZmNjk1NTgzNTdhNzQwMDliOGUzNTcxZWY0NTBiYTAxYWRjMmM3N2IxMmIyZDVmZTI4MWFjIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJmZWMwNDkxNWVjZmUwYmFmMzkzOGZkYjJmNDkyMWVmMmE4Mzk4OTZmNjNmODJmMDhkYjAyMDhlZDMxZWMwNmNkIn0"
+        },
+        {
+          "resource": "repo://test/client.test.ts#L1-L150",
+          "version": "repo-lines-v1:sha256:2836c16d9d08e29d66553428ecdb07e26c0a73f262814cfaa9b62230dcfdb69a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI1NGVlNTZiYTc0ZmUzYmNmY2FkMTY3MTA4ZWIyYzRkZmExNTU3Y2Q2ODIzYWU2YTQyZDVlNWM0MjNjYzExNDYyIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI3MTdhZjExMDFjOTdiN2MyZjUyNTQwNzgyZTYzNGNjNDQ0MGYwZTk3MDM0MWU1MmY5NzUyMzExZDc4YjdkN2QwIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJjMmJhZDliMzY5Y2RiODE1ZGYyYzNjZDJmNDU3NTRiM2RjOWNjYzdiYTEzNGMwOGVkZDIwMTI4ZWU5ZTdhODRkIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_0736d38c77e547a18547344c166adf28",
+      "statement": "The entire test suite runs without making a single real API call using injectable transport mocking",
+      "evidence": [
+        {
+          "resource": "repo://test/client.test.ts#L1-L50",
+          "version": "repo-lines-v1:sha256:c5676f59560b6e8d361cc021ec63cd7f5f9892a49fb4de7d982b0e8d6eb06e2b:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU0ZWU1NmJhNzRmZTNiY2ZjYWQxNjcxMDhlYjJjNGRmYTE1NTdjZDY4MjNhZTZhNDJkNWU1YzQyM2NjMTE0NjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJjOTBjNzFjMGM0OGFhNThkNTUxNmQyY2MxMWM5N2RiOWVmMzM2YzVjMDRjYmYwZmMzODRkZDU5NGYzOWFhMGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY1ZjNjNmM1NjVjNGUwZWEwOTZkMmRlNzAwMjA2YWNhYzA4MWQxMWE5NzQxMDlmOGI2NDljMWNjYWU2MTg2NTEifQ"
+        },
+        {
+          "resource": "repo://test/resources/activity.test.ts#L1-L50",
+          "version": "repo-lines-v1:sha256:0e78bff1ecb06651deb3cf8ea95a19abf3e3f728def75b760d58ff5a60ce5c1f:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcyMGYxNWZhMmQwNDk3MWViNDIwMDZlN2EwZTg2NzJhYTYzOTJmMTZkMTM4MmY2YzJkODUyYzBhYzUyYTVjODkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRlZWQ1ZTY5ZjFlNDc5N2Q2ZWNjNTRkZGY4ZGY4N2Y5NDI4Y2FmZWFiZThjNDJlYmMzZmQ3MDVlYjcxOThiZDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyY2ViYzE0Yzk5Njk0MzNiNDBhYmJiMTY4MjA3Y2U3MDQ5NTFkMjVjNmQ0Y2I1ZTM0MjJhMTAxNWIwYmIzMTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2061f8856d2d45be9f36e4286e475a11",
+      "statement": "Coverage thresholds are lines 90%, functions 90%, branches 80%, and statements 90%",
+      "evidence": [
+        {
+          "resource": "repo://vitest.config.ts#L26-L31",
+          "version": "repo-lines-v1:sha256:40536699aba7ad90351a6ba9c64936bf58aaf56c9a0ca5922bb15bdc075a9acc:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjhlNzQ5YzM1NTY5OWM1MDI0YTlmMWM5YjkyYWRlMjkxMWQ3OGM3YjU4NzVjOGRkZTY4NmNmYjFjZWFiMmU5NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjk3OGUyNTAzYjhjZjM3YTA2ZjdkNmYwYTNhNmI2ZmUzNTY5MWZiY2FiNTBiODc3NWNhYjZmYWJjNzFjNTkyYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmU5MTFjOTRkZDIzODNjMGIzZjc2ZWE0YjgyZDI0MmZiZDg2NzA3MTRmMzAwZTE3ZDI1ZTc5NmQwZWNlMDhlNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDlkZjkwZjFlNmIxODgzZWViMzM1NWMyYWUzMDhmMGE4Mzg1MDYzYTBmOTQwMGIyNzRmNzE5ZGZiZjFkMDZiNiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

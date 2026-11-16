@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:a6b67fd93b1524a655c4c307478d5d035cc9814ea5c4954652cb6f439fbd6b8a",
+  "claims": [
+    {
+      "id": "claim_98372d5699c84745b077b66aa2588e33",
+      "statement": "ApiClient constructor accepts four options: baseUrl (required), token (required), transport (optional HttpTransport), and timeoutMs (optional positive finite number)",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L290-L302",
+          "version": "repo-lines-v1:sha256:443750de95106aaafb66510a589693275ef64ddf27589d1e8822d3670bb94de3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3OWVlOTU5N2ZkNWJkOTU2OTY5NjdiOTE1ZmEyNTM3N2Q0ZmY1Y2ExOTNkNWU0OWYwZjIwODlhZDNmMmU5M2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdhZTk3YTAwMzg0OTZiYTA1NzIxZTMwZTZkMmJhOTM0YTAyOGFlNDkyMWI0ODhlNDg3YmI3Njc2ZGY2ZWQ3NmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZjYjZiZWFjOGE4ZDk2NWMyNjliMjQzMWJhNzA1M2U0MTNjZmVjZTY2YWVmMzg2NjM1ZDdmN2VmYzVmOTQ3NzUifQ"
+        },
+        {
+          "resource": "repo://src/client.ts#L325-L332",
+          "version": "repo-lines-v1:sha256:4983180dac861412e8cc7a02741e6262994114fe0d76891a2c72ad7d2a00232c:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTA0ZDkxMzc1ZmQ3ODk5ZGIyMmJiZGFjYzRmMDYzOTM2ZDZiY2I4MWM0ZTJiN2VlNjk0NmQ0NmVhZDAwMzJiYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWVmZGIwMTk5OWVkZDNmNDBmZTczMmNhOGU1ZTgyMGQzMzFkOWJjMTY1OGU0MThmNTQ2ODQzMDgzMzhmZjc3OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODkzZWIyNWQ4ZjgxMDZkODU2YWQxMGM2MTgyYmE4ZTcyZWRiMGEwNGM1OGQwOWM5Y2QxM2ExODIyZmQ0NmE1MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmE4NTE0ZDA4YmY3MGNlYmQ1NTM5OGM0OGFkMDAxMzdmMzAyOWJmMDgyYzkyMzcwNTc5MWU1NzU4YmY4ZDQzYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f483ad1ea34141d4947507e2a86f23b0",
+      "statement": "The HttpTransport interface defines a single request method that accepts TransportRequest options and returns a typed Promise",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L56-L58",
+          "version": "repo-lines-v1:sha256:81b361ee456138122047306d707b982b8380fc6638a585aa9b660f496de792c4:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTAwNGRjOWVlYzBlMGM0NDlhZDczYmUxMmMxYjhhZWNlMGY3YzJlYTkxZjI1ZjQ4ZDY0ZjMwMzIxNjQyMzc3MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjQ5OWE5YzEwM2MxNDEzMmExN2NhYmFhNDNkOGU3MTNmNTkzZWUxNzc4NTU2YTY2NmY2ZTQ4YzVkZDRmZWUyYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzU4OWQ5NzAxZGRlMzI0MWQwZmE4ZGY2NjQ3ZWNjNGE5YmZjYTUyZjNiZjUxZGU0ZWMyMDBmNTkzMTUyMTVjZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1bb1b935ba344dc892fe72e3be5e007f",
+      "statement": "TransportRequest includes method, path, query, body, headers, responseType, and an optional signal for timeout/cancellation",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L20-L34",
+          "version": "repo-lines-v1:sha256:1c2fabf9b9f53b48ddf19ddc5d856078e341b159b67d3de9cb463432fb52f14f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY3NTgzM2I3NTExYzdiOGY5ZjBmNjM3YTFmNWZlNWM4ODQ2NDQxNmMyMzNlMzE4ZTRmZmUzNzgzNGViNTFmMTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiMGYxOWYwN2VmODViNGUzNjcxOTg0N2Q4MjZiNTZhOTJhYThmMmZjZDU5ZmUwMjcyMzdjNjg2ZjUzZGU5YmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ4ZjQ5YWU2OTFhNmJlZTY0M2YzNzExZDY2NDJmOTM0MWYzYzIwOGM4ZjRkM2Q5MjBiZTliNzVlNzJhZGNhNjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6307ed57c45b48faa6724ec82abe24b2",
+      "statement": "FetchTransport is the default transport implementation using native fetch",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L140-L272",
+          "version": "repo-lines-v1:sha256:4543e8685060475ca284a4f822e7d1029514ad9fc760321ccfad0733666c9cd1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0MmIzZWQ4NjhhYjg3N2M1ZjRjNzc4M2NjNmZmZTA5N2Y5ZmU5YjlmMTExOGExMGU4YTQ0ZGMyZDE0MjQ1NjA0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIwNjJlNWE5OWIxMmYwYzFmOGI1OTVjMDAwYTI2ODYyOWRiNDBmM2FiYWQ0Mjg0NjRiNDQwY2M1ZmI1YjcyMWE0IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJiMTE5ZDZmYmNkNmZlNDkzYzVkMWFkNmZlZGU1M2ZlMGVlNWU5YzE1YmE1YjhkN2FhZTM3MzJiNGM0NDQ5ZWJiIn0"
+        },
+        {
+          "resource": "repo://src/client.ts#L332-L332",
+          "version": "repo-lines-v1:sha256:5efdb01999edd3f40fe732ca8e5e820d331d9bc1658e418f54684308338ff778:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWVmZGIwMTk5OWVkZDNmNDBmZTczMmNhOGU1ZTgyMGQzMzFkOWJjMTY1OGU0MThmNTQ2ODQzMDgzMzhmZjc3OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWVmZGIwMTk5OWVkZDNmNDBmZTczMmNhOGU1ZTgyMGQzMzFkOWJjMTY1OGU0MThmNTQ2ODQzMDgzMzhmZjc3OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmYyMTdkMjQzMDhlMmIzZTM3YWY1ODhmOGVlMTNlOWRmMDc0OGI4ZTliMTQ4NWVhYmY3YTQzNmI3NDg4OWU1NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmE4NTE0ZDA4YmY3MGNlYmQ1NTM5OGM0OGFkMDAxMzdmMzAyOWJmMDgyYzkyMzcwNTc5MWU1NzU4YmY4ZDQzYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_193c4ad8331041ca98e2d7dacd81d605",
+      "statement": "The composeSignal method combines per-request timeoutMs (overriding constructor value) with caller AbortSignal, returning undefined when neither is set, the single input when only one is set, or a composed AbortController when both are set",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L409-L437",
+          "version": "repo-lines-v1:sha256:5fbef52c988e40cbc4ef7d39cc19d13a12e0fd3d2fc7c238eb2fa9e97505088b:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg3MzM5M2VjOTk5YmZmZDQwZjUyNzE3ZmIxYTA2NGY0ZjUwOGRkYzA2YTE2YzljYjYwZmI4MDA2ZWFkOGM0MDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdmZWZiNTYwZmE4M2I5MTM5OTQ3NzI3MzRhOWE4MjU0ZWY4MDk2MzQ0NDQxM2JiOTI5YzllYzc1NWYwYzdkODAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fce07fc6a3114e3c91038174d7e54373",
+      "statement": "Network failures and aborted requests throw typed ApiError with status 0, category timeout or network, code TIMEOUT or NETWORK, and retryable true",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L193-L197",
+          "version": "repo-lines-v1:sha256:5f22dc990e20cce0b52440cfb04b80aebce89bbafd2fbef9a34f2a01e4673626:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDFiOWE2NmY1ZTQwOWJiZWRkMWNjZDVkN2M0MDdjMjI2NTk0M2NmMDA1ZjZkOGVlN2FmN2IxOWQyNWY2NzhhYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMThkYTM3OWQxZDBiY2U3N2UwNzU3MjUwYjQ2MDk0ZmI2YjNmYzAxNWQwYjg4NzMyOTRmMDViMmVkNDMyYjM1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2JlN2NkNWU2MDI0YTA5YmNhNDQ5YTVlMDg3ZWUyMDU2N2Y1ZDIzNWJiOWFmNTg1N2JlNTcyMTA5NDkwZDBiNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjZkMTYzZjAzZTFhNGYxM2FlZTM2NTViYzUxMGNmMzY2YjI4OGMxMmRiY2ZmNjIzYzcwN2E4MmUwZDMwNWU3NyJ9"
+        },
+        {
+          "resource": "repo://src/client.ts#L71-L107",
+          "version": "repo-lines-v1:sha256:8f11a831146e2a805d3a63d0b18cabfb0f42c6b650625625b7f1b5b911830a53:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjYzRiZWFjMTA4NGQ0ZjU5Zjc4ZTk4MWJkOWNhMTUwOTc1NjIyNjBmMGFhMTc3YjZkYTlkMjY1NjI5YzYyMzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM2MDM3YjE3MzYyMzVlNzM0YzdlYjg1NjExNGNlZjg0NDViNDc2YmE4ZDhkYmM2MGY1OTVkNzBmMTEwZjJiN2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI3NzhjZjExNWUyM2FmN2JiZWIxODVhYmNjZTlhOTBlOGQ2MmRiOGQzMWVhZjQ3YTI2NmQzNTczZjdiYWZkMjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cca836a6d7494a9ea382d4534d6ef238",
+      "statement": "Each request generates a correlation ID using crypto.randomUUID which is attached to all ApiErrors for server-side trace correlation",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L151-L151",
+          "version": "repo-lines-v1:sha256:49b747978f10874cbe7e754d2017148438f9c515337d65dccd4e0b610b6dcddb:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDliNzQ3OTc4ZjEwODc0Y2JlN2U3NTRkMjAxNzE0ODQzOGY5YzUxNTMzN2Q2NWRjY2Q0ZTBiNjEwYjZkY2RkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDliNzQ3OTc4ZjEwODc0Y2JlN2U3NTRkMjAxNzE0ODQzOGY5YzUxNTMzN2Q2NWRjY2Q0ZTBiNjEwYjZkY2RkYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDAwOGYzNzdlMjMxZjdhMWU0ZTMwMTFiZGJiMGEyYjEwZTk2MjRmZjkyOTM0MjJkODgwZWY1MzMxYzdhNWI3YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmIxNGFhMzVlYTVhMzQ5Y2YzMmQwODIxOTQyMmUwNDFhOGQwNDI1ODE1YjBiNGU1YTUwMDQ0ZmFkOWI0M2FhNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_56cf296d11924ec483d3974ff1625d7b",
+      "statement": "ApiClient auto-wires 13 resource clients in the constructor: activities, customers, projects, timesheets, users, tags, teams, invoices, approvalBundle, config, system, export, and actions",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L311-L346",
+          "version": "repo-lines-v1:sha256:cb9993458a9c5557d7da2c457c519cd9fd899d13a88fdea27acebb422d0a452f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3MmNkMTcxYWMyNzdhNWEyNjExZDkxNDA5Zjk4OTA3ZTM2ODdmMjY1YmJlMjMwYzZlODNjNDVhNjI5MGI3ZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxMjAwMmQwYWJjYjc3MGI5NDg1NWE0ZTkzYmM3YmE3ZDA3MTE4YjAwOGUzMTIxYTk3OWE4NzRkZjQyNjU1YmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmMmE5ZWYzNTZhNTQ5MzdlNzUxMjcwZDUzZGM4NTFlMmMxOWUxZjYxZGVkZmM3Y2JhYTMxMWExOGQ4MTI1YWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzODIwYTA0NzMyZTE4ZjNjY2YyY2M4YzM1ZDI3MWJkYmJkNjAxMzhmMzM0OTI4YmQzOTdjOGRjMjg3YTY2NzgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_147edc2efe104b66b83725df952b4fae",
+      "statement": "parseRetryAfter parses Retry-After header in both delta-seconds and HTTP-date formats, returning whole seconds to wait clamped at zero",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L279-L288",
+          "version": "repo-lines-v1:sha256:22822b985aa98912936f6f3dab33d4286cb68ef31c21d9dd75a1b914fd30afa8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4ZGZmM2NjYThkM2RlNDJlOGM5ODRiMjEzNzFmMTFlNjlkMzE3NmMzMjRjZjRhYzE1MThhMTgyNjQ0MTJjZmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY3ZDZhYzViMzE2NTEzYmI0ZDUzNzg3NzU3ZDUzNDliMGM2NTY0ZWYxNDllYjM2ZWQ4YWVhYjk1ZTE3ZWJhMjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVjNWVlODVmYmM1N2QzYzNlZGMxOTdiNzMwZTA0ZDYzNGRlMjA0ZWRlMDc0NTA1NWQwYjI0NjMzZGFiNWRmOWYifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:5160cefd1dbb51d2a2dcff8bf91e6c1e17969cb411dd296e3e68fa3d8c640fd8",
+  "claims": [
+    {
+      "id": "claim_5c0b28c117174d959f0e7ed80ed74197",
+      "statement": "The test suite uses vitest with coverage thresholds: lines 90%, functions 90%, branches 80%, statements 90%, enforced via npm run coverage and in CI.",
+      "evidence": [
+        {
+          "resource": "repo://vitest.config.ts#L26-L31",
+          "version": "repo-lines-v1:sha256:40536699aba7ad90351a6ba9c64936bf58aaf56c9a0ca5922bb15bdc075a9acc:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjhlNzQ5YzM1NTY5OWM1MDI0YTlmMWM5YjkyYWRlMjkxMWQ3OGM3YjU4NzVjOGRkZTY4NmNmYjFjZWFiMmU5NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjk3OGUyNTAzYjhjZjM3YTA2ZjdkNmYwYTNhNmI2ZmUzNTY5MWZiY2FiNTBiODc3NWNhYjZmYWJjNzFjNTkyYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmU5MTFjOTRkZDIzODNjMGIzZjc2ZWE0YjgyZDI0MmZiZDg2NzA3MTRmMzAwZTE3ZDI1ZTc5NmQwZWNlMDhlNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDlkZjkwZjFlNmIxODgzZWViMzM1NWMyYWUzMDhmMGE4Mzg1MDYzYTBmOTQwMGIyNzRmNzE5ZGZiZjFkMDZiNiJ9"
+        },
+        {
+          "resource": "repo://vitest.config.ts#L4-L6",
+          "version": "repo-lines-v1:sha256:de21fc80ded30b81974105c4df83daadcfff53f69b74d9dd4640a08818ca7db0:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODQ5ODAxNjc5NWVmZTBmNzJhZDY1Mjk2OGMyOTczYmMxNzc3MDdhNWZjZDQwZTA0NTEyNDEwNTIwMjQxOGQzZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWJiYzYxMGIzZWJiMmIyZjFkNjk4ZGVmOGJhNzM3ZmU3MTUzMzkwN2M1ODdkNzE4NzY5OTg5NDJlNGY4YzBmOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTYzODNlNjJmOGQ3ZmYzNzQ1MGFlNTgwODQzZjAzM2ZkNGRjYWQxOTJiYzNhNWRkMDllNzI5ZmM3MmZjNTFmZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjI4MzcxNmY0NDBjMWIzOGQzN2I5ZjMwYjhlMjQ3ODM1NmNiNmMyNDBkNjc5MjNmMGFkODZhY2E5MWE2ODg1MyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f5c84616bd024d438e7369ced1ac252f",
+      "statement": "The errors module is aliased in vitest config to resolve to the same module instance for both sources and tests, preventing cross-copy instanceof failures when checking error types.",
+      "evidence": [
+        {
+          "resource": "repo://vitest.config.ts#L8-L16",
+          "version": "repo-lines-v1:sha256:877b860c235256aec0578a839fcd651281bc9dbeb0cb45e1d490719262a917a3:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmJlZjk5Yzc2ODJjNDFiM2Q5YzU0YzdmMzhiOTg0NjMyNGQ3OGNjMGZmNmI0MjYxYmFhMzU4OTVkOWMxNzNmNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjdkZmE1YWU4MDJlNjI1OGE2MjYyYTUxMjljMjE4YTg4MDJjYWM3ZDkwMzViNmNhYWU0NmE3MDc4MTJjYzNjMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDE1YmFhZWRhN2QwNjU4ZmM5OTY1MDdhY2Y5NmM2YTA2ZDcyMGVlZmM1YmVjOTFlN2QxYzBlZWFmMWY5MDBiNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b19c6a4b9d0a45ebbb16a27328a04a33",
+      "statement": "Tests use JSON fixtures from test/__fixtures__/ loaded with readFileSync and JSON.parse, mocking global fetch with vi.fn() and vi.stubGlobal.",
+      "evidence": [
+        {
+          "resource": "repo://test/client.test.ts#L20-L22",
+          "version": "repo-lines-v1:sha256:b5f2ebca9c7c2fa7eca952661872b77de2a564b235ab841f6f255de90c415603:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDY5OGE3YTdlZGE1NTliMjJmYmMyMmE3NTcxYzYxODZiZjM1Y2I5ZTMzNGRiM2Q0MmRiYWVmZDVmZDJhM2VjZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjM1MGM4NjQ0ZTljY2RjY2U1ZGExNWM4MjcxYmM4YmZiNjQ2MTgwZDEzMmM2MjBjMmZhYzczZGM1MDUwZWYwMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjY4MjQwMGNiNTc5N2EzZTBiZjIyOWE4Mzc2MjYzMWQ3YmVhZTc0NDUxZjc0YzVkOGQyMDgwYWM0MjdmNTJiOCJ9"
+        },
+        {
+          "resource": "repo://test/client.test.ts#L26-L31",
+          "version": "repo-lines-v1:sha256:60e2a4f67b61f8fab519e66803b113f740075623245d0cdbf4815d43d3066d0a:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzYzOTA2OWY1YmZhMDJhMWMyNTM3MzU0YTRkZjU4YjhjNjZiODQxOGMxZDJlMmFlZDgyMWUzNTEzM2RhM2M2OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjI4MjgwMzJmYzE3YjBhYmExYjBlMWM4OWM3NDJhNzBmZDFlYmFlMTcxYjUzMjhmYTcxNWU2ZGIzZjg1YjJhOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjY4MjQwMGNiNTc5N2EzZTBiZjIyOWE4Mzc2MjYzMWQ3YmVhZTc0NDUxZjc0YzVkOGQyMDgwYWM0MjdmNTJiOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDVjZDM2ODgxYWM5Y2FkZmFlYzQwZTQ1MWRiMWNiNmM0N2E2MmM1YWI0YWFkZTJkZWE4MmJjZmZiNTY0Y2IyOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c30c236048604ea9838e1dda2b4e4107",
+      "statement": "FetchTransport tests validate HTTP request construction (URL, query params, headers, body) and response parsing (JSON, text, arraybuffer, 204/205 no content, error responses).",
+      "evidence": [
+        {
+          "resource": "repo://test/client.test.ts#L24-L698",
+          "version": "repo-lines-v1:sha256:0be5f8815df5490d214381686653034a973943c1fe4484d4cb9090a5774054dc:eyJzZWxlY3RlZExpbmVDb3VudCI6Njc1LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlYjVkNzdiNTY5NWRiYmQ5NzJiODEyYjVlZDJjMzBlZTcwMTUxM2Q4NGRiNTIxZDZlYjg4NjE5ZjA3YmI3ZDk3IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJmNmY1YjQwYjE1ODQ1N2QxNzg2NGYyMTc5MDc4NmRkNWEyZWNkYjY0YjY2YTY1MWY3ODhkNGUyNWNkMzMwM2QyIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5MjVmOTFjOWQ0OGNkOTk3YzllZWE5OGJiNzVkZDU3YzlmZTVhYTFmODlmNTZmNzI2ODg0Mzg1MDhiM2Q0NDExIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJkODMxOWI2YTk3OGI0MmYwNTY2OGU0YTA2ZTk0NWYxM2YxMWI2MDA2MmEyMjAwZDI1ZGJiOThiMDcyMjAzZmEyIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_3520b0aabf2945b9a9149e42692f5ef4",
+      "statement": "Resource client list operations (list, listAll, listPages) inject user: 'all' when no user filter is provided, but respect explicit user/users filters when present.",
+      "evidence": [
+        {
+          "resource": "repo://test/resources/timesheet.test.ts#L44-L89",
+          "version": "repo-lines-v1:sha256:adf636c3c3e17094a0fabce4b5c89b833b67b7d72d989c96806ba596ac9fbc6b:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImViZDNkOWUwOGE0NDdmM2FkNWM1Y2Q4NmUyZDAwZTg1ZGNlNWFjZDVmNTk4NjJlNDBiNTc1OWIxZGMyYjNlY2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxNjQ4YmMyYWEyODlkNmM2YzcwZmQ2ZjIxMmY1OGQwMDU5YmYzMjUzMWU0YTQ1M2RlNzc2NjMyOTZmZDE1MzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI1NDQ0N2ZkN2E5YTc2Yzc2N2UzZTI5ZTBmMjE4Zjk0MzQwODUwZTg3YWZiMWM3OTJhMzg1ODg3ZDhmYzU2N2QifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c05e25fb7ff240a0a71d02dc674db098",
+      "statement": "Error identity tests verify errors carry structured fields: code, category, retryable, httpStatus, correlationId, vendorError, suggestedAction, with 429 responses extracting retryAfter from the Retry-After header.",
+      "evidence": [
+        {
+          "resource": "repo://test/resources/timesheet.test.ts#L1075-L1092",
+          "version": "repo-lines-v1:sha256:73a171cbdbc78fb8b56e36750f0ea9021b9ea27f457147a46fa7d064897a8589:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5NzQ3ZjQyM2I1YzY5YjU0ZjgwNzkwZWQzYzRlY2IyZjQyNzcxZWNjYjAzNzc3MzY1Y2VlMmM0ZmU2ZDRkYTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjliNzJlMmI4ZTI0MmYzZmFjYmUwYWFmYWIxN2MwNjQ2ZWQ5ZWI0NGIxOGJhZWE5ODAyZDg0ZWMwMjNlZWU4Y2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIxODZhNjQyODU1MGFmN2QwNmEyMDFjMmFkMjZkYWM0ZGQ4MTg4M2ZmN2Q5ZWIxN2E4MWQ2YzkzODY1NWJkMWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6f85253d8ca74d68ac560d50cca6136c",
+      "statement": "MCP catalog tests validate that one row exists per registry operation, the catalog is sorted by operation name, and the plan hash matches the registry group's plan hash.",
+      "evidence": [
+        {
+          "resource": "repo://test/mcp-catalog.test.ts#L33-L40",
+          "version": "repo-lines-v1:sha256:c0257d1a057eb7b7f71eb324ca97a7c8ed630c7eccbbf554324d0cec4d579635:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDY2NTBmOTZiOTVhNzYzMTg2YmE4ODM3YTdlNzkwNTFjY2IyZTc5YzVhMWVhZDY1NGQ4MjIxNjdjOWE2NmY5MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2EzZTQ2Zjk0Mjc2YjZmNmY0ZWQxZjAyYWY3OGJlZjZhMmVlMWM0MzlkZDU1ODRiOTczOTQ4MzEzMjE0ZDJiNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmJmNGQwYjc3YTk5YTEzMjMyMDVlMjA5ZTc1MTIyMGM2ODg1Y2M0NzIyZjI0ZjFkM2EwMzRmMjFhNzVlYWEyYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjU2ZDUxZjMxNTk5NGVlMmI2NDMxMmE0YzAxZjkxMDc4ZWVlZmUxNDE0MjFhZGQxNWQ2NGJhN2M5NDY2Nzk2YiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_03cdf666aa374fdb879f414bb0dd192c",
+      "statement": "The served-text single-source rule enforces that text served to MCP hosts is TRUE against sources (vendor spec, capabilities registry, SDK source), preventing false closure/absence claims like the node-hudu #70 failure class.",
+      "evidence": [
+        {
+          "resource": "repo://test/mcp-served-text.test.ts#L1-L7",
+          "version": "repo-lines-v1:sha256:3f86c743112b87dd68400b7f96f64b31e1fe0919400db2fe3f691b3c62c427cc:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzI0ZDcwYjczMTJmMWZiMzg5OWUzYWQ5OTQ5ZGE2YWZiMWFkZjNmZDY2ZmRkY2IwY2M1NGZiN2U5ZDM1MWIyNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTU4Yzc5MWUzNWNkMWM3NjNlYWE0YWJiMjdhNGE1ZTE0Y2EwMGVmOWExNmNhMmFlMDg1MzIxNWU4MDk0MTkzNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTY0NmU2MmU3MGVhZGE4MWVlMmMzNTYzNWMyMWZlZDYwOWI3OGI3NTM4MmRiMjFjNDU5ZWEzOGZkYThlNjU1NSJ9"
+        },
+        {
+          "resource": "repo://test/mcp-served-text.test.ts#L67-L72",
+          "version": "repo-lines-v1:sha256:6eb011bcba315aefc7ed8def9308e17b31d578b27bed57710aa8f76343f70c23:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2VmMTE1MDkzMThjZTE3ZDAxMzVjYzQzM2UzMjc4OWQxYjMxOWM2OGFhNDJiMTlhMzJjOTBmNjZlN2I3NzVkZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2EzZTQ2Zjk0Mjc2YjZmNmY0ZWQxZjAyYWY3OGJlZjZhMmVlMWM0MzlkZDU1ODRiOTczOTQ4MzEzMjE0ZDJiNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWMwMTQ3NDM0Zjk2MzBiY2I0YWFmNGE2MmY3NmU0NGE2NmYyMGUxODJhMjA1OTBmMzk2OTg3MzZiZDk4Nzg5MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjBlM2ZiYmE2YTlhZWM0ZDAzNWZkMjM4ZTk2NjFiNTQ1YjcyNDMxODQxYWU4ZWEwMjQ2OTA2ZDBiZmI0OTljOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_194720d006184d038e03f2ee5a95130e",
+      "statement": "Vendor-required write field tests verify that every operation with a request body in api-docs.json has a served body field containing all vendor-required fields and properties.",
+      "evidence": [
+        {
+          "resource": "repo://test/mcp-served-text.test.ts#L74-L97",
+          "version": "repo-lines-v1:sha256:62ba8c911f02b248912b5edd747897de469218b6cdf604c751e5a41072fc9462:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ODJmNmNlMjhjYzFhYjU2NGNjOWI4NWI3MTg1Y2RlNGRhYjI3NmU2OTBiMTI5NjFmMmNjNzg1ZmFlZTY4YzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIyMjcwZDEyYThlMDdhOGUyYzU5YjM0ZDA5ZDJiNTkyYzEzMGZlYThjNTgyNDg5ZTBhOTZkYzA3YzFmYWRkMGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdhYjMxOTg4OGVmZTM5NWVhYzk0ZWViMDE4OTNhNzM0MGYxYWZkNzQ5M2M3YzBiYTIzMzNkYzc3ODY3M2RhNmMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_367b912974d440e5bbc63f3c20ccd062",
+      "statement": "Open body contract tests verify that when the vendor spec leaves a request body open (additionalProperties undefined or true), the served body field must not claim closure (additionalProperties: false).",
+      "evidence": [
+        {
+          "resource": "repo://test/mcp-served-text.test.ts#L99-L113",
+          "version": "repo-lines-v1:sha256:0bb955f936041fb1d1b8d57949d6cb4eee573cc907476570e05fd2ec444b4282:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxNTk1MzdiNTc5NDVhNzM3Y2E2ZGJkYjA2MWI1NWQ3MTNhOTg0YmRmZDRlOTM1YzJhZDc1YmFkZTU2YzcyODgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYwNmYxYWU5MDIwNGQ4NjdkYzZhMTNlODc1ODU2ZWYxNTZjNTI0MWQyNDA2YWIwM2VjNjQ0OTNkMmJkZjNlZWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIzN2U1YmI3MzRiYzlkMWIwOTk3NjkxMDgzNTQ0NTc3OWFlOWJhYjljN2I1ODg0MGY3MDAyNWQ1MWE4Mzc4NmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d543dbd02f0c4b349e13442633390f37",
+      "statement": "Pagination mode pins verify that registry pagination mode matches vendor spec query parameters: spec with page/size params yields mode 'page', spec without pagination yields mode 'none'.",
+      "evidence": [
+        {
+          "resource": "repo://test/mcp-served-text.test.ts#L139-L161",
+          "version": "repo-lines-v1:sha256:8931904e6f4a0a5ae1dd19880ff267204cb5a72eb955e8d1845bc8462fa1cb52:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiZjIwMjM3M2M5MDBlMzliNzUzZDg4Y2M3NDdlODUyZTU5NDIzMDc3OWZiZTUwMjdkMWEyNjk3NjUzNWQ2ODkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyMGZjOWU2N2RiMDdlZDIzOWJiM2FkMjMxMmVhYWI5YTcwZTFmNmZiYTAxMjg4YjBiYTZlNjFkN2Y4ZWU3ODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhkODRlM2VjMDc1Y2E3OTFlZDg3MDc5OTJhMzI4OGE5YTI3ZTljMGMzNjA3YThlNTcxZWQ2NDEwMDYwZGJkMjYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_70aa592d23c244c98c2c3141d40e131a",
+      "statement": "Coverage is excluded for entry points (src/index.ts), type definitions (src/types/**/*.ts), and resource indexes (src/resources/index.ts).",
+      "evidence": [
+        {
+          "resource": "repo://vitest.config.ts#L25-L25",
+          "version": "repo-lines-v1:sha256:fc384b3935066e9ee138f62bd5b719568afb426bbe3964ff8b550958dd55324d:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmMzODRiMzkzNTA2NmU5ZWUxMzhmNjJiZDViNzE5NTY4YWZiNDI2YmJlMzk2NGZmOGI1NTA5NThkZDU1MzI0ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmMzODRiMzkzNTA2NmU5ZWUxMzhmNjJiZDViNzE5NTY4YWZiNDI2YmJlMzk2NGZmOGI1NTA5NThkZDU1MzI0ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjkwNTJiMmM4ZTk2ZjE4MWU2ZmQ4ZmFjMGZhODU0ZDZjNTVjYjMyNDdmZGNkNzVhMDVhZGE1ODYzNzg0MjAxMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDVlYmVmMDRlZmJiZjQzMDI0MjdmYmI2YzkzYzhlNGEwM2UzZThmZTY0NjdiZWRhOGRkMGI5NzBjMjA4YzFhOCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

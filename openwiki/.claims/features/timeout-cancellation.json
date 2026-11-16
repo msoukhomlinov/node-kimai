@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:c05b8ddfdfe0619cdaea19e61c8c08d163cae714f37878ac0c31e2b393ce76d2",
+  "claims": [
+    {
+      "id": "claim_dcc98bf730fe4c92a56a510bd18d2b1e",
+      "statement": "SDK accepts constructor-level timeoutMs as default deadline; per-request timeoutMs in ClientRequestOptions wins over constructor value",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L291-L302",
+          "version": "repo-lines-v1:sha256:19ab2c79ba20db1cde9b5d60454a6cabac6324388ff9152aaa0838b7870d5755:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2MTE4NTQzMTU4Yzk4YmYyNThhNWE3NjVlNTNmOWViOWE0YTc4YzVhOWQ4OTZlOTg3NzlmNDhjYjZlNGY0YTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFlNWZmMDA3MTM1ZjM1MzdmNjZhYzg4YmEwZDQwMmUwNTIxNjg0MDVlMTBkNTFkODUwYjBjNWIwMmY0MzEyZjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZjYjZiZWFjOGE4ZDk2NWMyNjliMjQzMWJhNzA1M2U0MTNjZmVjZTY2YWVmMzg2NjM1ZDdmN2VmYzVmOTQ3NzUifQ"
+        },
+        {
+          "resource": "repo://src/client.ts#L40-L54",
+          "version": "repo-lines-v1:sha256:91f8650edcafc151c5e0a1f6ea09e8e2176f14a85dd9a4ab4d187311c74ebebc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0NjExMTVjODI2N2YxYjUzY2FkMGYzZDMyMjcxYTIzYTQ0NjY3MWYxYTNmYjI5NTc3NDc5NDM2NTM3MjY1OTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1NGM4OWNmZjRhZGIyNWQ5YWY2Y2IzNzExYmRkZDY4OWJiNGE3ZmIyZDRiN2MxNmU1NTM5M2U2YzYwOTU5M2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcyYjg2NmJjMzVhOGQ2YWMyYzM3Yjc5ZGJkYmY1NmUxYjJiY2JkNDMzNDE2MTFiMzliYzFhZTA3ZGE3NmE5MTIifQ"
+        },
+        {
+          "resource": "repo://src/client.ts#L409-L410",
+          "version": "repo-lines-v1:sha256:1fe260174a819adb2cbb59dd9fc46c0ba92bc39b781ec017a0686f9173f5e0d6:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODczMzkzZWM5OTliZmZkNDBmNTI3MTdmYjFhMDY0ZjRmNTA4ZGRjMDZhMTZjOWNiNjBmYjgwMDZlYWQ4YzQwMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmE0YmUxNWVmMGE5ODdiNDg0MTBjZmZiY2Y0ZDYyMjVjOTZjNWE4OWExNGY0N2VjOTgyZTU2M2E4MGE3ZTM0YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2ZlZmI1NjBmYTgzYjkxMzk5NDc3MjczNGE5YTgyNTRlZjgwOTYzNDQ0NDEzYmI5MjljOWVjNzU1ZjBjN2Q4MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTY1MDU4M2MwNzE1MzE2NWJjMDgxNjY1NDk0ZDEzNjIwMzI4YzY1MDI5Yjg1MzNkMjgzMDk3MTVhYTY2N2YzMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_7b1c2025ad3b4bad8328a7581162c603",
+      "statement": "Both constructor and per-request timeoutMs must be positive finite numbers; non-finite or non-positive values throw KimaiConfigError before any wire activity",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L109-L114",
+          "version": "repo-lines-v1:sha256:dce3755713990e4056d74ecd971cfff9f511d1e36d63a500d9c812cf0585b2f7:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTMzZjgyZWE2MmY1NTUwY2EyYTAzYmZmZjczNjY3NDhiOGJiOTNmYjNhY2Q1YjgyZDk0MmE3OTBmMjJlNTlmMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmQwZjJkM2EzYWFkYTI3NTg2NDU3OGQwYTQzOTE1NjM4ZDU0M2ZlY2EyYzk0ODU4ZGI5NDEyMTFlODZjZWYyYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzZhNTNkNTVjZDIxNWI2YmMzMjAzY2JiODI0NGVkYzQ0ZDg3ZWNhMmM5MzQ5NzM5NWNlZjJjODczMzZlMDY0NCJ9"
+        },
+        {
+          "resource": "repo://src/client.ts#L325-L328",
+          "version": "repo-lines-v1:sha256:effaecc0da13c683e96b478a94b794da23aaf0c6061c2afc2c25d6e3d3781af3:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTA0ZDkxMzc1ZmQ3ODk5ZGIyMmJiZGFjYzRmMDYzOTM2ZDZiY2I4MWM0ZTJiN2VlNjk0NmQ0NmVhZDAwMzJiYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODkzZWIyNWQ4ZjgxMDZkODU2YWQxMGM2MTgyYmE4ZTcyZWRiMGEwNGM1OGQwOWM5Y2QxM2ExODIyZmQ0NmE1MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmYyMTdkMjQzMDhlMmIzZTM3YWY1ODhmOGVlMTNlOWRmMDc0OGI4ZTliMTQ4NWVhYmY3YTQzNmI3NDg4OWU1NiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d150acef882c41f5835455497097148c",
+      "statement": "SDK composes effective deadline with optional external AbortSignal into single signal passed to transport; single input fast-paths pass through untouched, combined flow uses AbortController forwarding both",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L393-L437",
+          "version": "repo-lines-v1:sha256:071846ce05580f76bece65677f7d40b6c94fd0102bbee3ec457e93db60bda643:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlMTJiNjExODk0M2UzMGMwMDY4MzNlNzgxNjMwYTUzYjMyZjQxN2VmNWY5Nzk1YzNmMTJmMzMwODAyNGM1ZDkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_32298f7826b04acb81eb1b9a574fb007",
+      "statement": "Combined signal aborts on earliest event: caller abort at t < deadline rejects immediately, never waits for deadline",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L400-L407",
+          "version": "repo-lines-v1:sha256:6f2846685cf6fa65dab5b76a0c276d4ed456a3c04283802fdc7338aa2b05f149:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTA5NzQ0ZmRhNWZkYzEzMTM4NzM5ZmMxNWE5MGZiMWMwNDdjNTMzYTI5NjQwOGNjODBkZTExODg3ZTQ0NjhmYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmQ2OGQ1MWM2YmRjZGQyMjQ1NDg4NzE5ZGE3ODAzMjM0YTBmZjYxOTVmZTFmMTQzYzJmNGNiMzI2ZGMxYjYxOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWM4NjkwNTg1MjQ3N2RkMWExODUzZDUyYmNjNWVjMzA3YjI1NjBiZDRkZGU0Y2RhYTE5MzcxOGY4N2FiMTIwZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmUxNTE2N2QyYTE3YTIwNTZlZTM5NGU5NzNkYzIzMTY4MmQzZDlhNTA5NGUxNzA4OWQ4ODQ2YWZkN2ZmZmY3ZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6365c52da4ec4d3a9a307ddcdcca679f",
+      "statement": "Deadline armed as AbortSignal.timeout with explicit TimeoutError reason, ensuring deadline reason is reliably distinguishable from caller-side aborts",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L428-L435",
+          "version": "repo-lines-v1:sha256:b6c9dc1911ae497ea65d5e1c75df7fded7315e1731b6558a27b93a4251238bb0:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2JmZjcwOGI2MTUxOTNkMjczNmNhMmNkZWJjZDQ0YzQ2YTk4YmZhYTYyNjVhZTA3OTE2MDI5OGVlOWQyNzhkYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDU5MGU3MWJiM2JkOTlmMzhhYmY1NzY3MTcwYWYxOTdkMTJmNjY2OGY1Y2Q4NzIwYjAyMDZmOWZkMjMzZDNjYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODA0MmM0NjcxMDZjZTYxMjdlNDE2MjI4YmRmYTU4YjdmZDcwMGZmMjg1M2I0ZDM4MzE3YjJhZDIxNjEzMDg3ZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a03be658f4c1466db8e16e97322f7a7e",
+      "statement": "Timeout errors have category timeout, code TIMEOUT, status 0, and retryable true; classifier checks signal aborted then inspects reason for TimeoutError to distinguish deadline from caller abort",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L61-L91",
+          "version": "repo-lines-v1:sha256:7407290bdefb7c27a047fba6ba78aa36c00a40ca73bd30d65e86049aa12a9b0e:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJjNDkwZDExNmQzMWQxNDE0YTZmNWRmYzE4ZTg4OTAwMmQ0NGUxM2E1OTlhNDU4YzlmYmMxYWJhZjYyNmVkM2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQxM2I5ZjgwYTBjZmEyYTk4NDBiOTE1NGM1MDc2NDU4MzVhMTY3ZjZmZmM5NDhlOTYyZjgwZjBlYjA1NDIxZjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4df3c120c36244ef81f07ab845ac2dd0",
+      "statement": "Network failures have category network, code NETWORK, status 0, retryable true, with original error under data field; classified when signal not aborted",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L92-L107",
+          "version": "repo-lines-v1:sha256:1005bc6165391c447d148be3a6928b7df1170eaaff2a150e560f4a09071e3ac3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwM2UwOGFlYmZlMzgyOWYzZWQ3YzUwNmIwOWZlYzVmNzYzZWZmNDVkMjJkZjhkOGQ0ZTJlNTY1NWJlZTJkMTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI3NzhjZjExNWUyM2FmN2JiZWIxODVhYmNjZTlhOTBlOGQ2MmRiOGQzMWVhZjQ3YTI2NmQzNTczZjdiYWZkMjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e05328ef9b4e4e2387fc59dac0c648e6",
+      "statement": "Non-HTTP failures (timeout, network) use status: 0 convention to signal no HTTP response received; shared across ApiError timeout/network, KimaiConfigError, and ResolutionError",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L68-L70",
+          "version": "repo-lines-v1:sha256:c6037b1736235e734c7eb856114cef8445b476ba8d8dbc60f595d70f110f2b7a:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmYzMTg1NTY5MGY5YzRmMDkwYzQ3NDBjZTUxMGMyMjI4ZDZjOTg2N2FhYmQzYjQ5NWIzMWQxZTJmMDk3MDBhMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcyYTQyOTM4MmIyZTE0NzE4ZTBlMzdiMDU3MGE4YTE3MDI5OTFmY2Q4NDk4Y2Q4NDA2MGE4YmY0ZjA1MDE3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjIzYWVhZmY3ZGQzZjM0MjhmOTkxM2QzOWViZDRhZjMyZGYzODFlOTQ5ZWFkMDQzMDQ4YjZhYjU1MWRjNjhlYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjQ1Yzk4MGYxZGM2MDIwNmU3NWYyMTllZmNiZDkwMWEwNWRlNWVmN2M2ZjlhNTk2YWIzMzUxODBiNzM3YTljYyJ9"
+        },
+        {
+          "resource": "repo://src/client.ts#L80-L80",
+          "version": "repo-lines-v1:sha256:19b31366bdc544c523b1ea7a3d5457ed9ad0e9a34b6bd3bcbfb2575ddfef0387:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTliMzEzNjZiZGM1NDRjNTIzYjFlYTdhM2Q1NDU3ZWQ5YWQwZTlhMzRiNmJkM2JjYmZiMjU3NWRkZmVmMDM4NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTliMzEzNjZiZGM1NDRjNTIzYjFlYTdhM2Q1NDU3ZWQ5YWQwZTlhMzRiNmJkM2JjYmZiMjU3NWRkZmVmMDM4NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTVjNTczMDFiYTdlN2ViOWYyYTQ0MmIyZWVlNGM1ZDJkOGEyY2JmNjE2YmYxOGNkODZhZWZlNzFlZWU4MGRjMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDljNjY5MjQxMWUyNDM2NWNhNzBmOWQ3MjhmZmJkNDUyNDMwNDhlOWNkNTI4ZjIzOGU5NDYyYTAzZDFkZDIzMCJ9"
+        },
+        {
+          "resource": "repo://src/client.ts#L95-L95",
+          "version": "repo-lines-v1:sha256:4b20b04b9d79ffbec7b20a9e584554fae4a196332f202735319e188ad3869344:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGIyMGIwNGI5ZDc5ZmZiZWM3YjIwYTllNTg0NTU0ZmFlNGExOTYzMzJmMjAyNzM1MzE5ZTE4OGFkMzg2OTM0NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGIyMGIwNGI5ZDc5ZmZiZWM3YjIwYTllNTg0NTU0ZmFlNGExOTYzMzJmMjAyNzM1MzE5ZTE4OGFkMzg2OTM0NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDEzYjlmODBhMGNmYTJhOTg0MGI5MTU0YzUwNzY0NTgzNWExNjdmNmZmYzk0OGU5NjJmODBmMGViMDU0MjFmMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTliYjEyYzZjODBiZDA1MzUzNWU4ZDQ2NzI3NmNhZjBiMWNkYjY3M2JhN2JkMmI0NTYzMjllYzA1YzA4ODU1ZiJ9"
+        },
+        {
+          "resource": "repo://src/errors.ts#L211-L220",
+          "version": "repo-lines-v1:sha256:a9b655939143d78b48458e6b682e9bc7d4758e3ea0dfbb8d540dff48af3ecf61:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0MGE3Yzg0YTJkMDI2MjhiNWIwN2IxOTY0MjI4MjhkOGFlYmM2OTE0MDRlN2UzZmIzMzkzMjY3ZmVlODdlMDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdiYzA3ZWEyZWQ3MjMwYTdlZDk1Njg5NjkxZGFhNGE0ZTMwMmVkZjNlODQ0YWE5YmY3YmNmMGU2MjZlNzUzZDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVkNDAzMDNlMmUyMWQyZDMxMTg5Zjg4ZTlkOTk0MjhiZDg2N2IzMzZiNmRjNTBhMmZlMTU2MGY0ZDU4YTI1NmQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_133abbf99a1e4d3782cc3b4613930401",
+      "statement": "Transport honors signal on both fetch call and response body consumption; abort at any stage produces typed timeout or network error based on signal abort reason",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L234-L237",
+          "version": "repo-lines-v1:sha256:97b8f718aa6c17bf4eabfe6980d1a5b8004b588340e12b3be38198840ea638c4:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGU5YjJkZjY1ZjJkM2VjMzAzZjgzNzAxYzA3MThjNDM0YWViNzVhZTNiYTZiOWQxOTNmNjM0NzkzOGFkOTk3NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTJiMGFkMTFjMDJlYmFiZDQzYWVjNzZkYzRhZGI3ODQyZWU0YTA4ZjUzYWQzODEyMTUyMzkyOTIzNzU4ZWVlMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWQxZmY0NDk5NjkzZmY3ZWMzOTNmMTcyM2M0ZGUxMjI0OGNhMmQ0MjhjODllMDZmM2Y3YWRlODFkYzNjOGQ5OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDkwOWJlYzAwNzU1NDQ4NWQ0YzM5YmFlZGMyN2Q3MDA4YzFhNjE5NGYxNzYxYWYyZDA0Y2RhMmRkYTYwMDcyOCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

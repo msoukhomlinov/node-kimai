@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:71cc78e6956d673d75cc6dbc84e966e8d0697e54ef2219707c7576ae28d85f39",
+  "claims": [
+    {
+      "id": "claim_126f38027fc747a0baacb1585eefee9c",
+      "statement": "tsup generates dual ESM and CJS formats from a single source, with ESM artifacts using .js/.d.ts extensions and CJS artifacts using .cjs/.d.cts extensions",
+      "evidence": [
+        {
+          "resource": "repo://tsup.config.ts#L14-L14",
+          "version": "repo-lines-v1:sha256:79d12701bd52edeb062fc5bd0f98863cfc63ff7e77ac9cf9adf507f1e194fe37:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzlkMTI3MDFiZDUyZWRlYjA2MmZjNWJkMGY5ODg2M2NmYzYzZmY3ZTc3YWM5Y2Y5YWRmNTA3ZjFlMTk0ZmUzNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzlkMTI3MDFiZDUyZWRlYjA2MmZjNWJkMGY5ODg2M2NmYzYzZmY3ZTc3YWM5Y2Y5YWRmNTA3ZjFlMTk0ZmUzNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzViN2VmMzNjNGYwZDMwZGFiMzYyOGZmMzZkMTc5ZGEwNjY5ZjE0MzAyOTk0NTc4OTI1NDE5NDczZjg1MWQyMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGU0MDU5MmZiMTEyMDJlNzg4MzAzYmIxOWY4ZTU4MDQwNzRkNmU3ODcxNjA1NjUzNzdhZTkwNzQ0NzZlYmYyZSJ9"
+        },
+        {
+          "resource": "repo://tsup.config.ts#L27-L30",
+          "version": "repo-lines-v1:sha256:e30b1e5534c6b06c46edd21b2e29207efffbdd18eee4e1d9bcf235ec00bc63de:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjU4YTFmMjRlOGY1MmNmNDdkZDI2NTJmMGRlYmUwMTkzNzM3NzE0NGZlYTVmZWZlMWIxZGRiOTk1NGYyYWQwOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDkwNGQ4YjkzZjgxMzZiZmZjNDk4ZmMzMWZlNTNiNDBmZjg2ZTY2ZjYwMTA0YTg3NWRiM2I2MzZjNDljNDEyZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGIyNWRkMDAxNjBjMjBmMmM4YWJmOWY1ZTU5ZDJlNDYwODhiZTJmNzc3NzQ2ZmFkMTViMzlhNjRhMzA3NGEyNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjIsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjgzYzAzZmJkZjliMzQ2YWE1NTI3ODZiNWVlYmIzYWFkNGZhYzgzYWI5ZTVjNmI1ZDUxNWEzZWI1OWNlZWQ1MiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2140509dd7064a9fb708a38a5c3d20ff",
+      "statement": "The build externalizes 'node-kimai/errors' to ensure a single ApiError class identity across all entry points, preventing instanceof checks from breaking between different subpath imports",
+      "evidence": [
+        {
+          "resource": "repo://tsup.config.ts#L15-L19",
+          "version": "repo-lines-v1:sha256:63fbaa23f444b3f28a0fd37da7ef71bdf95958ab75edc9aa40f5331d63db0535:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGNhYTZmYTNiYTk2M2U2MGE5Y2E0M2Q2YmVlNmQyMjVhYjNmMTIxNDVlYWU4M2U1ZmJjYjIwODU2MDk1NmNhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTk5YjNmMzgwNjYyZTlmOTJlMTU3Y2Q4NTdhMTllZDI3NjIyZDgxMjkzZWU2Y2JmZWY3MWZmNTk1YTE0ZGNjYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2YzN2MxMTM5M2QyNGExYWQ3ZTFiY2ZlMDcwNzMwZjA1YTllYTVlNDg5YzNiMDc2ODljMjQ2YTJjNTA3NGFjMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWVjZmE5YTIyNzdkMzc5NzlkMjRjNTM3ZjA5MGRlZWQ5YjRlNjc1MTI1NjMwYzhjZjhmNmU0MTRlMDllZWE3NCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_bac5613cc80d4db1b0b17b9d4a308eab",
+      "statement": "The build produces eight distinct entries: index, resources/index, types/index, errors, capabilities, operations/index, untrusted, and mcp/index",
+      "evidence": [
+        {
+          "resource": "repo://tsup.config.ts#L4-L13",
+          "version": "repo-lines-v1:sha256:ecfb90e059ce6508f4717e007de87c66357a3e5be8c9e7019bdf1fe67ca91c91:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVlZmZkY2ViNmQ1MTI0YzhjNTc0YThjZTJlZGY0YzYyMDAyM2Y2YzdhNzQxMGE4OTU4N2RjMzdmZmUxODY0MjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJmMzdkYmE5YzQzOTM2NWQ2YWRmNWFjMjMzY2M0OWFhODdlY2Y0ZDQyNzQxZmMyOWY1NTMwMmMzOWJlZGNhYzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRkZTEyYzM1MmJkMDljMmVmNjhlMzM1ZmE0NWE5YjQyNzI2ZmMyODFjNmZiNWY5NWE5MDljZmNmY2Q2Nzg5NmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_46a5f0de13bf47bd958c845f6d1566d6",
+      "statement": "package.json declares 'type: module' making it an ESM package",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L5-L5",
+          "version": "repo-lines-v1:sha256:f56d83090c6fb93463ad4f2f85f8ca5576f7e85e121d958a53718e21d9f76e6b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjU2ZDgzMDkwYzZmYjkzNDYzYWQ0ZjJmODVmOGNhNTU3NmY3ZTg1ZTEyMWQ5NThhNTM3MThlMjFkOWY3NmU2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjU2ZDgzMDkwYzZmYjkzNDYzYWQ0ZjJmODVmOGNhNTU3NmY3ZTg1ZTEyMWQ5NThhNTM3MThlMjFkOWY3NmU2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTZiNWNlMzdjNjdkMjdjNDMyMzgwNmYxZDRjMjYxNmFjZTdiMTYwZGI4ZTkwZjk5MTIxYTQyZmI4NWU1ZWZiNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTE1YzVkMjMxYTlmMDBiZWY2NGNmNjQ4ZmZiMzEyNjg0YjNiMWFjYjUwOTdkNDliMzUwNGEwMTBiYTIyM2VmYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_bed5c6090069448882f5c47ea627da98",
+      "statement": "The package.json exports field defines eight public subpaths, each with import (ESM) and require (CJS) conditions pointing to the corresponding dist artifacts",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L16-L97",
+          "version": "repo-lines-v1:sha256:53187e63ff265190f885e638aa95a95256382b22c04d46a8503de1d3216b5524:eyJzZWxlY3RlZExpbmVDb3VudCI6ODIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjMDViYjlmNGE4Yjk4NDUxMGY4MTVhNWZjNDA3OGQ3N2M1YTIwZTkzZjMzNzNkYzVkZGU0YTM0MWQxYjQwYzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFhMDk2NTU4YTY3NzViMDY0MDQ2ZGM3ZTkxZDI2MmRiZDFjNGIxNDcxYjE3Y2YwNzgwZmMwOTQ3M2E2ZGU2YTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVmMWI3NTgxNmNlMTMwNTVkYzg4YjY2Y2YwZmYxZjE3OTNiNDc4OWJhMGZjMDliYzQ4YTg1YmFhMDc0NDI2YTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b11940a9d3684d43bd06158fbe0ed06e",
+      "statement": "The build targets Node.js 24, which is enforced by package.json engines field requiring node >=24.0.0",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L139-L141",
+          "version": "repo-lines-v1:sha256:e7674ee3780019bfaf1ef934daba5f2db3d5a06032a23f27b0c14e34b1912585:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWY2MDE1NTQxMjJlZmU4NTVkNTZlMTBjYzliYWYyMDMxY2EzZjRhYjExY2RiYTIyZjFlYmM1ZDM5YTc1NTgyNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzNlYjkyZWZlN2MzOGY1MzVjNDE0ZTY3OWNiZTE2MGRmZGUxMDcwZTNmZjJjMDA0MWUzY2Q3NDViZjg4MTgyYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjBlYTJlY2Q3YjNiYmE1YTkyNTQzZWZmMzUyYTZkNThlZDc0ZDQ1NDlhYTkxNDA4Y2M4MTg3OTdhMDc2NDlhOSJ9"
+        },
+        {
+          "resource": "repo://tsup.config.ts#L23-L23",
+          "version": "repo-lines-v1:sha256:282d0b005ffed9566ca67b1370d0efedc9bff5ee67f9999823481f8c16a27a93:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjgyZDBiMDA1ZmZlZDk1NjZjYTY3YjEzNzBkMGVmZWRjOWJmZjVlZTY3Zjk5OTk4MjM0ODFmOGMxNmEyN2E5MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjgyZDBiMDA1ZmZlZDk1NjZjYTY3YjEzNzBkMGVmZWRjOWJmZjVlZTY3Zjk5OTk4MjM0ODFmOGMxNmEyN2E5MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWVjZmE5YTIyNzdkMzc5NzlkMjRjNTM3ZjA5MGRlZWQ5YjRlNjc1MTI1NjMwYzhjZjhmNmU0MTRlMDllZWE3NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGIyNWRkMDAxNjBjMjBmMmM4YWJmOWY1ZTU5ZDJlNDYwODhiZTJmNzc3NzQ2ZmFkMTViMzlhNjRhMzA3NGEyNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6f5af5a4a57e4b5eb68ce321f9e6b4c4",
+      "statement": "The SDK has zero runtime dependencies, relying only on Node.js native fetch",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L12-L12",
+          "version": "repo-lines-v1:sha256:2cbf50270b87bca81db3207b3fb6c64be985973d35a54a396128b8f0bc298b22:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmNiZjUwMjcwYjg3YmNhODFkYjMyMDdiM2ZiNmM2NGJlOTg1OTczZDM1YTU0YTM5NjEyOGI4ZjBiYzI5OGIyMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmNiZjUwMjcwYjg3YmNhODFkYjMyMDdiM2ZiNmM2NGJlOTg1OTczZDM1YTU0YTM5NjEyOGI4ZjBiYzI5OGIyMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTdhZDQxMzM3ZGVhM2VlZjVmNjBlZGNjNjY0OTU1NzUwOTY3MjBlYjdiOGUyNTJjMGNjNjExZDVmYTU5YjQ2MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2MzN2FkNGFiOGJjZWMzNzZlZmI0ZWY1YTE0MDYzMzQzMjNhMWViMmEwMWVkYThhZWM4NDU4NDM0NjA1MTI3NSJ9"
+        },
+        {
+          "resource": "repo://package.json#L139-L165",
+          "version": "repo-lines-v1:sha256:7aa0eeeb48012bf4f68acfa956f9fd73c94c175a4e1d68165c4066c240967bc8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmNjAxNTU0MTIyZWZlODU1ZDU2ZTEwY2M5YmFmMjAzMWNhM2Y0YWIxMWNkYmEyMmYxZWJjNWQzOWE3NTU4MjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMzZWI5MmVmZTdjMzhmNTM1YzQxNGU2NzljYmUxNjBkZmRlMTA3MGUzZmYyYzAwNDFlM2NkNzQ1YmY4ODE4MmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

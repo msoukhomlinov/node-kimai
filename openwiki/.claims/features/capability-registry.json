@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:0bf7de9ff4462789f5423f9a891bec2142c093e45efd9a724cf1b9cfff0c4bae",
+  "claims": [
+    {
+      "id": "claim_2b947a8fa5e24ad082f23d5f22f0ab4f",
+      "statement": "The capability registry contains 13 resource groups with 108 total operations: 90 primitives (endpoint methods) and 18 helpers (agent-facing compositions).",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L783-L789",
+          "version": "repo-lines-v1:sha256:873986dd13c6b9df0de5a6d44da49f9bfcd45885160c0cb1e141c31fbf93d579:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzAwZDNlYWY5NmJjZmFkMTBiOGQwM2MwZmQzNjUyZjJiMmEzNTY3ZTExMzgyODNiYWVlZGRhMWNlN2FhNmNlYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzU5MzU5NTQ2MDJmZTA5Y2UzZDQwYjExZjY0ZWI5MDQ1Zjk4ZGJhZWE4NmVkYWJlMWVhZjZmZWU2N2EwNTk0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDAxZjJlYzE3NTkzYzEwNTRlYjQ2MzY3ZDg0NTNlZjI0YTE3M2NlOTZiNzExN2Q5MWY5YTY4ZDQ0ZmVmOGIwMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjYxNDk1MDMxZWY0ZTEzYTlkOTRhOGU4ZTBkMWY3YzYxMDY1ODcwM2U5MDZiYzkxNjgxNWQ2YjNiZTBmYjQ1NyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_31dfab73a8054d439a7cd7d0e69e2916",
+      "statement": "Six artifacts form the generation pipeline: capabilities.plan.json (from derive-plan.mjs), capabilities.json + src/capabilities.ts (from generate-capabilities.mjs), MCP_TOOL_MANIFEST.md (from project-mcp-tools.mjs), and MCP_TOOL_CATALOG.json + src/mcp/catalog.generated.ts (from build-tool-catalog.mjs).",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L879-L887",
+          "version": "repo-lines-v1:sha256:ef2979f08a7ad686e8b2c2c819e0e10fc635f2a5a6353cfa1564c0e6c4d02b3d:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGJjZWY4ZTMyYmFkYjk2NTg2MDk5YjgxYmExNGI5Zjc5NzA0YjdhNmVjZTIyZWM4NDRkZTY4OGZlMDY5YzAxYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGFmZThhZTQyN2UyMGFmYWE1ZTY5ZGZiODAyZjc2NjQ4NTUxNDYzNDU3ZmI0M2M1NDRmNjY2ZDdmZDZiZjdhMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDA1YzkxYjM4MmE3NmNjMWE2NzJmMmI3Mzk5YzVjNDdjNzY0NmMyNTBhOWNmOTgzNjE2YzFmM2U1MWI5OWYwMiJ9"
+        },
+        {
+          "resource": "repo://scripts/derive-plan.mjs#L1-L35",
+          "version": "repo-lines-v1:sha256:eeeb0d4a7cdc5b1137c2b84aa30ede6d05a9477c89b4fe3fadc3e66a4335a809:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1OWM0Nzg3MmI3MWYxMjU4OTk0Mjg5MjQ2NGU3NjRjMGRiMzUwYzIwYjcyMjI4NjQ1NjE1Y2MzNmUwYTA3MjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMzZTIzNzZmMDUwODRkYmJiYzU2YzI5NzU3MTFlM2ZmMTQyNDlhMjM3ZThiYzUxZjM2ZGNjY2NhYzg2ZTc3Y2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRjNTdkYTVkZGNlYzI1OTlkYjVmMmVjZjFhYjExMGI3YjBiODVjNWE5Y2Q5OGIxYjk1NDcyNDdjOTY2OGRjMTIifQ"
+        },
+        {
+          "resource": "repo://src/capabilities.ts#L1-L9",
+          "version": "repo-lines-v1:sha256:deba8b40865dde711f8f4f230d34b2f99d7e0c6a9ca5f3d0345f442b8e196b8a:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcyYTQyOTM4MmIyZTE0NzE4ZTBlMzdiMDU3MGE4YTE3MDI5OTFmY2Q4NDk4Y2Q4NDA2MGE4YmY0ZjA1MDE3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmI3NTJhZmY3MWQ1OGIxMTM5MzdkODg5OGQ5MWZhMzVmODgyNTA3NTBiMTBjMzQ2NjBjMzAzOGZiMzQxYjRlYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8ac68ab976c144bdb1a7847ba83a834d",
+      "statement": "CapabilityRecord schema includes identity (id/resource/operation), classification (kind/endpoint/effect/flags/dryRun), schemas (inputSchema/outputSchema with drops), usage (examples/permissions/pagination/resolution/retry), errors, metadata, compact, status, tests, and staleCheck with plan/source/test hashes.",
+      "evidence": [
+        {
+          "resource": "repo://capabilities.json#L8-L89",
+          "version": "repo-lines-v1:sha256:3fb466cf9610d18c2c8ab25f21df48c3db3184180c0a48869868162e6f3ec45a:eyJzZWxlY3RlZExpbmVDb3VudCI6ODIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5M2ZjOTc4OTQxNDA2MjMwOTZjYTlkYjcxNTQ0MjJkNDA0NGNkZGJmYzk1YWQ0MGRhYTc4NWY5YjkzNDJjZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY0ZmUyYzgyMjhhODIxYmYwNWM1ZDI1ZTM1M2NlMDZkNzYxZmQyMGYwNTRmZmRhNWYxNzA5MzIwNmY1OTY1YTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhkMzkwNDU4NDk0YTBkZDRjODA4MjA0NWYyZjQ1OGY0YTJjYzNiZWIyMDlkNTg1YWRjYTY5NjBiYjYxZTMwYzQifQ"
+        },
+        {
+          "resource": "repo://src/capabilities.ts#L22-L66",
+          "version": "repo-lines-v1:sha256:d8c5885168e2f05c477a53aa3bd5f3058e973ee0fc228bd36884f00960f5b4b8:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiZTI5NGUxZjA4NzJhNTBlODJlZTc0OGE0MmUyOGNhMDY3YTliMTZkODIyZTVmYzgyZTk5YWRjYTdkYWZlYWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyYTJjYjI1YTEyMmI0NDIyMWE2MjM0ZWM2NjBhN2I1ZmI3ZjliZGU3YjNiOWUyYjNjNTU5YTBkOTZmYWM3MzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI4MGQxZTIzNjY1NDQ0NjA4NGUwZmY2ODU4NjZlYjU4YTAwNmEzOGIzZWExZDY0MDI4NWE0YjEwYTYxOTM3ODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjOTAwNTJhNTc0YmI1ZmUzYWJlMjJjN2IzZDg1Y2VjOGU5ZDc2NmJkNzliZDFlY2I1NWQ4YjIwYmQ3YTQxMmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_be598090a8c6486eb1a1eb2744aa02a9",
+      "statement": "Operations are classified by effect: read (53 operations, no state change, safe to retry), write (38 operations, creates/updates), destructive (17 operations, deletes/irreversible actions).",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L849-L858",
+          "version": "repo-lines-v1:sha256:803dcf9b3258389c6244c7f89517c8f546dd9b83843eae77f94036c3cf08c4f4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhYjkyNTY3NDY3YzdkYTU0ZjgzOTI1YTRlMTJkYzNmMzQxNzQ3Y2M0YzVjZWVhZDM5NDgxYTY5NDMzODYyMGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUwNDFmYjJhNzk0Njk3Nzk4MzdlOWUyYmZmY2FjOTU0ZThhMzk4YzM0OGUxNTMwZWEwZWY3MzRiYjE4N2U4NmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcwMjlkYzFlMjllZTFiNmE2NjZkZDQzOTZmYjY4OThlOTE2MzI1NGMyMjlkMjUwZjgyYWFmZGQ3NDA1ZTUxMDcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0993383bb34746ea81faa327010f0857",
+      "statement": "Three classification flags: sensitive (15 operations, contains/exposes sensitive data), idempotent (23 operations, safe to retry without duplicating side effects), requiresApproval (21 operations, needs explicit confirmation - all destructive plus sensitive creates/updates).",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L849-L858",
+          "version": "repo-lines-v1:sha256:803dcf9b3258389c6244c7f89517c8f546dd9b83843eae77f94036c3cf08c4f4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhYjkyNTY3NDY3YzdkYTU0ZjgzOTI1YTRlMTJkYzNmMzQxNzQ3Y2M0YzVjZWVhZDM5NDgxYTY5NDMzODYyMGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUwNDFmYjJhNzk0Njk3Nzk4MzdlOWUyYmZmY2FjOTU0ZThhMzk4YzM0OGUxNTMwZWEwZWY3MzRiYjE4N2U4NmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcwMjlkYzFlMjllZTFiNmE2NjZkZDQzOTZmYjY4OThlOTE2MzI1NGMyMjlkMjUwZjgyYWFmZGQ3NDA1ZTUxMDcifQ"
+        },
+        {
+          "resource": "repo://capabilities.json#L103-L106",
+          "version": "repo-lines-v1:sha256:d7ec07f94d694872eb2543c253a725ea450be092f5080e9d6cfcd33e3635bb4e:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODA3ZDEwOTRkMTYwOTE3YzVmYjk2NWM1NTU0OWE1MmEzZGQ5NjI4ZTNlNzc0MmQ0OTE0ODRjMTE1OTI2ZDFjYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDM0MjVmYzlhNGU1NTFlOTk5ODJhMjFmNWRhOWQ2NTEzODgwNGM3MTAzNDhmNGE0NTk3MzYwZWFlNDViMzM1NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmY2ODFmYzg3N2JhMWYwZWY2YmQxNTBlNzg3Mzc3OGMwZWU5OWVlYTFkODIyMGU5NDFjMGVjMjY1YmI3NmY2ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODY1MzUwN2MyM2IwN2YwNzFjZDY3ODViZDE3ZGU2OTMxNjMzMzBkMjcyZWE0OTE0ZjYzNWJhMDQ4MTI4ZTVjZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_73bf5a58f7484ee2911576355797dffa",
+      "statement": "Pagination metadata has two modes: { mode: 'page', vendorDefaultPageSize, vendorMaxPageSize } for timesheets.list and invoices.list, or { mode: 'none' } for all other operations.",
+      "evidence": [
+        {
+          "resource": "repo://capabilities.json#L44-L46",
+          "version": "repo-lines-v1:sha256:697ae15fa270c0d6fb6fd0520ab89c16549cbffce4f476b8da3513bd989e058c:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGEyYWFkNWE5NzExOGM4YjMxYjE5Yjg2ODliNGI5MjhkODE4ODY5MTZmNjJjZDkxMGY0MThhYzE0ZGRlNjE0ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzExZTFlZDgwZDJhMjU0NmQwODlhNjZiMjY0MTVkMGEyYzVlOWNiYjkwODY2ZmVlZmEzMmQ1Y2ZlOWM2NTc5MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDM0MmE0OGU5MDI0M2QyN2ZkNjBiZjdhODVkMjhhOWNiMTY4Mjk2NjFmOWZjZGFhNjEwNzc0OWNkMjE4YmQ4YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWNjNTMyNjNjOWJjMWY0MzEwOThmMzg1NzYxMjJiNzUyZThkM2IyNGE0YjNjYmU3YzZjZGRiODEzOWYzZTUxNSJ9"
+        },
+        {
+          "resource": "repo://src/capabilities.ts#L44-L46",
+          "version": "repo-lines-v1:sha256:41feca8684dd23f90845b65a5c17f970c2f1bc6d1edf62c41fa5808a783d4242:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzBlY2Y2MmIxNDc4YTVjYzkyZWJkMGIzYzU4MDU3OTI5YjVjN2QwMTI3ZWU2OWI2NzA1YWFmYjI5YjlkYmNjNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2RlMzBlMWJkNjU0MWEyOTBjMzU3Mzk0YzJlOGQ3MGU3NWE1MTFmZWVhYTk3OWVlMjEwMDJlMjI3OGMwNWVjNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGY5ZWU0ZmRmNmQyMjhkYWZlNGM0OTRlYWU5OTQ1ZTA2NTJmNzMwZmMzMDQxZWFkZTA4MDdkMjhjNmEyMGNmZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjFkZDAzYThkZDIyYThiMWY5ZjQzOWViZGE1MzZiNzdjMWQ3YWEwNmNkYTk3YjYxZjAwMzZlY2UyYTc1YTNlZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4c98c0f0ef7c4b1394b16adc6a5fd836",
+      "statement": "Resolution metadata (helpers only) includes basis (server-filter/client-scan/workflow), maxScanRecords: 500, maxScanPages: 1, with uniform caps across all helpers preventing unbounded scans.",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L828-L832",
+          "version": "repo-lines-v1:sha256:69772beae19d0df453a4e12fae650ae4f2332271a407485f5661cd90a71fe4b9:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjliNzVjOTY1ZDBiY2I3MDcxMjY2MjlmMWNiMmNhMjZhMWRiMmNiNzY3M2JhYjY1Y2Q5OGIwN2IwNWYwZjRlMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcwNzJiMzgzZTE1YzE2YWM2MDAyN2E2OGE3ZWYyNzI2NWZhMzQxMDc4MjE5NDU0ODQ4MzU0YmJlYjAzYmEzMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTYwNzk3NTMwODIzN2UxOTRmNWI3ODQ2YmVlZDdiZWRhYmY3ZjVkMjA3MjlhNjM0ZmNiYjMzZDE0OTFkMjkxYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzQxZTY5NzBiN2YxODU1MGY0YTljNmJiYjVlNDFiZDQ3ZGM5MzA3Y2JhNmJkZTk0MWI0NzJlYzBkZjhhMzk3NyJ9"
+        },
+        {
+          "resource": "repo://capabilities.json#L132-L137",
+          "version": "repo-lines-v1:sha256:7d05aff14e085b142f3819d8500ac5ecc37a52dd80c05db857744715c7f40a40:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGEyYWFkNWE5NzExOGM4YjMxYjE5Yjg2ODliNGI5MjhkODE4ODY5MTZmNjJjZDkxMGY0MThhYzE0ZGRlNjE0ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmUxYThlYTFmNWE2MjVmZTFlZjEyNGM5YzVlYzNjMWRjZGQwMjgxOGFlOWMyN2ZlZTc5YzE0OTJmNDhmOGZlZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmQ1ZjZjYTFjZDU3M2ExZGIyNmU5YzE5OGU3N2U5N2ZjNmZhZjMxZDdkYWE3MTkwNDQ3Y2M1NWJlOGJmYjczNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWNlMjg1NTNmNmExZWZhYTBkYzUwZGE5YzY5YTQzNDZhN2UxMjc5YTgzNDljZGQ4NWJkNzhjZjRmNDFhNDY4MyJ9"
+        },
+        {
+          "resource": "repo://src/capabilities.ts#L47-L48",
+          "version": "repo-lines-v1:sha256:edad39aef1561dd20d44685ce3d41a8a1dcd1a634e4cff583b195c8ecd1ca732:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDNlODg2OTVlMjg2MmQzYmMwOWJlMTYxOWIyYjYzZTYxOWMyM2U1MDgzMTkyNGQ1YmNjZGFjYjhlM2U3Yzk3NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzU2NzRjOTVhMWE0Njk4NWJhZTA0MmQzNjZmZGRlMDdjYmQ2ZTA1YTE3YTE5NDUyYzlkYzE4YTQ4MWU2ZTE5MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDFmZWNhODY4NGRkMjNmOTA4NDViNjVhNWMxN2Y5NzBjMmYxYmM2ZDFlZGY2MmM0MWZhNTgwOGE3ODNkNDI0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmNlM2E3OTE4NzZkZjdmMTZlNzY4ZDY4YjhjNjVhYmUxYTQyNWMzNTM2Yjk5ZGVhNzQ5OWEyODNiYWIyYzAzMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6d007d191c7c40e4b942f64f8af34e31",
+      "statement": "Retry metadata includes retryableStatuses array ([429, 500, 502, 503, 504] for idempotent ops, empty for non-idempotent), policy string, and idempotencySupport: 'none' (Kimai provides no idempotency tokens).",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L857-L858",
+          "version": "repo-lines-v1:sha256:4c06e5492207f2c4570aefeda7bedccbca01963131659704c54d22e4a7f84fcd:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjVlM2IxZjQ5MWYwZDg0NjE3NzJhNzg2M2UxODYzMWZlMDYwZTYwY2E3MDAxMDMyZTY0NjBhYWYwNTA4NTVhMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmFiOTI1Njc0NjdjN2RhNTRmODM5MjVhNGUxMmRjM2YzNDE3NDdjYzRjNWNlZWFkMzk0ODFhNjk0MzM4NjIwZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjcyN2I2MGRmODYyN2Y1Nzk5OWYyOWJkZTI0NzQzNGE2MGI0OTdhMzA4MTIwYWQwYmU5MDNlN2IyNzA0NjRhNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzAyOWRjMWUyOWVlMWI2YTY2NmRkNDM5NmZiNjg5OGU5MTYzMjU0YzIyOWQyNTBmODJhYWZkZDc0MDVlNTEwNyJ9"
+        },
+        {
+          "resource": "repo://capabilities.json#L48-L58",
+          "version": "repo-lines-v1:sha256:f68974e6da58bc514d32215a4d44c6a4df396836bfe378793eb6080f80ed2f91:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImExMjhkODQ3MmYxYTIzNmM1ZDcyYTk1OGI3YTg2NzAxYWM0NWFkOWVlYmU1ZGQ3MGE1Y2FlMTk4Njc3YzJkMzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxMWUxZWQ4MGQyYTI1NDZkMDg5YTY2YjI2NDE1ZDBhMmM1ZTljYmI5MDg2NmZlZWZhMzJkNWNmZTljNjU3OTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBmYmNmZGUxNGQ1ZjM0ZDMyZDc3YzMzYjE2YzkzZmI0N2UyNmRkMmIwMDQ3MDExYzY5MjgzNGVjYTRkYzRlMmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxMWE4NzBiMTMyY2QxZWE3Yjk4NWYzOTM5YWU4OTI3YzNhYTMyMDU4ZGU0ZGIzODdlNDVkZDM5YmE0MTdhYzMifQ"
+        },
+        {
+          "resource": "repo://src/capabilities.ts#L49-L52",
+          "version": "repo-lines-v1:sha256:ceb5c32e3416f4df01048fd8f62fddcc4ad959c0d5ae87c17ba6436032c3133a:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjc4ZmQ1NTBkZGUzMDBkZTk2NzJlMzc5NTM0NThmYmEyNzM5MzlhMzI3Y2VmOTkzZTJmMmM0MmE4OWE5MGExNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmU2NzkwZTI2Yzg4YjI1MWY4MDIxZjlkYjk2OTNkODM0NzFiZjI1NTgyOWY3NThmYTNjZDViZDc1MGJhMGZhNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTY3NzZkMTAxMjk1NjE3NDlkZWE2OWUzYWFiMmNjODZjNWJjYmViOGM1OTM4OTVmZDFhNmE2ODg5M2VkY2Y4NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzNlNmU1NzBhOWEyMjUyOGI3NjFkZWEyOTIwMmEzN2VkN2I0ZmY1YzAyMzI2MTQyOWE4YTZhNjRiZGJmZmI4ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_33c85f866d9a4b218e3045ae45ef66a0",
+      "statement": "Output schema includes type descriptor and drops array naming excluded fields for compact helpers (e.g., TimesheetSummary drops: internalRate, fixedRate, hourlyRate, metaFields).",
+      "evidence": [
+        {
+          "resource": "repo://capabilities.json#L119-L128",
+          "version": "repo-lines-v1:sha256:fa1b88766ab24f2928841dcbfd6b1197fff0b7d5c657aeaebee1f415233a22ca:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmYjY0Y2U0MWNlMDQ2YTE4ZjUwZDFlYjVhMjQ2ODRkY2RkMmRiNTA2Y2EyYjU4ZWQ5ZjE5YWFmNWU4NjcxNWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg4ZTRkODFiMDIwZWVkOTEzYzlmNTIyYzJiYWFmNDZlMDJhNzFmMzE4NmY3ZTM2MmEyZGYwNjUzMDU0YzAzZTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzNTllYTFkODlkYjFlNWU4M2Y1Y2QwMjM1MDQyNGYxYjAxOTQzOTU4YzZkMjJjOTgxMDczMDkwYWVlMjQ4ZWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJkNWY2Y2ExY2Q1NzNhMWRiMjZlOWMxOThlNzdlOTdmYzZmYWYzMWQ3ZGFhNzE5MDQ0N2NjNTViZThiZmI3MzcifQ"
+        },
+        {
+          "resource": "repo://src/capabilities.ts#L38-L39",
+          "version": "repo-lines-v1:sha256:079175709c15133a01c65ac2e24c7172404d47e0ebb96bc7738f9477b65bb573:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzBiZjYxNjAxOThhZmE4NDY4NDY2NmE2YjAzZTA3ZTdjNjg1ZWVlYjE0MmIzZmYyMTY5NjI5MWQ2OWZhMDU2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmUxNzNkNWJiYWJiNmI3ZDNhZTA0MjJkYjg0ZDU0YzllMmNhNjBlNmFjZTIyMWVkZTc0MjQwZTJiZTFhZjg1ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2RkMzUxMjRkZjhmYjg0NzYyZWM2ZWM4YmFlNDcyOGNiYzVmZGZjMGZhZTM4N2UyN2QxZmYwYzQwMzBjZmZhZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzA0ZDNjNTVhNjI2MjhlNGY0YjRlM2QzYTJmNGNjMDVkZmVjNmI1MjQ1YzkwNzU3Y2I1Y2MwNWUyNjA0NWZiNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c3178f0312a344a8a3914bf0f4fa978a",
+      "statement": "StaleCheck block pins planHash (SHA-256 of plan rows for resource), sourceFile path, sourceHash (SHA-256 of implementing file), testFiles paths, and testHash (SHA-256 of concatenated test files) to detect drift.",
+      "evidence": [
+        {
+          "resource": "repo://capabilities.json#L80-L88",
+          "version": "repo-lines-v1:sha256:319684abceb8ff3f95b4a72ed9fef4ebd55e427d7fd083f051bee791955a70dc:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDAwNmI1Nzc5NThhZTQ0M2ExYWMwY2RjMDRmMWM5NDM2NTI2M2NmZGJmNGYwMmVkNzY0MzQ4MjY1ODdmMjI1OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODgwMDVkNTcxMDZhMzYyZWIwMDBkYWYzZGE0Njc0YzgyYjUxOGZmNWEyZTJmNjdlZThlNzU3YTMzM2MyYWY2NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWEyN2Q1NDdhZjUzYTkyMzhlNGQ0ZGU1NTVkMWUyMDIyMDcyYjRlM2VjNjJmMGZlYWU2ZmI1NjZjOGI0ODZlYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWQxYzVhMTdhNzkwZDQ5M2VjZTNmODAzZDk0YTEwZTUwYWM4Y2M2Yzc4OTM2ZTU2NTUxOTY1ZWI5MGJjYTUxYiJ9"
+        },
+        {
+          "resource": "repo://src/capabilities.ts#L60-L66",
+          "version": "repo-lines-v1:sha256:16cc8619fe94d01595318746b0c6f19bad9b96b74aa8216650565b3c13ac5fa4:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDE0OWQ0ZWZiYzcyZTc3M2M2MDBkNjg5N2NiNzgxMjZmNjQ3YTYzYWEyYWEwNjAyZGEwOGMwMDNkOThmMmEyYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDJhMmNiMjVhMTIyYjQ0MjIxYTYyMzRlYzY2MGE3YjVmYjdmOWJkZTdiM2I5ZTJiM2M1NTlhMGQ5NmZhYzczOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWU4MzQ2MTlhOTUyNmJlOTAwMDI5NDdlMDE2NzQyZGQzZWU2YmY5NjlkY2M4MmIwZWNmMGNiMzBmNjQ3NzZhOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGM5MDA1MmE1NzRiYjVmZTNhYmUyMmM3YjNkODVjZWM4ZTlkNzY2YmQ3OWJkMWVjYjU1ZDhiMjBiZDdhNDEyYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_33082948bd6649d7aed72894b801fab8",
+      "statement": "Five capability gates run in verify: capabilities:check (row coverage, staleness), capabilities:check:fixture (negative test), capabilities:check --ship (no planned/implemented rows), catalog:check (stale catalog detection), mcp:project:check (manifest drift detection).",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L889-L895",
+          "version": "repo-lines-v1:sha256:85563de507102b2570e80ebf9768be00f602ab488433d5ae8d297fa4dade351a:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzZjZWYwZTRiMzAxYzkwYmM3ZTlkY2M3OTU2MjUxMmIxNmU2NTc3ZmY4MWNiNWZkMDc4NWJhNjk1N2JmNTBmNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzRmYTJkYjRkZTVlOTNiNjFiOThjMTczNWVmMTIxZGQ5ZTQwZWQ5N2RhZDdlMGQ1MzA5Mjk4MjExMjBiYTc3NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGEzOTZkMjBiMWNlZDJiMmRhMTlmZDhmNWRiNmE1ZmVkYWRlYzJhNTA3OTQ2MTFmODUzYmRjM2RkYmFjOWY3MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDBkZWUzODdjYjY3MjdkZDdhZDdhZWQ0NTU5YjlhODgwNWY1Mzc4ZmJiMDgzYTUzYzBhZThmY2IxYTBhYzQ2MSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

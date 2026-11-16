@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:f3a9b72ca833674477f4a0ef13503fcae2f95cb13968e6d14eac3ada286d13fd",
+  "claims": [
+    {
+      "id": "claim_f53470a5cb1741b0a5ee62503d56e410",
+      "statement": "Five verification scripts guard different aspects of the SDK: check-capabilities, public-surface, check-mcp-surface, verify-pack, and check-negative-fixture",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-capabilities.mjs#L1-L10",
+          "version": "repo-lines-v1:sha256:dc1c207864ae71ee99988867ae300a8ee0622e1cbc7d82f09ac24ac2fcdfa3c0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1OWM0Nzg3MmI3MWYxMjU4OTk0Mjg5MjQ2NGU3NjRjMGRiMzUwYzIwYjcyMjI4NjQ1NjE1Y2MzNmUwYTA3MjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjZTcwNjIzZDRiZTcwNzYxOGIwY2QyMTcyZGRmMmRjNzk4ZDBkNGI4MmIzZDY0MDFjMDM0YWVhNTEyNDg3OGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA1YTNmYzk0ODZkMmZjYjRkOTAyZWYxNTIzOTA0OGIxNjhmYTgzYjEyYzMxMWUzZDIwMTRiNWM4NTcxMTlmNjAifQ"
+        },
+        {
+          "resource": "repo://scripts/check-mcp-surface.mjs#L1-L10",
+          "version": "repo-lines-v1:sha256:97238969f2fb06b14b6a64b8e4f8a3a9fb8c3a45b4096a86cb6db24b8a0428ba:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1OWM0Nzg3MmI3MWYxMjU4OTk0Mjg5MjQ2NGU3NjRjMGRiMzUwYzIwYjcyMjI4NjQ1NjE1Y2MzNmUwYTA3MjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBiNWNlNjFlZDEzZmI5N2YzNGNjYmRlODZiZDFmY2QyNzUxN2JlOWViZDRkMGM0NTJkZTZmMjA1Njg3ZGM2OTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFhNWExYjgzNTBiNzVhZDRhMjJlODFkYzNlYmU4MzdlNWFmNTQyOTFiNmQ2N2JjYThiYTIzOWJhOWM1M2QzOWYifQ"
+        },
+        {
+          "resource": "repo://scripts/check-negative-fixture.mjs#L1-L15",
+          "version": "repo-lines-v1:sha256:d01a8e28b3b7f1e813fba7d26899e57f7a250f30ffa6857746c0a8cd8129d76c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1OWM0Nzg3MmI3MWYxMjU4OTk0Mjg5MjQ2NGU3NjRjMGRiMzUwYzIwYjcyMjI4NjQ1NjE1Y2MzNmUwYTA3MjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzYmM1NTMwYzAwMzcxMTlmYjgzOWVhN2Y2YjBiMTJkMDkyOTc2YTY2NTJlN2YxZGUyYzBjMzYzNjQxOGUyZjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQwZWUwMzFiYTNmM2VmOWJjZWI5M2MwZjJiMTM0NjdlYTE2YWVjOTIxMDNiNWEzM2Q0MzQ2OTMwYjU1ZjA3MzgifQ"
+        },
+        {
+          "resource": "repo://scripts/public-surface.mjs#L1-L10",
+          "version": "repo-lines-v1:sha256:e767fb11e03d4ac637878e196fdf6857d6da56787c15eb90bb64b0d6b9971897:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1OWM0Nzg3MmI3MWYxMjU4OTk0Mjg5MjQ2NGU3NjRjMGRiMzUwYzIwYjcyMjI4NjQ1NjE1Y2MzNmUwYTA3MjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNkN2E1MDg0YTc3YjcxNWQ2Y2NjMTRhNzNkNjNmZTU1MGI0MGMxYzg2YjUzNTU5OGFlOTcwZDY2YjdjYWRhNWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZkZjRiZTQ0NzBhMGMwOGMwYTY4OGVmNzQ2MWQyOTRhMWQ2NzIyNzRjMzM1NmEzMjg0ZGRiMDVmN2FlZDA3YzcifQ"
+        },
+        {
+          "resource": "repo://scripts/verify-pack.mjs#L1-L10",
+          "version": "repo-lines-v1:sha256:f61a94f6f9bb584807671681abdfab4e7f8001c616a6f033624f4690aa50743f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1OWM0Nzg3MmI3MWYxMjU4OTk0Mjg5MjQ2NGU3NjRjMGRiMzUwYzIwYjcyMjI4NjQ1NjE1Y2MzNmUwYTA3MjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4NDg0OTU3OTAwNGI3NWFhMjZjZjYxNGMxM2U3MDU1YzQ3OTlhNDU3ZjYzOGE5NDQ1ZGU1MDk5Njk0OTE0YmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFlZTJhNmNkNmY0ZjJlZTA5NTEzZTFiMzhmZjEwNDEwOGNhNmEyZmVhMjY3ZmVkMDRmNzg3MTRkZDRjYTQ5ZmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5e6e674d08a7455e859d3d8ca829f86c",
+      "statement": "Capability gate enforces eight distinct rules: registry-section, row-coverage, mutation-safety, judgement, metadata, test-rows, staleness, and ship",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-capabilities.mjs#L15-L33",
+          "version": "repo-lines-v1:sha256:e1cb60f937976ed637a9207af111cd087e81b429928a2e820b0d83a54d6431bb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzNDEzZDZmMGE0MWYxZWQxODI3MjFjZTAxOGM1NjMzY2ViNmM1OGNiYmJlODAxOTk1ZmQzZDBmZGRlODA2MDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxODA5NDZhOTZjM2E1MDA4MTk4OWYzOWEzNTI4ZGE2NmU4NDZmNTQyODg2MjJmZmFlZDZiNzQzZTNlYmYyNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBjMTFlMjgyZDllNWUwOWUzMDg1NjVmMTdjYmQ5MjdhNzFhNGQ4N2I3MjNiOGExYTdmNjMzZDBmNGNkNWU1MzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgzZDNiMGRhNTUzMTM2ZDM2MThmODY3ZDUzOTM2ZmI3ODg0MGM5YjYxMTk2MTA5MjE0ZmYyNGVjYTI5M2QyZjAifQ"
+        },
+        {
+          "resource": "repo://scripts/check-capabilities.mjs#L49-L58",
+          "version": "repo-lines-v1:sha256:f3f0c832b20a1797f199270aa2b7cc7123ee3b64d1c59e7b01e1ed3dd62d48b6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxY2I3MTliYjJhMDJhNDk0N2E5OGY4OTE1ODc1M2NjNDI2YTFhZWEwOTRiOTAxOTdiNzBlNzBiNzIxZjYwMWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIwMTc1N2I4YjM0ZTRmODgzMjZiYmE1ZTNmNmFmZGUxNTZmNDU0NmMxODhkNDQ5ZWQ5N2RhNTk1YWY3MDZiMjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2ZTU3OWFlMTNjN2QyZDk3MDViM2E5NTNlNGNkNDBmODgxMzYzZTM0MWMyNDExMzEyOTAyYzllOWQxYTM4MzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg2MzQxNjRlYzM3ZGZhOTVhNGNjOTQ1MjBjYmNlYWNjYWY4ZTMwYzY5ZTBlMjZlZWY3YTQ3ODI4N2JmM2EwZjgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_915323f643534846802aa4c846a95654",
+      "statement": "Staleness rule requires the registry module to equal a fresh re-render of capabilities.json with normalized timestamps",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-capabilities.mjs#L30-L32",
+          "version": "repo-lines-v1:sha256:0cbc03d9091b922b3a8e087d95285ca997f7a633f43550af85b80bb4e45ee0c5:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2ZmZDVlODY1M2ZlMmIwZTk4MGJlN2VhN2ViMjQ0ZWY5Yjc1Mjk4MmU1NmRhZjIxOGFmZGVlNzc0NzRkMzBkMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTZjMmMwYzVmNjMwZDM3NzIwNDQ4ZjQzYjExYzE1ZDA1ZDIyZmIxNjg5NWYzNGNlYTEzZjBkMzZmODk0MDdiMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmM3MzI3MDMzMGRiMmZjMjk2MDg4MzU2MGZlNGQ2NmI2ZTRjYzM5YWVjZmZkMGMxMmY3ZjhjMjgyZGYxMjE3NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWMwZWI0MGVjNGVmZTY5Y2UyOTM1NzlhYWVkZWI2NzM5YjUwYzJmODk0N2NmYjhmM2VlNWI2MzQyYWNjNjU3YSJ9"
+        },
+        {
+          "resource": "repo://scripts/check-capabilities.mjs#L43-L43",
+          "version": "repo-lines-v1:sha256:d6926e021559e460a40595e1d9a8cab712b2dac71156bb451fc064286d277567:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDY5MjZlMDIxNTU5ZTQ2MGE0MDU5NWUxZDlhOGNhYjcxMmIyZGFjNzExNTZiYjQ1MWZjMDY0Mjg2ZDI3NzU2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDY5MjZlMDIxNTU5ZTQ2MGE0MDU5NWUxZDlhOGNhYjcxMmIyZGFjNzExNTZiYjQ1MWZjMDY0Mjg2ZDI3NzU2NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDY3ZGI1YWEwNGJhNWMzNmFiMzlmNjg5YTMyODRiYzM0Nzc2NTIwZjJkY2NkM2FlMjBmYmI1MjMzMzA4Yzg0NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzEyZDMyNGYwODM2ZDJiMDIxYjMzMjAxNjYzOGI1OWRmZDA3MDA2ZjVlMTE1NGQwODQ1ZjYxMjlmZjZlNzljZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5243935c8d0e4886b1d8c8b9d4bad853",
+      "statement": "Mutation safety requires every write or destructive operation to have an effect classification and accept dryRun true",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-capabilities.mjs#L133-L141",
+          "version": "repo-lines-v1:sha256:3ab9df2f3dc006707fe9cb790b3ca8597a3b4c3e32c68fb07b3960271da68a60:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTc2MmZmODc2MWJlNTBjYzlmYjI1MDdkMzgyMDk5MzM1ZDRlMTYwOGJjNTM5Nzc4YTNhNjFiOGFhZDg0NzNhNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWVmZGY4MjU0NmIyMzM1NTJmYjg1OTY0NjA5YmNhMTEzZThjNTZjZDUxZmNkZTVmOGE5YWM5MmExZjg5YjVlMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzQ4YTMzMjVhOTQ4ZWMwY2VkOGU3NjI0YzEzMjAzNmY5YTVhNTdkNWYwYzRlZjgwMTk5M2RkNjBjMGI5OWU5MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODM5ZDg5MmYyNWQ4NzU1NmY2YmJhMmMzOTlkMTU4OGI2ZTU5N2QzMjEzYzVlNjVjOTAzNTcyYzE1ZDczYTY2MiJ9"
+        },
+        {
+          "resource": "repo://scripts/check-capabilities.mjs#L21-L21",
+          "version": "repo-lines-v1:sha256:5125e0592d704d5720942d7bbf8e695271c45771105ff57d0f8adc7bf5963c1e:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTEyNWUwNTkyZDcwNGQ1NzIwOTQyZDdiYmY4ZTY5NTI3MWM0NTc3MTEwNWZmNTdkMGY4YWRjN2JmNTk2M2MxZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTEyNWUwNTkyZDcwNGQ1NzIwOTQyZDdiYmY4ZTY5NTI3MWM0NTc3MTEwNWZmNTdkMGY4YWRjN2JmNTk2M2MxZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDc5NGQzNmYzZjUyNTM3MDY0MjkwMmQ3NThjMGRiNGI3OGM1Nzg4ZDUxYzIxZjA1NmYxZDQ0ZjljZDA1OGJkMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTIyYzA4N2EwMDkxOTBhM2E0YmM3ZGE1ZGYzOWQxYzZmOWVmY2VjNzE1YzZhNjgxOGFkYzU1NTE0NDE1NDk4ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_aa7cf3e73f1b47c9962691272f74438f",
+      "statement": "Public surface guard proves four things: subpath set matches, targets exist, deep subpaths load, and runtime dependencies are empty",
+      "evidence": [
+        {
+          "resource": "repo://scripts/public-surface.mjs#L10-L23",
+          "version": "repo-lines-v1:sha256:3c0607c3608c908bb2357666fa06c617051c641e8468bc7b3e0efd4942712cbd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNkN2E1MDg0YTc3YjcxNWQ2Y2NjMTRhNzNkNjNmZTU1MGI0MGMxYzg2YjUzNTU5OGFlOTcwZDY2YjdjYWRhNWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjMWI0OTNmYTkzZTc5M2EwNjNhOWQ3MGJmNmY2NTgxMjViZjdjMGFiYzU0ODJiOTc5YTJhYTdkYTEyOWExZjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ3NTgzNjZlMjg1N2ZmNTViNDY3NWM0YzFlM2YxNDI4ZGUzYjg0MGViYmFiYWE0NjU2NTdkMjNkY2ZiYTgxNjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ5Y2I2M2Q5YTRmYzA1Yjk0MzE0ZWEyZjA5MzM1NmI1MDRlN2U5NTUzNjdhYzRkOTkwNzJkODMzZGZhOTk5MzcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_96b2f5d9e17340aebd1f43abc20e93f6",
+      "statement": "Expected subpaths are derived from package.json exports and tsup.config.ts entries, never hardcoded",
+      "evidence": [
+        {
+          "resource": "repo://scripts/public-surface.mjs#L25-L27",
+          "version": "repo-lines-v1:sha256:54c9ec338ffb8f7b6a31a2f9a71aed91c00206d6da0feee2b33c35b43d95022d:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzJmNTNjOGQxMmQ1MGVlM2E5ZmQ1ODk2NjE4NzE2YmI5MmUwYWVkNTAxOTdmNDBmMGE4OTVkZmIzZjUyNzgwNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzFkMmM3ZmRmNWRkMzM4MDE3OWI4OGMyY2NlMGNiNDFkYjM2MTdkYTUzYjljNmYxZWY2YjU2MjFmY2I2YTNiYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGVjOGE4MjI0YzdiYmJiMmFjOGQyODJhNDAwNmQzOGYyNDZiNDYyMWEyM2I3NmE2YjEwZjY1M2I2MGVmNjkyNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzRiNTg2YWI2Mzk4ZDFjYmZkN2I3M2U3ZTM3Y2FkYjUxYmZiNzQ1YTM3YzYzZTNmNTMxM2VkYjIzODc1OTJhNiJ9"
+        },
+        {
+          "resource": "repo://scripts/public-surface.mjs#L50-L71",
+          "version": "repo-lines-v1:sha256:1209af5e66bb72f464bf66bf3eb495aa5dc777631bff0510f3750ba298595013:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEzMTExNjM1NTMxOWE0MzdiOTI1NjU5ODAxZjFmNWNhM2QwNGFlYTg2OWEyMjZjODE4MWIxN2RiM2NhYmEzMTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEwMTZmZDBmM2M4NWZlNGZlYmMyNzAwNjc2MDkxNWFmMTc2OWZiMDJmNThjMTNmMTJjZjhhYmQxMTEyMTdkZDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc0ODMyYTg4M2E4OTFjZDJlOTJmYjQyMmY2MWJiZGVlYTQ4NDM0MjAxZjZhMjgzOTBhMGYzYmNmMmNhOWU5OTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e303481c856344e9a54bfadbdc27b159",
+      "statement": "Deep subpaths are loaded for real via require for CJS targets and dynamic import for ESM targets",
+      "evidence": [
+        {
+          "resource": "repo://scripts/public-surface.mjs#L132-L150",
+          "version": "repo-lines-v1:sha256:36816e5bf080686afeb078f44564ddf6a27d18e5eeef537b81168b64dcc496be:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1YzdhMTRhYzVhZjMxNmU4ZTIwNGM3YzllZThmNGY3NzViMjc0ZTc4Y2RhODdkMWI2NWYyOTBiN2NiYzA5YmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMzMzEyNGE5YzU3ZmNkNjExZWRmZTU2M2IxMDdjNzZjOGJhZjg2MDNhOGVmODdmYzllMTMxZDg1MGNkZGQwM2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU5NDhjNjJiMzMzMzQwY2RmNGU5MDMxNWZkYWZkMzQzZWJjOWUzZjE4NzI1ZTk3ZWJiZGVhYjQ5NzkxNmIxOWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFjMDhjYjdiODU0OTI2NGYxNWIyNGMyM2EzOTJiOTQ2YjM0ODM1ZTMyMDg1NGUwYWM1YTA1MzNjNTZjOWMzNmQifQ"
+        },
+        {
+          "resource": "repo://scripts/public-surface.mjs#L17-L19",
+          "version": "repo-lines-v1:sha256:ca85ab4f0f33c568a5d498ede41d4ae3f37060664f005a83f5a91cee5351f35f:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2U1MjQ5ODE5YTAxZGEyMjliOTQ0Zjk2OGIyYTY0ZDdiZjk3MTI1NGFmYjVkODkyZjQ2NDhkYzJlNjdlZWE3ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWY3MGRkZWEyODYyNTcwMDk5NWIwYzBlZjc0MjE0MjUzNTg1YmQ2YzY3N2VjNzY0ZDg5ZTBhZWE0Y2I4MmM4MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODU3MzgwNjIwMzQ0MWEzN2U5NGM1YzUzZmUxYjNkNTE1NDljMDQzMzcwMWFjMzY3NDIwNzQ1Y2IwNGUzNDBhYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDFlN2NmNThhZmE2Y2I5MGIyN2Y2NDQ2MzJjNDRmMDg0MThhOWU1MjU1ZjZhYmFmOWZjNDgwNDYwODhhZDAzMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9b53b52c8a5c49d7a1f1dd3a82713ec2",
+      "statement": "MCP surface check verifies six invariants including effect-split dispatch tools, reachability, dispatch coverage, core size, META tool descriptions, and no credential leakage",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-mcp-surface.mjs#L14-L22",
+          "version": "repo-lines-v1:sha256:406378179c9d462be620c5611b753e87ac98998d3192fa7c87967fb4f9ff07f4:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmUwNDg1M2Y0ZWNjYzUzMDQyZDMzM2YwZmUxZGQ5YmE1ZWYwZDI2ZWEzZTc2MWQ3MTRlYTBjMTQwNzAwYTMzNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODRlMmM3Y2UxOThhMDk1NzQwMmIzMDRmNWIyM2U4YjA1YTYxMmY2NmI2YmExNDI3ZTE2ZGFmZjMyMTA1NjRiNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWE1YTFiODM1MGI3NWFkNGEyMmU4MWRjM2ViZTgzN2U1YWY1NDI5MWI2ZDY3YmNhOGJhMjM5YmE5YzUzZDM5ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmRjYjQ2YjBlZDA3NmY0Y2Q5ZDM3NzE2ODExYmQ4M2JkMGUzOGNkYzkyNDhiMjgzYjZmY2E5MjU1Y2UyY2IwNyJ9"
+        },
+        {
+          "resource": "repo://scripts/check-mcp-surface.mjs#L55-L55",
+          "version": "repo-lines-v1:sha256:9fa5d65c5b44d8a0b31c2589aedc83c7d4bcb24e6dc001fb810f5d29228ca71a:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWZhNWQ2NWM1YjQ0ZDhhMGIzMWMyNTg5YWVkYzgzYzdkNGJjYjI0ZTZkYzAwMWZiODEwZjVkMjkyMjhjYTcxYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWZhNWQ2NWM1YjQ0ZDhhMGIzMWMyNTg5YWVkYzgzYzdkNGJjYjI0ZTZkYzAwMWZiODEwZjVkMjkyMjhjYTcxYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmI1ODBlOTY0ZjgzYTQ3M2Y0M2Q0NDM4NDYyOTQ5ZDY4YjU2MDBmZGE3ODdmMTYzNzQ1ZDAwZGU4OWNiZjM2YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmQzN2YxNjU5NGM2MzlkY2RmYTQ1OWY1YzU1ODBmY2E1YWIyMzE0YTZjYTM1ZjY4MTc1MDY2OGFiNjBjZTlmZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0877e1170a6d44c38a62586106d5bf04",
+      "statement": "Effect-split dispatch requires exactly three tools: kimai_read, kimai_write, and kimai_delete",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-mcp-surface.mjs#L55-L55",
+          "version": "repo-lines-v1:sha256:9fa5d65c5b44d8a0b31c2589aedc83c7d4bcb24e6dc001fb810f5d29228ca71a:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWZhNWQ2NWM1YjQ0ZDhhMGIzMWMyNTg5YWVkYzgzYzdkNGJjYjI0ZTZkYzAwMWZiODEwZjVkMjkyMjhjYTcxYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWZhNWQ2NWM1YjQ0ZDhhMGIzMWMyNTg5YWVkYzgzYzdkNGJjYjI0ZTZkYzAwMWZiODEwZjVkMjkyMjhjYTcxYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmI1ODBlOTY0ZjgzYTQ3M2Y0M2Q0NDM4NDYyOTQ5ZDY4YjU2MDBmZGE3ODdmMTYzNzQ1ZDAwZGU4OWNiZjM2YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmQzN2YxNjU5NGM2MzlkY2RmYTQ1OWY1YzU1ODBmY2E1YWIyMzE0YTZjYTM1ZjY4MTc1MDY2OGFiNjBjZTlmZiJ9"
+        },
+        {
+          "resource": "repo://scripts/check-mcp-surface.mjs#L68-L78",
+          "version": "repo-lines-v1:sha256:9b6764c34a21816da0e27bf88cbe1ec06531c6a60ec2652868a5dbbb55a73505:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIzODAyZTU5YTY0OGY0NzQ3YTk5NDdhNDc0YmYxYzcyZTY4N2MyMGViN2UwZTUyZjk1OTY3YmIxOTFjY2ZkOWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU0MGNmYmFlNzE1NzUxMzQ0OWNkZGQzY2NiMzRmN2NhYjJkMWZmMzQyYjgzMzcwZjQ3MGM4ZDc5YzcyMGY0YWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVjZDJmZmRiNjQ5YmZlMjEyODUyMDc1NWFjNWM0ZDlhZmMwYTg1Mzc2NDM2ZTA2MmNlOTI5YWYyMTFjYTE0ZmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJjMmJmZjk5NzdmYjUzYmY1NDkwNGRhZjQzMWM2YWI0ZWRlYzA4NGE0Zjc4ODI3ZjYwM2ZhMDMzMDgzMjc1YjYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7583be1adc9043f590cbfa2d6460bd24",
+      "statement": "Verify-pack proves five things: build and pack succeeds, entry points are in tarball, data artifacts are shipped, compiled registry hash agrees, and install plus import works in ESM and CJS",
+      "evidence": [
+        {
+          "resource": "repo://scripts/verify-pack.mjs#L7-L17",
+          "version": "repo-lines-v1:sha256:42993dd64eedc466e8518ef5ee7a8c1a4ac422f857e0de9e4f0beafc2ec85f9c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg1ZWQ3MDAzZGQ1NjBjYjM1YzUzMmU1ZWVkZDQ3YmJhYmNjMWU2YmVmMGNmMjJiMTQxYTRhMjk1MWRiNDYyNzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImViMWVkMThkOTJmNGI5OTc2NDIzMTkzMzlhOWZhMDliNWFlZTVmM2Q0ZTEzNjAzNjQ4YmI4ZDQ2N2IxMDZmYTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4YWI5MWIyZTMyNWI1NTQ1MzNiYTJkOWY5MzUxNWRmZjQ4YzNjZGM3MzhiNGE1NjM0YTI4YzU3YWMzMzdmYzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI3NjEyNDUwZGVmZjM2NGY1ZTAzMmM2NDM4OGJmNTc1YWUxN2E5YjZjNTU5MjBiMmE5MjI1YWZhM2ZmZDFhYjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_69e7640a4c8640c0a77373a99cbb27ed",
+      "statement": "Verify-pack installs the tarball into a clean temp project and imports every value subpath from both ESM and CJS",
+      "evidence": [
+        {
+          "resource": "repo://scripts/verify-pack.mjs#L14-L17",
+          "version": "repo-lines-v1:sha256:9f21b826db5de489e128274a797d7af0f8db9a3e4b1ac917cb553cea2424d819:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWY5YTVhMGM3OGE1OGM0Yjg5ZDI5MDM5MzQ2NmUwOWJiMTVkYmE5YTEyNDQzZWIzNTdiNmU3ZjdkM2I5ZGFhZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWIxZWQxOGQ5MmY0Yjk5NzY0MjMxOTMzOWE5ZmEwOWI1YWVlNWYzZDRlMTM2MDM2NDhiYjhkNDY3YjEwNmZhNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWVlMmE2Y2Q2ZjRmMmVlMDk1MTNlMWIzOGZmMTA0MTA4Y2E2YTJmZWEyNjdmZWQwNGY3ODcxNGRkNGNhNDlmYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjc2MTI0NTBkZWZmMzY0ZjVlMDMyYzY0Mzg4YmY1NzVhZTE3YTliNmM1NTkyMGIyYTkyMjVhZmEzZmZkMWFiNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_3d4f121a3fd64f01889179e909903f61",
+      "statement": "Negative fixture proof runs the capability gate against two deliberately drifted inputs: a drifted plan with six pinned defects and a hand-edited registry",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-negative-fixture.mjs#L28-L29",
+          "version": "repo-lines-v1:sha256:4aab72060288b24fc74f063b94331c884cbe49b29c78c809093a4441365f6bee:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjIzY2I0YzEzZDY3NzU5ZDU0Zjc2NzFkNDQwMzQ5NzJkMDkwM2EzOWQwOGFmYWU3M2JiOTgxZWI5YWIwZGNmMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTExYmViMDA5OThmNzVjNmViODIzMzdiYmRmYjA2Y2VkZmJiYjE3NzNiZDU4ZjdkZmNmZDY3MzhkMWM1YTFmYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjk5NWVmMjVjNGQxZDE0ZjVhNTdlMTRhNTNiZTk1ZDBlZDczOWNkZTkxNzQ1YTE5YzU5MjFlZmNjYjg5ZGIyNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmEwNzQwMDkzMTAxYWMyMjAyMWM5NDM2ZGMyZDVmYWUyOWM0YjhmZjZiZjI5MjFhNDc1NThkMTE0MzdlNzdhMSJ9"
+        },
+        {
+          "resource": "repo://scripts/check-negative-fixture.mjs#L7-L23",
+          "version": "repo-lines-v1:sha256:2fb7126ab2db163da64b8dc4b4da30873d6cb0c4f325406da67b45cdcbb9b644:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxNzk2Zjg2ZmI1ZTNkZjE0YTRhMzM2OTA0NmViNDVkZWNmODQ3OGM2NTZhNmQ4ZDQwOTg5ZGIxOTEzM2RmMzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyM2NiNGMxM2Q2Nzc1OWQ1NGY3NjcxZDQ0MDM0OTcyZDA5MDNhMzlkMDhhZmFlNzNiYjk4MWViOWFiMGRjZjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyZjYzOTEwMmUwNDNhMjI4ZGY4YjllN2E3YmJiNzY2OGM3MmI3NWVhNzA0YTRkY2Q5OTI4MjA1YWRjZTU4OGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE4MDMwZjc3NjhhM2M2ZmI3ZTFkM2I4YmMzOTVhODJlZmQxMTM4NDBmMGUxMmExZDFhZjllYzhmMTc2NDUwOTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4eb1d3ee0ec14ca6a12134ea15bba030",
+      "statement": "Drifted plan fixture must trigger at least 5 failures across at least 4 distinct rules to prove the gate is not toothless",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-negative-fixture.mjs#L28-L29",
+          "version": "repo-lines-v1:sha256:4aab72060288b24fc74f063b94331c884cbe49b29c78c809093a4441365f6bee:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjIzY2I0YzEzZDY3NzU5ZDU0Zjc2NzFkNDQwMzQ5NzJkMDkwM2EzOWQwOGFmYWU3M2JiOTgxZWI5YWIwZGNmMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTExYmViMDA5OThmNzVjNmViODIzMzdiYmRmYjA2Y2VkZmJiYjE3NzNiZDU4ZjdkZmNmZDY3MzhkMWM1YTFmYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjk5NWVmMjVjNGQxZDE0ZjVhNTdlMTRhNTNiZTk1ZDBlZDczOWNkZTkxNzQ1YTE5YzU5MjFlZmNjYjg5ZGIyNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmEwNzQwMDkzMTAxYWMyMjAyMWM5NDM2ZGMyZDVmYWUyOWM0YjhmZjZiZjI5MjFhNDc1NThkMTE0MzdlNzdhMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_068fc4ebefa5402dbf120d85e13ab6a8",
+      "statement": "Verification scripts integrate into prepublishOnly lifecycle to run verify and verify-pack before publish",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L15-L25",
+          "version": "repo-lines-v1:sha256:32f57e990ea49ad732d52727bd21171b9c5b1dab488c42caf15f3cd2212c2aab:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM2Y2Y3NDA4MThjZjM0ZjM2MDYyNWEyNTQxOTY4NjM5YWIzYWRiY2U3YzJkMjM2YzQ2ZjQyYTFiYzYyNGNjNTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhkMTBhNzgyYmUwYTJiNGFjYzE5OWVjZDY0MDljY2E0ZTZjY2ViMzVjYTNjMjMwYTUyYTI3OTQxNjNkOTliZjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY3ZDEyZWY4OTk2ZTdmOTgxOTA3YTNhNTg4M2U2ZjE4NzNhZGQzOGNmNzQwNjg0ZDJmNmQ4MzAzZGNkMWI2YWUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

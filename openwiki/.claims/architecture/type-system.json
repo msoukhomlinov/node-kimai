@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:678e6b516ecb69c412b486e28a04bcedafc548effbcf020b987eb0e25b7479e1",
+  "claims": [
+    {
+      "id": "claim_48c5fa6ba6c9478c931bc99e98e705f4",
+      "statement": "The SDK organizes types across 13 resource files in src/types/: activity, customer, project, timesheet, user, tag, team, invoice, approval_bundle, system, export, plus common shared types.",
+      "evidence": [
+        {
+          "resource": "repo://src/types/activity.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:08b32d8fe9d08eaf82161120e026340084cb3cce012a334eb4b6c0479118b6dc:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDhiMzJkOGZlOWQwOGVhZjgyMTYxMTIwZTAyNjM0MDA4NGNiM2NjZTAxMmEzMzRlYjRiNmMwNDc5MTE4YjZkYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDhiMzJkOGZlOWQwOGVhZjgyMTYxMTIwZTAyNjM0MDA4NGNiM2NjZTAxMmEzMzRlYjRiNmMwNDc5MTE4YjZkYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDFjZjBiNTU0ZWE5YjliMWU2ZTI5NWY5NGM4ZWI4MWZmMmE3ZmU5NjQzMjE4YzMwMzBkOTRjMmVmOTgzODkwOCJ9"
+        },
+        {
+          "resource": "repo://src/types/approval_bundle.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:2408c904c3b413e127a68487c8cdcef1d486e9370f79fe19b9d2bc47871b0068:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjQwOGM5MDRjM2I0MTNlMTI3YTY4NDg3YzhjZGNlZjFkNDg2ZTkzNzBmNzlmZTE5YjlkMmJjNDc4NzFiMDA2OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjQwOGM5MDRjM2I0MTNlMTI3YTY4NDg3YzhjZGNlZjFkNDg2ZTkzNzBmNzlmZTE5YjlkMmJjNDc4NzFiMDA2OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjY1YTYxNzEzMmFiMTNhZjQzOWFiMDdmZGEzNjNiODg3ZjllMDMwMWNjYjExYWM4MjFkZDU5YWNjNDhiYmIxMCJ9"
+        },
+        {
+          "resource": "repo://src/types/common.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:748f29ccd15de45d4379198410e4069ab42be366b4f9041dbc9f4b90efa0f8e8:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzQ4ZjI5Y2NkMTVkZTQ1ZDQzNzkxOTg0MTBlNDA2OWFiNDJiZTM2NmI0ZjkwNDFkYmM5ZjRiOTBlZmEwZjhlOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzQ4ZjI5Y2NkMTVkZTQ1ZDQzNzkxOTg0MTBlNDA2OWFiNDJiZTM2NmI0ZjkwNDFkYmM5ZjRiOTBlZmEwZjhlOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTY5MDMyNjg5NTVmNDM1M2Q4YzhkNDgzZjdhMWZmNjI3ZTc2OTA5MzJlNDFlYTQ2NzU2Y2MxYzQzYTcyYzNkMyJ9"
+        },
+        {
+          "resource": "repo://src/types/customer.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:d56779a084eb81c2595dfe8ffbd9207968062a47af12c990fd4d0680dc9dcbae:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDU2Nzc5YTA4NGViODFjMjU5NWRmZThmZmJkOTIwNzk2ODA2MmE0N2FmMTJjOTkwZmQ0ZDA2ODBkYzlkY2JhZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDU2Nzc5YTA4NGViODFjMjU5NWRmZThmZmJkOTIwNzk2ODA2MmE0N2FmMTJjOTkwZmQ0ZDA2ODBkYzlkY2JhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmU2MjAwZWM2MWMyNGZlNzJhMjFlMzg5OGRjMzExMjlkZmQzMzE3ZTEwMDkzY2ExYmEzZDcyZjIyNzE0Y2MyNyJ9"
+        },
+        {
+          "resource": "repo://src/types/export.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:96f979bdc964444cbe6854cd1ad0c1934286e002b25ab720f52396d74b2fd0ce:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTZmOTc5YmRjOTY0NDQ0Y2JlNjg1NGNkMWFkMGMxOTM0Mjg2ZTAwMmIyNWFiNzIwZjUyMzk2ZDc0YjJmZDBjZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTZmOTc5YmRjOTY0NDQ0Y2JlNjg1NGNkMWFkMGMxOTM0Mjg2ZTAwMmIyNWFiNzIwZjUyMzk2ZDc0YjJmZDBjZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmYwMTJiMzE1MWQ0YjM0YWZhMjg1MzBjZDBjNmQ0MjM0MTQxZmUwNGNlNjlkZjFjNGJhNGNlN2I3MDE1ODkwYiJ9"
+        },
+        {
+          "resource": "repo://src/types/index.ts#L4-L15",
+          "version": "repo-lines-v1:sha256:4dd2f3031ab8caba7185acd242468f76377fdc39888c7bd934e3b9d54f5746f7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlZjA4ZTQzOGUwYjIxZDJkZDRiMzExZWE0NjAxYzQ0N2JkMDBjMjU2MDgwZWVjOWU1MWNlNTBhYjAyMWNiOTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhNmFmODYwNDM1NmMyM2M0MmFjM2FjNDM2ZjZiMGQ4MzAwMTQyZTBmNjQ1NzNmOGMzZjY3ZjI1OWI4Nzg2Y2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIwNmE0NDQ3OTczMWM1ZDJhMDgyNDYyYTQzMzA3NzVmMGM0YTg0MGY3OWU3NzIzZTJjZTZhZTZhZWIyZmZmMWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/types/invoice.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:cf50553e8fbb3fb7c82c3353178a283cc7b07b29ba6542ead4d42ed46b322acc:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2Y1MDU1M2U4ZmJiM2ZiN2M4MmMzMzUzMTc4YTI4M2NjN2IwN2IyOWJhNjU0MmVhZDRkNDJlZDQ2YjMyMmFjYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2Y1MDU1M2U4ZmJiM2ZiN2M4MmMzMzUzMTc4YTI4M2NjN2IwN2IyOWJhNjU0MmVhZDRkNDJlZDQ2YjMyMmFjYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzA1Y2RjNzkyMTdkNGViYTBlODJjMDdlN2FkYjFmNTFjZWI2N2FlM2EwMTJmOGEyMmJlZWY5OWNhODA5MTM5YyJ9"
+        },
+        {
+          "resource": "repo://src/types/project.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:7e7c9fbc7f5127152e7e1f8cd35fe3f25b36e282d8b33e3ac012edc0a66bcec0:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2U3YzlmYmM3ZjUxMjcxNTJlN2UxZjhjZDM1ZmUzZjI1YjM2ZTI4MmQ4YjMzZTNhYzAxMmVkYzBhNjZiY2VjMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2U3YzlmYmM3ZjUxMjcxNTJlN2UxZjhjZDM1ZmUzZjI1YjM2ZTI4MmQ4YjMzZTNhYzAxMmVkYzBhNjZiY2VjMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzllYmVjMGE1NmI1ODRjNGQwNTQxNTMwNGQ2ZDg3OTAxYTMyYTY1ZGZiYjg2MzYyYzc2ZjUxYzZlNzFmNzdiMCJ9"
+        },
+        {
+          "resource": "repo://src/types/system.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:dcb4f88c435d69d90fcaab33cfd921d840bb56a9266253c6762242ab1efcb7fb:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGNiNGY4OGM0MzVkNjlkOTBmY2FhYjMzY2ZkOTIxZDg0MGJiNTZhOTI2NjI1M2M2NzYyMjQyYWIxZWZjYjdmYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGNiNGY4OGM0MzVkNjlkOTBmY2FhYjMzY2ZkOTIxZDg0MGJiNTZhOTI2NjI1M2M2NzYyMjQyYWIxZWZjYjdmYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWU4NDVlMzVlMmYxZjBhYWY4N2UwM2MzN2FhMDMwN2IxNjQ0NTY1NjNkMTFkZDE2NGVmOWQxMmVlZGM3NzFiYiJ9"
+        },
+        {
+          "resource": "repo://src/types/tag.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:c07bd1b2c062baf1531ced2f8c99886c357e5a05f72d7fee2fe244a2d38296f3:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzA3YmQxYjJjMDYyYmFmMTUzMWNlZDJmOGM5OTg4NmMzNTdlNWEwNWY3MmQ3ZmVlMmZlMjQ0YTJkMzgyOTZmMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzA3YmQxYjJjMDYyYmFmMTUzMWNlZDJmOGM5OTg4NmMzNTdlNWEwNWY3MmQ3ZmVlMmZlMjQ0YTJkMzgyOTZmMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWE2ZGRkMzRlY2NlZTM2MmY0NzM5ZjVlNGQ4NWE4Y2M5NTNhZWFlYzlhMDYzN2M3OTQ3MzgyOTYxYTI1YTI5OCJ9"
+        },
+        {
+          "resource": "repo://src/types/team.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:496f0f629ccf5ca8a92d4486827a275a567cadf578237fdf7b9d0f2f341ca811:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk2ZjBmNjI5Y2NmNWNhOGE5MmQ0NDg2ODI3YTI3NWE1NjdjYWRmNTc4MjM3ZmRmN2I5ZDBmMmYzNDFjYTgxMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk2ZjBmNjI5Y2NmNWNhOGE5MmQ0NDg2ODI3YTI3NWE1NjdjYWRmNTc4MjM3ZmRmN2I5ZDBmMmYzNDFjYTgxMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmE1MTY5NzM2NDU2MmNiOTc5M2I1NGIzODA3YWY1ZDg2ZmUyZTcwMjBjYmU1ODEwMmJmZDgwYTAyMzgxYzYwZiJ9"
+        },
+        {
+          "resource": "repo://src/types/timesheet.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:52e0a492f5e148f8a5f7221e52c91892113c0265f5cd08444231713ad88b375b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTJlMGE0OTJmNWUxNDhmOGE1ZjcyMjFlNTJjOTE4OTIxMTNjMDI2NWY1Y2QwODQ0NDIzMTcxM2FkODhiMzc1YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTJlMGE0OTJmNWUxNDhmOGE1ZjcyMjFlNTJjOTE4OTIxMTNjMDI2NWY1Y2QwODQ0NDIzMTcxM2FkODhiMzc1YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDhlM2NhYzY2Yjg0ZTUzM2ZiOWFjZDEyZTEyMGI4NWQxMDZkYzQwZjc1MTM3Y2Y1ZDc2M2I4NTJlMDdiNWI2ZSJ9"
+        },
+        {
+          "resource": "repo://src/types/user.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:95b287c517cfd78c9c249ecdaf3f83815ebdb7b141c71ce277f75bbfccf59e38:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTViMjg3YzUxN2NmZDc4YzljMjQ5ZWNkYWYzZjgzODE1ZWJkYjdiMTQxYzcxY2UyNzdmNzViYmZjY2Y1OWUzOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTViMjg3YzUxN2NmZDc4YzljMjQ5ZWNkYWYzZjgzODE1ZWJkYjdiMTQxYzcxY2UyNzdmNzViYmZjY2Y1OWUzOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzZjZjA5MGFmYjU0MGMxYjU3MTdlZjMzY2M1NTk5N2YzMTc3ZWE2NWExM2M5ZjI0Y2Y1Zjk3NjA2YmI5NGJlNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4ca4fe0ae6cd4d5e949621afd961a243",
+      "statement": "All type files are marked with DO NOT EDIT MANUALLY headers indicating they are generated.",
+      "evidence": [
+        {
+          "resource": "repo://src/types/activity.ts#L1-L7",
+          "version": "repo-lines-v1:sha256:b01a9ab2add486ff4e26daff6897f531a669545edd885cd44c985877d4762a41:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDhiMzJkOGZlOWQwOGVhZjgyMTYxMTIwZTAyNjM0MDA4NGNiM2NjZTAxMmEzMzRlYjRiNmMwNDc5MTE4YjZkYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGU2YmMyZTgxMGI0Mzg0NDE2NmNhZDYxZjRjYzQ0NTg5YjQxZWQ3NDg3Mjc3Y2ZmMjlhODc3NWFjNzM5ZWNiZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTAyZmIwODc1ZDEzMzY0MTgwYjhlOGQ4ZTczYjYwMDMyMTQxMGJlMDM3YzM3ZWExMGU3ZjVmMDBiOTJjNTY3NCJ9"
+        },
+        {
+          "resource": "repo://src/types/customer.ts#L5-L6",
+          "version": "repo-lines-v1:sha256:d45d03cb7757e18e2cec654e87369aab7e375fda8c58b5b0b271ae255e9b30b2:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2FiOTI4YzUwNGY3YjJjOGRmM2UyMzIzMzBiYjU0ZTA2MTY3ZTgwZjBjY2E0NzVjYjkxNDQ0ZGMyMzQ4Mzk2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGU2YmMyZTgxMGI0Mzg0NDE2NmNhZDYxZjRjYzQ0NTg5YjQxZWQ3NDg3Mjc3Y2ZmMjlhODc3NWFjNzM5ZWNiZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmU2MjAwZWM2MWMyNGZlNzJhMjFlMzg5OGRjMzExMjlkZmQzMzE3ZTEwMDkzY2ExYmEzZDcyZjIyNzE0Y2MyNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGQ5YzY2MmVkYmJkNmY2Y2ViZGZlNmJhZDdhMjE3MDMxZDQzZTMyYzFmM2YxMTZlZGI2OGYwNmJjNWMyNTg4YiJ9"
+        },
+        {
+          "resource": "repo://src/types/timesheet.ts#L6-L7",
+          "version": "repo-lines-v1:sha256:75981fa3d49f0971b54b7e645810fdb2a4d4b5338c17e53fdd29c5517500b3c6:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmE4NGFjM2NhYmY3MTcyOWViZWJiMzYzYTFhMDM3NjM0ZWEyMjBhOTM3MDk5ODMxM2U4MTEyNDVhMTczZGRiOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGU2YmMyZTgxMGI0Mzg0NDE2NmNhZDYxZjRjYzQ0NTg5YjQxZWQ3NDg3Mjc3Y2ZmMjlhODc3NWFjNzM5ZWNiZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDZkNDJkYzU2MDFmMzRmODY1ZGU1MjAzZjc4YWQwZGJlODY4MWU0MjYwMDg0OWY3NTk0YmY3MTRjMzY2NGQ3ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDBjMGRiODMxM2NjYTllNWQ4NDg2MDJjNjI2Y2QwMjZlOTlmYzQ0ZGU0MTE3OWE0NjE1NThkZWM5Y2VlYmExNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_117daaf38b0a48b89a37ab22ee720a53",
+      "statement": "The SDK provides dual type export paths: a root wildcard export (export type * from './types') in src/index.ts and a dedicated node-kimai/types subpath defined in package.json exports map.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L37-L46",
+          "version": "repo-lines-v1:sha256:bb3821349c5a54063e9971bd467e54c2fc5403022d41b72e7ed9dd7bab4ba2ff:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3N2UxZWQ1MTgzZmFkNzI0YzRkNGJhZTlkNWRlMThkYWYyOGE1OWJiMzYyNTlkNWMxZTk4MDRlOTFlN2Q2NzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmMGNkYjk3MmE3YmZiN2VkMjQ2ZjlmZjY3MjM4NWU1NWY0OTY4ZmMxMTA0M2RjNWI2ODRkNTFkZmEzMWRiY2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA3OTY1N2QwYjFkOGI5OWY1Zjk1NDRmYjJlZmFhNjczNDgzYWNlNGU5N2FhZDZiM2YwNWMwZjNiMjJhMDhkNzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJlZWFjYWFiMDZjOTA3Mzk0NGM5NDkwZDAwZTU2NDg1OGZkMDU2Y2I1MTk0ZTlkOGRhNmExZDdkMDg5OTliN2QifQ"
+        },
+        {
+          "resource": "repo://src/index.ts#L51-L51",
+          "version": "repo-lines-v1:sha256:35bb6a2809c76d995636dd931318665e50cc219a7a90d13c86d0ce8ee206cfe6:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzViYjZhMjgwOWM3NmQ5OTU2MzZkZDkzMTMxODY2NWU1MGNjMjE5YTdhOTBkMTNjODZkMGNlOGVlMjA2Y2ZlNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzViYjZhMjgwOWM3NmQ5OTU2MzZkZDkzMTMxODY2NWU1MGNjMjE5YTdhOTBkMTNjODZkMGNlOGVlMjA2Y2ZlNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTI4OGY2Y2NkZDE0N2IwM2ZiYTNhMDMzMDIyNzEwMTBhNDhiY2M4MjQ0M2JlZjQ4NWQzZDkxN2IzNGYyMWE0MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5104b61b5f8d4072b45ce7fc75716cb3",
+      "statement": "Each resource follows a consistent naming pattern with variants: base interface (e.g., Activity), <Resource>Entity (extended with child collections), <Resource>Expanded (denormalized with embedded objects), and <Resource>EditForm (input shape for mutations).",
+      "evidence": [
+        {
+          "resource": "repo://src/types/activity.ts#L9-L69",
+          "version": "repo-lines-v1:sha256:586e9b63a387caf303caea2008f03023f4856a4fbf053ca827bc13b4934bb987:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRhM2IyNDJkZDAzNDA1ODFmMjFhNjgyOTFhYzc0Y2JjNTIwMmU5NjY2MzE3ZWI3MDBlY2EwOTljNWVkMzM1YzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJkMjEzOTdiMjFlZmZkOGQ3ZWE0NzBkNDJkMDYxNGVlNWY4MThhYmI3NTEwNWQxMjA1ODBhMGM4N2QxZWNiNGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRiYjFmZmIyOTkzNGRhNDcwYjhlMWZmMjQ3MGJlZmQ4MTdmNjZhYzA0Y2RiZDhkNjM3ZGZjYzIyMGEwNzcxNTYifQ"
+        },
+        {
+          "resource": "repo://src/types/customer.ts#L8-L99",
+          "version": "repo-lines-v1:sha256:1609bf0e2fec084edd779806c0b95b2668d44086a94de27bbe0f8a34c9173996:eyJzZWxlY3RlZExpbmVDb3VudCI6OTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4OGZiZjJkNmRlMGU0Yzk2ZmMxNWE0ZWIyYWU1MTMxZGRkYTE5YjM5YzU0YmEzZWI0NDVlNzlkYjU2YTA0MjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYwYjI0NWYxY2RjYTZkY2Q1NTQ2MzU2YjU1Njg2ZDk3ZDAzM2E0NjFkYTRlYjE2MTFkNWI5MzY2YTI1ZGE0NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcyNjk0MDVjMGY4NDAwMjU4MmNiN2M1NzBjMWJlNmUyYjFkMmQ3OWM4NTNhNDAxYTk5MTc1ODYzZjE0MzhkNjkifQ"
+        },
+        {
+          "resource": "repo://src/types/project.ts#L9-L89",
+          "version": "repo-lines-v1:sha256:1c7a65cf4667fc9747ad26d4d8d8d6cadc9d1be11e0ec9a059b0a904652764dc:eyJzZWxlY3RlZExpbmVDb3VudCI6ODEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzM2ZkMDI2Mzk4ZTQ3OTA0NmVjMzA5NzE2M2Y2YTAwZDIxYmVjNzIwOWU1NjJmNDViMmJiZTJhYzNjZjEwNWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE0YWYxMjFlMTc5NjVkNDU5YzU2YzBkMDQ2MzFkYTIyY2YyNmVkNzI0MjFjZmJjOTkzZjc1Nzg4ZjA3Nzg3N2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE3Njc1MDkwODM3NWYwMWZmNDQ5YzA3YjA4Zjg5OTY0MmFjN2UzNGM0N2YwN2I1MDhkNGRkMTQwYmQwZWE3Y2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_afde1389728c42708c31dc3e2d7af9a5",
+      "statement": "Phase F agent execution layer types include <Resource>Summary (compact projection), <Resource>Identifier (union of accepted identifier kinds), <Resource>SearchParams (server-driven filter parameters), and Context shapes (aggregated resource with related records).",
+      "evidence": [
+        {
+          "resource": "repo://src/types/activity.ts#L95-L129",
+          "version": "repo-lines-v1:sha256:725055a6b4647d2cd1f7093e07bb9dcc0ca8244459d7fe2a918ecf343a10aa9e:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2YmEyYjU5OTY3MzJlNzEzOTBkM2UwY2M1YjliZmRmZTU4YWUzZDZkMzgzY2VhYTMyNzRiMzc1OTY1NWRlYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxOWUwNThmZTFhODM1ZDJhZDY2NTE4OTFkMjJkMGJiMWFhMTgyZWM2N2I0NTY4ODRiYjRkMzkwZDlhNTA3MzEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5ZjkzMDgzYzE5NzEyMWI5ODI3MDBiYThhZmFiZDE3MjJjZjFkM2U3NDA0NTA5ZTgwZWZhMjcyNDdmNjJmMDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/types/customer.ts#L140-L203",
+          "version": "repo-lines-v1:sha256:7ec75be352daf65542201fd2438ccd4808a8199b5dc5375c5014b45b74710d73:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2YmEyYjU5OTY3MzJlNzEzOTBkM2UwY2M1YjliZmRmZTU4YWUzZDZkMzgzY2VhYTMyNzRiMzc1OTY1NWRlYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5ZjkzMDgzYzE5NzEyMWI5ODI3MDBiYThhZmFiZDE3MjJjZjFkM2U3NDA0NTA5ZTgwZWZhMjcyNDdmNjJmMDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/types/timesheet.ts#L80-L176",
+          "version": "repo-lines-v1:sha256:e15f6ec7900aee083a6faf1ca73492fadc41e6089e2448756420cbd374445bf8:eyJzZWxlY3RlZExpbmVDb3VudCI6OTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2YmEyYjU5OTY3MzJlNzEzOTBkM2UwY2M1YjliZmRmZTU4YWUzZDZkMzgzY2VhYTMyNzRiMzc1OTY1NWRlYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY4ZWM3NzEzYjg0ZDI2ZWE0NzhlN2U4ODc3NGYxZTMyZjIwMWYwYzE5NzdlYjQzNTNlNTZkYzBkMzlhOTM1NGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d1293168583046b19db0de20c56c509f",
+      "statement": "Shared agent layer types in common.ts include FieldDiff, DryRunResult<T> (with mandatory simulated: true), ResolutionCandidate, Resolution<T> (with resolutionCost and scanTruncated), HelperOptions, MutationOptions, and OperationMetadata.",
+      "evidence": [
+        {
+          "resource": "repo://src/types/common.ts#L116-L125",
+          "version": "repo-lines-v1:sha256:327165eccc5a5ccb9a7dbaa4aa874248bc3264ce7dc674d83497fc0bcfae825a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1OGVmYjFlYzY4Zjg5OGQyOTllMGU4MWUxMWE0MzY4NjI2OTk3M2NkNmRkMTlkZDFmZTJiMDNlNGM2NDQxYjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ5MTZmNTYzYjJjYjZiMDhhMDdiMzQzN2QyYmFiMWE5ZWExN2RlODQzOTliNzE0MDBhYmM2MGNhYWY1MjBhNDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxZjcwMTFjOTlmNWVhNzg5MWE5NjUxZWExZjEyMmJmMjNlNTk5NGUxOTFiZWRmYWYzMmRkMjkwZWEzNDVjYmIifQ"
+        },
+        {
+          "resource": "repo://src/types/common.ts#L82-L151",
+          "version": "repo-lines-v1:sha256:0f51252733d9dadb88e982af28bea17d84de52269c664a7f0e76cd5280cda185:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNmMzcxZjgwMjc2MDQwOGU0YzcyNTIyMmRjMmRhYWNiMWQyNGVjZTg2OGMwN2IwMzhlYTBhNWFjMmFkMjFkYWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMzMzBjMzVjMjYzN2I5YjIzYmI5N2Q5YTY0ZWE2ZDI0NmFiMzVjMTFhZjJlNzA1ZTViNzMwZWM4YjQxMThlNDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJlNThiMDZkNmUzYzU5MmY0YTU2OWQ1NDMzYzc1ZmIzOTM3MjQ0MjhiZGI3MDY1ZDZiYzdkNTRjNDJhN2Y1ZWQifQ"
+        },
+        {
+          "resource": "repo://src/types/common.ts#L93-L108",
+          "version": "repo-lines-v1:sha256:54844203106fb306d4e0c7b1e5d4e5d816ea4aeb13a65d50a768c2826c43bf1d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1NTNhMGE3ZDhhNzBlYmRiZmNkNTNjMWE5ZTdkMmJhYTIzMGVlMDE5ZmM4YjIzMjAwNmYxZDI2Mzg1NmIwNTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwMjA4NzQ5Mzc2NzU0NmUwOWFkYzBjYjM3MTUyZjBjYzdmMzVkNzhlZWE5MGRlMzI0MDFiMTk2NTM3MDM0YTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk5MDFmODlhNDFhNmNiNWE5YjIyNDg0NDAyNGQ0M2Y2ZjhiNGM0NTk0YTFjNDI1MTE5MzI5NmQ5MTAzYTdkNWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_546de393d4524fc2a08a5289a4b0a2ce",
+      "statement": "The Page<T> interface represents paginated results with items array, 1-based page number, size, and hasMore (derived from items.length === size), with no total or totalPages field because the Kimai vendor does not provide totals.",
+      "evidence": [
+        {
+          "resource": "repo://src/types/common.ts#L9-L23",
+          "version": "repo-lines-v1:sha256:d2ae619d4eb88225afd3760fc4c466d1048089441532b293d0a1d61dbcf48bda:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NzU1MzM4YmVlOTBkOTU5NDcwODIzY2Y5ZjQ5ODBhYWY3YzM3YzExOTJjYzMxMGY3MTE0ZjcxYjRlODlkZDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNmZDJmMzExOTkyMDliYjJkNzhjZTNkZDE0OTAyMDVhOTFhZjZjZWVlMGQyYzk1NjJiNDUzOWJkMmNiOWQ1YzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_28446fea354847479870119875ef5f43",
+      "statement": "Compact helper shapes RateSummary and CommentSummary are defined in common.ts and reused across resource contexts, keeping only essential pricing fields (rate, internalRate, isFixed, userId) and content fields (message, pinned, createdAt) respectively.",
+      "evidence": [
+        {
+          "resource": "repo://src/types/common.ts#L160-L184",
+          "version": "repo-lines-v1:sha256:aca039fece6cb74e7182a66d7927fef18729ae64f1ea64ffe790369978f396c9:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyYTFhMjM2NjYxZTFhNmY2NGZiMzM0YzJhNDJmY2U4MGVjYTUzMzVmNDUyZjhkNDFmZjk4NGUyYTVmMjZiY2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2d4c6fa0bbc445238b25bb2379295d91",
+      "statement": "Resource clients import types from the barrel export using relative paths like '../types', as seen in TimesheetClient importing TimesheetEntity, TimesheetSummary, and other types.",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L14-L28",
+          "version": "repo-lines-v1:sha256:594e08d7ee5e386613e162c9a1a5c907590822e772736f5c0568ce978f85120d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMxYjdmOTA3OGU5ZTRlMWE0OWRiZDk4MmZiZmIxYWU5ZmVlMzU5NDlhNjhhNTdiN2FiNWE4NGE5ZDcyZTA1MmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUwMTlhZTU4YTJhMWYwZTYxMzIyNGY5OWJkODViMTBmOTM3MDNlMzEwZGNmMjY2ZGVjYTE0MzAzNjRjZGFhNzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4NTFkNzhiMGJhMDE3NjlhNGQzOGIzNTIwNzRiZGY3MmRiYjExYmJhYzM3YjNlYzI3NzQ0NDdiNWM3ODIwMzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA1ZDE0YzE5Y2JiZWM1NWJkMGZiYTFjODJhODRkOGVmMTM0NjhjZTdiNWFjZTA0OWM3Mjk1NGEzMjFmNWNjYjEifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

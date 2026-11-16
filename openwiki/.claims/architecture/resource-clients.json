@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:01429db902dc6e4a41d1a35025def0225efb4066a238013273192f4058153218",
+  "claims": [
+    {
+      "id": "claim_bc41ff731b58440bbad8c892d67f5bc8",
+      "statement": "The SDK exposes 13 resource clients: ActivityClient, CustomerClient, ProjectClient, TimesheetClient, UserClient, TagClient, TeamClient, InvoiceClient, ApprovalBundleClient, ConfigClient, SystemClient, ExportClient, and ActionsClient",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L311-L323",
+          "version": "repo-lines-v1:sha256:2c5389c0249fa08e8ec704202483197a3229b94431715a47c15b3a4ef43ede43:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3MmNkMTcxYWMyNzdhNWEyNjExZDkxNDA5Zjk4OTA3ZTM2ODdmMjY1YmJlMjMwYzZlODNjNDVhNjI5MGI3ZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRhZTNiZDgxNGM1YmM1NDcwOWIzYjVhMzk2OTBhYWMxZThkYTlhM2QwNjg1MTZiNmUzODhhODg2NTgxMTFhODMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmMmE5ZWYzNTZhNTQ5MzdlNzUxMjcwZDUzZGM4NTFlMmMxOWUxZjYxZGVkZmM3Y2JhYTMxMWExOGQ4MTI1YWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUxMzFmNTE2NDhhOTNhYWViMDNkNmJlNzNiZjJlOWExYzEzMDY4YmNlMGY3NmNmMjBjNDY3ZjY3ZWQwY2E1ZjMifQ"
+        },
+        {
+          "resource": "repo://src/resources/index.ts#L1-L16",
+          "version": "repo-lines-v1:sha256:f616a760e23827972141e418c5231b14004b40122a7309251422aea0b9cfb734:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVjMDNlM2E5OWM4OWJkZTg2MWM0NzUyNmQ0ZDhhY2U3ZTI1YzdmODQ1YzE3MTFhNmM4YzA5NjI3NThmY2Q4YmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2YWUzNGJjZjkyMDg2NTIzOTE0ZmEzODgwYTk1OTI4ODMwNGQ5ODM5ODhiYzM5OTE2OTcyNDMzMGNhNzBmYjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0f8bb2a3603d469aa2755d3e04244eaf",
+      "statement": "Each resource client exposes up to three pagination methods: list (AsyncIterable<T> streaming one record at a time), listAll (Promise<T[]> collecting all pages), and listPages (AsyncIterable<Page<T>> streaming whole pages, available only on paginated resources)",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L143-L164",
+          "version": "repo-lines-v1:sha256:f3465c7c30941e3e46ac3a107a4e0950979bd1a9d8b806d066a1d1ec3a7198bc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY4OWY5NTI5ZGU0NTg4MmIxMmRlN2Q2YTY0ZTkyYjIzZGFjOWM0Y2EyY2UxMDg1YzQ4NjcyM2NkZGRhNjk5MmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRmZDE0Y2UyODliMjIxOTBjMmQ1YjhmMmVhZmY3ZjMyYWM4NDlhNDliYWFlZTliOGM2NzUzZTFjNjViZDczZGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImExMDRkZTNjNjgyOTMyNjNiYjBkNTEzMTk5NTBjMzQ4YmNkYjgyY2I4MzkyOWFmM2NjNDZkZDExN2RmYjk2YWEifQ"
+        },
+        {
+          "resource": "repo://src/resources/paging.ts#L61-L80",
+          "version": "repo-lines-v1:sha256:9e985588ed01daf4a93270feb81aab83e857b6a4fec5d6413c2d30dd5983869a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFhZGRmMDlkNjY0YmI4NTRlNTZmMDdjNDA1MjA2ZjQzNjU1MDA0NmFmOTFlMTk5MjMwYmRiODRlYzhmNWMxODMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY1OTNiZTE2MGU4YWM2MGM2MDk4YzA3NjY5ZjFiZDE4YjM1MWEwZjc2ODlkZmYwNWJlN2E4ODc2MzE1ZTc1NjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNiODk0MTUxYWQxOWU5OThkMzVkNjVhMjBiZDM2MWVhODcwNGFhYmU4MzJlYzFmMjU2ODVmMTFjZGIyMzUxNWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_53d0eb6f4304454e9df80c1f549c132b",
+      "statement": "Timesheets and invoices are paginated resources that send page/size params; activities, customers, projects, users, tags, teams, rate endpoints, comment endpoints, approval-bundle endpoints, and system/config endpoints are non-paginated single-batch resources that never send page/size",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L215-L237",
+          "version": "repo-lines-v1:sha256:ac7b8c81d9abc977be69b4f8a01fb640e4fe3b42770e5b33d61678ecdc347dee:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjOWIzMThmOTBkMmY1YzQxYTlmNDdjNTFjNjA0ZDJkOWMxNGQyM2Y3ODgxMWUzNmRhYzRkMzhlNmJjODRlZWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYxZDc5ZTZjZTM5Yzg1MTgyZmZmZDRjODVjMThmMmI3Mzg5YWM5ZWMwYzEwODVjMzExM2I5MTNiOWMzYTAzMjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM0YjAzODBlZTczZTZmNjAwODgyOWM1MGRhNDk5MjY3YjE4N2ZkZGU4Y2ExNWY5OWZiY2ViMDEwYWMyNjllZTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9574ad8975f04b8889f0e71b27019333",
+      "statement": "pageParams validates page and size as positive integers, throwing KimaiConfigError for non-integer or non-positive values with defaults of page 1 and size 100",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/paging.ts#L23-L33",
+          "version": "repo-lines-v1:sha256:072a66bf3c771bb36e417aa662a06ee38f01d7b0cfb07eaf99c11bdceba7a67d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiOWEwYzlkNjVkOGE2NjE0NzJhYzE5NmNlYWRjYTFkZDZhNmVmNzViYTBjMzdmZWMwNWYxMGY5OWVmMDYyOTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQxNDA0NWZiZTRkNTAzZGQ3MTA2MzBmNGRkYzNiZDRiM2Q1M2VhODI1OGQ5ZjdiNjFjZWJjOGI2MWZhY2IwOWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE3NDliNTUyOTMzOWMyMDBlZTI0ODQ1M2ZlOGI4YzJjYWQwYTY3NzYyNzk2YThkYjE5YWY3NGQwNDEyM2NiYjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b606ee80a3d2460d9219d7d7a0325691",
+      "statement": "Kimai list endpoints return bare arrays with no totals, so hasMore is derived as items.length === size",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/paging.ts#L1-L5",
+          "version": "repo-lines-v1:sha256:e8cc81470f2d13c8a6976c2f9f433c9a25014197b1a9e8199a99f69db5aa95b0:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTlmODEwNTUwNjg0MTFhMDVmNDM5ZmM0Mzg3Y2UyZWExMjQ3OGE0NmE5NzY0YzdlNDY2ZmI0NjY2NTA1M2I2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODY3Nzg2OWMwZjA4YTI3NTA4NDVkNTE3OWMzZGZkZmFiOTU1ZTRkNzU4ZDVmZjBjMTFjYzJkMzVlNjBkYWM0YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTU0ODBkY2I4Njc0ODhkY2E3ODBjNTY2YjkxOTU3YmQyN2QyZGJmMDFlZTBiZWM2YTZlY2Y3MzBkZTQ4ZjZhYSJ9"
+        },
+        {
+          "resource": "repo://src/resources/paging.ts#L53-L53",
+          "version": "repo-lines-v1:sha256:65395f7dc5194446a6b401caf749c14172394d268de8585884bcbe240a9bf73f:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjUzOTVmN2RjNTE5NDQ0NmE2YjQwMWNhZjc0OWMxNDE3MjM5NGQyNjhkZTg1ODU4ODRiY2JlMjQwYTliZjczZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjUzOTVmN2RjNTE5NDQ0NmE2YjQwMWNhZjc0OWMxNDE3MjM5NGQyNjhkZTg1ODU4ODRiY2JlMjQwYTliZjczZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2UzMDgwYjc0MGU1OTZkMjkwNzQyMzE2MzlmOTFkYzBjNjhjMWZlMDYzYTY0ZmY3MzRhM2IzMGY2YTNiMzg0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjQ1ZGE0ZDAwYzdhYWJhYWY2ZmEzOWIwNDc5MzQ3NzI0ODFhYWUyZWVlNjE2N2M2NzUxMDQ0YWJlY2NmZmI4YyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d9f5e6390f12470d8b75f1f5f6b04b5c",
+      "statement": "resolve helper accepts id object, name object, bare numeric id, or exact name string; returns compact summary by default; throws ResolutionError with RESOLUTION_AMBIGUOUS or RESOLUTION_TRUNCATED codes; supports expand and resolutionDetails options",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/ActivityClient.ts#L37-L96",
+          "version": "repo-lines-v1:sha256:932fc5b9062884124876cb8623ca61b19289b8a560862556ef65ba1a6eee83a1:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUyYTcyNzNjMTcyOTI4MzM1YmQyZmM5MGZmZTU4MTUyMzVjOWYyN2RmMGM0OGQ4MzFhNjRkMDM3Y2Y2NzY4YTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2MDAwNjlmODBkMmEwOWRlMTEwMjdmNTI4ZDQ5ODA1YzhiMzNmNjgwODY3YzY4NmRiOTM3YzA5ZDQ5YTQ3MzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcxZDIzMGZjNTU1MDU1NmJhYWVmYmU2ZmNmZjc5YTZlOGI5NmYyYjAxM2RlY2NjYTQwMjE5YWJiZmJiZDQ5YzMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_811b1fbac7c848ad9d1e21165972ec92",
+      "statement": "search helper returns one filtered page with limit defaulting to 25 and hard maximum 100, validated by helperLimit which throws KimaiConfigError for invalid values",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/ActivityClient.ts#L31-L48",
+          "version": "repo-lines-v1:sha256:f16e21ef9c6496ae2f68bfb431234dc290ff27ebd1dbafcd59380975a5414d75:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyM2Y2YTUyYzYyZWQyMTI3Y2FmNzRlMGEwMzg2Mzk1Nzc0ZTFkYWRhNDgzYWUwYmFlNzkyNGVmMmU4NWQzZTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhmMTUyMjBjMWZmMjVjZGEzNTVjNjE1YzBkZjFiOTIxNDA3MGViODA5NmMwMmJlZjdhZDgxMzcyMWMxMDczNzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAyZjZjZmJiM2Q5Nzg3NDcwMTYwOTY1ZDFhMzdkNzZlYzBmOTdmMWQ4YzM0NDZiZmRhOTliYmVjY2FhNjM5NDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c234740fd2dd48149f0e1f1fce02c3eb",
+      "statement": "getContext is available on timesheets, customers, and projects only, fetching the target record plus its references in a single helper call",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts",
+          "version": "repo-file-v1:sha256:9ebcb2eef9b3110b1f647cc792d98673ef78b9874c9b0df274f11421d325ca56"
+        }
+      ]
+    },
+    {
+      "id": "claim_19e729185ba443559ed8a941cc9cbef6",
+      "statement": "Every mutation accepts dryRun: true option which validates and returns a DryRunResult without issuing any wire call, containing operation, wouldApply, target, request, checks, impact, simulated, warnings, and optional data fields",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L108-L136",
+          "version": "repo-lines-v1:sha256:8b3dcb5b1558726352900b123a64eb9607710affcbaa3dd8b816a439e0e20623:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIwNzMzODFiMjhkYjNkNTQwYTY5ZTM2NWFlNTVhZjA4YTZlMjg0MjVkZjRkODI2M2UxMjc1NTA2M2M3ODAxMmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg4NGJjYTg2M2QyOTc3MWEwYjRkYjJiNDQ3MzEwNGQyMjdmY2VlNTUyOTM1YmZlM2M0NmY5MzVjYzI3MjVlNDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZiYTFhNGRkM2Y2NjNhZDFiNTA2MWVhOTk0YmE4OTdiMjUwZDMwMGM3Y2NiMWJlMTdmZDRmMWUwOGJiZjc2NjgifQ"
+        },
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L183-L212",
+          "version": "repo-lines-v1:sha256:0e01b9071463193c5c211930709ba045d0d909fe0bedbbd70c7d38c936a03009:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ0ZDdhNzZhNzA4OWViYWY2MDU2YzRlMmM0MmVlODZlOWYzMmI0ZDA2YjZlYzQ3MTYxYzRlOWNiNWFjZDdiMTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhYzE3YzQ0YzRmMGNhNDIzOTY0NzUwM2U3MTg5YjAyMmRlNmFmNzk2MWM1ZWUzYmMzNTk5NmQzYzgyMDMzYWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVmODk4MDVjNDM5ZDZmZTExMGE0MThkNDg4NzYwZjMyNjZiNzk5OWJiZjJjMjIzNDM1NTUxYmE2YmY1ODI5ODMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cdda60b0d6294f53be52c087dc0a535f",
+      "statement": "Methods with user or users filter default to all users when no filter is provided by explicitly setting user: 'all', overriding Kimai API's default scoping to the API key owner",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L168-L169",
+          "version": "repo-lines-v1:sha256:138eae27127f88404e4b9bd2c5cac60c4ea51068e23f195294e9f28599f3ef0a:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmQzMmFmNTg2ZDk1ODUxZTkyYmJiMTczYTViNmNiNzE4YzE4ZTFiMDVlYWRhNWQ5OTdiZWRjZTFhNzdjYTM3OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWNlZTBmYWMxMDBjNGI1MjBmZmQyZThlZDY5Yjc0ZWQ4NzlkNDI2NDU5MmQ4ZmRiYjJmNWQyOWQyNjJjNjUxMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTEwNGRlM2M2ODI5MzI2M2JiMGQ1MTMxOTk1MGMzNDhiY2RiODJjYjgzOTI5YWYzY2M0NmRkMTE3ZGZiOTZhYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWY2ZGZjMGUyNWY4OTUxODU2ZGEzOWQzZjNiNmUwMWNlYTRiMTY2ZmE4NmViOTE2Njg2MjBjMzVlMWQ3ZjNlZSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

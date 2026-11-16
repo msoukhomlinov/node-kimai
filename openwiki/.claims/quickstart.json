@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:5adbce9a194e9caf9ee057df9af105e3ce6500368a14ae5e1eb90f4399e8c1c0",
+  "claims": [
+    {
+      "id": "claim_e00bd5596b5f49c98f11c285a6dcf143",
+      "statement": "node-kimai is version 2.0.2, provides coverage of Kimai Pro API v1.1 with 66 paths and 90 operations across 13 resources, requires Node >= 24.0.0, and is MIT licensed",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L10-L15",
+          "version": "repo-lines-v1:sha256:8aeafcdf14e0a6f6b9d51ee96db13c1c4f2ef202f478d5a4f06aea999c6d522e:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGMzMDRmY2I1M2U4NjRkZDIxMzNmNWJiMzgwZjRlNTEwYmIxNGZiZWYxN2ZhNDQ0OTQzYzRkZTYwMWZlZTlkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODg4NzhiM2VlMzUzZDBlYTE4MmEzODE0ZmQyYjhkZGQ1YjVhODY2MmI0N2M3NzViYWU5NDhmZmVjYjU1Nzc3MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODNkNTE4OTYzNmQyYzRkYzVlNTBmNTQ5MDkyYTU3N2FhZmRiNTNlNTYxMTI1NWUxOThkOGI5Y2RjYWNmNzFmOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWZjM2QwNWZmODI4ZTI3M2Y2ODZjYmUzYTJiZDk1NjQ3MWMxMzJiZTcwOWUwYTM1YThmOGIzNTcwZTA5OWRmZiJ9"
+        },
+        {
+          "resource": "repo://README.md#L10-L10",
+          "version": "repo-lines-v1:sha256:6652c1eb0a8f69ff02ae7750a855fcb01a036d9d215a2fb4300036c7ddd510c7:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjY1MmMxZWIwYThmNjlmZjAyYWU3NzUwYTg1NWZjYjAxYTAzNmQ5ZDIxNWEyZmI0MzAwMDM2YzdkZGQ1MTBjNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjY1MmMxZWIwYThmNjlmZjAyYWU3NzUwYTg1NWZjYjAxYTAzNmQ5ZDIxNWEyZmI0MzAwMDM2YzdkZGQ1MTBjNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWEwZjM4NDcxYzUyNzQ2Yjc3M2FlZjliY2IxNTZkMGVhNTk3MGQ2NDZkN2ZjNTJlMTk0NTZlNjQxY2YzNzFhOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzAxYTI0M2MzMmIwYzdhMzgzY2ZjYjMwYTM3NjY5Yzk1YjhjNjcxODMxODY5MzhjNTA3MjRkM2E2OGI5OTM0OSJ9"
+        },
+        {
+          "resource": "repo://package.json#L139-L141",
+          "version": "repo-lines-v1:sha256:e7674ee3780019bfaf1ef934daba5f2db3d5a06032a23f27b0c14e34b1912585:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWY2MDE1NTQxMjJlZmU4NTVkNTZlMTBjYzliYWYyMDMxY2EzZjRhYjExY2RiYTIyZjFlYmM1ZDM5YTc1NTgyNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzNlYjkyZWZlN2MzOGY1MzVjNDE0ZTY3OWNiZTE2MGRmZGUxMDcwZTNmZjJjMDA0MWUzY2Q3NDViZjg4MTgyYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjBlYTJlY2Q3YjNiYmE1YTkyNTQzZWZmMzUyYTZkNThlZDc0ZDQ1NDlhYTkxNDA4Y2M4MTg3OTdhMDc2NDlhOSJ9"
+        },
+        {
+          "resource": "repo://package.json#L2-L7",
+          "version": "repo-lines-v1:sha256:f8b18f2ad7d254c3cf1a4d1645b69682b5c6d2408f84864ff0cd870b4a197da9:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWJkMTU1NDlkNDFkOTUxN2VkNDcyMTcxOTQwZWU5YTJlNTQ5YzRiMWMwYmZjNDllMTNhMGUwNjg3OWVhMDNkMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGE1ZGZiNmIzOGY0NzE0YjIyYWQ1ZjA2NTk3NDcyM2Q5MjAwMjM4MDUzNWQwMGJmMmYyYmMxNzJlNTE1MjU4MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjEsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTZmYjA4ZmRhMWFjYjk1N2I2MTE2YmQzNzgxMWExZmU0MWEwMTYxMWMwNjMxZWRiZjc4NmQ2ODg5YTI3YTU1YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTgwODk1NWY3MjYzY2E4ZmQxZGY2OWJlM2FlNmQ1Mzc4N2I4NGMzZTY1OTkyOGMxZWY5YmMxM2NjOTA4Nzc0ZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_417647a7a2bf4bafa32725be5534fe56",
+      "statement": "The SDK is ESM-first with dual ESM+CJS module format: package.json sets type module, ESM artifacts use .js/.d.ts extensions, and CJS companions use .cjs/.d.cts extensions",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L14-L14",
+          "version": "repo-lines-v1:sha256:d8ea1bf9796138b7ab3e729a0f4baf9b18aff102b2406bfa8f0d44335b098afd:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDhlYTFiZjk3OTYxMzhiN2FiM2U3MjlhMGY0YmFmOWIxOGFmZjEwMmIyNDA2YmZhOGYwZDQ0MzM1YjA5OGFmZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDhlYTFiZjk3OTYxMzhiN2FiM2U3MjlhMGY0YmFmOWIxOGFmZjEwMmIyNDA2YmZhOGYwZDQ0MzM1YjA5OGFmZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDViYmU0OGE5ZWZiMWIzYjVkNmJhY2I4ZDBkMDY5ZDY4NWIzMGMzZjVlZWIyZDJmZGUxODU3NzNkYmRkNzk0OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWMxNzcwYjIyMWRmMmY3OWY5MGQ0M2VjODFkMDkzZjc2YTYwNTE5MWIyOGE4YjU0YzNjZGM0NzFkMjhkNGEwZCJ9"
+        },
+        {
+          "resource": "repo://package.json#L16-L97",
+          "version": "repo-lines-v1:sha256:53187e63ff265190f885e638aa95a95256382b22c04d46a8503de1d3216b5524:eyJzZWxlY3RlZExpbmVDb3VudCI6ODIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjMDViYjlmNGE4Yjk4NDUxMGY4MTVhNWZjNDA3OGQ3N2M1YTIwZTkzZjMzNzNkYzVkZGU0YTM0MWQxYjQwYzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFhMDk2NTU4YTY3NzViMDY0MDQ2ZGM3ZTkxZDI2MmRiZDFjNGIxNDcxYjE3Y2YwNzgwZmMwOTQ3M2E2ZGU2YTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVmMWI3NTgxNmNlMTMwNTVkYzg4YjY2Y2YwZmYxZjE3OTNiNDc4OWJhMGZjMDliYzQ4YTg1YmFhMDc0NDI2YTYifQ"
+        },
+        {
+          "resource": "repo://package.json#L5-L5",
+          "version": "repo-lines-v1:sha256:f56d83090c6fb93463ad4f2f85f8ca5576f7e85e121d958a53718e21d9f76e6b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjU2ZDgzMDkwYzZmYjkzNDYzYWQ0ZjJmODVmOGNhNTU3NmY3ZTg1ZTEyMWQ5NThhNTM3MThlMjFkOWY3NmU2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjU2ZDgzMDkwYzZmYjkzNDYzYWQ0ZjJmODVmOGNhNTU3NmY3ZTg1ZTEyMWQ5NThhNTM3MThlMjFkOWY3NmU2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTZiNWNlMzdjNjdkMjdjNDMyMzgwNmYxZDRjMjYxNmFjZTdiMTYwZGI4ZTkwZjk5MTIxYTQyZmI4NWU1ZWZiNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTE1YzVkMjMxYTlmMDBiZWY2NGNmNjQ4ZmZiMzEyNjg0YjNiMWFjYjUwOTdkNDliMzUwNGEwMTBiYTIyM2VmYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c819c41fc29e45a39ebb66b85579d724",
+      "statement": "Package exports include subpaths for . (main), ./resources, ./types, ./errors, ./capabilities, ./untrusted, ./mcp, ./operations, and ./package.json",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L16-L97",
+          "version": "repo-lines-v1:sha256:53187e63ff265190f885e638aa95a95256382b22c04d46a8503de1d3216b5524:eyJzZWxlY3RlZExpbmVDb3VudCI6ODIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjMDViYjlmNGE4Yjk4NDUxMGY4MTVhNWZjNDA3OGQ3N2M1YTIwZTkzZjMzNzNkYzVkZGU0YTM0MWQxYjQwYzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFhMDk2NTU4YTY3NzViMDY0MDQ2ZGM3ZTkxZDI2MmRiZDFjNGIxNDcxYjE3Y2YwNzgwZmMwOTQ3M2E2ZGU2YTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVmMWI3NTgxNmNlMTMwNTVkYzg4YjY2Y2YwZmYxZjE3OTNiNDc4OWJhMGZjMDliYzQ4YTg1YmFhMDc0NDI2YTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ae6b5689c94044c19afd31153d08e9dc",
+      "statement": "ApiClient exposes 13 resource clients: activities, customers, projects, timesheets, users, tags, teams, invoices, approvalBundle, config, system, export, and actions",
+      "evidence": [
+        {
+          "resource": "repo://src/client.ts#L311-L323",
+          "version": "repo-lines-v1:sha256:2c5389c0249fa08e8ec704202483197a3229b94431715a47c15b3a4ef43ede43:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3MmNkMTcxYWMyNzdhNWEyNjExZDkxNDA5Zjk4OTA3ZTM2ODdmMjY1YmJlMjMwYzZlODNjNDVhNjI5MGI3ZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRhZTNiZDgxNGM1YmM1NDcwOWIzYjVhMzk2OTBhYWMxZThkYTlhM2QwNjg1MTZiNmUzODhhODg2NTgxMTFhODMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmMmE5ZWYzNTZhNTQ5MzdlNzUxMjcwZDUzZGM4NTFlMmMxOWUxZjYxZGVkZmM3Y2JhYTMxMWExOGQ4MTI1YWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUxMzFmNTE2NDhhOTNhYWViMDNkNmJlNzNiZjJlOWExYzEzMDY4YmNlMGY3NmNmMjBjNDY3ZjY3ZWQwY2E1ZjMifQ"
+        },
+        {
+          "resource": "repo://src/client.ts#L334-L346",
+          "version": "repo-lines-v1:sha256:70a4778af1e4781b2d07e05536b1d173884872baa2ff6e0f45497628a856d169:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4OTg1NzUzMzBkMWVjNjA5YmUzMzVjZjVhZmUyZjlmNjg5YTJkNGNlNzFjOGJlY2MyMzA4YzU2YjM4ZWQxYmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxMjAwMmQwYWJjYjc3MGI5NDg1NWE0ZTkzYmM3YmE3ZDA3MTE4YjAwOGUzMTIxYTk3OWE4NzRkZjQyNjU1YmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmODU0NmQxN2E5Y2M0YTRiZjEwYzhiNWRkZDlkYzhlMmE0NzZiYzE5NjcyNzA1ZTcwNmM1NDA5ZWNkOGI4YTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzODIwYTA0NzMyZTE4ZjNjY2YyY2M4YzM1ZDI3MWJkYmJkNjAxMzhmMzM0OTI4YmQzOTdjOGRjMjg3YTY2NzgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7b0f18e57aa34db699f1918c2f7d31c2",
+      "statement": "README.md documents the streaming list pattern where list() returns AsyncIterable<T> walking every page, listAll() returns Promise<T[]> collecting the complete set, and listPages() returns AsyncIterable<Page<T>> for paginated resources only",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L70-L93",
+          "version": "repo-lines-v1:sha256:3ba668e2086a46d574531f417f642949dc6aafc3655d6b8d0e1aab12d893cb89:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3YzA2YzU2MWQ1YzMyNzM0MzY4NTI2OGE0NmIzMzkxZjM5OThlZWU4OTBkMmJlNTFmMGQyMWNjNGE1M2FlNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjllYmYxYjJlNjc1Mzk4MzQ3MjVkMmY4M2YzZDg2NzYyOGFjZGMzYjg4MDllYjlhZjAxZGM5YTUwZmE1M2JkYzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJkMDFiOGVjMTY1N2YwMGEyZjg0MmViNTdhYTdmODcxMmRlOThmNWEzZmUwMzAxNGQ1MGVmN2ZiOGViNDRhNGUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1f2ace16f5f44f20adc3bd9624477147",
+      "statement": "README.md documents the agent execution layer with resolve, search, and getContext helpers that return compact summaries by default, with expand and resolutionDetails options for full records and Resolution<T> wrappers",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L636-L660",
+          "version": "repo-lines-v1:sha256:a877de4cce4356f41316960fc25eec2eaf94a303ab11aea0df6c3c9babf8a7b0:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3YzA2YzU2MWQ1YzMyNzM0MzY4NTI2OGE0NmIzMzkxZjM5OThlZWU4OTBkMmJlNTFmMGQyMWNjNGE1M2FlNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1NGQxYjBhZmNhMzFhZjY1NDU5MTM1YTk2NThiZWEyYmU2NTlhNzQzMjAwM2RlNTA2M2IyNjFmMTlkZDNjODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU0OWJmY2VkZTgyOGEwNDI5ZmFhOWQ2MmFlOWQyNDMyYzIxNzM3N2NmNzJlMDgwYzBjZTMwM2FlMmQ5NmZhODgifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

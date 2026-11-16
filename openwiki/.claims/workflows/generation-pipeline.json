@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:598a23851074df3be7a92ea69cbb6b630dcf920f3de4a041e26897c522ce221f",
+  "claims": [
+    {
+      "id": "claim_50496ae8af264023ae596c21c35ca397",
+      "statement": "derive-plan.mjs maps vendor endpoints to SDK operations via the OVERRIDES table and produces byte-identical output when re-run with identical inputs",
+      "evidence": [
+        {
+          "resource": "repo://scripts/derive-plan.mjs#L1-L50",
+          "version": "repo-lines-v1:sha256:d92a65711e319632ee75e448c3b45e053e6bca6513cb15e32678ecc27c1b661a:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1OWM0Nzg3MmI3MWYxMjU4OTk0Mjg5MjQ2NGU3NjRjMGRiMzUwYzIwYjcyMjI4NjQ1NjE1Y2MzNmUwYTA3MjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiMTkwODU1NDFjNDI1MTYwMWFkMTg3ZWZlOGI5OTI3OGQ5YmJmNDU4Y2NiNWRkZWNmYzMwOWE4MmU2MDUzZGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYwMDZkZTQ2ZTM3OTEyOTE4ZTA4ZDcxYzVlNDcwOTNmYWE1NjZkYWRlYmIzY2NkNTMyN2YzOGQ2NDkzNDYzNTgifQ"
+        },
+        {
+          "resource": "repo://scripts/derive-plan.mjs#L400-L479",
+          "version": "repo-lines-v1:sha256:d0c78dda956d2dbc6e87fd8c8e8541f6c12d696c79f7045835455a7b92981cb2:eyJzZWxlY3RlZExpbmVDb3VudCI6ODAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE5YjU5OGFiMTExOTk0MTZlODFiOWY5ZGQ2Nzg3M2VhZDZmNTA4MGUwYTk0OTJkOTZkZDM0YmZjZjAzNjA0NjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjZTE4MTBmZGIxMmE5OGQ5OTcwMDNjMDcyNzlhYWIwNGE4ZWVjNDQxZDQwYzFjYmE3ZmJlMzdkMzU3OTliMTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdkNTYyOTQ3NjYyZjg5Njc2ZmNjZTFiYWI0YWRkYjI2ZTFhZTk4MTE4Y2U1MjRjZjgyMmI2ODYxZTI3NjkwZmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3d57b39683d846f7b61346f10410b826",
+      "statement": "derive-plan.mjs preserves judgement columns (helper, flags, metadata, compact, resolution, errors, tests) in capabilities.plan.json",
+      "evidence": [
+        {
+          "resource": "repo://scripts/derive-plan.mjs#L200-L250",
+          "version": "repo-lines-v1:sha256:dc953beb24ac7174c34b850511cdee1a87274508ef84fff47f627cfa71105e2b:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdkMjc0MjI3M2NmOWY1Y2E3ODI2MzljYWVmYTYxMTZkMDU5ZjgyYjdlMjAxMDc0MTE4OTY3ODYwZGM2YjM4MzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcwNzRkMzAxNmMzNmJlM2YwNzk3MDEwZDYzOTMzMmNlMzdkZjhkYjYzZDYyMDYxMGYxN2U2Y2Y3OWYxOGE0Y2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3ZDRmN2EwNmU4ZjQ3NDhhOTE2NWMwMzg4Mzk2OWE1ZDE0ZWFlMGRlMjQxNThlMzQxNTk5YTUyOGI5MGFhNjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMwYzY5MjFkMGVkZDExNzViNmU5NWE4MzBkY2E4MGZkNTA1OWVkOTE5OTE2YmYxZTE2N2ViMDRlNDRkZmRjOWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7ae7dedefb314338a7a68665d829d777",
+      "statement": "generate-capabilities.mjs derives inputSchema and outputSchema by parsing TypeScript method signatures from resource client source files",
+      "evidence": [
+        {
+          "resource": "repo://scripts/generate-capabilities.mjs#L300-L400",
+          "version": "repo-lines-v1:sha256:a9b1814d49c475a6bfdf850e9712d4a5efd401e0133c2717045351a6eb392842:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJiZDEwMmEzNGIzMGM4NGEzZjAyYmZiYTEwNjI4NDZiOTJkMTIzOGMxOTNlNWRiYmQwNjYzMGZhNTNkMDAzMjk3IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIxZjA0OGFlZjY4OGMwYmJlYTE2ZGNlNmIyYTY4MThiNWJlMzA1NWEzYzllMjIyZmI3MmM4ODZkMDhmODJjNGQyIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI3NDgxMGNjNjY3YjYzMTQ0NGI5ZTFkNGM3NjkwYjEzMTY2ZGMzMTE1NDc1ODBkNjUxMzI4YWM0MGNkM2UxZGNhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI3MWQ5OThmODgzMGVlMzcxMjg5ZDc5NTk0ZmNkMzI0NTg4NDE0ZjM1ZDQxMDg0ZGMyNzBiOWY3MGFhNWM5ZmE5In0"
+        },
+        {
+          "resource": "repo://scripts/generate-capabilities.mjs#L500-L550",
+          "version": "repo-lines-v1:sha256:9a722de5c31b847fcdc525bac9e592be5e3ac1b3629e7f7622d9b3d662de74de:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExZGY4N2E0NzMxNmM3MDhjNTUwMjA5OGU5YWY2YzQ0NTM0ZWI4MGJlYWRjZjYwNjMwMjhlZmNhODU5MzdhYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkN2NjM2IzMDRhNjk5OGUyMDcyY2IzNDMyNzQyZDk1NGUyMmNhMDA1YmNjMmFjNzRmYmRiMjFkZmRjZmEwYjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjljNmNiOWViYTBiYmU1YmI4M2VhNTY1MmZiOTliOWRjMjQ5MWI2OWRlZjk2YjcyNDA0ZDcyOTA2N2M4MWE5ODciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYwMTA1MDA0YzAwMjI5ZjgwNDYxMmIwODE5NDAxYTJmNmFhYTUxMzk2MjQ0MWY2MTVkZjRmMDY4ZjkyNmQyZmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_285b8d86301b4606bb45e4dc8f7291bc",
+      "statement": "generate-capabilities.mjs produces src/capabilities.ts as a zero-import module exporting CAPABILITIES and getCapability()",
+      "evidence": [
+        {
+          "resource": "repo://scripts/generate-capabilities.mjs#L600-L650",
+          "version": "repo-lines-v1:sha256:13963f24c0affa73755f15069573612adf2c11f2543b56ad367263b01e34025d:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4MmY2YTVjYzI1OTExOWY3YWYxY2RkMDE2MTgxMjcxYTgyYjEwNjljMjVhMWY0MzU5OGFiYTJjZjdhNDY2N2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg4NjcyMmM0YWQ5NTNiN2RmNTJjMGI0NGI4OTU4MDc5ZGIwMzZhNTM0ODQ2NmIzNThmYjJmY2MxZDVhMjE4NzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ3NzI2ZmE4ZGIwMDI0YzcyY2JkZjk4ZTkwNDgwYjJjMjEzZWFlNGIwMjFhMDQyM2QyMTM0OTRhMzAyMjI0ZGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA1Mjc4Y2ZhMmZiOTg4ZDIwZjgxMDAyODRiNjkwZGFmZjJjYjRiNGVhYTVhNGFiZjZjNDQ0OTc3OTczMzU3YTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e114e0f8aee04ee38902c0dcf8f837b7",
+      "statement": "generate-capabilities.mjs records staleCheck metadata containing plan hash, source file hashes, and test file hashes",
+      "evidence": [
+        {
+          "resource": "repo://scripts/generate-capabilities.mjs#L100-L150",
+          "version": "repo-lines-v1:sha256:3719ac4cccfce3c40839ddc2c45a259014198098845c372d766357e4890cf52f:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlNjc5MGUyNmM4OGIyNTFmODAyMWY5ZGI5NjkzZDgzNDcxYmYyNTU4MjlmNzU4ZmEzY2Q1YmQ3NTBiYTBmYTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwMTRkMjIyYmEwNmRhOTUyNGM5N2ZkZmFhZDNjYzgzODEzNzBiNjM2YjkyODZkNWQ1MjNmODVhOTA0YmJhZWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJjZTNhNzkxODc2ZGY3ZjE2ZTc2OGQ2OGI4YzY1YWJlMWE0MjVjMzUzNmI5OWRlYTc0OTlhMjgzYmFiMmMwMzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjYjQ1ZWI1MGZiOGJkYjRlNjI1ZTY0YjM5NTgzOGJiODRkMjU3NzY4MjMyMzcxNTlhMzA3NzczYmI5ZjBmZWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3b967254b6c24754b8593936ed9a5e67",
+      "statement": "project-mcp-tools.mjs implements the CORE_RULE with requirements R1-R4 and a threshold of 10 tools to determine core tier inclusion",
+      "evidence": [
+        {
+          "resource": "repo://scripts/project-mcp-tools.mjs#L200-L250",
+          "version": "repo-lines-v1:sha256:db19d6724ba33b106fcf332243c688de58336619d89df9354cf4bbfba56267ab:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdkOGIwOGY4ZTcyZDgxODVjODkzMjMyZDYzYzI2ZmQ4ZmQ1ODI0NDU1MGFmNGZiZDI2MGFkNzBlZjIzNDg3ODMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIzN2EwZDc0NjA3NzlhNzQyZGI0ZWZhZjk0ZmE1NThkMjYzOThlNDU0MWNhZTJjZjQ2ZWUxNGE3ZTc2NWY2ZmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQwZGVhNWQ4YzIxOTE3ZTQxMTU1YTBlOWUwMDY3ZWU4Y2MwNjc5NjRhMTMzNGFhMjQwMjY0OTU4YTM2NTdkYjcifQ"
+        },
+        {
+          "resource": "repo://scripts/project-mcp-tools.mjs#L50-L150",
+          "version": "repo-lines-v1:sha256:4087bbd957da2b0a5992a6b1d63208c74407e010c7a9cd6b3732e985dd57e1d7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJiMmQ1NmI3Y2U5OGE2NTQ0MmUyYTU2NWVhMDdkMjY5YzNkOWRjODljMTQ5MDhjMWRhYjkwYjNiMjFlNGY1YWVhIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIwMWJhNDcxOWM4MGI2ZmU5MTFiMDkxYTdjMDUxMjRiNjRlZWVjZTk2NGUwOWMwNThlZjhmOTgwNWRhY2E1NDZiIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJmOTJjYmU1M2Q4ZmY3ZWQwYjc0ZDRkMzY5OGQ3NjBjMjY3Yzg2ZmEwZjBkMmZhNzI1Y2QwOWY3ZDdiMjIwYTlkIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI3YWUwMTA2MTZjYjhiNjExOWMxN2UxYzUzNTAzOGE5NzNjMjJiYTMxZWNlODI4ZDM0ZTY1YjFmMjk4MjYxNDVmIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_7288f5b7702f47cfbb046df89255eada",
+      "statement": "project-mcp-tools.mjs applies curation from MCP_TOOL_OVERRIDES.json for per-tool description overrides",
+      "evidence": [
+        {
+          "resource": "repo://scripts/project-mcp-tools.mjs#L300-L350",
+          "version": "repo-lines-v1:sha256:ec4c75fba74c79a6e07d53c86e1d9b5be79c0e94572cca1e16b927558f011cde:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzNWJkNWFkYTU5ZTc0OGRlMzI2MTEyOGIxZjQyNGQ3MzkyM2I2MjhlMjU4OWI0NmU3N2NjNmUwYTUwYWRkMDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2ZjZlM2QyZWNjNjBmYWIyZWIzZmMxMmE1MDdhNmU3OTNiYTJlNzc4MDBkOTljZjg0NmYxODcwNmRmMDhlZmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFjOTA0MWFjMTM4MjRiOTJlNzQwMWU0MGVlNzUxMzFiOTFkMTg5ODk3ZWJlM2ZmM2YwOGQwODExY2UwYWYzODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFlMmY3ZTU2ODYzYWU2NjNkY2M0ZjA1OWU1Y2Q2NWYyZDMzM2NjNDJkNDJlMGVlYzQzMDNlMjNmMDY2Nzc3N2EifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9997ccdd271147779c88bbd6b2a9fc08",
+      "statement": "build-tool-catalog.mjs generates src/mcp/catalog.generated.ts with CATALOG, INPUT_CONTRACTS, DISPATCH_OPERATIONS, and dispatch schemas",
+      "evidence": [
+        {
+          "resource": "repo://scripts/build-tool-catalog.mjs#L700-L800",
+          "version": "repo-lines-v1:sha256:8fb6643e75feddf41fc5b7b4d49a810fbd1891498afe3db466113c8044966b0f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIwMWJhNDcxOWM4MGI2ZmU5MTFiMDkxYTdjMDUxMjRiNjRlZWVjZTk2NGUwOWMwNThlZjhmOTgwNWRhY2E1NDZiIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJiMGIwMWM3Y2UyNDM3MmQxM2QxNjQ5MjliMjgyNDg5MmQ0MTExYWFiYmZiNTNmODA3OGRmMzczMTZlNmU5MThlIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkN2Y4NWUyMTNmZGQ2MjBiMTRlNzc2NzcyOWU0ZGMxNGY2ZmMyMjk2ZjA1MmM4YTQzNDY0MDM5MWEyODhhMDk0IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlOWYxYmZjYmRlMjM3YTEyMTQxMjA1MjQ0YTljYTQwMzNiODhlZGMwMDU5ZjZkNWMwMzNlNDE3MTJkYWExMjFiIn0"
+        },
+        {
+          "resource": "repo://scripts/build-tool-catalog.mjs#L850-L930",
+          "version": "repo-lines-v1:sha256:bc78cd9da12a1fdc1187caae352ec382f59e3bbc7be8dc8abee9a3c424a8ec65:eyJzZWxlY3RlZExpbmVDb3VudCI6ODEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhYWE2M2IyYTFjNDg1NmQ3ZWU3NzcwMGJkMTM5ZmJhOWMzNjk2YWZlMzVhYWY0ZmFlMjBlNWY4OTNjYWY3NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjllZDlmOWU5MTdlMDhjZmVhOGZmOWI4MzllODcwYzM5ODBmMmIzMTMwMTQzNjFjMWUzMWE5Nzk4MThhMTQ0NzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjljMGRkZDJmNGVkY2EwNDRhZmExNGQ0OGMyYjY2NTMyMTM4ZjgyOTljZTM3ZDU5MGFiNjM3YTcwMzNmMmFmODEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fca8ee473b19440a8c3abacab4a75411",
+      "statement": "build-tool-catalog.mjs projects vendor request bodies from api-docs.json into served input schemas by resolving $ref paths and mapping vendor body fields to SDK parameters",
+      "evidence": [
+        {
+          "resource": "repo://scripts/build-tool-catalog.mjs#L400-L500",
+          "version": "repo-lines-v1:sha256:c547da09e76e12aff0614ef4375cbc8f66154ee1da853a5ab31d7274096ae50c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJjZGY3Y2M1MzIzN2UyNGNiYzY1MWQxMTAzMGE1NjE3NjJlODFmYmRlMWM5M2NmYzM1YzZmOGE5ZmZhNWU5YjMxIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIwMjIyODIxNTc4ZWQ3ZjQ4OGQ5NjlmNzMyYmJmYzY1NWE3YzA2YzE2NmI4YzFjZTM2ZDJjZjcxMDQ1NDI1NWZkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIzNDFjMmExNDQ5Nzg3NGRjZDI2OWJhNDc3NTAyNWY3NWM4MzRkNjliZGIxMWM2YTA0OWU5ZmFhOGM1YzExMTExIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJkMmY4MWE1ZTYwNDE0ZmU2YmNkZGYwYzg5MGJhZTMxZjc4NzQ5MzQ0ZTBkMzY3NTVlNjUzZDk4M2IxODYyZGQyIn0"
+        },
+        {
+          "resource": "repo://scripts/build-tool-catalog.mjs#L550-L650",
+          "version": "repo-lines-v1:sha256:a066845e62820c9044cd290d1d548db784f95fb451b17c5ed2e9b5c7660c52cf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI2MWYwNDllMzUyNDQxZDY4OGZhNzU3M2U5OTYyYWNlOTRjMmU1ZWY0MzBmYTVmNWI1ZmRiMmUxYzVmOWFlOTYxIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI1OTExNDE1ZmE0NTgwMmY5ZWI2NDI2YzRiMGRlNGUwZjRjYWZkYjhiODJlNmFhNzI3NzllOGRkODEyMjRlODBhIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI1MzI1ZmE5YWI2NmJlYzkxODQyNWUyOWUzZDYwMzZhMzI2ZGEyYTBkZGRkOWVhZDYyMjYzZWJmMjE2NTY5OThiIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIyMTJjZTUwNjU1MzZkZTc5OTBhYTgxYjlkNzZmYTJiMTU4NTBlMDFhZTYyMTliYzMyYjFmMjc0OWFmNTA5NmUyIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_df8acf121a7748d29423930a0e9eb354",
+      "statement": "build-tool-catalog.mjs validates vendor-required fields are served to prevent the node-hudu #70 failure class (false closure or absence claims)",
+      "evidence": [
+        {
+          "resource": "repo://scripts/build-tool-catalog.mjs#L200-L300",
+          "version": "repo-lines-v1:sha256:6f9e49fb38713e1ab1be289e778a4480806583872daafe9f43749ac5b1174693:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI2MmVkNDM0MDIxZDZjYWQ3NGJhYmNhMTNmZmJkZTJhMjIzMzQ2OWE3NDhjMDM4MGFkNWMwZmMxMGY4YTFjNzM4IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJjNWQ5ODVlMWZmM2RmYzc4OGE2OTY4NWJmMTVmYTQyYWQyYmYzN2U3NjYwZWEyODI3NmVhOThkZDZjNDIyNDNhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJhOTFmN2M1MjEyOTJhOTczNjg0NmY1OGNiODU1MDQ4NGE0NzQ2ZmRiZjE0MWFiNzcyZDBmYTVhZDE0MTAzOWM0In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_a9b3c94923c34747946fd2ba31e0feee",
+      "statement": "INPUT_CONTRACTS are closed with additionalProperties: false and exclude tool-level arguments (dry_run, confirm) from operation contracts",
+      "evidence": [
+        {
+          "resource": "repo://scripts/build-tool-catalog.mjs#L500-L550",
+          "version": "repo-lines-v1:sha256:8f0f0a19174ba25ea67b51a119dad8004cbef5f5e37791db375ff6cc11104a5b:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyMjI4MjE1NzhlZDdmNDg4ZDk2OWY3MzJiYmZjNjU1YTdjMDZjMTY2YjhjMWNlMzZkMmNmNzEwNDU0MjU1ZmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxZjA0OWUzNTI0NDFkNjg4ZmE3NTczZTk5NjJhY2U5NGMyZTVlZjQzMGZhNWY1YjVmZGIyZTFjNWY5YWU5NjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU0MGEwNTAxMTZiZTZmNTJjNTNkODZmNjBhM2M1ZjFmYmM3ZGNlZmIwYzIxN2ZiZjU0NWZjMmFiYzcwNzIyODYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMyNDVkYmFjMjkzMWVjNzgzYWFiZTlmZGQ0NTExMGI2OTlmOWI0NzY3YmFjYzc3ZjZlY2U5ZjRmNjg4NjFjMmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_07cc9b57ce51475aa6996efb77c772b6",
+      "statement": "test/mcp-served-text.test.ts enforces that served contracts never claim false closure or absence against the vendor spec",
+      "evidence": [
+        {
+          "resource": "repo://test/mcp-served-text.test.ts#L67-L113",
+          "version": "repo-lines-v1:sha256:5e007f1773a2ddee375118aa9f002e6d0c0282525fa04c469d165b0ca883298f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNlZjExNTA5MzE4Y2UxN2QwMTM1Y2M0MzNlMzI3ODlkMWIzMTljNjhhYTQyYjE5YTMyYzkwZjY2ZTdiNzc1ZGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVjMDE0NzQzNGY5NjMwYmNiNGFhZjRhNjJmNzZlNDRhNjZmMjBlMTgyYTIwNTkwZjM5Njk4NzM2YmQ5ODc4OTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIzN2U1YmI3MzRiYzlkMWIwOTk3NjkxMDgzNTQ0NTc3OWFlOWJhYjljN2I1ODg0MGY3MDAyNWQ1MWE4Mzc4NmIifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:d80c0ba7aa74bc8c04dbc010dc322d8aaa7965d5d3b82d1dc3a307aa5a3a5306",
+  "claims": [
+    {
+      "id": "claim_a40fae78e4d5426384aef98877a02df2",
+      "statement": "SDK publishes eight deep-import subpaths plus root: ., ./resources, ./types, ./errors, ./capabilities, ./operations, ./mcp, ./untrusted, and ./package.json",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L149-L152",
+          "version": "repo-lines-v1:sha256:c0ef93939a0ef696728e1badcdf931a0eb1be4778b9215c6db1507248b0eacba:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjIwNWIxYzliM2I3ZTM0MmMzMTIxZDc3YmYyZjFkNDhjZGFmYzY2NzY2MjZiMmFmNDRjMjhmZWY3ZDUxZWQ4NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmUzMGUxNzlkMmVhMDQwMDMwMzM3NTc2N2E3MTkxMGNhZmEyY2EzZTk4YWJjZDE3YmFkM2JhMWQ2ODE0OWQzMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2UzNzBmZTUyZDE3NzI5NWYyMzliNzVlOGE0N2FiN2U0ZTU0ZWYxOTQ0Njk2M2NlNGUwZTQ1M2QyNjEwZTdmMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGZlOWQzYjIxNzYyNTY2NDUyNjJhMjc4YzY3ZWVhNTY1MjFlYzVlZTZmMTViNzEzNzkzMWY2MGI1MjdiYzcyOCJ9"
+        },
+        {
+          "resource": "repo://package.json#L16-L97",
+          "version": "repo-lines-v1:sha256:53187e63ff265190f885e638aa95a95256382b22c04d46a8503de1d3216b5524:eyJzZWxlY3RlZExpbmVDb3VudCI6ODIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjMDViYjlmNGE4Yjk4NDUxMGY4MTVhNWZjNDA3OGQ3N2M1YTIwZTkzZjMzNzNkYzVkZGU0YTM0MWQxYjQwYzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFhMDk2NTU4YTY3NzViMDY0MDQ2ZGM3ZTkxZDI2MmRiZDFjNGIxNDcxYjE3Y2YwNzgwZmMwOTQ3M2E2ZGU2YTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVmMWI3NTgxNmNlMTMwNTVkYzg4YjY2Y2YwZmYxZjE3OTNiNDc4OWJhMGZjMDliYzQ4YTg1YmFhMDc0NDI2YTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_114dbe57a5844fa8ae707760481e3a55",
+      "statement": "Each subpath exports both import (ESM: .js, .d.ts) and require (CJS: .cjs, .d.cts) conditions with dual format support",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L17-L97",
+          "version": "repo-lines-v1:sha256:9293baa7a40522755b2c274659701f269de344af4c60f0d021817c77eeace925:eyJzZWxlY3RlZExpbmVDb3VudCI6ODEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2ZTQ4YmQ1YmM3N2M4Yzc3MDA0NDYzYmU3NzY4ODVlMTE0MDc3MTdkY2EzOTJkNjYyOThiMjY1NGM5NTViMzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEyNjBiYzUxMDUzMWNkYjZlYzhkN2FmZGZiYWI4Njg4OTQ0MTM2NWU5MTU2N2U1MzZmMGQyMGM5NmYyOWNiZDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVmMWI3NTgxNmNlMTMwNTVkYzg4YjY2Y2YwZmYxZjE3OTNiNDc4OWJhMGZjMDliYzQ4YTg1YmFhMDc0NDI2YTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_49f698974a364510ac66edbaedbc3916",
+      "statement": "node-kimai/capabilities exports zero-import static data: CAPABILITIES, CAPABILITY_GROUPS, CAPABILITY_NAMES, effect-filtered operation lists, and getCapability lookup",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L34-L35",
+          "version": "repo-lines-v1:sha256:a040fb4233fc209ca2fef1acd2ce950053dc92c8f3a257743a119d1726c702bd:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTczYTllM2JkMzI2MmMyODhhNjc5NTQ2MzgyNWZiYWU1MDhjNTFjNDE5MmJmZmI4MjBhMjM5MjA4OGFiYjU5MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTAyZjI5Yzk2MmJmYjJjMTc1MTU3NzZkNDA1NGRlYjE3ZTBjMzlmMjc3ODAxM2ZmZTQ3MTQ2ZDE5YmM5NjM1OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzMyOTRjOWQzMDFkMjAxZWE5NTUxY2U2NjMxMjJiMjVkNWFjYWQzNjExOGI2ODc4ZTI4OWQ2NGQ2MjVhYWRhZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2U0NjlmMGIwNWU2YjA1OTc5ZGM5YjRmODQyN2RhODY3ZTg5MzMzNzk5MDUyODcyZTBlMDQ2Mjg4NmIxNmZiZSJ9"
+        },
+        {
+          "resource": "repo://package.json#L57-L66",
+          "version": "repo-lines-v1:sha256:5ba86cd99c16937b4ed197a172b8cfd5d18823481860b9b1fc0aca4e148596af:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3MzU1NzgwYWI2OTZmNmE5MGNlZDhhNTZhZDNlNDI2MzEwNWU5ZjBiYTM1MDllZGZiNTUxOWEwOTE3OTQyYjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmMGNkYjk3MmE3YmZiN2VkMjQ2ZjlmZjY3MjM4NWU1NWY0OTY4ZmMxMTA0M2RjNWI2ODRkNTFkZmEzMWRiY2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI5NTk5ZDdkNjkyY2U1ZTg2NjZkOTIwYzI1Y2E3ZmU4NzViZGNlZWUxNWRkZGQwNTBkMTExYWQ2NWMwZTc4ZTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgzNDdmOWJiZDczODY5NjFkNWJiMmI0MWUwYWY5MTIyOTU3ODZmMmYwOWJjNDVkZDNmMWVhZDY4Njg2OTRmNjYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d74f3391c3b34631a3a10fb012e75577",
+      "statement": "node-kimai/operations provides MCP-independent invoke layer without MCP runtime dependency, enabling validation and governance in one place",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L35-L38",
+          "version": "repo-lines-v1:sha256:d6cf8d3cd5e2b38970893022cf3d0e99c3ae70aa9911796bfa229a3700be69c4:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTAyZjI5Yzk2MmJmYjJjMTc1MTU3NzZkNDA1NGRlYjE3ZTBjMzlmMjc3ODAxM2ZmZTQ3MTQ2ZDE5YmM5NjM1OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTNiYTlmM2E0N2JiMTM3N2JlZDVlMTIwZWUzZjNmOTRlOWQzMzcyZGRkYTU0NDZkZGZlN2ZmYTlkYWRkNDI3NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2EwNTMwZjE3MjYwM2Y4ZWI2YjdjYWM2ZmE4ZTFmOWY2N2QxNzhmZjg0OGMwMjBkNGJhNmMzMjVmMWRjYTdmNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjgzZWE4MWRhYjQ5NThkYjE4NDRjOGIwOTg0MWI1ZGU0ZTdkZmE1NjQwNzg3N2RiNGI2NDNjNWFiNDk5ZDJkMSJ9"
+        },
+        {
+          "resource": "repo://package.json#L88-L97",
+          "version": "repo-lines-v1:sha256:1b0913d9502d586bff138b4e368a667037ffe6a7877875ac16ebb5b3c428b180:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRmZjFmOTQ1MzIzZTMwNzcxYzg4OGY5MmE4ODU3ODUyYzFhNjFjNWVjODI1ZGMxOTNiZjAyYmRlNmEyZmY5MTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQwMTBmMDI3MThhN2UxYmYyNThhMTdiYzQ2M2JmNWMxNDEzOGU5MWVlNTdiY2ZkZmZkY2IwMmZlZmJmNzY3MWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVmMWI3NTgxNmNlMTMwNTVkYzg4YjY2Y2YwZmYxZjE3OTNiNDc4OWJhMGZjMDliYzQ4YTg1YmFhMDc0NDI2YTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a5d12a0f5a9e44de91ffd533c103044d",
+      "statement": "Package marked sideEffects: false enables aggressive tree-shaking in bundlers",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L6-L6",
+          "version": "repo-lines-v1:sha256:264a83b721b4528c4063ffbbcb978605cc5ef5cf93f705ecaea5ae75526dce19:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjY0YTgzYjcyMWI0NTI4YzQwNjNmZmJiY2I5Nzg2MDVjYzVlZjVjZjkzZjcwNWVjYWVhNWFlNzU1MjZkY2UxOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjY0YTgzYjcyMWI0NTI4YzQwNjNmZmJiY2I5Nzg2MDVjYzVlZjVjZjkzZjcwNWVjYWVhNWFlNzU1MjZkY2UxOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjZjYzIyMDFjY2Y5NjNmZTU0NmVhZDczZjQ2ZWQ1ZjNkYTJkMjg1MjBmOWVjZDdkOWJlODY3MzBhNzMzZTdlNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjc5YWZjOGRiZGZhN2M2MDZhZmQ4NGRiOWMxNWY3YzYwOWIxNmNmNmVmOTE2NDRkNTBkNWZkNzY3MGZhZDk3NiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f9f4bdd95aec4bdb83f4117c6776f228",
+      "statement": "scripts/public-surface.mjs verifies published surface: exports alignment, file existence, load tests for ESM+CJS, and zero runtime deps",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L897-L907",
+          "version": "repo-lines-v1:sha256:e9f7946bf8286b418852dbae199836a7b2b6eb000483f218730b30710fe844b8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyZTZjODRiMThiYWM1ODBkNWY0ZjE4MDMyMDY0M2JmZWQzNTBmZDY1OTVhOTkyNTI2MGQwNDliYzRlN2EyNmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1MDFkYTgwNmJlN2U2ZTA5MDM2MmU3MmNiNTc3NzI4MWYxMTg4OTE5ZWY1OTAzYjY0MDhhZTQ0YmRmMDRlMTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRmZjY1NTY2OWNiNDY5NWNiMTM1YmYxNTU3OGEzYzFlYmZhZjlmNzA0NTRjMmU1ZTYzZDAzMTc1MjA2ZjY5ZTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFhNzJhNzU0Y2RkZmI3YzVhZTA4NzFkZmI0NzYzY2I4NGFkMDZhZThmYTZkZTU3Yzg4ZDMzMDljMzdjOTg0N2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_70b1463fd4ff4a5281b012528f8ffd1e",
+      "statement": "Tsup builds with one entry per subpath, producing four outputs per entry: ESM/CJS × code/types",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L642-L645",
+          "version": "repo-lines-v1:sha256:58f244860e0d42b04831a6fffccbfca72ca618c5be977c994619802242d39ecf:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzkwYWUwODk4YjIyMWU4MGI4ZTZlMDRjY2RmMmE3MmFmNTlmYWFjNjU2NThlMGZiOGYyYTZiNDk5ZWYxN2I4NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjEwNGNmZjdiMTViNDdmMWZjOTkyZWRmNGU4MjdjYjA3ZDhhNTM2N2FkYmM1MTY3NTQ3YzI1NWRlZWI4ZWVmNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzRlNWY5NzZlMGMzYTExODlhNTBjYjA0NWMyYWJiMDg1MGFlZWJiYzU2ZDQ0YmQ1ZmY2N2I5YjJmNzI3NGQ0YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzYyOTYxYTcxNDJjOTc3MTQ5OGU3NTY5NDBjNDVkNDJkOTkyODVmYWRhYmQ1NjExNDZjZTViMzNmMWQ5MDVmMiJ9"
+        },
+        {
+          "resource": "repo://ARCHITECTURE.md#L98-L101",
+          "version": "repo-lines-v1:sha256:56b093bdbbd83bf3fd4b3a7b272e9f8c530da2f3aaf578103a30478282e24b25:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmNhMGM4OThhYzRiZTgyYTI0ZGFlZDEwNWNlYTAwYjI4NjE2MDZiMmM2N2U5ZmU2MzE1OWYwNWFhNjg1NWVhZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWZhOTljYWMyZWE2ZGVjZjVlM2M1MDVlOGM4NWFkNGE3ZDdkYWNiMmVkZDJjYTRjMTNiZTg4YTcyMDljNjVhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjA5YjhiODUyOWNkOWFjNTk3Yjk1ODY1YzNhMDQ0NzBhZTI3NDkxNzdlZjE0ZThmOTgwMDcwYjQ2NmRkM2UxNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2Y2MTU3NGMzMjk0NmRmZjNhOWQ5MWFiMDhkNDYzOGEzZDRkZDQyM2ZiNTBhYTU2ZjUzMzg2Y2FmMzVmNmI2ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_55756cfd0a5345948d545dc385ab6db8",
+      "statement": "Root barrel src/index.ts re-exports from all layers for single-import convenience when tree-shaking not needed",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1-L50",
+          "version": "repo-lines-v1:sha256:80d87cb4dced1020ef955afa42d03ec23ba50f6bb43bebc74fafcfa769ce330a:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczOTMzMGEyNTgwYzljMjBkYTc4Y2UzOTdiY2IyZThjZDM0ZTg4NTNkYzUyYjVlODNkM2U5YjgwZDEzNjBiMWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxMWE5MTQwNzYxNGZmNTVhZGZhZjVlMTViOWY2MjBiODZkZDYwNzkzZWY0YjY4YmNmNTQzYTgxYmQ3M2FkMWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM1YmI2YTI4MDljNzZkOTk1NjM2ZGQ5MzEzMTg2NjVlNTBjYzIxOWE3YTkwZDEzYzg2ZDBjZThlZTIwNmNmZTYifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

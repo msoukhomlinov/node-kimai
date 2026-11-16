@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:bee85172707645c6c0d3d1f01536de109597a06786acc90300321666790e0873",
+  "claims": [
+    {
+      "id": "claim_a4b26f8cf6964391a45603f00e96ea59",
+      "statement": "Every resource client exposes list() returning AsyncIterable of individual records and listAll() returning a Promise of the complete array",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/ActivityClient.ts#L138-L146",
+          "version": "repo-lines-v1:sha256:1039af6b94a377410b6f0e409f316b11038527ded18b4cb5b6b0d921650c5712:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzRjZDBjOTQ1MDMzNzYzOGJlZjlmMmM1NjNhZGI5MjdiNWU4YmRkNTQ0NmM1M2FlM2UzZDJiMTRjOGJiMmE1MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmFkMzBiMmMxYmY5OGQ4ZTQ5MzQyMDFiMDA5MzI2OTU2NGJlYjlhZDFjY2ZjM2NjYTY4YTkzYWU4MzQ3ODk4YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGUzODkzNjhmY2EzZjcxNzExMzJiOTRiYWVjOTU1MjRjMTFjZDQxNTMxMzBmMmJlZGVlNGM2MWY5MDg1NjY4NSJ9"
+        },
+        {
+          "resource": "repo://src/resources/InvoiceClient.ts#L149-L159",
+          "version": "repo-lines-v1:sha256:f3d5cf0b8a3e58852454e30c23067a8df6e8c8480e3cb007b3dddcdd41898217:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBiYmEwNzM3ODE3OGI2MjY2Y2YxNjlkNjJiMGVmMTFhZTBhMWEwZmFjOWJlYTlhMzUyY2VkYTdjM2NlMTAwY2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYwZWE0YmMyYmQwYTg5M2UyMjI2OGNhYTA2NWJhN2YxNjdiMzU0ZTFkMGYyYmM0MTZkNTUwNzdkNDlkN2YzMzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyN2M5Zjc3MzYzOTU3MzM1NjcwZDI5MWNjODA2Y2YwMWM5MWZhMzRjZWM5MDc4ZDUwNDVhY2FiYzQ5NjA4ZTAifQ"
+        },
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L143-L153",
+          "version": "repo-lines-v1:sha256:8cc0941438992d0168cbadb04f0015440e9cbb9e0e043ac494791f8ae6ae3f73:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY4OWY5NTI5ZGU0NTg4MmIxMmRlN2Q2YTY0ZTkyYjIzZGFjOWM0Y2EyY2UxMDg1YzQ4NjcyM2NkZGRhNjk5MmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRmZDE0Y2UyODliMjIxOTBjMmQ1YjhmMmVhZmY3ZjMyYWM4NDlhNDliYWFlZTliOGM2NzUzZTFjNjViZDczZGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhiMTU3OGExY2Y1NmNjYzk2MzM1M2U4YTRhZWVkYzlhOTNkMzllNjAyMDhjOTBiMGI1YTA0YTE5YWE4NGMwN2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1e2b5e77feb244708f7d297fdff47eee",
+      "statement": "Paginated resources (Invoices, Timesheets) additionally expose listPages() returning AsyncIterable of Page objects with metadata",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/InvoiceClient.ts#L161-L170",
+          "version": "repo-lines-v1:sha256:b81f82a20194c41824d42f6c5c3a4d46fc48075ae3f2ad8b4434746edbe3d186:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwYTQwZTAyOWI0YWJmMjM0NTMwODFlZDc1YjIzOTA2NzA2NWQwNTRmNDhhZjEzNzFkYzE0MTBmODBkOTc3ZDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRiYzQ1NzAzYWY5ZDExODk1ZDMwYmI2OWYyMmI1YzUzOTgzOWNmNjk0M2VmY2EyZDY5MGM0ODY0ZThjOTFjYTQifQ"
+        },
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L155-L164",
+          "version": "repo-lines-v1:sha256:2288480f929ab2f0c6f4ab23582da43de303f0df55cbf7ea0bc7f66ce03e39c3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwYTQwZTAyOWI0YWJmMjM0NTMwODFlZDc1YjIzOTA2NzA2NWQwNTRmNDhhZjEzNzFkYzE0MTBmODBkOTc3ZDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImExMDRkZTNjNjgyOTMyNjNiYjBkNTEzMTk5NTBjMzQ4YmNkYjgyY2I4MzkyOWFmM2NjNDZkZDExN2RmYjk2YWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1953172ffd004737957d44e92725e6b9",
+      "statement": "Kimai returns bare arrays without totals, so hasMore is derived as items.length === size",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/paging.ts#L3-L6",
+          "version": "repo-lines-v1:sha256:c93f9b60db8fc3d52ceda9e9a615591d5c1f48643e0798fbf7eba3874d1d08d3:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDU1NzZkNzFlNTc5NTQwNTFmNDk1MzBiMWIyOGJjYTUzYWJlMmZlZDc4ZGQ5OTY2NDQ5YjRkZWI1MjViOWRlNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWFkOTRjOTAzMzNiZDFkNzhhYTdlZTAzMDNkODM2YWNlNGE0NzA3OTM1ZDU4NzdmN2FiMzUyZWY0ZWM2NDQyYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjIsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjFjYTMyZTc1MmNhNmY0OTE2Mjc4MjdkNzJiMmVjYmE4NGYxMDk1ODBlMjgxMjk1MWI5NTQ4MDE1YmI5Njc0MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2YxZjZkOTA4OTYxZTk5NzM3MTllZTA3MzQzYzMxNmZhY2IwYmY3OTEzZTc0NzA3NmYxNjJlMjM5YTMwMjhlZCJ9"
+        },
+        {
+          "resource": "repo://src/resources/paging.ts#L35-L39",
+          "version": "repo-lines-v1:sha256:fe23b992882f27d59a9617ab8c2e80d020ccc60b0e9728f3f2b4aaca77bc459e:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcyYTQyOTM4MmIyZTE0NzE4ZTBlMzdiMDU3MGE4YTE3MDI5OTFmY2Q4NDk4Y2Q4NDA2MGE4YmY0ZjA1MDE3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWIwOGEzMjEwNGFlNDc3NTk2ZGM1OWU5NWM5M2U5YzgwYTA2MGM5ZmYwNWVmZWI2YWUxY2VmZWZiYTFlZmQxNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjQ4OTdjYjkyMWY1NmYwZGY4MmY3ZGMzZGUzMjVmYWMyYzczNmIwMWIzMmRiYTY0NTM4ZDZhNDU4NjA1MGU5MCJ9"
+        },
+        {
+          "resource": "repo://src/resources/paging.ts#L53-L53",
+          "version": "repo-lines-v1:sha256:65395f7dc5194446a6b401caf749c14172394d268de8585884bcbe240a9bf73f:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjUzOTVmN2RjNTE5NDQ0NmE2YjQwMWNhZjc0OWMxNDE3MjM5NGQyNjhkZTg1ODU4ODRiY2JlMjQwYTliZjczZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjUzOTVmN2RjNTE5NDQ0NmE2YjQwMWNhZjc0OWMxNDE3MjM5NGQyNjhkZTg1ODU4ODRiY2JlMjQwYTliZjczZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2UzMDgwYjc0MGU1OTZkMjkwNzQyMzE2MzlmOTFkYzBjNjhjMWZlMDYzYTY0ZmY3MzRhM2IzMGY2YTNiMzg0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjQ1ZGE0ZDAwYzdhYWJhYWY2ZmEzOWIwNDc5MzQ3NzI0ODFhYWUyZWVlNjE2N2M2NzUxMDQ0YWJlY2NmZmI4YyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1aa6507eb4404aa093acd45be3666db2",
+      "statement": "Page interface carries items array, 1-based page number, requested size, and derived hasMore boolean",
+      "evidence": [
+        {
+          "resource": "repo://src/types/common.ts#L9-L23",
+          "version": "repo-lines-v1:sha256:d2ae619d4eb88225afd3760fc4c466d1048089441532b293d0a1d61dbcf48bda:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NzU1MzM4YmVlOTBkOTU5NDcwODIzY2Y5ZjQ5ODBhYWY3YzM3YzExOTJjYzMxMGY3MTE0ZjcxYjRlODlkZDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNmZDJmMzExOTkyMDliYjJkNzhjZTNkZDE0OTAyMDVhOTFhZjZjZWVlMGQyYzk1NjJiNDUzOWJkMmNiOWQ1YzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bff2686b29dc483fad25b8dca6e64ab9",
+      "statement": "Paginated resources validate page and size params and throw KimaiConfigError for non-integer or non-positive values, never silently clamping",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/paging.ts#L19-L33",
+          "version": "repo-lines-v1:sha256:749698ac54219c93238435305acdd3d34685c03d5585311d35647858320300d3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE2M2RhNzFkOWY5YmEzZWU4YjgyZjk1ODZhYWNmYTAyOTFiZDgwNmRhYjFjNWYwZDQ1ZjYzNWUzZTBjMTEyZjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY1Zjc2MjZhMGI1MTM0ZDUyYmU4ZGU1ZWRhZDk5ODg4MWUzNTYxMzYyYjlmNTVlYzM5YTBmYWU1ZWVmZmU1MDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE3NDliNTUyOTMzOWMyMDBlZTI0ODQ1M2ZlOGI4YzJjYWQwYTY3NzYyNzk2YThkYjE5YWY3NGQwNDEyM2NiYjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0829f2a9c6fe47068ab9bc7c43fdbd4a",
+      "statement": "Default page is 1, default size is 100",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/paging.ts#L12-L13",
+          "version": "repo-lines-v1:sha256:ec20fe9cee4c99a57caa0665d3121acb1aedfc78fd14a6d545ad3a6639477702:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjJkMTA4OGZhNzJkYjA0YWJjYjE4YmIzODFlNzVhNmQ5OTg3MjRlYTBhNjEwMDY5NDVlNTY1ZDYzODI3MTkwNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDBhMzQ2ZjM1YmIzNjQxYWZiYzFlOTNlYWQyOWU3MDBmY2ZkZjdlYjhlOGEzOWFlMDVhYmJkNmU0NmZjYTgyMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzc1NzUwMjhmNWM0MWI5ZDE2MTk5NTUyMTg1NGYwOThjOTU0NzhkZmNkNzc3NDdlMWU4YWM2ZTY1ZWY1ODdiYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzI0M2RiZmRkMDMwMzRkYjFiYzEyZGVlMWM5NWEwNjFhZjY5YWI3YzYwMTBkYThkMGFiNWJlMTg1MTNiZTUyMyJ9"
+        },
+        {
+          "resource": "repo://src/resources/paging.ts#L24-L25",
+          "version": "repo-lines-v1:sha256:f2533a07903660036cc8ff9c5f97faf1deef363b3dce652e5f122ea1c248a206:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTY5ODE5NDgyYWU4OTM4NWNkZGI2NDUyNmRjNDk5NGNkZDM0ZTRjNDA2MjlhYzM5YjYwYmRlNzc2NzcxNjA4NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWJjNDgwMzRlMmY5MDg0YTMwMGU5ZDg3NDU0Zjk3YWU4OGJkNDgxNTYxOWNmZWVkZmJjNGMzNTU4ZjRhMGFlMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTlmOWU0NzM1NWI1OTc5Zjk0ZjkxNWVjNjg2ODQ3ZjNkNmI2ZTY4MDM4MTdkZmExZDA3OTdkN2JlYjBiYmYyNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmQxODIxYTVkMGY2YTZlMzhlNDEyNWNlM2RkNTM4YTc0NDU3NDA3OWNhYjY4Yjg2YzM3NGIxM2I1ZTc3MTZhNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e23a469e3abf4081bf5dbde68a53bb2f",
+      "statement": "Pagination stops after MAX_PAGES (100,000) with KimaiConfigError to guard against runaway loops",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/paging.ts#L15-L16",
+          "version": "repo-lines-v1:sha256:4cd7558da71081f42268c58c9916eaf86dc57861ce6372870d6078c04e63951b:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDgwOTUwNzFhZjQ1MzVmYTY5NjUxMmM4NTY2OGE5NWE4OWQ2ZTcyMmNkYzA0YmM0NWQ1MDRkMjgzNmM0YmQ0ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2M3NjU0YjM4YzI4YzAwMWE5MzU0MTY3ZTE5NzI5OGJjMWE0NWZjYzY1NDdhNjViYzUyZWZhNjM3ZDY4MzVjYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWIzMjE1ODNlNTIxMmIzZmIzMWEyNDNmNjFmNDYzZWY3YTVkYmI2YTMwZWUzZTk0ZTgwZTg1ODNiNmQ4MWIxZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWQyNDk1YzE5MmUzZTE1NjZjOWViYWIzODYxODc2Mzk1NmRkNzc1ODI4N2NlOThlMTZkYTZiYmQ1NWEyNjY3ZSJ9"
+        },
+        {
+          "resource": "repo://src/resources/paging.ts#L48-L50",
+          "version": "repo-lines-v1:sha256:b29643049e714b0ca4dd052dc24fe6941c99af1575b5e7d86f9ec9f802ab50c1:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWY1OGRjODgzM2YxYmYzZWM2NzJlNDk3NDMxYTA0OTQyMWY3OWI3OGYwYTI4MzQ4YjU1NjgwNWYyMzgwM2RhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDc4OTBjYmM4YmY5MTliMjkyNTZlMzk4MTQxODNkYjRkYmM3YmQxNTlhODQ0N2Q2OGZlZTk5MjhiY2Y5MWU2NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTgxNGJmMjc5MjI1YTQ3ZjgwNWNhMjkxN2RkMGVlOTgxYjljNWQ3MjA3MDA3OGE0NThiZGIzYjc2NzlkODFjOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ff1c038209c24fe3a91218b232e222b6",
+      "statement": "Paginated clients delegate to shared helpers streamPages, streamItems, and collectPages in paging.ts",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/InvoiceClient.ts#L27-L27",
+          "version": "repo-lines-v1:sha256:e7521ef163aeb621b191fafeb3245d0e1b5e6bf76623b2c1a19ddc67840000ca:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTc1MjFlZjE2M2FlYjYyMWIxOTFmYWZlYjMyNDVkMGUxYjVlNmJmNzY2MjNiMmMxYTE5ZGRjNjc4NDAwMDBjYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTc1MjFlZjE2M2FlYjYyMWIxOTFmYWZlYjMyNDVkMGUxYjVlNmJmNzY2MjNiMmMxYTE5ZGRjNjc4NDAwMDBjYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDVkMTRjMTljYmJlYzU1YmQwZmJhMWM4MmE4NGQ4ZWYxMzQ2OGNlN2I1YWNlMDQ5YzcyOTU0YTMyMWY1Y2NiMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWU3NmJkOGQwNWIwOWQ4YjE3YWFiZjg4MWI4NWQ0ZmU5MThiZWE3NzYxYjY4MTc1MjY0ZjRkY2FlZmViNTQ3ZSJ9"
+        },
+        {
+          "resource": "repo://src/resources/paging.ts#L40-L80",
+          "version": "repo-lines-v1:sha256:a6cb30db45182e9c0f6b0a668c663083d3ac94c80316861b8632637cbdc8b18d:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwNjEzNGQ2ZGNiNmJkNmE4ODVkYmQ0MmY4YzFhNzcwMWI1N2FiZGJmYjk5N2E4NTczY2QyZThiNmZhOGMyODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU3NDNhYzgwNWNhOGEwMmRjNGMyODMzYzFmMGM0YTYwMTZkMjIyYTIyZDc0ZjY5MTYzOTVmMjUxYjJlZDUwOTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNiODk0MTUxYWQxOWU5OThkMzVkNjVhMjBiZDM2MWVhODcwNGFhYmU4MzJlYzFmMjU2ODVmMTFjZGIyMzUxNWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2526b4ee74484066b79b37205ce9f73a",
+      "statement": "Non-paginated resources delegate to streamOnce which yields from one fetched batch",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/ActivityClient.ts#L139-L141",
+          "version": "repo-lines-v1:sha256:193be2b7804996fc5b216d7cd3f39a986344860a8cedd7ec4c11d3216bc6a069:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTRkZWI5YTRjZjJmM2UwZDA5NzdjMDgzNmE0OTZkODg2ZGRlNWJlYTA0NjQ0MjQ2YzhjMjI5YmJjMThhZTlmYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDYzNDFmMzBiYWI4OTAyNTRjNGQ2MTg2ODA1MTM4YTE2NzYyMjIzMzllMDRmOGRlMThlY2I5Yjg3NTE0NzMwYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjJjM2EyMDk5ZGYwN2Y4NTljNjlhZGY5ZmJmYmYxOTQxMzNhNjk5NDQxYzNmMWQ0Nzk2YmYxZTNjZTg2ZTQ4OSJ9"
+        },
+        {
+          "resource": "repo://src/resources/ActivityClient.ts#L29-L29",
+          "version": "repo-lines-v1:sha256:a64a8c27a7316cd89a3788be00742db34ba9557fd9a86a7d3678a5c92c1f3ad9:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTY0YThjMjdhNzMxNmNkODlhMzc4OGJlMDA3NDJkYjM0YmE5NTU3ZmQ5YTg2YTdkMzY3OGE1YzkyYzFmM2FkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTY0YThjMjdhNzMxNmNkODlhMzc4OGJlMDA3NDJkYjM0YmE5NTU3ZmQ5YTg2YTdkMzY3OGE1YzkyYzFmM2FkOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDVkMTRjMTljYmJlYzU1YmQwZmJhMWM4MmE4NGQ4ZWYxMzQ2OGNlN2I1YWNlMDQ5YzcyOTU0YTMyMWY1Y2NiMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjY5OTI2YjVmNzE5ODhlNzk5MmU0MjE0ZTljNWQ3NjE4YzZhODU3ZGNmYzUwMTI5OTI0MzU1NjNmNGQwNGRjYiJ9"
+        },
+        {
+          "resource": "repo://src/resources/paging.ts#L82-L89",
+          "version": "repo-lines-v1:sha256:c72da1e9564f99d4b092845c22b10bd5a9602324ceacafbeb85adfc87974a9cc:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDI3OWI2ODA1MjBlZDUyNmRjYzRjOGFhMzczNTI3NTkwZTI4MTk1ZTQwZmJlNjEwN2UxZTViNDk1YTQ1NzczNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1faf8c5db01d4d21b050863c3a68c565",
+      "statement": "Timesheet list methods default user filter to 'all' when user and users params are absent",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L167-L170",
+          "version": "repo-lines-v1:sha256:c176780a26b60f10d34193c3a70fc1c33796da7614f968a72c170b7cf7119b01:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGNjZDQyMWZiNDg1MWMzODNjYTdmMjI5MmMxZmY5OTcyOWMzYjE4MTRkYTMwZjRlYjEzZGVmMzM1MjdjYzg3NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2Q4MjRiMTZlY2NhM2U2OTY4ZGE3MzA0MmM1NWU3OTE0ODRmZjZjYjdiNTM0NDNjODMxMThlNTc4NTQxZjE2ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzE4NTZiNzliYTExMmI1NjdmNTljZDg1ZjhmMzM3MDczYmQ1MmMxYzFlMWQ1ZTU0MzBjNmQ4ZWZlZTM1YWY0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmJjMzJhODFiYWE4MTI4NTdlYWNlMjkyOTI3NWVlY2RlMDg4ZjAwOGMxYzk2M2NlM2E3YmJlZGE4ZWMxMjkzYSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}

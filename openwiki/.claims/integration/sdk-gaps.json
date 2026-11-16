@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:0e885d817c106bd8b638a0aa50f38cb89d4cf2326630d74866df2ab7ce5e8926",
+  "claims": [
+    {
+      "id": "claim_7152ae613f2f4fc4ae7c9af34a5fb7b4",
+      "statement": "All filed issues G1, G4, G5, G8, G11, I-1 through I-11, and T-8 are resolved and published in versions 2.0.1 and 2.0.2",
+      "evidence": [
+        {
+          "resource": "repo://CHANGELOG.md#L10-L28",
+          "version": "repo-lines-v1:sha256:cf05493398f7e88edce8ce0f9e26b8b58666d9622d8e6a8e11a52aaca97f1f67:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmNjI5NGM4ZDgyYjUyMDRlMTZkYmIyYjk5ODZkMDQzZmNmMzZiNjZjYjI0ODkxMTI4ZjlhYjhiNzRjYjgwMWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2YzI2ZTMzZTJkYmU3Y2M5NzVhY2EwNzMwYzllZGM0NDI0NGEzMWFjZjU0ZjgxMGI2ODdmNzQ3MDMzMzhlZDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzNjlkZGI4MjE3MDFmZDk1YzczNjk3YWE0M2MwNzU3NzMwMDljMzcxMWZjNDZhODg0NWMyOGZiM2JmNTdiYTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJmOTA0N2Q4M2UzYzFlNDFiNmIzMGQxYzZhMTllOWVkZGUzODFiNjNjOGVjMDY0M2NmZDhkMjhlZWJjZDEzZmIifQ"
+        },
+        {
+          "resource": "repo://CHANGELOG.md#L30-L41",
+          "version": "repo-lines-v1:sha256:61f4df232978b3223e8b6a62905a71149e5fec7baee105930207c97d428aa380:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1NWI4NWZmYTdhNzEwZmFiNWZlYTYzNzZjNWI0YzBkMGYzZmNjZjIzMjIxNzBiNGFjM2E1OGI2ZDcyOGJjZDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEyZGExNmE0ZWE5YTQ0MGNmNjlhYzdlY2FhOTg3ZDFhZmY2ZDgwYmZiZDQ1ODMzYmU1Zjc5ZDc3ODcyM2FiOGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMwN2E0OWRlMzdhNTQ3Y2Q2NGFjOWQxMzgxMjBhNjJjMTEwOGQ3YmVmNGM4MWFkOTViODg1MzVhZTJmOTg3ZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAyNjIzZTgxNWQ5ZGQ2OTY2ZGNmZjM4MzZiMjA3YzUxMjczMjc3MWE3YjBlMWNjOTkyOGY4ZmRlNWM4YTBjZmUifQ"
+        },
+        {
+          "resource": "repo://docs/sdk-gaps.md#L12-L22",
+          "version": "repo-lines-v1:sha256:a29a2ead924f9c6dfa9d998adfe23aa541c77f0897af63e4417c936253e53dd4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgyMTRhMDRkNzFhNzJhMzAwZjk3OTExMTY0OTRlNDIxNDYxMDk3MmM2MTZlZjI5Njc0MDc2MWNkMmM5YmI0NzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFhYTE0ZGQ5ZWZjODIzZTg3ZTNhOGVhNmM1MThkYWQ5MDJlMjZhYTg5NDJkMGI0NWM5MjEwY2I2NjkyNDNhMzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhmY2Q4YTY2MWMyMjg2NThlMDJiNzU2NjNhMTBiOTk0ZjhkMDMxMzdiMGFkY2EyNTA5YWI5NTNiOGZjMTNlN2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ4MjBjYzM5NjZhZTU4MWIyN2Q3OTBjNDNlZTFiOWY5NTYyNDMzNDg3ZmI2OTE1YTBmNTVjOWYxOTVkODhhMDgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4e2c2319bfc1461c99437f385d4ba26d",
+      "statement": "Issue G1 added request timeout support with constructor and per-request timeoutMs options, AbortSignal support, and typed timeout/network errors",
+      "evidence": [
+        {
+          "resource": "repo://CHANGELOG.md#L30-L41",
+          "version": "repo-lines-v1:sha256:61f4df232978b3223e8b6a62905a71149e5fec7baee105930207c97d428aa380:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1NWI4NWZmYTdhNzEwZmFiNWZlYTYzNzZjNWI0YzBkMGYzZmNjZjIzMjIxNzBiNGFjM2E1OGI2ZDcyOGJjZDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEyZGExNmE0ZWE5YTQ0MGNmNjlhYzdlY2FhOTg3ZDFhZmY2ZDgwYmZiZDQ1ODMzYmU1Zjc5ZDc3ODcyM2FiOGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMwN2E0OWRlMzdhNTQ3Y2Q2NGFjOWQxMzgxMjBhNjJjMTEwOGQ3YmVmNGM4MWFkOTViODg1MzVhZTJmOTg3ZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAyNjIzZTgxNWQ5ZGQ2OTY2ZGNmZjM4MzZiMjA3YzUxMjczMjc3MWE3YjBlMWNjOTkyOGY4ZmRlNWM4YTBjZmUifQ"
+        },
+        {
+          "resource": "repo://docs/sdk-gaps.md#L16-L16",
+          "version": "repo-lines-v1:sha256:1cb1c7e041b90e75137c1cd889572fcec7a6b88d9142407cc65a833d29193c34:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWNiMWM3ZTA0MWI5MGU3NTEzN2MxY2Q4ODk1NzJmY2VjN2E2Yjg4ZDkxNDI0MDdjYzY1YTgzM2QyOTE5M2MzNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWNiMWM3ZTA0MWI5MGU3NTEzN2MxY2Q4ODk1NzJmY2VjN2E2Yjg4ZDkxNDI0MDdjYzY1YTgzM2QyOTE5M2MzNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZThhNDE3MTc3Mzk2ZjFlZDk4MzdiNDUzYzhkZWVhMzcwY2UxODA1MWNlMjIzY2I5MjRkNjJhYzllZTQ4ZWU3NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGYxZWY1YzU1YTAwOWU0NDYxYTg2ZDU2ODZhMjFmZmM0NzI1MWU2NDZkNDJkZjAyY2M0OWRjMTM3ODE2NjBhMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1d277064d6db49059f8c3a49194777fb",
+      "statement": "Issue G4 fixed registry pagination metadata for 6 of 8 list operations by deriving pagination mode per resource from the vendored spec",
+      "evidence": [
+        {
+          "resource": "repo://docs/sdk-gaps.md#L17-L17",
+          "version": "repo-lines-v1:sha256:2163c89e79f89125b2b34dda2e0d7fa14fbc1f5764071bc559da9619468c38c5:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjE2M2M4OWU3OWY4OTEyNWIyYjM0ZGRhMmUwZDdmYTE0ZmJjMWY1NzY0MDcxYmM1NTlkYTk2MTk0NjhjMzhjNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjE2M2M4OWU3OWY4OTEyNWIyYjM0ZGRhMmUwZDdmYTE0ZmJjMWY1NzY0MDcxYmM1NTlkYTk2MTk0NjhjMzhjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmUzNzk0OTVlYTZmZDdkMTIzODBmNmUxNGIxNzU0YTBjNzJiZDFiODcwZTFkNWE2NzZlOWYzN2NhODZlYzZmZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDdlYjI3OTkwNTI5MWIyZjBkNmQ3MjRlNzc3OGE0MzQ4YWFjZmJhYTRmODNjZjMwMjU2ZmE5ZmYxNzBlNzFkYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5cc457b2231a4dd3be68958d708f0aeb",
+      "statement": "Issue G8 was the missing npm publish of version 2.0.1 containing the path-id validation fix, resolved by publishing on 2026-10-09",
+      "evidence": [
+        {
+          "resource": "repo://CHANGELOG.md#L30-L30",
+          "version": "repo-lines-v1:sha256:355b85ffa7a710fab5fea6376c5b4c0d0f3fccf2322170b4ac3a58b6d728bcd9:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzU1Yjg1ZmZhN2E3MTBmYWI1ZmVhNjM3NmM1YjRjMGQwZjNmY2NmMjMyMjE3MGI0YWMzYTU4YjZkNzI4YmNkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzU1Yjg1ZmZhN2E3MTBmYWI1ZmVhNjM3NmM1YjRjMGQwZjNmY2NmMjMyMjE3MGI0YWMzYTU4YjZkNzI4YmNkOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzA3YTQ5ZGUzN2E1NDdjZDY0YWM5ZDEzODEyMGE2MmMxMTA4ZDdiZWY0YzgxYWQ5NWI4ODUzNWFlMmY5ODdlMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDU4NDhjNzEzYmZjMTZlNzEyODEyMDcxNTZiYzliNDI1NTU2MGZlNDk0ZjBlMTg4NjM1NTAyODIwOTc3NmU5MiJ9"
+        },
+        {
+          "resource": "repo://docs/sdk-gaps.md#L19-L19",
+          "version": "repo-lines-v1:sha256:52c07844d724280881de6b00d0c84e7f69750a7d6b4ddd705d3e12ca652c0f5c:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTJjMDc4NDRkNzI0MjgwODgxZGU2YjAwZDBjODRlN2Y2OTc1MGE3ZDZiNGRkZDcwNWQzZTEyY2E2NTJjMGY1YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTJjMDc4NDRkNzI0MjgwODgxZGU2YjAwZDBjODRlN2Y2OTc1MGE3ZDZiNGRkZDcwNWQzZTEyY2E2NTJjMGY1YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzFhMzQ0YTAyNjM5OTQxMmI2MzBiMjI0NTk3MWZlYTY5OThlOGZlZDlmODhkZGNlNGRjMGRlNTRiODMzNDM0YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjIzODM2MTI0Zjg3MjZmZDVkNDY5YTgwNzA5NTFiNDQ0MDQyMDYwMGVlMDUyMmY0YTE3ZjZiMDgwNGU4NGFlOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8a07d8ad501141068d628a662262ba4f",
+      "statement": "Issue T-8 established ApiError identity guarantee by having every entry re-export the single physical dist/errors module via self-referencing node-kimai/errors external",
+      "evidence": [
+        {
+          "resource": "repo://CHANGELOG.md#L14-L18",
+          "version": "repo-lines-v1:sha256:af7ba370d84474c2a8bccafe082dcc9593710cfa3f145c2f66f4f2689a1baf93:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTc2NjllYTg4ZGZkYTQ0ZGM2Y2VlMGI5YTZhOThjNWVmOGJiNzNjYTM1NGQ0ZTk2ODFmMWI3NGI3MjQyNjI0ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTYxYzNkMzQ0YjdjZmFjZmFlYTdkZGNmM2VhZGQyY2QzMzNjYTU1ZTZjNmFhN2VhMmRmN2I5YThmMzM5ZTZhMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjA4NzdhN2MzODZhOGUwNDhhYTI5MmUxZGE0ODc3OTAxN2U4ZmQyNWI3ZjI3NGI5OTE5ODM1ZmRhOWM2NjA3ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzIwNjk3MmYxZDFkZjI2NjYxMmJjOWY3ZmJmM2ZkYjVlZWY1NmJlOGUyNDAzN2JkNjU1M2IzMzdmNDJjOGRjZSJ9"
+        },
+        {
+          "resource": "repo://docs/sdk-gaps.md#L20-L20",
+          "version": "repo-lines-v1:sha256:ffd848b0f70728c822e70da994918d4e2e5a5ffc83c0802f2ecdad0cd827713e:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmZkODQ4YjBmNzA3MjhjODIyZTcwZGE5OTQ5MThkNGUyZTVhNWZmYzgzYzA4MDJmMmVjZGFkMGNkODI3NzEzZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmZkODQ4YjBmNzA3MjhjODIyZTcwZGE5OTQ5MThkNGUyZTVhNWZmYzgzYzA4MDJmMmVjZGFkMGNkODI3NzEzZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGYxZWY1YzU1YTAwOWU0NDYxYTg2ZDU2ODZhMjFmZmM0NzI1MWU2NDZkNDJkZjAyY2M0OWRjMTM3ODE2NjBhMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjMyNTZmYWZmMzE4OTg0NzZkZWQxMjczNThmYTI1YmM4NmJiMWFmNzQ4MDRlZWI5N2M0ZjViOTFlMzJjN2JhMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_814d83eb93af4657b05b4324cddb3d3b",
+      "statement": "Issues I-1 through I-11 fixed MCP projection text defects by making curated text the single source and exporting TOOL_TEXT_OVERRIDES from the mcp subpath",
+      "evidence": [
+        {
+          "resource": "repo://CHANGELOG.md#L35-L41",
+          "version": "repo-lines-v1:sha256:caf696b9251fe3d99628fe4a9bbb214226ad699f397a50271b86c774b1989f83:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmYwMzdkYTFkY2JjOWQ5NGEzMWY3YmRlMmY1NjBiZjI5NjQ5MTUxZDQyZWM1MTVkYWNlN2Q0ZGI0ZTc0NzJlZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTJkYTE2YTRlYTlhNDQwY2Y2OWFjN2VjYWE5ODdkMWFmZjZkODBiZmJkNDU4MzNiZTVmNzlkNzc4NzIzYWI4YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGZmNDkwMjdiMmYxNDU4ZTYwMWE2YzlmYjIwMTIyMmYzN2VjNmYxODE1Y2ZhZmQ0OWZiYTU3ZTFjZGFhZDNmMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDI2MjNlODE1ZDlkZDY5NjZkY2ZmMzgzNmIyMDdjNTEyNzMyNzcxYTdiMGUxY2M5OTI4ZjhmZGU1YzhhMGNmZSJ9"
+        },
+        {
+          "resource": "repo://docs/sdk-gaps.md#L22-L22",
+          "version": "repo-lines-v1:sha256:1aa14dd9efc823e87e3a8ea6c518dad902e26aa8942d0b45c9210cb669243a36:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWFhMTRkZDllZmM4MjNlODdlM2E4ZWE2YzUxOGRhZDkwMmUyNmFhODk0MmQwYjQ1YzkyMTBjYjY2OTI0M2EzNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWFhMTRkZDllZmM4MjNlODdlM2E4ZWE2YzUxOGRhZDkwMmUyNmFhODk0MmQwYjQ1YzkyMTBjYjY2OTI0M2EzNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGE4MDNkNTA2MmUxZDUzYTQ0ZmM3NDNiZGFiNDZkMzdmYzBmOWEyNDg1ZGI5ZWU2NGQ2YzFiYTQ2M2U5NjM1ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDgyMGNjMzk2NmFlNTgxYjI3ZDc5MGM0M2VlMWI5Zjk1NjI0MzM0ODdmYjY5MTVhMGY1NWM5ZjE5NWQ4OGEwOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_89ce150c1dcc4f59aab9416f7b43ae32",
+      "statement": "SDK version 2.0.0 is affected by all resolved issues and users should upgrade to 2.0.1 or later",
+      "evidence": [
+        {
+          "resource": "repo://CHANGELOG.md#L43-L43",
+          "version": "repo-lines-v1:sha256:5c32f76d0edd35c5066265ad14949c91ee46f3e69db011b277ad0922c77cc587:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWMzMmY3NmQwZWRkMzVjNTA2NjI2NWFkMTQ5NDljOTFlZTQ2ZjNlNjlkYjAxMWIyNzdhZDA5MjJjNzdjYzU4NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWMzMmY3NmQwZWRkMzVjNTA2NjI2NWFkMTQ5NDljOTFlZTQ2ZjNlNjlkYjAxMWIyNzdhZDA5MjJjNzdjYzU4NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzg0MjI2YzU2ZTI0YmY3OWRiMTI5ZjJjZDM1MWM0YWU5ZmIwMmViZTA5NDYwNzU4YmU2OWQ1MDU2N2E5MmVjZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2FmNWQ1NDRhMjg5YWQ3YjcyZTY1NzI0N2E3OWMzNzEzYmQ3N2NlMDE1NTMxMjllY2YzNjFmZGQwMDlmZGNjOSJ9"
+        },
+        {
+          "resource": "repo://docs/sdk-gaps.md#L16-L22",
+          "version": "repo-lines-v1:sha256:4e7681439d0263b60a7431dc1550ac2a4535e77e247a1b51ad993fb023f46809:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWNiMWM3ZTA0MWI5MGU3NTEzN2MxY2Q4ODk1NzJmY2VjN2E2Yjg4ZDkxNDI0MDdjYzY1YTgzM2QyOTE5M2MzNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWFhMTRkZDllZmM4MjNlODdlM2E4ZWE2YzUxOGRhZDkwMmUyNmFhODk0MmQwYjQ1YzkyMTBjYjY2OTI0M2EzNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZThhNDE3MTc3Mzk2ZjFlZDk4MzdiNDUzYzhkZWVhMzcwY2UxODA1MWNlMjIzY2I5MjRkNjJhYzllZTQ4ZWU3NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDgyMGNjMzk2NmFlNTgxYjI3ZDc5MGM0M2VlMWI5Zjk1NjI0MzM0ODdmYjY5MTVhMGY1NWM5ZjE5NWQ4OGEwOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d897e4c5f902458687d7c287578322ad",
+      "statement": "SDK version 2.0.1 published on 2026-10-09 resolves all known issues with no breaking changes",
+      "evidence": [
+        {
+          "resource": "repo://CHANGELOG.md#L30-L30",
+          "version": "repo-lines-v1:sha256:355b85ffa7a710fab5fea6376c5b4c0d0f3fccf2322170b4ac3a58b6d728bcd9:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzU1Yjg1ZmZhN2E3MTBmYWI1ZmVhNjM3NmM1YjRjMGQwZjNmY2NmMjMyMjE3MGI0YWMzYTU4YjZkNzI4YmNkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzU1Yjg1ZmZhN2E3MTBmYWI1ZmVhNjM3NmM1YjRjMGQwZjNmY2NmMjMyMjE3MGI0YWMzYTU4YjZkNzI4YmNkOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzA3YTQ5ZGUzN2E1NDdjZDY0YWM5ZDEzODEyMGE2MmMxMTA4ZDdiZWY0YzgxYWQ5NWI4ODUzNWFlMmY5ODdlMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDU4NDhjNzEzYmZjMTZlNzEyODEyMDcxNTZiYzliNDI1NTU2MGZlNDk0ZjBlMTg4NjM1NTAyODIwOTc3NmU5MiJ9"
+        },
+        {
+          "resource": "repo://docs/sdk-gaps.md#L19-L19",
+          "version": "repo-lines-v1:sha256:52c07844d724280881de6b00d0c84e7f69750a7d6b4ddd705d3e12ca652c0f5c:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTJjMDc4NDRkNzI0MjgwODgxZGU2YjAwZDBjODRlN2Y2OTc1MGE3ZDZiNGRkZDcwNWQzZTEyY2E2NTJjMGY1YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTJjMDc4NDRkNzI0MjgwODgxZGU2YjAwZDBjODRlN2Y2OTc1MGE3ZDZiNGRkZDcwNWQzZTEyY2E2NTJjMGY1YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzFhMzQ0YTAyNjM5OTQxMmI2MzBiMjI0NTk3MWZlYTY5OThlOGZlZDlmODhkZGNlNGRjMGRlNTRiODMzNDM0YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjIzODM2MTI0Zjg3MjZmZDVkNDY5YTgwNzA5NTFiNDQ0MDQyMDYwMGVlMDUyMmY0YTE3ZjZiMDgwNGU4NGFlOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_406d0010dafa47b2a6e5c70a11273906",
+      "statement": "SDK version 2.0.2 published on 2026-10-12 is the current stable version",
+      "evidence": [
+        {
+          "resource": "repo://CHANGELOG.md#L10-L10",
+          "version": "repo-lines-v1:sha256:4f6294c8d82b5204e16dbb2b9986d043fcf36b66cb24891128f9ab8b74cb801b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGY2Mjk0YzhkODJiNTIwNGUxNmRiYjJiOTk4NmQwNDNmY2YzNmI2NmNiMjQ4OTExMjhmOWFiOGI3NGNiODAxYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGY2Mjk0YzhkODJiNTIwNGUxNmRiYjJiOTk4NmQwNDNmY2YzNmI2NmNiMjQ4OTExMjhmOWFiOGI3NGNiODAxYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTM2OWRkYjgyMTcwMWZkOTVjNzM2OTdhYTQzYzA3NTc3MzAwOWMzNzExZmM0NmE4ODQ1YzI4ZmIzYmY1N2JhNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjA4NzdhN2MzODZhOGUwNDhhYTI5MmUxZGE0ODc3OTAxN2U4ZmQyNWI3ZjI3NGI5OTE5ODM1ZmRhOWM2NjA3ZSJ9"
+        },
+        {
+          "resource": "repo://docs/sdk-gaps.md#L25-L28",
+          "version": "repo-lines-v1:sha256:0613f0dc0a1b5ab3896fb2732c37e8ea71447f7b46f04b2ae680f2c69ad186a3:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjRlMjNlZTVkNGU1OGNmYjI1NmE5N2Y3MWU0M2NjMDQyYWRmNTBlYTYwNGM5NjI4ZjZmYzk0NmJiOTc3NmM0MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjJmN2VhYWU2MWMyNzI1Mzk1NDljZDU0OGE1NjEyNGI5NzI3MDlmZjVjOGY3M2JjYjczYTUzYzhjY2UxYzVhNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjA2YTE0NWE4OTVjODBjOGM1OGRkNmU0YTgxNGU0YzAzYWIxNDE4NmZhOWM4YzNkNTdjZWJiZDBlYzg1Y2FkOSJ9"
+        },
+        {
+          "resource": "repo://package.json#L3-L3",
+          "version": "repo-lines-v1:sha256:231904bb799dd46bb75188df9118c3ccdb9c9e638613c71686d0e42e659d3e95:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjMxOTA0YmI3OTlkZDQ2YmI3NTE4OGRmOTExOGMzY2NkYjljOWU2Mzg2MTNjNzE2ODZkMGU0MmU2NTlkM2U5NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjMxOTA0YmI3OTlkZDQ2YmI3NTE4OGRmOTExOGMzY2NkYjljOWU2Mzg2MTNjNzE2ODZkMGU0MmU2NTlkM2U5NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjIsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2JmOTYyOGM1OGE5ZTFlNGM4MmQwZmIyMjNhMmIxZDA0OWJhMDNhYTIxZWYyN2U0MTFhNmM2ZjNhZTY0MjRmYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDk0MjBhYTMzYjk1NjQwMDY2NTExMTU2MDFkNjgxNTA3MTk3MWE4M2IxNTlkNzRkYmMwYTBlYzBiZGJlOTAxZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_7e1c2bf6bcd94d12a8870ffa2b7b88f1",
+      "statement": "Non-gap G2 documents that the SDK transport never retries by design, with only 76 of 108 operations flagged idempotent",
+      "evidence": [
+        {
+          "resource": "repo://docs/sdk-gaps.md#L28-L28",
+          "version": "repo-lines-v1:sha256:64e23ee5d4e58cfb256a97f71e43cc042adf50ea604c9628f6fc946bb9776c40:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjRlMjNlZTVkNGU1OGNmYjI1NmE5N2Y3MWU0M2NjMDQyYWRmNTBlYTYwNGM5NjI4ZjZmYzk0NmJiOTc3NmM0MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjRlMjNlZTVkNGU1OGNmYjI1NmE5N2Y3MWU0M2NjMDQyYWRmNTBlYTYwNGM5NjI4ZjZmYzk0NmJiOTc3NmM0MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTU2NTQ5YjY0Yzc3N2YyNzA2NWRjMmJlMTc4ZWE0ZWE5YjlkZTIxNmMzYTJhODUzYjY2MjA0NGRiMDBkN2QxMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjA2YTE0NWE4OTVjODBjOGM1OGRkNmU0YTgxNGU0YzAzYWIxNDE4NmZhOWM4YzNkNTdjZWJiZDBlYzg1Y2FkOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0ccc4f37de3d44ec92efe2ade77f9caa",
+      "statement": "Non-gap G9 documents that binary export endpoint invoices.download is deliberately excluded because ArrayBuffer is not an MCP text result",
+      "evidence": [
+        {
+          "resource": "repo://ARCHITECTURE.md#L486-L488",
+          "version": "repo-lines-v1:sha256:0d1be575b661944b7dcea0bf25a583b5cd196045b6c0ce55e3b0f4f6c7dfde92:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDdjMDZjNTYxZDVjMzI3MzQzNjg1MjY4YTQ2YjMzOTFmMzk5OGVlZTg5MGQyYmU1MWYwZDIxY2M0YTUzYWU2ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjhlMjVhNzFjNTc5ZjExYmY4MGNkZWQ0ZmNhNzM5MzQyYWYzZDZmZjc4NjBkNmU0MWMyMWViODc5YTBhN2I5NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzlhM2E5YTA1YWY5YTZjZmQ4Yzg3ZDRkMTAwN2Y2OTM0NjdkNWVlMTQzYzA0YTA5M2I1ZDViYTE4NmQ3YTRhZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGFlYmQ3YjVmM2I3YWEyNmRhZjdlZmVkYjMyZDMxN2EwY2Q4OWQxYzRkNzEzNzdjZjUzOGQxZWUxMzY2MzI1NCJ9"
+        },
+        {
+          "resource": "repo://docs/sdk-gaps.md#L32-L32",
+          "version": "repo-lines-v1:sha256:7be48b09725dc00e300c2c85461d758c668d9912a05b1e72d0ec0cdee746e52c:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2JlNDhiMDk3MjVkYzAwZTMwMGMyYzg1NDYxZDc1OGM2NjhkOTkxMmEwNWIxZTcyZDBlYzBjZGVlNzQ2ZTUyYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2JlNDhiMDk3MjVkYzAwZTMwMGMyYzg1NDYxZDc1OGM2NjhkOTkxMmEwNWIxZTcyZDBlYzBjZGVlNzQ2ZTUyYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjA2YTE0NWE4OTVjODBjOGM1OGRkNmU0YTgxNGU0YzAzYWIxNDE4NmZhOWM4YzNkNTdjZWJiZDBlYzg1Y2FkOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGM1YzY2MWQwODFjNjE1YmI5ODg2ZDA5OTMzNmY4MTNmZjg2MWFkNjg4ZTBlMGE3MTU5MzMzMzg5YjcxOThhYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_024ff71fff434ae2a77e715c93f2ed36",
+      "statement": "Gap register follows a policy that gaps are filed upstream and mitigated at server boundary only, never worked around in MCP server",
+      "evidence": [
+        {
+          "resource": "repo://docs/sdk-gaps.md#L8-L9",
+          "version": "repo-lines-v1:sha256:486141e2490d21e518f96e659d8da15b024291cb470aa02f19487091666f6feb:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2UwODkyMjE1MDcxNjJiYTlkNmY2OTBhMzNjMTUxYTI5YzhmZmFkZGYxMWI4ZjBmZDVlNzI5ZTMwMmNhM2JmNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDYzOWJkMDhiNGM0NDRjYzlkYTkwNTgzZDk5YjIwYjVkNDliMjA1ZmEyOTA3Njg1MWM3ZjIzNWUyZTU3ZWQ1NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjQ2ZGY2ZTcxOGVmM2YyYzIyYTAzOTU4NDkyNDNkNzY3NzAzOWIxMzNmYzQzZTdmZmZjMzExNTNhNDVhMDM5OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmIzZWE3Mjk2MWFiZmYyOTdjOWFiOTgyYTM4ZWUxZmFiNDk0YjcwZDlmYTM3ZDY3NDhjM2ZiYmZmMWE4YzE3MSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T19:15:11.316Z"
+  }
+}
