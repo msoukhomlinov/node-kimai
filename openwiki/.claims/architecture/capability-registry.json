@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:8e872e7ae558e54b97c1d2a8994e9fac300f29bcff51e1e6a0cafffc29c26e42",
+  "claims": [
+    {
+      "id": "claim_864981a034664d2bb08c84e377d2a429",
+      "statement": "A capability record carries id, resource, operation, kind (primitive|helper), effect (read|write|destructive), flags, dryRun, an inputSchema whose key order is positional, pagination, retry, errors and a staleCheck pinning plan/source/test hashes.",
+      "evidence": [
+        {
+          "resource": "repo://src/capabilities.ts#L22-L66",
+          "version": "repo-lines-v1:sha256:d8c5885168e2f05c477a53aa3bd5f3058e973ee0fc228bd36884f00960f5b4b8:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiZTI5NGUxZjA4NzJhNTBlODJlZTc0OGE0MmUyOGNhMDY3YTliMTZkODIyZTVmYzgyZTk5YWRjYTdkYWZlYWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyYTJjYjI1YTEyMmI0NDIyMWE2MjM0ZWM2NjBhN2I1ZmI3ZjliZGU3YjNiOWUyYjNjNTU5YTBkOTZmYWM3MzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI4MGQxZTIzNjY1NDQ0NjA4NGUwZmY2ODU4NjZlYjU4YTAwNmEzOGIzZWExZDY0MDI4NWE0YjEwYTYxOTM3ODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjOTAwNTJhNTc0YmI1ZmUzYWJlMjJjN2IzZDg1Y2VjOGU5ZDc2NmJkNzliZDFlY2I1NWQ4YjIwYmQ3YTQxMmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bded551a72114e2c96531257670e36cb",
+      "statement": "src/capabilities.ts derives CAPABILITIES, CAPABILITY_NAMES and the read/write/destructive operation lists from the group records, and getCapability looks up a record by canonical id.",
+      "evidence": [
+        {
+          "resource": "repo://src/capabilities.ts#L9054-L9093",
+          "version": "repo-lines-v1:sha256:2fad8300b07698ba4221081997ed0e476b4474df8d4bc404284aee34e93bc488:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY0ZTc5ZGQyMTkxM2ExNjY2ZmI2MDNiOWU1OTFjNGFkYmZiNWJlZDgxNWY0MWEyY2ZjYjNlMjAwZmNmY2UxNDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyMDM1YWIzM2Q4M2MyMjYwMDFjZTg3NTMxY2NlZjU0ZjlkZGM1OTQ0OWIyZTQ0NTM5NDUwNTgwMDViMzEyZjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzNDJhZjAxZGZjYzZlMWUzMGJhODA3MzYxZTZhYTI0OWM4Y2VmOTZmNWFjNGY2M2UzYWQ3MzlkZWI1YTFhNzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7a6e385f77184824b7571e66c88cc1d8",
+      "statement": "The capability gate checks that each section's planHash matches the SHA-256 of the plan bytes, and that the registry module equals a fresh re-render of capabilities.json, so hand-edits are detected.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-capabilities.mjs#L1-L40",
+          "version": "repo-lines-v1:sha256:b61f06f0a15844dce39dbb52959104e9691e9dd4918aba314e6af97254fab441:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1OWM0Nzg3MmI3MWYxMjU4OTk0Mjg5MjQ2NGU3NjRjMGRiMzUwYzIwYjcyMjI4NjQ1NjE1Y2MzNmUwYTA3MjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5NGFkMzJlNzUyOTVkMDA0ODRiNjY1NDUwNTdkOTYyYjVhNjNmNGY2OGViZWJlOGYzN2U4MmU0NzRlYWQyZjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRhNzZmYWNkNGIyYzQ1OTZhYzBjOTIwN2NlMTQ1MmUxYWJmNDI1ZTUwYTEzNzc4OTgwODQ2NmIyODNiZDJhMDYifQ"
+        },
+        {
+          "resource": "repo://scripts/check-capabilities.mjs#L235-L236",
+          "version": "repo-lines-v1:sha256:ea0573ae30da1e44208cda292e03d1b47298b952ff31cf5c4366de2bb39d596a:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWVhOWYzMGRhZDIzOTY2YWVhNjU3OWFiN2Y5Y2ZkM2JhNzY2MDljN2MxYWFlY2JhMDljZTdiYmY5MGY0Njc3MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzE3Mzk4MGUxOWFiNGJmNDY1Zjk5MTU5MjNlOTA4ODI5MDYzZjQzMmM1OTU2NDk0NzdmYTA4N2VlYmRlMjgyNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDFiZGYzYTU4ZTk2ZDEwNjg2MTU2MzhmNjQ2ZGViMTYyNjk4NThiNmY3YmJlZDJlM2MyMmQ5NDM5YTAwZjc4NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzEyNDkyMjkxMzIwYWQyNTJiNjMzY2NlYzhiNDU2NTczNjJjNGZkNjE0NDE0ZDhkODkxYzA2NmUzY2YzOGNiOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a99a733d387c4b459adf8c370ebeda95",
+      "statement": "The negative-fixture script runs the gate against a drifted plan fixture and a registry copy with a flipped dryRun, and fails if the gate does not fail.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-negative-fixture.mjs#L1-L30",
+          "version": "repo-lines-v1:sha256:1f22a19eab36be2ad666b577bc56e64922dc14aad1ef5b1380f2b5dd6194f892:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1OWM0Nzg3MmI3MWYxMjU4OTk0Mjg5MjQ2NGU3NjRjMGRiMzUwYzIwYjcyMjI4NjQ1NjE1Y2MzNmUwYTA3MjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyZTQ2YTc5MzA1YjJmY2FlZjkwYzgxZGE0OGYyODYzMjVhMWVlMmNmZmU3OWVmOTQwYTE0NzQ5MzJlYjMyMWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc3ZmJjY2M5ZjQ5MzgyYzZkOWNiNTc0YzA4ZWQ2Zjg2YTZmYWVlZjlmZDk5M2YwYjI0YTUxYzJkOTNmMzFmZjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_975be121c11a40e08f84d724940504c6",
+      "statement": "The generator renders src/capabilities.ts, writes capabilities.json group sections and writes capabilities.schema.json; the render helpers are exported so the check can re-render without rebuilding.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/generate-capabilities.mjs#L26-L45",
+          "version": "repo-lines-v1:sha256:8a95b854b1302d942d0bb0921355f110e342387c7d58b1d7a55a9e0471c61d4a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyZjJjYThhNmNlODhiZmVmODY5NzE3MGNiYTYwZjU2Zjg3Yzg5YWZlZTUwMTllNmEwNTc2OTNmYWY5MmQzYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmMTIyNjQ5M2E3ZTY3YWUyNmE4MGVmYThhM2YyMDMxOTQzZmY0ZmU1NjZjZWExODk1Y2MwYzg5MjBiNmQ4YTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg2MmU0MWUzYWI0MGUyOTI3YWMxODI0NzU3NmZiNjQzMWU1ZDE4NDgwYWIzYjUwMjc3NjBlODIxNDU3MWYwM2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzZjg4Y2Q3ODg3ZjkyNjcxNjc3Mjg5ZTI2Mzg4NDc1NmNhOGRmNjBmMGNlZjlhNWE2MGUyZDg2MGQ0NjczZjQifQ"
+        },
+        {
+          "resource": "repo://scripts/generate-capabilities.mjs#L495-L524",
+          "version": "repo-lines-v1:sha256:73e2d022e20c0a8865362a3400894c7f177e9440049ec95f31324f2e37a38695:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5ZTE2ZDA0MTA2Y2NiNGQ0NGI5NDNiZmFhZjU4MjUyMzYwN2M3NmQ4ZTNlODM2M2QyNjEyZjY1YzM4ZTE1M2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI0YTc3NzYwYjI4MTk4MDE4ODBlYjQwNDczMjExZWY4N2JmYjFiZjgwNjBlY2Y5MTQ3NGEyYjQwNGU3MDE5OTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM5OTQ0NmRmMzQ5ODczOTA0OGJiMTA5ZWI5OTliZjA0OTE2OTlkMjk4ZmQxNGM0ZmZkMmZkNmZhZmUzNTYwM2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU4NThjOTI1NWJlOTgzOTkwYzAwYTBkNzQ0NzNjY2QwYWQ5NDRmOTgzMzFkMjE1NmYxYmNhOTFhZjllMjUzYTEifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T00:59:56.546Z"
+  }
+}

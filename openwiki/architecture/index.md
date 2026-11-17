@@ -1,0 +1,8 @@
+# Files
+
+- [Capability Registry and Generation Pipeline](capability-registry.md) - How the machine-readable capability registry (capabilities.json and src/capabilities.ts) is derived from the API spec and plan, what each record contains, and which scripts gate drift.
+- [ApiClient and Transport](client-and-transport.md) - How ApiClient is constructed, how FetchTransport builds and sends requests, how timeouts and abort signals compose, and which request-path and credential guards run before any wire activity.
+- [Typed Error Contract](errors.md) - The ApiError hierarchy, the closed category vocabulary, how HTTP status maps to class, code, category, retryability and suggested action, and the local KimaiConfigError and ResolutionError types.
+- [MCP Catalog, Dispatcher and Untrusted Content](mcp-catalog-and-dispatch.md) - The generated node-kimai/mcp catalog (CORE and META tools, per-operation rows, refusals, bounded catalog paging), the effect-checking dispatchOperation, and the untrusted-content wrapping helpers a host applies to tool results.
+- [Registry-Validated Invoke (node-kimai/operations)](operations-invoke.md) - How invokeOperation and planInvoke resolve a registry key, validate input against a closed contract, apply dry-run-first and confirmation governance, and dispatch to the typed resource client method.
+- [Resource Clients, Paging, Dry-Run and Helpers](resource-clients.md) - How the per-resource clients are structured, how Kimai's bare-array paging is handled, the dry-run mutation envelope, bounded helper limits, and the timesheet resolve, search and getContext helpers.

@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:503ce1403eb82364512a46a40093cba5aa7cb4d185773c39b11f5ca22464e0d4",
+  "claims": [
+    {
+      "id": "claim_1c1244106263412098158651149d05ff",
+      "statement": "pageParams defaults page to 1 and size to 100 and throws KimaiConfigError for non-positive-integer values; streamPages derives hasMore from a full page and throws after 100,000 pages.",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/paging.ts#L12-L58",
+          "version": "repo-lines-v1:sha256:15e76b67854411417ad86e5ffbd1f945795b118497fc8325caeca3ea8e2a8f0e:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyZDEwODhmYTcyZGIwNGFiY2IxOGJiMzgxZTc1YTZkOTk4NzI0ZWEwYTYxMDA2OTQ1ZTU2NWQ2MzgyNzE5MDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM3NTc1MDI4ZjVjNDFiOWQxNjE5OTU1MjE4NTRmMDk4Yzk1NDc4ZGZjZDc3NzQ3ZTFlOGFjNmU2NWVmNTg3YmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkzMzkyODk2ZGNkMjc1MzNiMWQ1NmQyNGExYjg5YWIwNTI2YTUzYmJlNTEyYzAyYjc1YmY4MGJjZmUxNzRjNmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a5d363f1fbc54829be29fafa2b1b11cc",
+      "statement": "TimesheetClient list/listPages/listAll send user=all when no user filter is given and page via the shared paging helpers.",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L150-L176",
+          "version": "repo-lines-v1:sha256:c6cca905d86d30e5ca3bfa414b7ffecbd70b1e00992c40d6af1ead5bab9a8aaf:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNkZGU0ZGQyOWYwZGQ1YWRlZGFkYmMzMzY2MGFkOTE1YTZkMjk2YTIzNzQ1OWVjYmU4NTU0NTI1MjIwOGVkYTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzZjMwNjZhN2EzOTljMDUwZjdkZTViNjc3Y2EzZjI4MzExZmIwOTE1MDVjOThjZDhhOWMyZDI0OGIyOTUxYTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIwOWZlMWJkMDU2YTJkMWNkNDQ4N2EzOGFlNGYwMmYzODc2NTkwZDE3OGFlYTBlNzkzNTQwYzBlNTQzZTNlNzMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_14cd2a1170004038a675afd46ed6bdd0",
+      "statement": "Dry-run mutations issue no wire call and return a DryRunResult with checks, impact, simulated true and always-present best-effort warnings.",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L108-L135",
+          "version": "repo-lines-v1:sha256:b412c49f04a668517b2e215a0cb054681ef065a55907e9aefc6ca8c77fa21f1e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIwNzMzODFiMjhkYjNkNTQwYTY5ZTM2NWFlNTVhZjA4YTZlMjg0MjVkZjRkODI2M2UxMjc1NTA2M2M3ODAxMmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhOGM2MDMzYjk1MmI5MGI0ZmFmMDk3MGQzMDk4MWE4MDk2NmM1NzJlYWZhNGE1NTQyYmNiYjEzMGY0NGNjOTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg4NGJjYTg2M2QyOTc3MWEwYjRkYjJiNDQ3MzEwNGQyMjdmY2VlNTUyOTM1YmZlM2M0NmY5MzVjYzI3MjVlNDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNjMDUyNTE5MzM0MWIwZWM5OTRhZWQ2ODA3NDUxOGJlY2JkMzdhMTViNjZlOGI2YmRkNWJkYWZlZTdkNDViZTUifQ"
+        },
+        {
+          "resource": "repo://src/types/common.ts#L94-L109",
+          "version": "repo-lines-v1:sha256:46fe85beeee048b0847f09b4734848021864b271b3a577f81ba78e8aa4b855c7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1MTVjYTRlODA3MjcwYWFlYjcyMGY0ZTA0NjUwMTZhY2I0ZDc1NmFiNGQ3NWEzNTdmMjFkNjI2MDNlYWJmY2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNjOGJhMWFhNGEyNjZiMTZmMjYxMzliYzM3NGY4NjA3ZjI0Y2JjOGYxNWUzOGY2YzUyMTFiMzMwNDFjZGM3ZDkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2MDVlNTA5MmVjNTQ0ZDg0MWJiZTE4OGRkMWE4ZTk0MjY4N2NjYTAyMWZmZDQyNDRlYmI5MmM2NDNlM2M0NDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f4d97e9d12f44496b3d321d0424b8672",
+      "statement": "Helper limits default to 25 with a maximum of 100 and out-of-range values throw KimaiConfigError rather than being clamped.",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L35-L50",
+          "version": "repo-lines-v1:sha256:9d08eba11411d9ff12e3a3a49002098aa6583bb41a1bfe5c72725bdc76a7363b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyM2Y2YTUyYzYyZWQyMTI3Y2FmNzRlMGEwMzg2Mzk1Nzc0ZTFkYWRhNDgzYWUwYmFlNzkyNGVmMmU4NWQzZTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRkMWY3Y2EzNjdiNzVhMDJhNTRiM2QyMmJmZGNlNDlhY2U1ZmIyYTcxM2IzMTgyNzY4YmVlNjNiNDAwMjg5NjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE1YTY5YzM3NmU3OTQ5NjNlYTZiMzEyYmY3MGU4NjA1MDE5OGUwY2EyYzY2M2MwNmEyMjllMDlhZmZlMjJlNjQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_93bf442857d44b05972c0eca47bc6619",
+      "statement": "timesheets.resolve fetches an id directly (a miss is NOT_FOUND), resolves a begin value with one server-filtered read of 500 records, returns null on zero hits and throws RESOLUTION_AMBIGUOUS on several.",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L38-L40",
+          "version": "repo-lines-v1:sha256:f1ebd1c367a92b0c78d0dd690f80d5290b2c27a327dd5c3015bdc67f50560c2a:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGNmZjMwZDg4NjU4NDU3YzZhNGY0ZjdmNjE3ZTI2NjQ0YzVmMmU3OTdkYWY3YWY0Yjg0NThmZDNhZjkyYzY3MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTBlOWY5NGI2YWJkODg5ZGM2OTQ3M2RhODZlZmMyYWM0YmQ5NDcwNWJiZTY1NjQ5OWU4Y2YxMDg0MzIxOTk0MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWE2NGZjY2Q3YjQ2ZWE5OWMzYjMyNTQ1NjU3ZTIxYTQ2MWQ1ZTRhYjNmNjljYTUzNTQzMTgwZDQ5MDI1NjI5NCJ9"
+        },
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L527-L577",
+          "version": "repo-lines-v1:sha256:ff31f521b98054d402b781d22e1f6ca83009399d162ea2f71ff2904e6bdb3d9d:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4ZDMzMDhjY2JjNzIxMTdmN2U3MjVmNzAxMGZjNTY1Nzc3NmE1MmZhOGYyYjQzZWM1NjMwNWE2MDdiMDdhNGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBiNWVjOWJjYzZmMmYzYzFiNmVlODBkMTg3M2MwMmQ2MmViYjZlNWRhZmI3NGMzMTAzYzBiYTE5MmNiNGYzMmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ef03178c721542d1b19dbfedb6ca6d10",
+      "statement": "timesheets.search makes one bounded request with the helper limit as size, defaults user to all, and returns compact summaries unless expand is true.",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L468-L480",
+          "version": "repo-lines-v1:sha256:1774c722f9a5955f8b9d101878348e267eb8f7936329bf81f1b0480ae8ea23ce:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3MTY0M2U4ZDYxYzMyYTBlNmJmZDUwMDRlMjIwZjc2N2U2MTNjMjkwM2E0OWQyN2NmZDI0NDMyNmFkZjdhYzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI0YjQ1N2Y4ZDU0MTcyNjdmNWZkZmRiOTJiNzAwNTAwMWM1MjlkMDFhYWRkMjdjNzE2YTFlNDJmNTg1OWFlMTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ2ODEyYjAwNzlhODdkZDQ0N2JmYTE2OTNhMjAzZDJmMTg1MjA2OGQyNDE5YWQwYWU3NTRkYmMxMzkyMWE0ZjEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b2cbeecea992432297d85461c93bd486",
+      "statement": "getContext fetches user, activity and project in parallel and then the project's customer, with no unbounded fan-out.",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/TimesheetClient.ts#L492-L512",
+          "version": "repo-lines-v1:sha256:0f6e336a5b6ed1082c9293a9e3c8761f60263dde14ea12a65569103f525a5469:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2YTFlYzQwYzU1MDdjOGI0MGI0NGU5Y2NlZjc5NWU2MDg5MGJiZTUwMmQ0ZjUwOTFhYjU5MWI0NDY1YjRmODEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2ZmEyYzlhNTkwZWNjNjdlOWNlODcxOGZlMDgzMmNmZjllODQyOTY4Y2YwZWM3YzU1MDI4YmY0ZGE3ZjRlMjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJiZmE5ODFhM2E1MDU2ODcwNDZmMGU3YTEwZDFmNWEyOThjMGUxZTYxM2FkY2I3MTUxNDQ3YmQ4ZDhmZjU1MGYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b27d617f82c14df098eaa344380030b3",
+      "statement": "ActionsClient.getActions accepts only activity, customer, project and timesheet resources and validates id, view and locale as path segments.",
+      "evidence": [
+        {
+          "resource": "repo://src/resources/ActionsClient.ts#L10-L29",
+          "version": "repo-lines-v1:sha256:4f5cd51ccdb2c020096289b32275c56e6d4e978ebfbf892e472d9dba69c97baa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiMTgyODkzMzIzMmQ2NGQ0ZWFjMjJkOGQ0ODU2ZjBkZDZmZGZlMzYzMWU4YjlmMjJkZjQ3NmQ4ZDljZmFmMjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkxMmJhMmQ1NjZmMTBmZTBiMWYyZjgzYzkxZmQ1YzEyNjllZTg5MWMxNjAzYTgwMjI4YzE4MTUwMDI0NmI4ZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T00:59:56.546Z"
+  }
+}

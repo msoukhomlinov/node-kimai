@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:60b411e34a1462884cc6d92670647437867b719008d08481eb958065480893c0",
+  "claims": [
+    {
+      "id": "claim_765c5ac3011d4fa7b7ef52d11b5a28c1",
+      "statement": "The CORE tool profile consists of kimai_catalog, kimai_describe, kimai_read, kimai_write, kimai_delete, kimai_get_current_user, kimai_search_timesheets, kimai_search_customers, kimai_search_projects and kimai_get_week_status; writes are reached via kimai_write/kimai_delete.",
+      "evidence": [
+        {
+          "resource": "repo://src/mcp/catalog.generated.ts#L16-L60",
+          "version": "repo-lines-v1:sha256:846871c892513da02258c07fcb63c94cd8685c91d6a05f42f48588bac59cd389:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyYzE4ZGYyMWJjYTQ0OTFlNmJjYzJhNzAyY2E0MDNmZWZjZDQ0MzBhMzJjZjdiOTQ0MDQzM2Q0NDI2MzY0ZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYxZDZhYTFmZjQ2NmE4MmE1Y2E3NjBkNDY2MjE0MmJjNzA2YTc5ZWYzZDg0ODUwMzk3MTI3YWQwOTE3N2ZkOTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY3MWIyOWM3OGYwMzkzYzdiMTEwY2MzYzUzMTQ5OTBiNzBkYWVmY2ZlMzA2YmEyZjVlNzMzYmJkZjRlYzkxYmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c73c5b65f03046bcab765bcb4b517cab",
+      "statement": "catalogPage defaults to 40 rows with a hard maximum of 100, throws a config error for an out-of-range limit or invalid offset instead of clamping, and ANDs the effect, resource and unexposed_only filters.",
+      "evidence": [
+        {
+          "resource": "repo://src/mcp/catalog.generated.ts#L792-L793",
+          "version": "repo-lines-v1:sha256:3ce08e74ae06e5d642427982e748d0a3195d94d928405661a6a000befc5398fb:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGMyNzkwNDk3NjNmMjFlZjRjMTBlYTY2MmQwM2VkZTRkOWY5NGUwZTYyMDE3MWZmNDk1MGNkYmIzZDIwNWMyNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDY5OTI1MzkxYWE5YzcwYzU2ODM5NjdjZjc3YThjMjc0YTNkNWU4NmQwZjkwNGMyYWNmMTU4Yzk5NjEyNmIyYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTg3OGM2MzgzYzFkMzc2OGVlMzE3YTMyNDA3MTVjNTJhYzU0ZDQ2MmY0ZjIzNTY2ZDY5NjNkNDM3Nzk3MDZhZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjc0OTIzODA4MzI5ZmVjNmZiMTU1YTdlNjNhMTNkMDFmMTM2OGFiY2YwMjViNDlmMjk5OGU2YWFlZjRlYjlkMyJ9"
+        },
+        {
+          "resource": "repo://src/mcp/catalog.generated.ts#L992-L1021",
+          "version": "repo-lines-v1:sha256:0ba6d03ac78cf7a647c372db43ca81366bea77a7ba03ba76774ffc710f8cf619:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3MGZkNjZjYTFjM2JmZDc3NWUyNThhNTI2NjNmMDQ5OGRlOTU1N2RjNDZiOWViNjVhN2M0OGUzNzJhZDBiN2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZiNDZiNDMxNGY2YzE5Y2Y5M2E5NjQ1YzJlNzE5ZTgxYTExMWJmYjU2ZWJjMTgxMDViN2I1ZDgxYzU0Yzc4YzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU5YmY2NDQxMDVkYWY5NWI3ZTk5Mzc5ZGQ1YTBlNDJmZTU5YjIzYzllOWE2OGRkZDkyZTFlMGE0ZTA5YmU4MTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9b3bb7312cec429ebde14a4c2b46f652",
+      "statement": "REFUSALS contains only invoices.download, refused because the SDK returns bytes, which are not an MCP tool result.",
+      "evidence": [
+        {
+          "resource": "repo://src/mcp/catalog.generated.ts#L532-L535",
+          "version": "repo-lines-v1:sha256:fd17ea3e7d095b05aac5423e6618f839c2911c0954dcafbd163e13765b70e369:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTQyMWJmOWQzOTE1MzI0MjAzMWI4MWM3OThkNzNmYWU0Y2Q3NGZkOTA2MGM1NGZlMDg1ZjBhMDYzNzhmZmJmOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTBhMDE4NjdiOGNkNmExYjhhZDJmZjQ3MTczZjliN2M0YjM1YTEwNzA1MmNkOTBjNjZkYjJkYjQ5NTE4ODdmNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTNiZDlmNjllZDM4MTk0NGQwZDI2YjExMjNkZjcwNmVlN2IwYmUzMWMyNDA5MjI4OTNhNGNhNDg2OGNmZWM0ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_369621fedfb04e9d9a78e521bb88fa6b",
+      "statement": "kimaiDispatchInputSchema builds the read/write/delete input schema with a oneOf branch per operation and requires confirm equal to the operation key for confirm-required operations.",
+      "evidence": [
+        {
+          "resource": "repo://src/mcp/catalog.generated.ts#L912-L954",
+          "version": "repo-lines-v1:sha256:1e073f4f18b8f32c67a584cdd5b14af2f7d8f1978b2d1c26e4b8abb7501ea21f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFlMzc4NjdjYzdlYTg4ODk3M2E5YzA1YmZlNWM4NDZhNzQxYjhiNTA3YzczNTliNGZlODg1YjAyOTliMmRhMDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2NjRmY2ZmNDkyM2FlNGUwODAyZDlmYmU2MGQ3MGY3NGY3ODMyNmZmNzNlNWU1ZWM4ZGEyMDhiZmViNTM0YjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhOWIyYThjMDFjNGU2ODc3YmQyNTE5ZDFiZWI0NjRlOWU0ZDQyMDBkNTk1OTIyYzllZmVhNzJkNjU3OWM0YzAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_936f3c33c2e54d338528078a4c3af3e2",
+      "statement": "dispatchOperation only refuses an unknown effect or an operation whose registry effect differs from the dispatcher effect (code DISPATCHER_EFFECT) and otherwise delegates to invokeOperation.",
+      "evidence": [
+        {
+          "resource": "repo://src/mcp/dispatch.ts#L1-L60",
+          "version": "repo-lines-v1:sha256:f7fc7fb819f220ba81b8dd52b5ab05702f21013ee654ddbaa9cc318c58713619:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI5MTE3NTBlNTdlZGZkNWQxNmE2YTQ4N2I5NThkYTdiNmIwYmYxZDA5MzljMjA4NTc0MTk3MjA2NzQ4ZWY4ZjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b7b97543f6b24542bdc54d4e10bb971f",
+      "statement": "wrapUntrusted wraps strings in untrusted_content tags, neutralises embedded tags, is idempotent and leaves non-strings, empty strings and the [REDACTED] marker unwrapped; strip helpers remove one exact outer wrapper.",
+      "evidence": [
+        {
+          "resource": "repo://src/untrusted.ts#L31-L134",
+          "version": "repo-lines-v1:sha256:4d36ba6c4f1981e05b7d962e4a09e8ed53bbd75f99e59248531270e2d61880c3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA0LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJkNGY2M2I1OTU2ZmMwOGZlYTJiYzJkNzMwODQwYjRmOTc1N2QwMDFlY2FmNzBiYzQzMTcwM2Q2NmZmODY2NDgyIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJjZGZkYzkwYjA3MjJiYmM1YTg5NzJkZjU3NTkwZTM1ZjkyZGI4ZWM3NTJhMDQzODQ5OWIzYjc5Mjk4ZWJkNmI3IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_129375a617ed476a8c03940d52dff2fd",
+      "statement": "The catalog build script writes the generated module and MCP_TOOL_CATALOG.json, and its --check mode fails when the generated file is stale or an operation is neither reachable nor refused.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/build-tool-catalog.mjs#L1-L38",
+          "version": "repo-lines-v1:sha256:0d648aa517e84f1ca565de380a47a0ba70471005ccf050c4b25fe547a12d13d6:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1OWM0Nzg3MmI3MWYxMjU4OTk0Mjg5MjQ2NGU3NjRjMGRiMzUwYzIwYjcyMjI4NjQ1NjE1Y2MzNmUwYTA3MjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzYzMwOWEzMTk3ODU3NzRlMjBlM2RiMmUyZWIwZWIxZTgxYThlZWUzMmUxMjZhOWUzMDVmYjAyYjIzZTQyNGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVhMDM5NGJkODNmOWZlNTJiYmM5Yzk3NzU3ODc0YjNiZjJmZmRiMTI2MmE4MTg4ODQ2MmUwNzkxMmQ0YmMyN2UifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T00:59:56.546Z"
+  }
+}
