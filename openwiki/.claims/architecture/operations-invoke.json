@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:c65bb3160d4b469acc128452484decf3b7f5864349f00f710b34bbc27d9fcf0c",
+  "claims": [
+    {
+      "id": "claim_4f789e30090d410391b410414c126c6d",
+      "statement": "invokeOperation resolves an exact registry key (unknown keys throw UNKNOWN_OPERATION with nearest keys), refuses operations listed in REFUSALS with UNREACHABLE_OPERATION, runs planInvoke, then calls the typed client method.",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L533-L579",
+          "version": "repo-lines-v1:sha256:34df855de0729e50d3cd49d1dfc6503eab1b19e1c823dc32051115f9de337916:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0N2M3YTM0MWVlMDM5MTVhNzZiZTU3N2VkZDBjZWYwNGJhOTU3NWQ1MDE4ZTZlYzAzMThjNzM5MDZlZDQ0ZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhiYmUwOWNmNTU1ZDMyNzdmMjdkODg5YTU2YTEwNmIxOWVkMTljNmI3NDA4Y2JiNTc2MTA4NDRiMWZhM2YxNGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8d2a4d5e498c43f5a55a3e9ec5fce2fb",
+      "statement": "REFUSAL_CODES are UNKNOWN_OPERATION, UNREACHABLE_OPERATION, INVALID_INPUT (value CONFIG_ERROR) and DISPATCHER_EFFECT.",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L87-L92",
+          "version": "repo-lines-v1:sha256:0ff77e056b2239ae45c1bbebb41a364b2100fa03b492208bbbe54ef9999aaeeb:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmUwN2U4ZTU3YzkyNDJmYzRkZTI2MDc3N2ZjMmM1NDAzMDk3MjdiNWVlMTZiYTcyNThlZWIwMTliMjNjOWNjZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTc0ZWU4YThkMWFhODQ1MzkxYmM2NzllYjcwY2U3ZjQ2YTNjZDZmYjJkMTZmY2NhNjdmYTE3OGY0ZjhjMWUwZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjVkMDgzZjE2NDBiMGQ4Y2E2YjE1NGQxZDI2ZWZlMzY4OWMyOWMyNDc1YmY2Y2ZjOTVjYWI3MGVlMjE3NmY1YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTZjZmZmNjA4YjRiMjNkNzdlZDBmZmUyYjljZDU3NmRlMzMyYjEwZmY2YWIyZjE4Y2ZmODQ1ZmUwNWNiYmIxZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b9239a21707e4223b4461ce37651a63a",
+      "statement": "Input validation refuses unknown keys (closed contract), missing required keys, and id/*Id/*_id keys that are not safe positive integers, and deliberately does not enforce contract value types.",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L231-L286",
+          "version": "repo-lines-v1:sha256:19e20992980d4fcf8923cb6f0ac861831dc9308f24c44b1e85479d353c3fa58c:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBiZjRjYjU4ZGRlYWU1MzE1OTI5NDYyYTMzMGMwM2I5Y2ZiNWViM2VlNTUxMjAzZGIxNzUxYmY5MzU2NmNlNDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk4YWVhZWI5ZjYwODU1MzMwZjQ5NjEwMjYwN2Y5ZmQ5N2Y1YmM0YTMyYmYwMzgyODFlZjRhYWQ0ZWNlMDM3ZmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiZDRiNTBmMjg0ZGIxMzMwMDFlYjIwNWMyODBjMDlhNGVlOGNmY2RjYTY2NTg0NjYzYjU2MzQ2YTYyZjM4ZGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkwMjcwOTE0ZTcwN2EzNzZmNzhlNGQzYjgzMjBjZjQ5ZDRiNzA3NDc0YmEzMDE0NjI3MTljNmExYWRmODhhNjEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_dc6f1052a3a24478a30cd88e86328a6b",
+      "statement": "A destructive operation or one flagged requiresApproval needs options.confirm equal to the operation key; a mismatching confirm is refused for any effect.",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L408-L410",
+          "version": "repo-lines-v1:sha256:95d19607c3ae4e7192fa4006e75dcf85630bcf4273f8b6d3448e7e305e8134c6:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTQxNjRhZGQ1YTQzMDhkZTc5MTQzZmM0ZmNjYWUzMjdlYTk5NTY3MmI1NmUyNGY1MGRiMGRkNGIwM2M2NzdjNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWFmOTU1NjljNTc5MTUyYjA2ZDA0OTE3MGE1MWZiM2I0ZDA1N2NjMjdmNzY2NjA3YzRmMmI3ODc0NjkxYzM1MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2JhODNjY2YyYTI1ZTRmZWFkNDEyYjBlN2VkZTgzZjU2MDU2MTVmMGU5ZWJlZGU2MWQ5NjllZDY2ZGViYWU1NCJ9"
+        },
+        {
+          "resource": "repo://src/operations/invoke.ts#L468-L494",
+          "version": "repo-lines-v1:sha256:e55d1975de2f50219f02c959ddb3985a2a99223459cb6e76644986c43d1e700c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2YjRiZmE3NjgzZjcyNThiODk0NjkzYWQ0NzczZmRlZTg5YmMwOTM3YjE0MjA5ZjQ4MmVkYTI0MGRhNzYzMGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2YjlmMTEwZTRhMGU0ZDFjY2ZjMzIxYTQ4ZjQ5MGE1MDc0NzE0ODEzYmU3NWNkOWU5NDViMDI3ZTY0NDY4Y2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY0MDk5ZTQ1NDM1OWE3ZTQ2MWEwOWU0NjZiOWEyYjU0ZWNiYjcxMTIxZjIzNmFiMTc1YzUzOWEzMWM0YzUxYjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b91bb5a16a4c45858697f69cdb9c46ba",
+      "statement": "Writes are dry-run-first: the typed method receives dryRun true unless options.dryRun is explicitly false, reads refuse dryRun true, and a write with no registry dry-run option is refused as not invocable.",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L417-L428",
+          "version": "repo-lines-v1:sha256:93cceef532211f4dc14ac41698ed84c44f69a1dfd22d4f98c3d01c61fa8593e1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNlZDQ4N2RiNzhhYTExYWQ5NjExMGY1YjVmY2Q2ZjBjNGE1ZGRkZDg0NzUxNmIyYjhlNGU5NTk1ZjVjOWY0MjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlMzUxNjk3NjM2NTU1ZWMwYzRiYjA1MmVjYjRiMWE2NzZkYjhmMDMxM2E2YTRlZmUxNzQzNWZiODI1NjA1OGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY5NGU1NTg3YzkzNjQ1ZmRlMWQ0YWI2ZmZjMDdiNWZjMmY5ZGMzZTUwNTU2ZDgwNmJjZmMwM2EzNDkwZGRhMDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdmY2MwNjczM2Y5NGIzMjIxYjM1ZWYwNjQ5YjAwMjc1YzgzZTRiMjg0M2JlNGVkOWZlOWYxZmIyNDA3NTNlZWEifQ"
+        },
+        {
+          "resource": "repo://src/operations/invoke.ts#L478-L505",
+          "version": "repo-lines-v1:sha256:7173b4c172dd36b39538ae496659b487614332fbec0461740b5b8b27cbc6ee84:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlYWMxNjAwODAwYmYzMzE3NDhiZjM4YTA0NmRmZjg1MjQ2Nzg5MjhiMDBmNmI1ZGZjNmNkNDU4ZDk4ODZiZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA3N2FjNjExM2JhYTM1MTc0OWQ5OWFjY2JkYTBjMDYxZDBjMGViNzhjY2M1ZWFjYjMxODQ1OTNjZDQ2MDdlNGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjliMDVmZjM4NGNjYzhiOGJlOTcyZGI4NDFkNTBiZGYzODBmM2FmZWQ5NTM1NjhlNDJjZTg1NTk4NDM2ODE0YzUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6049a84cbdf64ebe990509ca307577e7",
+      "statement": "Operations named list or listPages, and any method returning an async iterable, are refused with a request-free CONFIG_ERROR naming the bounded alternative.",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L355-L401",
+          "version": "repo-lines-v1:sha256:d50f796a160f3f7ca0854ca137bdad5de618de8279b4bee1c37871afbcffdc3c:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzNDg5NWQyNzQ0YjA2ZmJiZTVhODAzNDJmMzM3NDg3NDRhMDAzMGIwNDU5NjU4MDY0YjYyMzQ2NzVmNjJhMjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIyYmZjMTA2ZjZmNzZhMDRiODM2NWNkNjI5MDU2YTk2YjcyNGJkMGM3NWZkODMxOGM4Mjk4NDQwNzdjZjQ3Y2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMWU4ODYzNzM0YWMxM2Q0MWZhZDdlM2NmNzgzMDYxODkxNGIwY2I4M2EwYTg3NDliMTA0ZTBhYjMyMDc0NTUifQ"
+        },
+        {
+          "resource": "repo://src/operations/invoke.ts#L576-L579",
+          "version": "repo-lines-v1:sha256:69008b80c34d5b8a3821ab4d52336066d73eb15ce1149ec4850bc93a5147cdec:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGZhNGI2ZjlmY2Y5MTc0ZDc3Yzc4MzRjODQwMTFiNGQ3Nzk5MWJhNDEyODU2ZTk1ZTQ5YzIwNjZkZWJjM2NmNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTU1YzhmY2Q0NDQzY2M2MWI3MzkzOWJiY2M3MTk5ODg2MzhmMzI0OGQwM2U5MWU2Mzc5ZTkwNmRjMWFhYzBmYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_378c6d0b593c44fe93dc8770324116e7",
+      "statement": "resolveInvokeTarget maps the registry resource to the client property (approval_bundle to approvalBundle) and refuses a missing resource or method as registry drift with CONFIG_ERROR.",
+      "evidence": [
+        {
+          "resource": "repo://src/operations/invoke.ts#L303-L338",
+          "version": "repo-lines-v1:sha256:4aad63852fb07da85268a8f98ec4f69c357e79984645f92745d6fc3750d5b716:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmODQ5YmI4Y2JmYThjYTI0OWMzMzlkMWRkMzNjODdhMmE0ZmM0OWE0MWExNjU0YTEzNjMwNGRkMzMwMTVjNzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzYTg2MjY3YTNhY2Q4Njg0MGY5YmIyMTlmYmEyYjcwMjcxMTUzMzQ4MzZlMGZkNzMyMGIwMDQxZjA1NTVhZmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdlMDYyZjQ5N2Y1YmYwMDkwNDJjOWRkMmIyOGRhNDE3ZTQ2ZjljNmZiOGRkZTgyOWZmNzZjNjhhMjdkN2ZiYjkifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T00:59:56.546Z"
+  }
+}

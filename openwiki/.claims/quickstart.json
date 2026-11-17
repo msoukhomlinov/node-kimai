@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:27b62aa05fc8294dc9cf87196fbfee1fd834ae4d55177f9e355bffc5af1878e6",
+  "claims": [
+    {
+      "id": "claim_cf02953928f64890b888004daf4c12c5",
+      "statement": "ApiClient is constructed from an options object with baseUrl and token, and exposes resource clients such as system, activities, timesheets and users as properties.",
+      "evidence": [
+        {
+          "resource": "repo://examples/quickstart.ts#L4-L44",
+          "version": "repo-lines-v1:sha256:2d512857cd0d2922aba5edc24c0496bef677396357dc85c399c67b6e1875f658:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3OGRkNGUyNjgwMGQ3YzNlNGFlMmQ5NTMxMmJmZTRhMGFiMGRmNjBlNWNiZWI3N2ZkNWQ2ODEzYTBjMTRiM2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0YjBmMmY2NDRiNDc2OGE5YmQ0ZjM5MDNiNzEzMGJjYWMzYzYzMjBmYTU5NjM3ODYzMmY1MmNkNGUwYjdiM2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVmMzYwNThiMmIzOWJmM2ZjYTg5YTVmOTEzNjY0YjMwNTc5NmIwMjFiZDc1YjFmMWZhZjBiY2RkM2QwOTFhNjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcxNjA4NDg4OWY5MDM5ZmM4MmIxN2Y4ZWU2ZDE0MTJmY2YyNWFmZTk5YTZjYjYzYTk0ZTkzZWY3MDM3ZTdjZjIifQ"
+        },
+        {
+          "resource": "repo://src/client.ts#L325-L332",
+          "version": "repo-lines-v1:sha256:4983180dac861412e8cc7a02741e6262994114fe0d76891a2c72ad7d2a00232c:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTA0ZDkxMzc1ZmQ3ODk5ZGIyMmJiZGFjYzRmMDYzOTM2ZDZiY2I4MWM0ZTJiN2VlNjk0NmQ0NmVhZDAwMzJiYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWVmZGIwMTk5OWVkZDNmNDBmZTczMmNhOGU1ZTgyMGQzMzFkOWJjMTY1OGU0MThmNTQ2ODQzMDgzMzhmZjc3OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODkzZWIyNWQ4ZjgxMDZkODU2YWQxMGM2MTgyYmE4ZTcyZWRiMGEwNGM1OGQwOWM5Y2QxM2ExODIyZmQ0NmE1MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmE4NTE0ZDA4YmY3MGNlYmQ1NTM5OGM0OGFkMDAxMzdmMzAyOWJmMDgyYzkyMzcwNTc5MWU1NzU4YmY4ZDQzYyJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T00:59:56.546Z"
+  }
+}

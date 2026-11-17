@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e9eba890e748345893d0006fd9cc05dfe06bb9bc4555c74ec516270555ad4ff3",
+  "claims": [
+    {
+      "id": "claim_1a4f403e9f56417c9583e2eb6269386b",
+      "statement": "ApiError derives category and retryable from status when omitted: 401/403 auth, 404 not_found, 409/412 conflict, 429 rate_limit, 400/422 validation, otherwise server; retryable is true only for 429 and status 500 and above.",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L50-L109",
+          "version": "repo-lines-v1:sha256:5502726f1ab4fd099bcd5229f0b1c8ce2ec9afc1a6525845285f8ddedf2804ec:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhjNjY2YjMxZDg5YzBmMDJjMWRlZDRiYjUzOTRiZGUyODQxMGQ3ZWYxMmRhMzE2NmRkMjQ1OGY4ODM0OTFmMDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ0Y2JkYTU4ZjlmMjUzZWJjMjZhNWZiNjYwODE3NDFjMmE1ZDFhN2IxNzZjMzlkNmRlMjAxNWFmZDk2YzA1MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcyMDljNmJhMDM5Y2I5ZjU4MTNjYmZkMTFhYTA3ZGU2NjM0YjNiNDJlYzQzOGQ5MDdmNTExMTk3OTI1OTg2ZTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8d7ba9eb8c114e1fba312087d4a5f9d6",
+      "statement": "Default machine codes per status are BAD_REQUEST, UNAUTHORIZED, FORBIDDEN, NOT_FOUND, CONFLICT (409 and 412), VALIDATION_FAILED, RATE_LIMITED, SERVER_ERROR for 5xx, and HTTP_<status> otherwise.",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L112-L132",
+          "version": "repo-lines-v1:sha256:147d3de67e0da010914d4f69eb825cd3413b1c68d52a42213b3ac9b06b5a0c54:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJlYTJlNWFjY2MyYjdhMzhjMGM4ZWRmNDgyZjI5MDk1NDEyZGRhNjQ5ODlmNGRlN2I1NDgwNGY5OWIxMzMzNTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk1NmYyZGFiN2Q4ZWI5MzY0NTYzNGZmOTJmZWYxYTBlODRkZDEzYTViNDdiYTBlZjZlNGJlYmM1Zjk1NjgwOTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQxODQyNjczZGVkZmFiYTUwZDk3ZWYxZGE4NzRhMzVkMDUyOTU3MTFmODMxMDI0Y2QxNDlkOGUwMDBlNGJkM2QifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6bdb246a985240d7a4a6bcac009abb0a",
+      "statement": "createApiError selects the subclass by status (400, 401, 403, 404, 422, 429, 5xx) and defaults code, vendorError, retryable and suggestedAction before applying explicit options.",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L135-L154",
+          "version": "repo-lines-v1:sha256:9bc784cd9206364ed2c001e5a425e06da23f9aedaca935477486c7848bfea461:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1YmRkZDc2MDZhMDliOGQ3MTY2NzU3MDQ1ZmU5NGIyOWNmM2M0ZjM3ZTJlNTQ1N2Y3ZTE0OWU3ODgwZWRkOTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZjNDUzMTgwY2E4ZDhkNDEzZGI4MTZmNDUxOGU5YmRlNzUzNWMwYjM5YmEzODI5YzVjZTFiNTcwMDNlZjc2ZDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI0YTU4OTUyOWEwYTE1OWRkNjgwZjYyZGU2MmI5YjNhNGUxOTU1NjY4YjAwOTZiYzQ2ODc5YzIyNGQ2YzIyNTgifQ"
+        },
+        {
+          "resource": "repo://src/errors.ts#L264-L297",
+          "version": "repo-lines-v1:sha256:65c759a28db4657c3871aee0b93ad12b5dd57aa29ae0c251826cdeaa600ca8fb:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI0ZDJiNTU5NDQ0MjRkNjE1YWYxY2NiZDMxNTc3M2JiNjE2ZjEyMDc0OWQ5OGI5MTVmNGYzODU0MzAwMzM3ZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_56b461ccb9de4c44b57570b8510b3f69",
+      "statement": "KimaiConfigError has status 0, category validation, default code CONFIG_ERROR and is non-retryable.",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L211-L223",
+          "version": "repo-lines-v1:sha256:24f1296e34b5c4b9c23a8fdb48f11e0fd00214af715cdbaaf5eca95b9d628121:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0MGE3Yzg0YTJkMDI2MjhiNWIwN2IxOTY0MjI4MjhkOGFlYmM2OTE0MDRlN2UzZmIzMzkzMjY3ZmVlODdlMDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdiYzA3ZWEyZWQ3MjMwYTdlZDk1Njg5NjkxZGFhNGE0ZTMwMmVkZjNlODQ0YWE5YmY3YmNmMGU2MjZlNzUzZDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxMTYyYjdlNTUxOTk1ODNiMGYyZTlkMzIyOTgyMDE2ODBkYzFjOGQ5Mjg0YWRiMjE2MGRiYTU5YTk4M2YxNjgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_60b718a9be0d43b5927149e3853b351c",
+      "statement": "ResolutionError has category resolution, is non-retryable, and has two codes: RESOLUTION_AMBIGUOUS (candidates on resourceIds) and RESOLUTION_TRUNCATED.",
+      "evidence": [
+        {
+          "resource": "repo://src/errors.ts#L232-L262",
+          "version": "repo-lines-v1:sha256:b1351728f2e2545a27e8b606c497cea1880ff7b39db5577b5eeb9a016f666be7:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkNjNkZjgxNjU1OGY1Zjg4NmI2YTUyZmViY2RkMGQ4NjQ5NDhhMTlkNWQwZWY1ZjhhNjI2ZTFjNTNhNDJkNGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY4ZmY3OWI5YzE1NzE4MTJmNDJjY2M1M2UzYzA4YmVhMGRmY2UxZjJlZTE0ZTg0YTI0MDE2YWY5ZDUwNDgyMTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmNGIyZmJmZDY4ODNjNjhiNTJlOWFiNDIyMGFhNzhkYTVhN2JkMzU5NGM2MzQ2YmVmMzgwYjNiM2YzNTc0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2dc2812e4bc84dd198ba44afb71e1c37",
+      "statement": "The root entry and the ./errors subpath must share one ApiError class identity in both ESM and CJS builds, pinned by a probe test.",
+      "evidence": [
+        {
+          "resource": "repo://test/errors-identity.test.ts#L28-L80",
+          "version": "repo-lines-v1:sha256:0eaefccd56a25b32d1768099dbb5d5dacb5121ee4225d262c031cf38feb470a6:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1YzY5MTdlYTYzMjcxMzMxMzc0NDJiZDBiYjhkZjk0OWExYzVhN2VkNjRmZmIwYTIyNmE3NWFlZTFmNzM0OTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk1NTM4OTU5Njg4NjBkNmM4NWVhYzZiMTMwZGFhZDM4ZWEyNDlkMmJkOWQ5MmM1NmZlYWQ4MjExNDcwYmIzZTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVmNGVkNjEzM2U2ZjY0ZjYwNzM4MDZkMDBkMjBjMmFkMWZjNjMyYjdjYjIyN2VkNGQ0ZjFiNmM1NzUzYjVmODAifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T00:59:56.546Z"
+  }
+}

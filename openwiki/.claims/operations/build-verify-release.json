@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:37ac37cd334603e2a08f107a36334782e1a76b9e280f57839e6c1421c8822760",
+  "claims": [
+    {
+      "id": "claim_017cfc71b870492cad2aaad7f0ad889e",
+      "statement": "The package declares Node >=24, ESM type, and subpath exports (., resources, types, errors, capabilities, untrusted, mcp, operations) each with import/require conditions.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L139-L141",
+          "version": "repo-lines-v1:sha256:e7674ee3780019bfaf1ef934daba5f2db3d5a06032a23f27b0c14e34b1912585:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWY2MDE1NTQxMjJlZmU4NTVkNTZlMTBjYzliYWYyMDMxY2EzZjRhYjExY2RiYTIyZjFlYmM1ZDM5YTc1NTgyNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzNlYjkyZWZlN2MzOGY1MzVjNDE0ZTY3OWNiZTE2MGRmZGUxMDcwZTNmZjJjMDA0MWUzY2Q3NDViZjg4MTgyYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjBlYTJlY2Q3YjNiYmE1YTkyNTQzZWZmMzUyYTZkNThlZDc0ZDQ1NDlhYTkxNDA4Y2M4MTg3OTdhMDc2NDlhOSJ9"
+        },
+        {
+          "resource": "repo://package.json#L16-L98",
+          "version": "repo-lines-v1:sha256:20917a3c643f79f13fefcc83ec02958e3fa98bf9886cd93eaa11bac014f1c010:eyJzZWxlY3RlZExpbmVDb3VudCI6ODMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjMDViYjlmNGE4Yjk4NDUxMGY4MTVhNWZjNDA3OGQ3N2M1YTIwZTkzZjMzNzNkYzVkZGU0YTM0MWQxYjQwYzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFhMDk2NTU4YTY3NzViMDY0MDQ2ZGM3ZTkxZDI2MmRiZDFjNGIxNDcxYjE3Y2YwNzgwZmMwOTQ3M2E2ZGU2YTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjViY2QxZDdlYzM1ODRlMTRkMGU0NTg2YmI1ZThlMGNiZjA2MGZlYzgzZGEwZGNiZDNkNzA5MGNhYjg4NjFmOGYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ae69d11634de452293c027ad90675688",
+      "statement": "tsup builds each entry as ESM and CJS with node24 target, no splitting, and keeps node-kimai/errors external so all bundles share one ApiError class.",
+      "evidence": [
+        {
+          "resource": "repo://tsup.config.ts#L1-L32",
+          "version": "repo-lines-v1:sha256:6d30769020c777c5cfae4ac9d9c907c88c054e99c8cf815200233a1f19e1da60:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5ZTU5YjE0ZDRhOTI1MTFmMTBhYzBjODE3Mzg3MDE3Y2NjMjAwNmQzYTFlZjNjYjA3ODdjYjNlMTdiMmQxOWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9011127b88cf456699e06c5570a88554",
+      "statement": "npm run verify runs typecheck, lint, build, public-surface, capabilities checks, mcp checks, catalog check, mcp surface check, then coverage in order; prepublishOnly adds clean, ship check and verify:pack.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L113-L137",
+          "version": "repo-lines-v1:sha256:dacefc50149c3f35d7267ce0fa3d483cdb7fcd4b6f8b5b84cc2ff2ef0e56ed72:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0ODMzZDU5NDljMDNhNDBjYTk1MjQ5MTYxMGE2NjU5NjQ0YjNhYTQ2NjM2MmY3OTkwMjBkYmYxOTgxNTQ3ZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1OWE1ZGJjOTZkMzAxNWZiYmU0ZDgzMzIzNzZmY2ZlNzE3M2UxNDczNmI3YWQ4MTY1ZjdiZDBkNWJmMjJjYmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk2MmQ2NjVhZDA1NTVlODY2MjdkNTE1OTg4MzU0NDdkNDc2MDViNmIyNzlhZjVlNjk5ZTVhMzYwZmUxZGYzZmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJiYzIwOTA3MDgyYWU5NzJjZGQyZGRjOTRlYTU3OWQ3MjYzZWRiN2UyOGZhODJkMTQ5Y2JiYzczNTYyYjI4MjUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8b644ba593e04709813409adfa814273",
+      "statement": "verify-pack builds, packs, asserts entry points and data artifacts are in the tarball without src/, compares plan hashes with the packed dist, and imports every value subpath from ESM and CJS in a clean consumer project.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/verify-pack.mjs#L47-L166",
+          "version": "repo-lines-v1:sha256:8e8ea1453d25421bd9a4058d33c421008747212ccf03e4f69692335329223b94:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJhMzM2ODJiZWFiNTljZDE4ZGZhZTNmZmVmNmIxZmJiNzM4YWRhNGVhMDZhNTRhZDc4ODRhNTRkY2NhMDIyMTM1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5ZWNlNjVlZWFkM2Y4NWU5YjUxYzAwMGU3NTU4YmQ4NTlkYWQ5YzRmZDQ5OTkxODMyN2RiYjVkYjVkYjQyNzE0IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJiYTlhMTUwZDk4YTczNzA3MjE5NTE5NDM4MzgyYzJmNzI1YTk5NmFlZmFiMjg5MjNhYzUyY2I1YmI0NzZkZjFjIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_a70f3388993143c592431bd712c6c6d4",
+      "statement": "public-surface checks that exports and tsup entries match, targets are emitted and loadable, and that there are no runtime dependencies or non-builtin bare imports in dist.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/public-surface.mjs#L1-L40",
+          "version": "repo-lines-v1:sha256:0cb6d0a664fd5f06bc5ba2b862f506f3c3280f30cad553a8c58a2b860c18f249:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1OWM0Nzg3MmI3MWYxMjU4OTk0Mjg5MjQ2NGU3NjRjMGRiMzUwYzIwYjcyMjI4NjQ1NjE1Y2MzNmUwYTA3MjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxODA4MDIxZjQyN2I2ZThkNjFkYzdlM2I0Y2U2ZTY4YjQ5NWVjMTZiYjA3ODhmMGZkZTU4NWEzODU3NGEyZmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4NDc5MjE1YjNlNWNiYzMyM2MwZjA3ZWRlZGMxMWRmNjkyNmE3ZmQ0MmUyYjA1ZmE5ZTBkZTgyNWI2YmE3NDAifQ"
+        },
+        {
+          "resource": "repo://scripts/public-surface.mjs#L193-L205",
+          "version": "repo-lines-v1:sha256:2b5bf6ddfa4c790b15f31619ede3f1cfa309e4ec041b2315c7eee604671e4685:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk4ZWQwNTRkNjg3MmEzNGIwOGQ5ZDEyMzA3OGRiYmRhOTA2YTg3NzlhNThlZmUwNTU1M2ZkOTljODZmNTkzMjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxODZjZTgzMDNlMjkwZjg4ODc3OTRhNDljMTI4ZjkxZDRjNzUwZTc0YjhlMjEzMjQ3OGE4NzkzOTQxMTBhNDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRlMzliYTE1ODY0MTQ1Njc4Njg3Nzg0ZDhlZTdjMWZjMTIwMDZjYmVhYmY0MmQxNTRiNGQwNjM1ZjM2ODgxMGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVkZmVhNzg0OGI4YjZiNGY5YTg1MTRmMDMyNzdjZjkwNTUwMzk2MzRlNWFlMzdiYWE1YjdmZjVjN2Q3YWQyYzcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c825a2399bda417ca61012939b99406f",
+      "statement": "check-mcp-surface statically verifies dispatcher tools, catalog reachability, core size against the manifest, verbatim META descriptions, and absence of credential leaks and credential fields in closed input contracts.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-mcp-surface.mjs#L55-L168",
+          "version": "repo-lines-v1:sha256:78800b9fc0a95a721737226205466759507ba3cd76d5e2de5270284529670b93:eyJzZWxlY3RlZExpbmVDb3VudCI6MTE0LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI5ZmE1ZDY1YzViNDRkOGEwYjMxYzI1ODlhZWRjODNjN2Q0YmNiMjRlNmRjMDAxZmI4MTBmNWQyOTIyOGNhNzFhIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJjYmVkZTkwMDg2MDliODU2MmY4MjA0Mjc0NjA4ZTM3NDE2MzgyYzJhNDY0NjNkZDA2MzcxYTExZWNiYmJhOWFiIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJmYjU4MGU5NjRmODNhNDczZjQzZDQ0Mzg0NjI5NDlkNjhiNTYwMGZkYTc4N2YxNjM3NDVkMDBkZTg5Y2JmMzZhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJmNGIwZjE5YzNkNGUwY2VhNDRlZDE4OTRkZjE5M2NmZGZhZTBjZjNlMjJiZDliOWFmMTc5NGZhNTFhOTEwNTE4In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_be290fe2a12b44f182868e75a8230d30",
+      "statement": "Vitest runs test/**/*.test.ts with v8 coverage thresholds of 90/90/80/90 for lines/functions/branches/statements.",
+      "evidence": [
+        {
+          "resource": "repo://vitest.config.ts#L17-L33",
+          "version": "repo-lines-v1:sha256:b5500e0ef814c26a6202940c3d7023262b373040fc9ed62b4ff0b5727a0acc0f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MzZkZjdhNWEzYWFmMTgwY2ZmZDFkNjVjNjQ2ZWY2YWVhMzUyY2MyNzc3NDY4NjE5OWNkOGZiM2U4OTljN2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY3MTNjOGY0NzAyYzk4MDE4NDExZDM4NDBmMmFiNDViNWFkZjBjM2M5N2IwMDIxYWRmNjU3NjVjYjJjMzU1OTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T00:59:56.546Z"
+  }
+}
