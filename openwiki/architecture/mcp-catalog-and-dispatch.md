@@ -37,7 +37,7 @@ Contents:
 
 ### Catalog paging
 
-`catalogPage` returns totals (total, reachable, unexposed and unreachable operations) plus a filtered, offset-based page. Filters are ANDed: `effect`, `resource`, and `unexposed_only`, which keeps only reachable operations with no dedicated tool. The default `limit` is `DEFAULT_CATALOG_LIMIT` (40) and the hard maximum is `MAX_CATALOG_LIMIT` (100). A `limit` outside 1 to the maximum, or a negative or non-integer `offset`, throws a config error rather than being clamped. Lookup helpers `catalogRow`, `requireCatalogRow` and `nearestKeys` use exact keys. An unknown key is refused with the nearest keys named, with no fuzzy matching. `describeOperation` and `inputFields` build the describe view from a registry record the host passes in.
+`catalogPage` returns totals (total, reachable, unexposed and unreachable operations) plus a filtered, offset-based page. Filters are ANDed: `effect`, `resource`, and `unexposed_only`, which keeps only reachable operations with no dedicated tool. The default `limit` is `DEFAULT_CATALOG_LIMIT` (40) and the hard maximum is `MAX_CATALOG_LIMIT` (100). A `limit` that is not an integer from 1 to the maximum, or an `offset` that is negative or not an integer, throws rather than being clamped. The error comes from the generated module's `configError`, a plain `Error` named `ConfigError`, not a `KimaiConfigError`. Lookup helpers `catalogRow`, `requireCatalogRow` and `nearestKeys` use exact keys. An unknown key is refused with the nearest keys named, with no fuzzy matching. `describeOperation` and `inputFields` build the describe view from a registry record the host passes in.
 
 ## dispatchOperation
 
@@ -52,7 +52,7 @@ An unknown operation key passes this check and is refused later by the invoke la
 
 `src/untrusted.ts` has zero imports and is applied only in the projection layer. SDK methods keep returning raw values.
 
-- `wrapUntrusted` wraps a string in `<untrusted_content>...</untrusted_content>`. It first neutralises literal open and close tags inside the text with a `<`-style escaped spelling, so a value cannot forge the boundary. It returns `undefined` (leave alone) for non-strings, the empty string and the `[REDACTED]` marker. An exactly wrapped value is returned as is, so wrapping is idempotent.
+- `wrapUntrusted` wraps a string in `<untrusted_content>...</untrusted_content>`. It first neutralises literal open and close tags inside the text with a literal backslash-u spelling (`<...`), so a value cannot forge the boundary. It returns `undefined` (leave alone) for non-strings, the empty string and the `[REDACTED]` marker. An exactly wrapped value is returned as is, so wrapping is idempotent.
 - `markUntrusted` wraps named fields of one plain record and returns a copy. `deepMarkUntrusted` does this recursively through arrays and plain objects, for paged envelopes and dry-run envelopes that echo a body.
 - `stripUntrustedWrapper` and `stripUntrustedDeep` remove one exact outer wrapper from strings, for echoed values on writes and filter arguments, and leave the inner text untouched.
 - The module never truncates. The caller truncates before wrapping.

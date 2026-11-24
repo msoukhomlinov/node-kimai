@@ -16,7 +16,7 @@ generated: { by: "openwiki/0.9.0", at: "2026-11-17T00:59:56.546Z" }
 
 # Typed Error Contract
 
-Every failure the SDK raises is an `ApiError` or a subclass (`src/errors.ts`). The package exports them from the root and from the `./errors` subpath. `isKimaiError(err)` in `src/guards.ts` is an `instanceof ApiError` check that narrows the type. Where errors are produced from the wire is described in [client-and-transport.md](client-and-transport.md).
+Failures the SDK raises deliberately are an `ApiError` or a subclass (`src/errors.ts`); a success body that cannot be read passes through as the underlying error (see [client-and-transport.md](client-and-transport.md)). The package exports them from the root and from the `./errors` subpath. `isKimaiError(err)` in `src/guards.ts` is an `instanceof ApiError` check that narrows the type. Where errors are produced from the wire is described in [client-and-transport.md](client-and-transport.md).
 
 ## Fields
 

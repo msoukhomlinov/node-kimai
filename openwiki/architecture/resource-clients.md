@@ -47,7 +47,7 @@ Every `TimesheetClient` mutation (`create`, `update`, `delete`, `updateMeta`, `s
 - `checks`, a list of named pass or fail entries such as a valid positive target id.
 - `impact { affected, scope, reversible }`, `simulated: true`, `warnings`, and `data` (the input that would be applied) when there is one.
 
-`mutationDryRun` always adds two warnings: referenced resources are not verified, and impact is a best-effort estimate. The current record is not fetched, so no diff is computed. For example, a create dry run checks that `project` and `activity` are valid ids and warns when `begin` is missing.
+`mutationDryRun` always adds two warnings: referenced resources are not verified, and impact is a best-effort estimate. The `update` dry run adds a third warning: the current record is not fetched, so no diff is computed. For example, a create dry run checks that `project` and `activity` are valid ids and warns when `begin` is missing.
 
 ## Bounded helpers
 
