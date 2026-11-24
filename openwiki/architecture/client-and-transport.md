@@ -56,12 +56,12 @@ Every verb calls `assertSafeRequestPath` first, then hands the transport a `Tran
 
 ## Request-path and credential guards
 
-These are in `src/guards.ts` and run before a request is built:
+These are in `src/guards.ts`. The path guards run before a request is built; `credentialShapeProblem` and `isKimaiError` are exported for a consumer to call, and the client does not call them itself:
 
 - `pathId(value, name)` accepts only a safe positive integer and returns its decimal string.
 - `pathToken(value, name)` accepts only `[A-Za-z0-9_-]+`.
-- `assertSafeRequestPath` accepts only a plain relative path. It rejects backslashes, `?`, `#`, control characters, and empty, `.` or `..` segments. It checks the path as given and after repeated percent-decoding (up to four rounds), and refuses if any form is unsafe or the decoding fails. Query parameters belong in `query`.
+- `assertSafeRequestPath` accepts only a plain relative path. It rejects backslashes, `?`, `#`, control characters, and empty, `.` or `..` segments. It checks the path as given and after each round of percent-decoding, and refuses if any form is unsafe, the decoding fails, or the path is still changing after four rounds. Query parameters belong in `query`.
 - `credentialShapeProblem({ baseUrl, token })` returns a value-free message, or `null` when usable. It requires a non-empty absolute `http(s)` `baseUrl` and a non-empty `token`. It rejects a token with leading or trailing whitespace, surrounding single or double quotes, or a carriage return. This catches quote-preserving env loaders. The message names the field and the artifact, never the value.
 - `isKimaiError` narrows to `ApiError` and so covers every subclass.
 
-All guard refusals throw `KimaiConfigError` with the message stating that no request was issued.
+`pathId`, `pathToken` and `assertSafeRequestPath` throw `KimaiConfigError` with a message stating that no request was issued. `credentialShapeProblem` returns a message and does not throw.

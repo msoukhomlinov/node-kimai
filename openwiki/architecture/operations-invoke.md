@@ -37,7 +37,7 @@ The data it reads comes from the registry ([capability-registry.md](capability-r
 
 ## Refusal codes
 
-`REFUSAL_CODES` has four entries: `UNKNOWN_OPERATION`, `UNREACHABLE_OPERATION`, `INVALID_INPUT` (whose value is `CONFIG_ERROR`) and `DISPATCHER_EFFECT`. Every refusal is a `KimaiConfigError` ([errors.md](errors.md)) carrying `operation`, `code` and usually a `suggestedAction`, thrown before any request. Input-validation messages name keys and paths, never input values. The one exception is the `confirm` mismatch message, which quotes the supplied `confirm` string.
+`REFUSAL_CODES` has four entries: `UNKNOWN_OPERATION`, `UNREACHABLE_OPERATION`, `INVALID_INPUT` (whose value is `CONFIG_ERROR`) and `DISPATCHER_EFFECT`. Every refusal is a `KimaiConfigError` ([errors.md](errors.md)) carrying `operation`, `code` and usually a `suggestedAction`, thrown before any request. The one exception is the async-iterable backstop, which runs after the method call (see below). Input-validation messages name keys and paths, never input values. The one exception is the `confirm` mismatch message, which quotes the supplied `confirm` string.
 
 ## Input validation
 
